@@ -11,14 +11,9 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   :glob:
 
-   MTHE326
-   CISC333
-   CMPE365
-   MTHE455
-   ELEC377
-   MTHE494
-   MTHE474
+   */index
    note
 
 
