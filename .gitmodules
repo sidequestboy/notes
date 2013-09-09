@@ -6,3 +6,6 @@
 	path = gh-pages
 	url = git@github.com:jameh/notes.git
 	branch = gh-pages
+[submodule ".theme"]
+	path = .theme
+	url = git@github.com:jameh/notes-sphinx-theme.git
