@@ -1,0 +1,7 @@
+This is a note for a particular course
+======================================
+
+First lesson goes something like this...
+
+.. math::
+	i := \sqrt{-1}

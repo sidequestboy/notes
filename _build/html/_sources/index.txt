@@ -1,0 +1,25 @@
+.. reStucturedNotes documentation master file, created by
+   sphinx-quickstart on Sat Sep  7 16:05:45 2013.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to Jamie's reStructured Notes!
+======================================
+
+Contents:
+---------
+
+.. toctree::
+   :maxdepth: 2
+
+   MTHE326
+   note
+
+
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`search`
+
