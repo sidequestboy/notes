@@ -1,0 +1,8 @@
+[submodule "build/html"]
+	path = build/html
+	url = git@github.com:jameh/notes.git
+	branch = gh-pages
+[submodule "gh-pages"]
+	path = gh-pages
+	url = git@github.com:jameh/notes.git
+	branch = gh-pages
