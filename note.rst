@@ -28,4 +28,6 @@ True   True   True
 
 And check out this inline math: :math:`\sin^{-1} \theta`. That's pretty slick, yo.
 
+Does this update gh-pages?
+
 .. _reStructuredText: http://sphinx-doc.org/latest/rest.html
