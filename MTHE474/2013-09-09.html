@@ -1,0 +1,184 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="MTHE 494 notes" href="../MTHE494/index.html" />
+    <link rel="prev" title="MTHE 474 - Information Theory" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE494/index.html" title="MTHE 494 notes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="MTHE 474 - Information Theory"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="information-theory">
+<h2>Information Theory<a class="headerlink" href="#information-theory" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>mathematical theory of communication</li>
+<li>provides fundamental limits on how to measure/quantify/process/code
+information<ul>
+<li>providing fundamental performance bounds on communication systems
+(asymptotic limits)</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="source-coding-data-compression">
+<h2>Source Coding / Data Compression<a class="headerlink" href="#source-coding-data-compression" title="Permalink to this headline">¶</a></h2>
+<p>Lossless vs. Lossy</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">Entropy: smallest compression rate for lossless compression</p>
+</div>
+<p>Read: <a class="reference external" href="http://www.mast.queensu.ca/~math474/shannon1948.pdf">Fundamentals of Channel coding</a> (Shannon 1948) on capacity.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Capacity, <span class="math">\(C\)</span> of a discrete channel is given by:</p>
+<div class="math">
+\[C = \lim_{T \to \infty} \frac{\log N(T)}{T}\]</div>
+<p class="last">Where <span class="math">\(N(T)\)</span> is the number of allowed signals of duration T</p>
+</div>
+</div>
+<div class="section" id="information-measures">
+<h2>Information Measures<a class="headerlink" href="#information-measures" title="Permalink to this headline">¶</a></h2>
+<p>Entropy, Divergence, Mutual Information</p>
+<div class="section" id="entropy">
+<h3>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="motivation">
+<h4>Motivation:<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h4>
+<p><strong>Self-Information</strong>:</p>
+<p>Let <span class="math">\(E\)</span> be an event with probability <span class="math">\(p\)</span> (<span class="math">\(0 \leq p \leq 1\)</span>).</p>
+<p>Let <span class="math">\(I(p)\)</span> [or <span class="math">\(I(E)\)</span>], called the self-information of event
+<span class="math">\(E\)</span>, represent the amount of information you <em>gain</em> when you learn that
+<span class="math">\(E\)</span> has occured. Equivalently, the <em>amount of uncertainty</em> you had prior
+to learning that <span class="math">\(E\)</span> had happened.</p>
+<p>What are the properties <span class="math">\(I(p)\)</span> should have?</p>
+<ol class="arabic simple">
+<li><span class="math">\(I(p)\)</span> is a decreasing function of <span class="math">\(p\)</span><ul>
+<li>this makes sense intuitively: the more likely an event, the less information
+you gain from learning that it happens.</li>
+</ul>
+</li>
+<li><span class="math">\(I(p)\)</span> is continuous in <span class="math">\(p\)</span></li>
+<li>If <span class="math">\(E_{1}\)</span>, <span class="math">\(E_{2}\)</span> are <strong>independent</strong> events, with respective
+probabilities <span class="math">\(p_{1}\)</span>, <span class="math">\(p_{2}\)</span>,</li>
+</ol>
+<div class="math">
+\[I(E_{1} \cap E_{2}) = I(E_{1}) + I(E_{2}) = I(p_{1}) + I(p_{2}) = I(p_{1} \bullet p_{2})\]</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#information-theory">Information Theory</a></li>
+<li><a class="reference internal" href="#source-coding-data-compression">Source Coding / Data Compression</a></li>
+<li><a class="reference internal" href="#information-measures">Information Measures</a><ul>
+<li><a class="reference internal" href="#entropy">Entropy</a><ul>
+<li><a class="reference internal" href="#motivation">Motivation:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">MTHE 474 - Information Theory</a></li>
+      <li>Next: <a href="../MTHE494/index.html" title="next chapter">MTHE 494 notes</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-09-09.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

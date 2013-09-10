@@ -1,0 +1,183 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Graph problems &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="ELEC 377 notes" href="../ELEC377/index.html" />
+    <link rel="prev" title="CMPE 365 - Algorithms I" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../ELEC377/index.html" title="ELEC 377 notes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="CMPE 365 - Algorithms I"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <blockquote>
+<div><p>&#8220;If it&#8217;s a good idea, go ahead and do it.&#8221;</p>
+<p class="attribution">&mdash;Commador Grace Hopper</p>
+</div></blockquote>
+<div class="section" id="graph-problems">
+<h1>Graph problems<a class="headerlink" href="#graph-problems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="problem-1">
+<h2>Problem 1<a class="headerlink" href="#problem-1" title="Permalink to this headline">¶</a></h2>
+<p>You have a map of communication routes between nodes. Each route has a bandwidth
+value. Find the path from A to B such that the minimum bandwidth on a route is
+maximized.</p>
+</div>
+<div class="section" id="problem-2">
+<h2>Problem 2<a class="headerlink" href="#problem-2" title="Permalink to this headline">¶</a></h2>
+<p>You have a maze of rooms connected with passages. Each room has some amount of
+gold in it. Find a route from A to B that minimizes travel time <em>while</em>
+maximizing gold collected. Cannot not revisit the same room.</p>
+</div>
+<div class="section" id="problem-3">
+<h2>Problem 3<a class="headerlink" href="#problem-3" title="Permalink to this headline">¶</a></h2>
+<p>You have a travel network of flights. Each flight has a departure time and an
+arrival time. Find a route from A to B that minimizes travel time.</p>
+</div>
+<div class="section" id="dijkstra-s-algorithm">
+<h2>Dijkstra&#8217;s Algorithm<a class="headerlink" href="#dijkstra-s-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>This algorithm is the solution to the shortest path problem:</p>
+<p>Given a weighted graph, with all weights greater than zero, find the shortest
+path from A to all other connected nodes.</p>
+<ol class="arabic simple">
+<li>Let <span class="math">\(A\)</span> be our starting node.</li>
+<li>Let <span class="math">\(D(X)\)</span> be the distance variable from <span class="math">\(A\)</span> to connected node <span class="math">\(X\)</span>.</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><span class="math">\(D(A)=0\)</span> and <span class="math">\(D(X)=\infty\)</span> for all others</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Let <span class="math">\(w(X, Y)\)</span> be the given distance between joined nodes <span class="math">\(X\)</span> and <span class="math">\(Y\)</span>.</li>
+<li>Let <span class="math">\(P(X)\)</span> be the variable to track the predecessor in the shortest path to
+the node <span class="math">\(X\)</span>.</li>
+<li>Let <span class="math">\(Q\)</span> be the set of nodes we can reach in one step. Initially,
+<span class="math">\(Q={A}\)</span></li>
+<li>While <span class="math">\(Q\)</span> is non-empty, do the following:</li>
+</ol>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li>Choose <span class="math">\(X\)</span>, the node in math:<cite>Q</cite> with the minimum distance from where
+you are.</li>
+<li>Then, for all <span class="math">\(Y\)</span>, not yet reached neighbours of <span class="math">\(X\)</span>, if
+<span class="math">\(D(X) + W(X, Y) &lt; D(Y)\)</span> then let <span class="math">\(D(Y) = D(X) + w(X,Y)\)</span> and
+let <span class="math">\(P(Y) = X\)</span>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">this last condition will always be true the first time <em>Y</em> is
+visited. (since <span class="math">\(D(Y)=\infty\)</span>)</p>
+</div>
+<ol class="lowerroman simple" start="3">
+<li>If <span class="math">\(Y \notin Q\)</span>, add <span class="math">\(Y\)</span> to <span class="math">\(Q\)</span>, remove <span class="math">\(X\)</span> from
+<span class="math">\(Q\)</span>, mark <span class="math">\(X\)</span> reached.</li>
+<li>repeat from step i. so long as condition 6. is met.</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Graph problems</a><ul>
+<li><a class="reference internal" href="#problem-1">Problem 1</a></li>
+<li><a class="reference internal" href="#problem-2">Problem 2</a></li>
+<li><a class="reference internal" href="#problem-3">Problem 3</a></li>
+<li><a class="reference internal" href="#dijkstra-s-algorithm">Dijkstra&#8217;s Algorithm</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">CMPE 365 - Algorithms I</a></li>
+      <li>Next: <a href="../ELEC377/index.html" title="next chapter">ELEC 377 notes</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-09-09.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

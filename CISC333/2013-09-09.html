@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>MTHE 494 notes &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    <title>An introduction &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,8 +26,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
-    <link rel="next" title="Test Note" href="../note.html" />
-    <link rel="prev" title="Introduction" href="../MTHE474/2013-09-09.html" />
+    <link rel="up" title="CISC 333 - Data Mining" href="index.html" />
+    <link rel="next" title="CMPE 365 - Algorithms I" href="../CMPE365/index.html" />
+    <link rel="prev" title="CISC 333 - Data Mining" href="index.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -44,12 +45,13 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../note.html" title="Test Note"
+          <a href="../CMPE365/index.html" title="CMPE 365 - Algorithms I"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../MTHE474/2013-09-09.html" title="Introduction"
+          <a href="index.html" title="CISC 333 - Data Mining"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CISC 333 - Data Mining</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -58,36 +60,42 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="mthe-494-notes">
-<h1>MTHE 494 notes<a class="headerlink" href="#mthe-494-notes" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Coordinator:</th><td class="field-body"><a class="reference external" href="mailto:linder&#37;&#52;&#48;mast&#46;queensu&#46;ca">Tamas Linder</a></td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="grading">
-<h2>Grading<a class="headerlink" href="#grading" title="Permalink to this headline">¶</a></h2>
-<blockquote>
+  <div class="section" id="an-introduction">
+<h1>An introduction<a class="headerlink" href="#an-introduction" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-define admonition">
+<p class="first admonition-title">define</p>
+<dl class="last docutils">
+<dt>Data Mining</dt>
+<dd><ol class="first arabic simple">
+<li>Inductive modelling of systems from data</li>
+<li>&#8220;Knowledge Discovery&#8221;</li>
+</ol>
+<blockquote class="last">
 <div><ul class="simple">
-<li>10%: Short essay</li>
-<li>5%: Short essay editing</li>
-<li>10%: Long essay outline</li>
-<li>15%: Long essy draft</li>
-<li>40%: Long essay final copy</li>
-<li>10%: Oral Presentation</li>
-<li>10%: Attendance</li>
+<li>NSA uses this synonym because &#8220;Data Mining&#8221; must be reported to Congress</li>
 </ul>
 </div></blockquote>
+</dd>
+</dl>
 </div>
-<div class="section" id="contents">
-<h2>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
+<div class="section" id="the-data-flood">
+<h2>The Data Flood<a class="headerlink" href="#the-data-flood" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>There are more than 3 billion cell phone calls per day. Every call
+generates at least 1 record.</div></blockquote>
+<p><a class="reference external" href="http://www.sdss.org/dr7/">Sloan Digital Sky Survey</a> ~ 15.7TB</p>
 </div>
+<div class="section" id="scientific-method">
+<h2>Scientific Method<a class="headerlink" href="#scientific-method" title="Permalink to this headline">¶</a></h2>
+<p>The scientific method involves <em>controlled</em> experiments. Controlled experiments
+are not realistic in many fields, e.g. social, economic, physical, medical.</p>
+<p>Instead of <em>controlled</em> populations, in data mining we use populations.</p>
+<p>We poke and prod at the population and discover relationships that give rise to
+<strong>models</strong>.  The problem once we have a set of models is deciding on the best.</p>
+<p>There is no notion of deduction in data mining - but there is a similar (weaker)
+concept of induction.</p>
+<p>Where deduction is purely logical, induction is basically the term we use to say
+that our inferences are not based on logic alone.</p>
 </div>
 </div>
 
@@ -99,24 +107,24 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">MTHE 494 notes</a><ul>
-<li><a class="reference internal" href="#grading">Grading</a></li>
-<li><a class="reference internal" href="#contents">Contents:</a><ul>
-</ul>
-</li>
+<li><a class="reference internal" href="#">An introduction</a><ul>
+<li><a class="reference internal" href="#the-data-flood">The Data Flood</a></li>
+<li><a class="reference internal" href="#scientific-method">Scientific Method</a></li>
 </ul>
 </li>
 </ul>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Overview</a><ul>
-      <li>Previous: <a href="../MTHE474/2013-09-09.html" title="previous chapter">Introduction</a></li>
-      <li>Next: <a href="../note.html" title="next chapter">Test Note</a></li>
+  <li><a href="index.html">CISC 333 - Data Mining</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">CISC 333 - Data Mining</a></li>
+      <li>Next: <a href="../CMPE365/index.html" title="next chapter">CMPE 365 - Algorithms I</a></li>
+  </ul></li>
   </ul></li>
 </ul>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/MTHE494/index.txt"
+    <li><a href="../_sources/CISC333/2013-09-09.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">

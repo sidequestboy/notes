@@ -1,0 +1,64 @@
+************
+Introduction
+************
+
+Information Theory
+==================
+ * mathematical theory of communication
+ * provides fundamental limits on how to measure/quantify/process/code
+   information
+
+   * providing fundamental performance bounds on communication systems
+     (asymptotic limits)
+
+Source Coding / Data Compression
+================================
+Lossless vs. Lossy
+
+.. admonition:: Definition
+
+	Entropy: smallest compression rate for lossless compression
+
+Read: `Fundamentals of Channel coding`_ (Shannon 1948) on capacity.
+
+.. admonition:: Definition
+
+	Capacity, :math:`C` of a discrete channel is given by:
+
+	.. math::
+		C = \lim_{T \to \infty} \frac{\log N(T)}{T}
+	Where :math:`N(T)` is the number of allowed signals of duration T
+
+Information Measures
+====================
+Entropy, Divergence, Mutual Information
+
+Entropy
+-------
+Motivation:
+^^^^^^^^^^^
+**Self-Information**:
+
+Let :math:`E` be an event with probability :math:`p` (:math:`0 \leq p \leq 1`).
+
+Let :math:`I(p)` [or :math:`I(E)`], called the self-information of event
+:math:`E`, represent the amount of information you *gain* when you learn that
+:math:`E` has occured. Equivalently, the *amount of uncertainty* you had prior
+to learning that :math:`E` had happened.
+
+What are the properties :math:`I(p)` should have?
+
+1. :math:`I(p)` is a decreasing function of :math:`p`
+
+   * this makes sense intuitively: the more likely an event, the less information
+     you gain from learning that it happens.
+
+2. :math:`I(p)` is continuous in :math:`p`
+3. If :math:`E_{1}`, :math:`E_{2}` are **independent** events, with respective
+   probabilities :math:`p_{1}`, :math:`p_{2}`, 
+
+.. math::
+	I(E_{1} \cap E_{2}) = I(E_{1}) + I(E_{2}) = I(p_{1}) + I(p_{2}) = I(p_{1} \bullet p_{2})
+
+
+.. _`Fundamentals of Channel coding`: http://www.mast.queensu.ca/~math474/shannon1948.pdf

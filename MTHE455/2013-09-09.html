@@ -1,0 +1,173 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction to Stochastic Process &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="MTHE 474 - Information Theory" href="../MTHE474/index.html" />
+    <link rel="prev" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE474/index.html" title="MTHE 474 - Information Theory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="MTHE 455 - Stochastic Processes &amp; Applications"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introduction-to-stochastic-process">
+<h1>Introduction to Stochastic Process<a class="headerlink" href="#introduction-to-stochastic-process" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A <strong>Stochastic Process</strong> is a collection of random variables,</p>
+<div class="last math">
+\[\left\{ X_{u}; u \in I \right\}\]</div>
+</div>
+<p>There are 2 fundamental properties of a stochastic process.</p>
+<ol class="arabic simple">
+<li>The index set <span class="math">\(I\)</span>. Typically, we will take
+<span class="math">\(I=\left\{ 0, 1, 2, ... \right\}\)</span> or <span class="math">\(I=[0,\infty)\)</span>
+In the first case, <span class="math">\(I\)</span> is discrete, in the second, <span class="math">\(I\)</span> is a
+continuous index set.</li>
+<li>If <span class="math">\(S_{u}\)</span> is the sample space of <span class="math">\(X_{u}\)</span>, then
+<span class="math">\(S = \cup_{u \in I} S_{u}\)</span> is the <strong>state space</strong> of the stochastic
+process. (i.e. <span class="math">\(S\)</span> is the set of all possible values of
+<span class="math">\(X_{u}'s\)</span>)</li>
+</ol>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(Y_{1}, Y_{2}, ..., Y_{n}\)</span> be <em>independent</em> random variables with:</p>
+<div class="math">
+\[P(Y_{i} = -1) = P(Y_{i} = 1) = \frac{1}{2}, \forall i \in \left\{1, 2, ...,
+n\right\}\]</div>
+<p>Let <span class="math">\(X_{0}=0\)</span> and <span class="math">\(X_{n} = \sum_{i=1}^{n} Y_{i}\)</span> for <span class="math">\(n \ge 1\)</span></p>
+<p>Here, <span class="math">\(I=\mathbb Z_{\ge 0}\)</span> and <span class="math">\(S=\mathbb Z\)</span></p>
+<p>for every given <span class="math">\(n\)</span>, <span class="math">\(X_{n}\)</span> can take values
+<span class="math">\(-n, -n+2, ..., n-2, n\)</span></p>
+<div class="section" id="the-distribution-of-stochastic-processes">
+<h3>The Distribution of Stochastic Processes<a class="headerlink" href="#the-distribution-of-stochastic-processes" title="Permalink to this headline">¶</a></h3>
+<p>Recall, a random variable <span class="math">\(X\)</span>, is a function from <span class="math">\(\Omega \to \mathbb R\)</span> where <span class="math">\((\Omega, P)\)</span> is a probability space (<span class="math">\(P\)</span> is the probability measure on <span class="math">\(\Omega\)</span>)</p>
+<p>The <strong>distribution</strong> of <span class="math">\(X\)</span> is the probability law on <span class="math">\(\Bbb R\)</span> by <span class="math">\(P\)</span> under the mapping <span class="math">\(X\)</span>:</p>
+<p>i.e. for <span class="math">\(A \subset \Bbb R\)</span>,</p>
+<div class="math">
+\[P(X \in A) = P(X^{-1}A)\]</div>
+<p>where</p>
+<div class="math">
+\[X^{-1}A = \left\{\omega \in \Omega | X(\omega) \in A \right\}\]</div>
+<p>For a stochastic process with index set <span class="math">\(I\)</span>, the collection
+<span class="math">\(\left\{X_{u} | u \in I \right\}\)</span> can be thought of as a mapping from
+<span class="math">\(\Omega \to \Bbb R^{I}\)</span>, where <span class="math">\(\Bbb R^{I}\)</span> is the set of all
+functions from <span class="math">\(I\)</span> to <span class="math">\(\Bbb R\)</span>.  For example, if
+<span class="math">\(I=\Bbb Z_{\ge 0}\)</span>, then <span class="math">\(\omega\)</span> gets mapped to
+<span class="math">\(X_{0}(\omega), X_{1}(\omega), ...\)</span> which we can view as a function from
+<span class="math">\(I\)</span> to <span class="math">\(\Bbb R\)</span> like so:</p>
+<img alt="../_images/IMG_20130909_225813.jpg" class="align-center" src="../_images/IMG_20130909_225813.jpg" style="width: 50%;" />
+<p>If <span class="math">\(I = [0, \infty)\)</span>, then a given <span class="math">\(\omega\)</span> maps to e.g.:</p>
+<img alt="../_images/IMG_20130909_225820.jpg" class="align-center" src="../_images/IMG_20130909_225820.jpg" style="width: 50%;" />
+<p>These &#8220;curves&#8221; are called sample paths of the stochastic process.</p>
+<p>There is exactly one sample path for each <span class="math">\(\omega \in \Omega\)</span></p>
+<p>For our example,</p>
+<img alt="../_images/IMG_20130909_225826.jpg" class="align-center" src="../_images/IMG_20130909_225826.jpg" style="width: 50%;" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction to Stochastic Process</a><ul>
+<li><a class="reference internal" href="#example">Example</a><ul>
+<li><a class="reference internal" href="#the-distribution-of-stochastic-processes">The Distribution of Stochastic Processes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">MTHE 455 - Stochastic Processes &amp; Applications</a></li>
+      <li>Next: <a href="../MTHE474/index.html" title="next chapter">MTHE 474 - Information Theory</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-09-09.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

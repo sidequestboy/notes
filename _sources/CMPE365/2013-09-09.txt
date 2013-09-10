@@ -1,0 +1,64 @@
+	"If it's a good idea, go ahead and do it."
+
+	-- Commador Grace Hopper
+
+**************
+Graph problems
+**************
+Problem 1
+=========
+You have a map of communication routes between nodes. Each route has a bandwidth
+value. Find the path from A to B such that the minimum bandwidth on a route is
+maximized.
+
+Problem 2
+=========
+You have a maze of rooms connected with passages. Each room has some amount of
+gold in it. Find a route from A to B that minimizes travel time *while*
+maximizing gold collected. Cannot not revisit the same room.
+
+Problem 3
+=========
+You have a travel network of flights. Each flight has a departure time and an
+arrival time. Find a route from A to B that minimizes travel time.
+
+
+Dijkstra's Algorithm
+====================
+This algorithm is the solution to the shortest path problem:
+
+Given a weighted graph, with all weights greater than zero, find the shortest
+path from A to all other connected nodes.
+
+
+
+1. Let :math:`A` be our starting node.
+
+2. Let :math:`D(X)` be the distance variable from :math:`A` to connected node :math:`X`.
+
+  * :math:`D(A)=0` and :math:`D(X)=\infty` for all others
+
+3. Let :math:`w(X, Y)` be the given distance between joined nodes :math:`X` and :math:`Y`.
+
+4. Let :math:`P(X)` be the variable to track the predecessor in the shortest path to
+   the node :math:`X`.
+
+5. Let :math:`Q` be the set of nodes we can reach in one step. Initially,
+   :math:`Q={A}`
+
+6. While :math:`Q` is non-empty, do the following:
+
+  i. Choose :math:`X`, the node in math:`Q` with the minimum distance from where
+     you are.
+
+  ii. Then, for all :math:`Y`, not yet reached neighbours of :math:`X`, if 
+      :math:`D(X) + W(X, Y) < D(Y)` then let :math:`D(Y) = D(X) + w(X,Y)` and
+      let :math:`P(Y) = X`.
+  .. note:: this last condition will always be true the first time *Y* is
+            visited. (since :math:`D(Y)=\infty`)
+
+  iii. If :math:`Y \notin Q`, add :math:`Y` to :math:`Q`, remove :math:`X` from
+       :math:`Q`, mark :math:`X` reached.
+
+  iv. repeat from step i. so long as condition 6. is met.
+

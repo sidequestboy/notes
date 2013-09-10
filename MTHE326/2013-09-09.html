@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>This is a note for a particular course &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    <title>Functions of a Complex Variable &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,9 +26,9 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
-    <link rel="up" title="MTHE 326 notes" href="../MTHE326.html" />
-    <link rel="next" title="Test Note" href="../note.html" />
-    <link rel="prev" title="MTHE 326 notes" href="../MTHE326.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="MTHE 455 - Stochastic Processes &amp; Applications" href="../MTHE455/index.html" />
+    <link rel="prev" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -45,13 +45,13 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../note.html" title="Test Note"
+          <a href="../MTHE455/index.html" title="MTHE 455 - Stochastic Processes &amp; Applications"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../MTHE326.html" title="MTHE 326 notes"
+          <a href="index.html" title="MTHE 326 - Functions of a Complex Variable"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
-          <li><a href="../MTHE326.html" accesskey="U">MTHE 326 notes</a> &raquo;</li> 
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -60,11 +60,68 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="this-is-a-note-for-a-particular-course">
-<h1>This is a note for a particular course<a class="headerlink" href="#this-is-a-note-for-a-particular-course" title="Permalink to this headline">¶</a></h1>
-<p>First lesson goes something like this...</p>
+  <div class="section" id="functions-of-a-complex-variable">
+<h1>Functions of a Complex Variable<a class="headerlink" href="#functions-of-a-complex-variable" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="complex-differentiability">
+<h2>Complex differentiability<a class="headerlink" href="#complex-differentiability" title="Permalink to this headline">¶</a></h2>
 <div class="math">
-\[i := \sqrt{-1}\]</div>
+\[f: \Bbb C \to \Bbb C\]</div>
+</div>
+<div class="section" id="complex-integrals-are-more-fun">
+<h2>Complex Integrals are more fun<a class="headerlink" href="#complex-integrals-are-more-fun" title="Permalink to this headline">¶</a></h2>
+<p>Lets us evaluate some real integrals e.g.</p>
+<div class="math">
+\[\int_{0}^{\infty} \frac{\sin x}{x}dx\]</div>
+<p>3 ways to describe <span class="math">\(\Bbb C\)</span>:
+1. Arithmetically as a real vector space
+2. Algebraic closure of <span class="math">\(\Bbb R\)</span>
+3. Geometrically as a real vector space.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last"><span class="math">\(z \in \Bbb C\)</span> are such that <span class="math">\(z=x+iy\)</span>, <span class="math">\(x,y \in \Bbb R\)</span>
+where <span class="math">\(i^{2}=-1\)</span>.</p>
+</div>
+<dl class="docutils">
+<dt>If <span class="math">\(z = x+iy\)</span>,</dt>
+<dd><ul class="first last simple">
+<li><span class="math">\(Re(z):=x\)</span></li>
+<li><span class="math">\(Im(z):=y\)</span></li>
+<li><span class="math">\(\bar{z}:=x-iy\)</span></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="addition">
+<h3>Addition<a class="headerlink" href="#addition" title="Permalink to this headline">¶</a></h3>
+<p>group real &amp; imaginary parts</p>
+</div>
+<div class="section" id="multiplication">
+<h3>Multiplication<a class="headerlink" href="#multiplication" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[(x+iy)(a+ib) = xa + ixb + iya - by\]\[                         = xa - yb + i(xb + ya) = (a+ib)(x+iy)\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">multiplication is commutative, as in <span class="math">\(\Bbb R\)</span>.</p>
+</div>
+</div>
+<div class="section" id="division">
+<h3>Division<a class="headerlink" href="#division" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[\frac{x+iy}{a+ib} = \frac{(x_iy)(a-ib)}{a^2+b^2}
+= \frac{xa+yb + i(ay - bx)}{a^2+b^2}\]</div>
+<p>The properties of these operations satisfy the field properties.</p>
+</div>
+</div>
+<div class="section" id="fundamental-theorem-of-algebra">
+<h2>Fundamental Theorem of Algebra<a class="headerlink" href="#fundamental-theorem-of-algebra" title="Permalink to this headline">¶</a></h2>
+<p>The polynomial <span class="math">\(f(z) = z^n + a_{n-1}z^{n-1} +...+ a_1 z + a_0\)</span> factors completely under <span class="math">\(\Bbb C\)</span></p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">A field <span class="math">\(\Bbb F\)</span> is algebraically closed if every polynomial over <span class="math">\(\Bbb F\)</span> factors completely. <span class="math">\(\Bbb C\)</span> is the smallest such field for <span class="math">\(\Bbb R\)</span>; it is its <strong>algebraic closure</strong>.</p>
+</div>
+</div>
 </div>
 
 
@@ -72,12 +129,28 @@
         </div>
       </div>
       <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Functions of a Complex Variable</a><ul>
+<li><a class="reference internal" href="#complex-differentiability">Complex differentiability</a></li>
+<li><a class="reference internal" href="#complex-integrals-are-more-fun">Complex Integrals are more fun</a></li>
+<li><a class="reference internal" href="#operations">Operations</a><ul>
+<li><a class="reference internal" href="#addition">Addition</a></li>
+<li><a class="reference internal" href="#multiplication">Multiplication</a></li>
+<li><a class="reference internal" href="#division">Division</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fundamental-theorem-of-algebra">Fundamental Theorem of Algebra</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
 <ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="../MTHE326.html">MTHE 326 notes</a><ul>
-      <li>Previous: <a href="../MTHE326.html" title="previous chapter">MTHE 326 notes</a></li>
-      <li>Next: <a href="../note.html" title="next chapter">Test Note</a></li>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">MTHE 326 - Functions of a Complex Variable</a></li>
+      <li>Next: <a href="../MTHE455/index.html" title="next chapter">MTHE 455 - Stochastic Processes &amp; Applications</a></li>
   </ul></li>
   </ul></li>
 </ul>
