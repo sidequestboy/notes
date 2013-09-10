@@ -1,7 +1,62 @@
-This is a note for a particular course
-======================================
+*******************************
+Functions of a Complex Variable
+*******************************
 
-First lesson goes something like this...
+Complex differentiability
+=========================
 
 .. math::
-	i := \sqrt{-1}
+	f: \Bbb C \to \Bbb C
+
+Complex Integrals are more fun
+==============================
+Lets us evaluate some real integrals e.g.
+
+.. math::
+	\int_{0}^{\infty} \frac{\sin x}{x}dx
+
+3 ways to describe :math:`\Bbb C`:
+1. Arithmetically as a real vector space
+2. Algebraic closure of :math:`\Bbb R`
+3. Geometrically as a real vector space.
+
+.. admonition:: Definition
+	
+	:math:`z \in \Bbb C` are such that :math:`z=x+iy`, :math:`x,y \in \Bbb R`
+	where :math:`i^{2}=-1`.
+
+If :math:`z = x+iy`, 
+ * :math:`Re(z):=x`
+ * :math:`Im(z):=y`
+ * :math:`\bar{z}:=x-iy`
+
+Operations
+==========
+Addition
+--------
+group real & imaginary parts
+
+Multiplication
+--------------
+.. math::
+	(x+iy)(a+ib) = xa + ixb + iya - by
+
+				 = xa - yb + i(xb + ya) = (a+ib)(x+iy)
+
+.. note:: multiplication is commutative, as in :math:`\Bbb R`.
+
+Division
+--------
+.. math::
+	\frac{x+iy}{a+ib} = \frac{(x_iy)(a-ib)}{a^2+b^2} 
+	= \frac{xa+yb + i(ay - bx)}{a^2+b^2}
+
+The properties of these operations satisfy the field properties.
+
+Fundamental Theorem of Algebra
+==============================
+The polynomial :math:`f(z) = z^n + a_{n-1}z^{n-1} +...+ a_1 z + a_0` factors completely under :math:`\Bbb C`
+
+.. admonition:: Definition
+
+	A field :math:`\Bbb F` is algebraically closed if every polynomial over :math:`\Bbb F` factors completely. :math:`\Bbb C` is the smallest such field for :math:`\Bbb R`; it is its **algebraic closure**.
