@@ -13,4 +13,5 @@ schedule = {"Monday": ["CISC333", "CMPE365", "MTHE474", "MTHE326", "MTHE455"],
 if __name__ == '__main__':
     for course in schedule[strftime("%A")]:
         print("touching course: {}".format(course))
-        touch(os.path.join([course, strftime("%Y-%m-%d.rst")]))
+        print(course + "/" + strftime("%Y-%m-%d.rst"))
+        touch(course + "/" + strftime("%Y-%m-%d.rst"))
