@@ -1,0 +1,116 @@
+.. epigraph::
+
+	.. math::
+		e^{i\pi} + 1 = 0
+
+	Goodbye & thanks to Leonhard Euler.
+
+**********************
+More Decision Problems
+**********************
+
+:math:`P`: decision problems that can be *solved* in polynomial time
+
+:math:`NP`: decision problems that can be *verified* in polynomial time
+
+* only verify **yes** answers
+
+.. math::
+	P \subseteq NP
+
+* for example, if :math:`p \in P`, then :math:`p` has a solution algorithm in polynomial time - so run the solution algorithm again for verification - therefore it can be verified in polynomial time and :math:`p \in NP`
+
+Is it a strict inclusion? i.e. does there exist a :math:`NP` problem that is not in :math:`P`?
+
+Problem Reduction
+=================
+Let :math:`P_1` and :math:`P_2` be 2 problems.
+
+Suppose that if we find an algorithm that solves :math:`P_2`, then we have a solution of :math:`P_1`. Then :math:`P_1` is said to *reduce* to :math:`P_2`.
+
+.. admonition:: Example
+
+	:math:`P_1`: is :math:`x` the square root of :math:`y`?
+
+	:math:`P_2`: is :math:`x` the 4th root of :math:`y`?
+
+	**If** I knew how to solve :math:`P_2` in polynomial time, then I can also solve :math:`P_1` in polynomial time.
+
+	.. math::
+
+		x = \sqrt y \iff x = \sqrt[4]{y^2}
+
+	So, if we know how to solve :math:`P_2`, we can solve :math:`P_2` by squaring the input :math:`y` and feeding it into :math:`P_2`.
+
+	Put another way, in functional form:
+
+	.. math::
+
+		P_1(x,y) = P_2(x,y^2)
+
+	Therefore, :math:`P_1` *reduces* to :math:`P_2`; :math:`P_1 \propto P_2`
+
+This is technically called a *polynomial-time 1-1 reduction*, basically the transformation from :math:`P_1` to :math:`P_2` takes polynomial-time. This is the only type of reduction we will look at.
+
+.. admonition:: Definition
+
+	Reduction
+
+	Let :math:`P_1` and :math:`P_2` be decision problems.
+
+	:math:`P_1 \propto P_2` *means* that:
+
+	any instance of :math:`P_1` can be *transformed* in polynomial time into an instance of :math:`P_2` in such a way that yes/no answers are preserved.
+
+Properties of Reduction
+=======================
+* :math:`P_1 \propto P_1`
+* :math:`P_1 \propto P_2` and :math:`P_2 \propto P_3  \Rightarrow P_1 \propto P_3`
+
+  * transitive property of reduction
+  * this is relly useful - we can solve a bunch of problems at once!
+
+Partition problem:
+------------------
+Given a set of integers, :math:`S`, does :math:`S` have a subset that sums to :math:`\frac{1}{2}` the total sum?
+
+Subset sum:
+-----------
+Given a set of integers, :math:`S`, and taget value :math:`k`, does :math:`S` have a subset that sums to :math:`k`?
+
+Claim:
+######
+Partition problem :math:`\propto` Subset sum problem
+
+Proof:
+######
+Let :math:`S` be an instance of of Partition
+
+Let :math:`S, \sum_{s \in S} \frac{S}{2}` be the constructed Subset sum instance.
+
+This transformation is :math:`O(n)`, and answer preserving.
+
+Therefore, Partition :math:`\propto` Subset Sum
+
+.. admonition:: Fact
+
+	Subset Sum also reduces to Partition! - think about it! Solution on Friday.
+
+Cooke and Levin, independently, searched for the *hardest* problem in :math:`NP` - one to which all others could be reduced.
+
+Can we find such a problem, :math:`X \in NP` such that **all problems** in :math:`NP` reduce to :math:`X`? - the holy grail of problems.
+
+.. admonition:: Definition
+
+	Conjunctive Normal Form Satisfiability (CNF-SAT) problem
+
+	* a CNF is a boolean expression structured as a set of clauses joined by "**and**", and containing only literals and "**or**"
+
+	  * .. admonition:: Example
+
+	  		:math:`(X_1 + X_2 + \bar X_3) * (\bar X_1 + \bar X_2) * (X_1 + X_3 + X_4)`
+	* SAT means: can it be true? i.e. does it not contain any contradictions?
+
+	The problem is to determine whether or not a given CNF is satisfiable.
+
+

@@ -1,0 +1,251 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Entropy &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-09-12.html" />
+    <link rel="prev" title="Introduction" href="2013-09-09.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-12.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-09.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="entropy">
+<h1>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>The <strong>only</strong> function defined over <span class="math">\(p \in [0,1]\)</span> satisfying the three desired properties from last lecture is:</p>
+<div class="math">
+\[I(p) = -c \log_b p\]</div>
+<p class="last">for a proof, see <span class="target" id="online-lecture-notes">online lecture notes</span> Theorem 2.1</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The choice of constant <span class="math">\(c\)</span> and base <span class="math">\(b\)</span> of the logarithm just determine units (recall <span class="math">\(\log_b u = \frac{\ln u}{\ln b}\)</span>)</p>
+</div>
+<p>So, we set <span class="math">\(c=1\)</span> and define:</p>
+<table border="1" class="docutils">
+<caption>Units of information</caption>
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">b</th>
+<th class="head">units</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2</td>
+<td>bits</td>
+</tr>
+<tr class="row-odd"><td>e</td>
+<td>nats</td>
+</tr>
+</tbody>
+</table>
+<p>unless specified, we assume that <span class="math">\(b=2\)</span>.</p>
+<dl class="docutils">
+<dt>Hence, if you learn that:</dt>
+<dd><ul class="first last">
+<li><p class="first">a fair coin comes up heads:</p>
+<blockquote>
+<div><div class="math">
+\[-\log_2(\frac{1}{2}) = 1 \text{ bit}\]</div>
+</div></blockquote>
+</li>
+<li><p class="first">a fair die comes up 5, you&#8217;ve gained:</p>
+<blockquote>
+<div><div class="math">
+\[-\log_2(\frac{1}{6}) = 2.585 \text{ bits of information}\]</div>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<p>For the first part of the course, we will deal with discrete time (discrete valued) systems</p>
+<div class="admonition-notation admonition">
+<p class="first admonition-title">Notation</p>
+<p class="last">Let <span class="math">\(X\)</span> be a discrete random variable with finite alphabet <span class="math">\(\chi\)</span> and pmf <span class="math">\(p(x):=P[X=x]\)</span> for <span class="math">\(x \in \chi\)</span> or <span class="math">\(p_X(a):=P[X=a]\)</span> for <span class="math">\(a \in \chi\)</span>.</p>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Entropy:</p>
+<p>The <em>entropy</em> of a discrete random variable <span class="math">\(X\)</span> with alphabet <span class="math">\(\chi\)</span> and pmf <span class="math">\(p_X(.)\)</span> is denoted by <span class="math">\(H(X)\)</span> or <span class="math">\(H(p_X)\)</span> or <span class="math">\(H(p)\)</span> and defined by:</p>
+<div class="last math">
+\[H(X) := -\sum_{x \in \chi} p(x) log_2 p(x)\]</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><span class="math">\(H(X) = \sum_{x \in \chi} p(x) (-\log_2 p(x))\)</span></p>
+<p>where the summand is the product of <span class="math">\(p(x)\)</span> and the self information of event <span class="math">\(X=x\)</span>.</p>
+<p>Thus, the entropy of a system is the <em>expected value</em> of self information for the system of events.</p>
+<div class="math">
+\[H(X) = E_p[I(X)]\]</div>
+<p>where</p>
+<div class="last math">
+\[I(x) = -\log_2 p(x)\]</div>
+</div>
+<p>Therefore, <span class="math">\(H(X)\)</span> is the statistical average amount of information gained when you learn that one of the <span class="math">\(|\chi|\)</span> outcomes of <span class="math">\(X\)</span> has occured.</p>
+<div class="admonition-lemma admonition">
+<p class="first admonition-title">Lemma</p>
+<ol class="last arabic">
+<li><p class="first"><span class="math">\(H(X)\)</span> is non-negative</p>
+<blockquote>
+<div><div class="math">
+\[H(X) \geq 0\]</div>
+</div></blockquote>
+</li>
+<li><div class="first math">
+\[H_b(X):= -\sum_{x \in \chi} p(x) log_b p(x) = log_b 2 H(X)\]</div>
+<p>where <span class="math">\(H(X)\)</span> is in base 2.</p>
+</li>
+</ol>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Binary Entropy function:</p>
+<div class="last math">
+\[\chi = \{0,1\}, 0 \leq p \leq 1\]\[P[X=0]=1-p\]\[P[X=1]=p\]\[H(X) = \sum_{x=0}^1 = p(x) log_2 p(x)\]\[= -p log_2 p -(1-p) log_2 (1-p) =: h(p)\]</div>
+</div>
+<img src="../_images/Binary_entropy_plot.svg" width="50%" /><div class="section" id="the-fundamental-inequality-fi">
+<h2>The fundamental inequality (FI)<a class="headerlink" href="#the-fundamental-inequality-fi" title="Permalink to this headline">¶</a></h2>
+<p>For the logarithm,</p>
+<div class="math">
+\[\ln x \leq x-1 \forall x \gt 0\]</div>
+<p>with equality if and only if <span class="math">\(x=1\)</span>.</p>
+<div class="admonition-corollary admonition">
+<p class="first admonition-title">Corollary</p>
+<div class="math">
+\[\ln y \geq 1 - \frac{1}{y}\]</div>
+<p>with equality iff <span class="math">\(x=1\)</span></p>
+<p class="last">Proof: let <span class="math">\(y=\frac{1}{x}\)</span></p>
+</div>
+<p>So, two useful forms of the Fundamental Inequality are:</p>
+<div class="math">
+\[\log_a x \leq \frac{1}{\ln a} (x-1)\]\[\log_a x \geq \frac{1}{\ln a} (1 - \frac{1}{x})\]</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Joint Entropy</p>
+<p>Given two jointly distributed discrete random variables <span class="math">\(X\)</span> and <span class="math">\(Y\)</span>, (with alphabets <span class="math">\(\chi\)</span> and <span class="math">\(Y\)</span>) with join pmf</p>
+<div class="math">
+\[p_{XY}(x,y) = p(x,y) = P(X=x, Y=y)\]</div>
+<p>where <span class="math">\(x \in \chi\)</span> and <span class="math">\(y \in Y\)</span></p>
+<p>Their <em>joint entropy</em>, denoted <span class="math">\(H(X,Y)\)</span> is:</p>
+<div class="last math">
+\[H(X,Y) := E_{XY}[-log p(X,Y)]\]\[= -\sum_{x \in \chi} \sum_{y \in Y} p(x,y) \log_2 p(x,y)\]</div>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Conditional Entropy</p>
+<p>The <em>conditional entropy</em> of random variable <span class="math">\(X\)</span> given <span class="math">\(Y\)</span> is</p>
+<div class="math">
+\[H(X|Y) := E_{XY}[-log p(X|Y)]\]\[= - \sum_{x \in \chi} \sum_{y \in Y} p(x,y) \log_2 p(x|y)\]</div>
+<p>where</p>
+<div class="last math">
+\[p(x|y) = \frac{p(x,y)}{p(y)}\]</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Entropy</a><ul>
+<li><a class="reference internal" href="#the-fundamental-inequality-fi">The fundamental inequality (FI)</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-09-09.html" title="previous chapter">Introduction</a></li>
+      <li>Next: <a href="2013-09-12.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-09-10.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

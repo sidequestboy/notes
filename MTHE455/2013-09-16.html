@@ -1,0 +1,226 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Conditional Expectation &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-09-18.html" />
+    <link rel="prev" title="Time Homogeneity" href="2013-09-10.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-18.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-10.html" title="Time Homogeneity"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="conditional-expectation">
+<h1>Conditional Expectation<a class="headerlink" href="#conditional-expectation" title="Permalink to this headline">¶</a></h1>
+<div class="math">
+\[E_Y[E[X|Y]] = E[X]\]</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Let <span class="math">\(X \sim Geometric(p)\)</span>.</p>
+<div class="admonition-reminder admonition">
+<p class="first admonition-title">Reminder</p>
+<p class="last"><span class="math">\(X\)</span> is number of trials until first success in a sequence of i.i.d. (independent, identically distributed) <span class="math">\(Bernoulli(p)\)</span> trials.</p>
+</div>
+<div class="math">
+\[P(X=k) = (1-p)^{k-1}p\]</div>
+<p>and the expectation of X:</p>
+<div class="math">
+\[E[X] = \sum_{k=1}^\infty k(1-p)^{k-1}p = ... = \frac{1}{p}\]</div>
+<p>We can find this answer also by conditioning on a new random variable, <span class="math">\(Y\)</span>.</p>
+<p>Let:</p>
+<div class="math">
+\[\begin{split}\displaystyle
+Y =
+\cases {
+1 &amp;\text{if first trial is success}\cr
+0 &amp;\text{if first trial is failure}
+}\end{split}\]</div>
+<p>We have that <span class="math">\(P(Y=1)=p\)</span> and <span class="math">\(P(Y=0)=1-p\)</span>.</p>
+<div class="math">
+\[E[X|Y=1] = 1\]\[E[X|Y=0] = 1 + E[X]\]</div>
+<p>So,</p>
+<div class="math">
+\[E[X] = p*1 + (1+E[x])(1-p)\]\[E[X] = \frac{1}{p}\]</div>
+<p class="last">as before.</p>
+</div>
+<div class="section" id="special-case">
+<h2>Special Case<a class="headerlink" href="#special-case" title="Permalink to this headline">¶</a></h2>
+<p>If</p>
+<div class="math">
+\[\begin{split}\displaystyle
+X=I_A:=
+\cases {
+1 &amp;\text{if A occurs}\cr
+0 &amp;\text{if A does not occur}
+}\end{split}\]</div>
+<p>Then <span class="math">\(E[X]=P(A)\)</span>.</p>
+<p>So, <span class="math">\(P(A) = \sum_Y P(A|Y=y)P(Y=y)\)</span>.</p>
+<p>This is dubbed <em>&#8220;The Law of Total Probability&#8221;</em>, and is a corollary of <em>The Law of Total Expectation</em>.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[X_0 = 0, X_n = \sum_{k=1}^n Y_k\]</div>
+<p>where</p>
+<div class="math">
+\[Y_1, Y_2, ... , Y_n\]</div>
+<p>are independent, with</p>
+<div class="math">
+\[P(Y_i = 1) = p\]</div>
+<p>and</p>
+<div class="math">
+\[P(Y_i = -1) = 1-p =: q\]</div>
+<p>What is the probability that <span class="math">\(X_n\)</span> ever reaches state 1?</p>
+<p>Let <span class="math">\(p\)</span> denote this probability.</p>
+<p>Similarly, what is <span class="math">\(p_r\)</span>? where <span class="math">\(p_r\)</span> is the probability that the walk ever reaches state <span class="math">\(r\)</span>, with <span class="math">\(r&gt;1\)</span>.</p>
+<p>Let:</p>
+<div class="math">
+\[\begin{split}\displaystyle
+Y =
+        \cases {
+                1 &amp;\text{if the walk ever reaches state 1}\cr
+                0 &amp;\text{if not.}
+        }\end{split}\]</div>
+<p>Let <span class="math">\(A\)</span> be the event that the walk ever reaches state <span class="math">\(r\)</span>.</p>
+<p>Then,</p>
+<div class="math">
+\[P(A) = P(A|Y=1)P(Y=1) + P(A|Y=0)P(Y=0)\]</div>
+<p>The condition <span class="math">\(A|Y=0\)</span> is obviously self-contradictory given the definitions of <span class="math">\(A\)</span> and <span class="math">\(Y\)</span>, so only the first term remains:</p>
+<div class="math">
+\[P(A) = P(A|Y=1)P(Y=1) = p_1 P(A|Y=1)\]\[= p_1*p_{r-1} = p_1^r\]</div>
+<p>Let us now compute <span class="math">\(p_1\)</span>.</p>
+<p>Let <span class="math">\(Y\)</span> be the state after the first step;</p>
+<div class="math">
+\[\begin{split}\displaystyle
+Y =
+        \cases {
+                1 &amp;\text{with probability }p\cr
+                -1 &amp;\text{with probability }q
+        }\end{split}\]</div>
+<div class="math">
+\[p_1 = P(\text{ever reaching }1 | Y=1)p + P(\text{ever reaching }1 | Y=-1)\]\[= p + P(\text{ever reaching state 2 from state 0})q\]\[= p + p_1^2q\]</div>
+<p>Equivalently,</p>
+<div class="math">
+\[qp_1^2 + p_1 + p = 0\]</div>
+<p>Solving this quadratic, we get</p>
+<div class="math">
+\[p_1 = \frac{-1 \pm \sqrt{1-4qp}}{2q}\]\[= \frac{1 \pm \sqrt{1-4q(1-q)}}{2q}\]\[= \frac{1 \pm \sqrt{4q^2-4q+1}}{2q}\]\[= \frac{1 \pm \sqrt{(-2q + 1)}}{2q}\]\[= \frac{1 \pm |1 - 2q|}{2q}\]</div>
+<p>If <span class="math">\(q=\frac{1}{2}\)</span>, the roots are both 1, so <span class="math">\(p_1=1\)</span></p>
+<p>If <span class="math">\(q&lt;\frac{1}{2}\)</span>, then <span class="math">\(|1-2q| = 1 - 2q\)</span>, so roots are:</p>
+<div class="math">
+\[\frac{1 \pm (1-2q)}{2q} = 1 \text{ or } \frac{p}{q}\]</div>
+<p>Only one of those (<span class="math">\(1\)</span>) is a valid probability.</p>
+<p>If <span class="math">\(q &gt; \frac{1}{2}\)</span>, then <span class="math">\(|1-2q| = 2q-1\)</span>, so:</p>
+<div class="math">
+\[\frac{1 \pm (2q - 1)}{2q} = 1 \text{ or } \frac{p}{q}\]</div>
+<p class="last">Since the function of <span class="math">\(q\)</span> ought to be continuous (not proven here), <span class="math">\(\frac{p}{q}\)</span> is the correct root in this case.</p>
+</div>
+<div class="admonition-remark admonition">
+<p class="first admonition-title">Remark</p>
+<p>The law of total expectation can also be used to compute a conditional expectation:</p>
+<div class="last math">
+\[E[X|Y=y] = \sum_Z E[X|Y=y,Z=z]*P(Z=z|Y=y)\]</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Conditional Expectation</a><ul>
+<li><a class="reference internal" href="#special-case">Special Case</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-09-10.html" title="previous chapter">Time Homogeneity</a></li>
+      <li>Next: <a href="2013-09-18.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-09-16.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

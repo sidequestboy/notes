@@ -5,6 +5,7 @@
 
 Welcome to Jamie's reStructured Notes!
 ======================================
+See this project on `Github`_
 
 .. note:: An apology to `mitsuhiko`_ for using his Flask theme for these docs,
 	even though this project is not Flask related at all.  I plan to make bigger
@@ -35,3 +36,4 @@ Indices and tables
 * :ref:`search`
 
 .. _`mitsuhiko`: https://github.com/mitsuhiko
+.. _`Github`: https://github.com/jameh/notes

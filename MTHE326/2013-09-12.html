@@ -1,0 +1,218 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Visualization of Maps and Loci &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-09-16.html" />
+    <link rel="prev" title="Geometric Interpretation of Complex Plane" href="2013-09-10.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-16.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-10.html" title="Geometric Interpretation of Complex Plane"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="visualization-of-maps-and-loci">
+<h1>Visualization of Maps and Loci<a class="headerlink" href="#visualization-of-maps-and-loci" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="more-tricks">
+<h2>More Tricks<a class="headerlink" href="#more-tricks" title="Permalink to this headline">¶</a></h2>
+<div class="math">
+\[(1+i)(1+2i)(1+3i) = (-1+3i)(1+3i) = -1-9 = -10\]</div>
+<p>has an angle of <span class="math">\(-\pi\)</span>.</p>
+<p><span class="math">\(1+in\)</span> has angle <span class="math">\(\arctan n\)</span>.</p>
+<img alt="../_images/IMG_20130912_200206.jpg" src="../_images/IMG_20130912_200206.jpg" style="width: 50%;" />
+<p>So, adding the arguments of each factor together,</p>
+<div class="math">
+\[\arctan 1 + \arctan 2 + \arctan 3 = -pi\]</div>
+<p>cool, huh.</p>
+<div class="admonition-definition-argument admonition">
+<p class="first admonition-title">Definition
+Argument</p>
+<p class="last">Denoted <span class="math">\(arg(z)\)</span>, <span class="math">\(arg(z) = \{\theta \in \Bbb R | z = |z|(\cos \theta + i \sin \theta)\}\)</span></p>
+</div>
+<p>If <span class="math">\(\theta_0 \in arg(z)\)</span>, then <span class="math">\(arg(z) = \{\theta_0 + 2\pi k | k \in \Bbb Z\}\)</span></p>
+<div class="admonition-definition-principal-argument admonition">
+<p class="first admonition-title">Definition
+Principal Argument</p>
+<p class="last">Denoted <span class="math">\(Arg(z)\)</span> (with an upper-case &#8216;A&#8217;), <span class="math">\(Arg(z)=arg(z) \cap (-pi, pi)\)</span></p>
+</div>
+</div>
+<div class="section" id="visualizing-maps">
+<h2>Visualizing Maps<a class="headerlink" href="#visualizing-maps" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="multiplication-by-a-scalar">
+<h3>Multiplication by a scalar<a class="headerlink" href="#multiplication-by-a-scalar" title="Permalink to this headline">¶</a></h3>
+<p>Consider the following function.</p>
+<p><span class="math">\(f_c(z) = cz\)</span> for <span class="math">\(c \in /Bbb C\)</span></p>
+<p>What does it look like?</p>
+<p>if <span class="math">\(|c| = 1\)</span>, then <span class="math">\(c\)</span> is on the unit circle. So, the mapping multiplies the modulo of <span class="math">\(z\)</span> by 1, and rotates the argument of <span class="math">\(z\)</span> by <span class="math">\(arg(c)\)</span>.</p>
+<p>If <span class="math">\(|c| &lt; 1\)</span>, then <span class="math">\(f_c(z)\)</span> is a rotation of <span class="math">\(arg(c)\)</span> <em>and</em> a contraction by a factor of <span class="math">\(|c|\)</span></p>
+<p>If <span class="math">\(|c| &gt; 1\)</span>, then <span class="math">\(f_c(z)\)</span> is a rotation of <span class="math">\(arg(c)\)</span> and an <em>expansion</em> by a factor of <span class="math">\(|c|\)</span></p>
+<p>Okay, well that&#8217;s not too complicated thanks to De Moivre&#8217;s Formula. What about somehting like <span class="math">\(f(z) = z^2\)</span>?</p>
+<p>For <span class="math">\(f(x) = x^2\)</span> on <span class="math">\(\Bbb R\)</span>, this is easy:</p>
+<img alt="../_images/2013-09-12-203030_142x107_scrot.png" src="../_images/2013-09-12-203030_142x107_scrot.png" style="width: 50%;" />
+<p>but <span class="math">\(f: \Bbb C \to \Bbb C\)</span>, it&#8217;s like a map from <span class="math">\(\Bbb R^2 \to R^2\)</span>, and most of us can&#8217;t think in 4D.</p>
+<p>Plot magnitude: <span class="math">\(|f(z)|\)</span> is a plot from <span class="math">\(\Bbb R^2 \to \Bbb R\)</span>, so the graph is 3D.</p>
+<img alt="../_images/2013-09-12-203544_416x317_scrot.png" src="../_images/2013-09-12-203544_416x317_scrot.png" style="width: 50%;" />
+<p>So if <span class="math">\(f(z) = z^2\)</span>, <span class="math">\(|f(z)| = |z^2| = |z|^2 = x^2 + y^2\)</span> - a paraboloid.</p>
+<p>But the magnitude only tells half of the story. We can also plot the argument mapping: <span class="math">\(f(z) = z^2\)</span> doubles angles. We can visualize this as a vector field:</p>
+<img alt="../_images/2013-09-12-203817_349x279_scrot.png" src="../_images/2013-09-12-203817_349x279_scrot.png" style="width: 50%;" />
+<p>We could put the vector field on the Magnitude plot as well, but then things get cluttered.</p>
+</div>
+<div class="section" id="using-grid-lines-to-visualize-functions">
+<h3>Using Grid-Lines to Visualize Functions<a class="headerlink" href="#using-grid-lines-to-visualize-functions" title="Permalink to this headline">¶</a></h3>
+<img alt="../_images/2013-09-12-204035_146x127_scrot.png" src="../_images/2013-09-12-204035_146x127_scrot.png" style="width: 20%;" />
+<p>curve is <span class="math">\(a+it\)</span> for <span class="math">\(t \in \Bbb R\)</span>.</p>
+<p>Let <span class="math">\(f(z) = z^3\)</span>.</p>
+<p>Then, mapping the curve under the map <span class="math">\(f(z)\)</span>,</p>
+<div class="math">
+\[f(a + it) = (a^2 - t^2 + 2iat)(a + it) = a^3 - 2at - at^2 + i(3a^2t -t^3)\]</div>
+<p>There isn&#8217;t a nice implicit formula for this;</p>
+<p>Paramterizing this equation with <span class="math">\(t^2 = \frac{x-a^3)}{-3a}\)</span>,</p>
+<div class="math">
+\[9a^4t^2 - 6a^2t^4 + t^6 = y^2\]</div>
+<p>And the plot:</p>
+<img alt="../_images/2013-09-12-220029_549x271_scrot.png" src="../_images/2013-09-12-220029_549x271_scrot.png" style="width: 50%;" />
+</div>
+</div>
+<div class="section" id="geometric-loci">
+<h2>Geometric Loci<a class="headerlink" href="#geometric-loci" title="Permalink to this headline">¶</a></h2>
+<p>We can describe geometric objects (usually lines and circles) as <em>loci</em>.</p>
+<p><span class="math">\(|z-q|\)</span> is the distance between <span class="math">\(z\)</span> and <span class="math">\(q\)</span>.</p>
+<p>So,</p>
+<ol class="arabic simple">
+<li><span class="math">\(|z-q| = r\)</span> where <span class="math">\(q \in \Bbb C\)</span> and <span class="math">\(r \in \Bbb R_{&gt;0}\)</span> is a circle centered at q with radius r.</li>
+</ol>
+<img alt="../_images/2013-09-12-220420_124x91_scrot.png" src="../_images/2013-09-12-220420_124x91_scrot.png" style="width: 20%;" />
+<ol class="arabic simple" start="2">
+<li><span class="math">\(\frac{|z-3|}{|z+3|} = 1 \iff |z-3| = |z+3|\)</span> is a line centered between -3 and 3.</li>
+</ol>
+<img alt="../_images/2013-09-12-220650_121x108_scrot.png" src="../_images/2013-09-12-220650_121x108_scrot.png" style="width: 20%;" />
+<ol class="arabic simple" start="3">
+<li></li>
+</ol>
+<div class="math">
+\[\frac{z-3}{z+3} = 2\]\[\iff |z-3| = 2|z+3|\]\[\iff |z-3|^2 = 4|z+3|^2\]\[\iff (x-3)^2 + y^2 = 4(x+3)^2 + 4y^2\]\[\iff x^2 - 6x + 9+ y^2 = 24x + 36 +4y^2\]\[\iff 3x^2 + 30x + 27 + 3y^2 = 0\]\[\iff x^2 + 10x + 9 + y^2 = 0\]\[\iff (x+5)^2 - 16 + y^2 = 0\]\[\iff (x+5)^2 + y^2 = 16\]</div>
+<p>is a circle centered at <span class="math">\(-5 + 0i\)</span></p>
+<p>In general, <span class="math">\(p, q \in \Bbb C\)</span>, <span class="math">\(r \in \Bbb R_{&gt;0}\)</span> describes a line if <span class="math">\(r=1\)</span>, and a circle otherwise.</p>
+<div class="admonition-corollary-1 admonition">
+<p class="first admonition-title">Corollary 1</p>
+<p><span class="math">\(a, b, c, d \in \Bbb C\)</span>, <span class="math">\(r \in \Bbb R_{&gt;0}\)</span>.</p>
+<p>Solutions to <span class="math">\(|\frac{az+b}{cz+d}| = r\)</span> also form a circle or a line.</p>
+<p>Proof:</p>
+<p class="last">Factor out <span class="math">\(|\frac{a}{c}|\)</span>, to get the same form as above.</p>
+</div>
+<div class="admonition-corollary-2 admonition">
+<p class="first admonition-title">Corollary 2</p>
+<p><span class="math">\(a, b, c, d \in \Bbb C\)</span>, <span class="math">\(r \in \Bbb R_{&gt;0}\)</span>.</p>
+<p>Solutions to <span class="math">\(|\frac{az + b}{cz + d} - q|=r\)</span> are also a line or circle.</p>
+<p>Proof:</p>
+<p class="last"><span class="math">\(\frac{az+b}{cz+d}-q = \frac{(a-cq)z + (b-dg)}{cz + d}\)</span></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Visualization of Maps and Loci</a><ul>
+<li><a class="reference internal" href="#more-tricks">More Tricks</a></li>
+<li><a class="reference internal" href="#visualizing-maps">Visualizing Maps</a><ul>
+<li><a class="reference internal" href="#multiplication-by-a-scalar">Multiplication by a scalar</a></li>
+<li><a class="reference internal" href="#using-grid-lines-to-visualize-functions">Using Grid-Lines to Visualize Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#geometric-loci">Geometric Loci</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-09-10.html" title="previous chapter">Geometric Interpretation of Complex Plane</a></li>
+      <li>Next: <a href="2013-09-16.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-09-12.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

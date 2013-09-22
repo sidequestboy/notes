@@ -1,0 +1,14 @@
+*****************************************
+Geometric Interpretation of Complex Plane
+*****************************************
+
+The 2 dimensions of a complex number, :math:`z`, can be plotted on a cartesian plane.
+
+:math:`z = x + iy`, :math:`\bar z = x - iy`
+
+.. image:: .static/2013-09-12-223945_335x244_scrot.png
+	:width: 50%
+
+:math:`|z| = \sqrt{x^2 + y^2} = |\bar z|`
+
+:math:`|z|^2 = x^2 + y^2 = z*\bar z`

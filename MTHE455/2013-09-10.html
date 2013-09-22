@@ -1,0 +1,153 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Time Homogeneity &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Conditional Expectation" href="2013-09-16.html" />
+    <link rel="prev" title="Introduction to Stochastic Process" href="2013-09-09.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-16.html" title="Conditional Expectation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-09.html" title="Introduction to Stochastic Process"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="time-homogeneity">
+<h1>Time Homogeneity<a class="headerlink" href="#time-homogeneity" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A stochastic process is <em>time-homogenous</em> if:</p>
+<div class="math">
+\[P(X_n = j | X_m = i) = P(X_{n+k} = j | X_{m+k} = i)\]</div>
+<p class="last">for all <span class="math">\(i\)</span>, <span class="math">\(j \in S\)</span> and for all <span class="math">\(m \leq n\)</span>.</p>
+</div>
+<p>The simple symmetric random walk (from last lecture) is time-homogenous.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A stochastic process is <em>stationary</em> if:</p>
+<p><span class="math">\(P(X_{t_1} = i_1, ..., X_{t_k} = i_k) = P(X_{t_1}+s = i_1, ..., X_{t_k}+s = i_k)\)</span></p>
+<p class="last">for all times <span class="math">\(t_1, ..., t_k\)</span> and any <span class="math">\(k \geq 1\)</span> and any states <span class="math">\(i_1, ... i_k\)</span></p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p class="last">Galton-Watson Branching Process</p>
+</div>
+<p>We assume that the family size distribution on <span class="math">\(\{0,1,2,3,...\}\)</span> is the same for all individuals and all family sizes are independent.</p>
+<p>Let <span class="math">\(Y_{n,k}\)</span> be i.i.d random variable, each with family size distribution <span class="math">\(n=0,1,2,...\)</span></p>
+<p>Let <span class="math">\(X_n\)</span> be the number of individuals in generation <span class="math">\(n\)</span>.</p>
+<div class="math">
+\[X_0 = 1\]\[X_1 = Y_{0,1}\]\[X_2 = Y_{1,1} + Y_{1,2}\]\[...\]\[X_n = Y_{n-1, 1} + Y_{n-1, 2} + ... + Y_{n-1, X_{n-1}}\]</div>
+<p>This process is time-homogeneous, but not stationary.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A stochastic process is <em>spatially homogeneous</em> if</p>
+<div class="last math">
+\[P(X_1 = i_1, ..., X_n = i_n) = P(X_1 + k = i_1, ..., X_n + k = i_n)\]</div>
+</div>
+<div class="section" id="conditional-expectation-a-review">
+<h2>Conditional Expectation (a review)<a class="headerlink" href="#conditional-expectation-a-review" title="Permalink to this headline">¶</a></h2>
+<p>If <span class="math">\(X\)</span> and <span class="math">\(Y\)</span> are discrete random variables, then the expectation of <span class="math">\(X\)</span> given <span class="math">\(Y=y\)</span> is:</p>
+<div class="math">
+\[E[X|Y=y] = \sum_\chi x P(X=x | Y=y)\]</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Time Homogeneity</a><ul>
+<li><a class="reference internal" href="#conditional-expectation-a-review">Conditional Expectation (a review)</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-09-09.html" title="previous chapter">Introduction to Stochastic Process</a></li>
+      <li>Next: <a href="2013-09-16.html" title="next chapter">Conditional Expectation</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-09-10.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Easy Problems vs. Hard Problems &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="More Decision Problems" href="2013-09-18.html" />
+    <link rel="prev" title="Interesting Problems" href="2013-09-13.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-18.html" title="More Decision Problems"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-13.html" title="Interesting Problems"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="easy-problems-vs-hard-problems">
+<h1>Easy Problems vs. Hard Problems<a class="headerlink" href="#easy-problems-vs-hard-problems" title="Permalink to this headline">¶</a></h1>
+<p>Last time:</p>
+<p><span class="math">\(X\)</span> is a decision problem if the answer is yes or no and the answer is completely determined by the input.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Does 12 have a factor less than 7?</p>
+<p class="last">Answer: yes.</p>
+</div>
+<p>This example is an <em>instance</em> of the general problem:</p>
+<p>Does n have a factor less than m?</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">The class <span class="math">\(P\)</span> is the set of all decision problems that can be solved on a normal computer in polynomial time, that is, the complexity is at most <span class="math">\(O(n^k)\)</span> where <span class="math">\(n\)</span> is the &#8220;size&#8221; of the instance, and <span class="math">\(k\)</span> is fixed for the general problem.</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Given a graph <span class="math">\(G\)</span>, does <span class="math">\(G\)</span> contain a triangle?</p>
+<p class="last">This problem is solvable in <span class="math">\(O(n^3)\)</span> or better.</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p class="last">Given a set <span class="math">\(S\)</span> of <span class="math">\(n\)</span> values, does <span class="math">\(S\)</span> contain a pair of values that sum to <span class="math">\(k\)</span>?</p>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last"><em>Verification</em> is the process of checking the details of a solution to a problem</p>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last"><span class="math">\(NP\)</span> is the class of all decision problems for which, if the answer to an instance is <em>yes</em>, and the details of that yes answer are given, the answer can be verified in polynomial time.</p>
+</div>
+<div class="math">
+\[P \subseteq NP\]</div>
+<ul class="simple">
+<li>every problem that can be solved in polynomial time can be verified in polynomial time (e.g. by simply re-running the solution algorithm).</li>
+</ul>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">A <em>non-deterministic Turing Machine</em> (NDTM) can guess (with complete accuracy) the solution to any decision problem instance and, if the answer is <em>yes</em>, provide details, then revert to an ordinary computer, then verify the solution in polynomial time.</p>
+</div>
+<div class="admonition-aside admonition">
+<p class="first admonition-title">Aside</p>
+<p>David Copperfield was born today.</p>
+<blockquote class="pull-quote last">
+<div><p>&#8220;Magic is my part&#8221;</p>
+<p class="attribution">&mdash;David Copperfield</p>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="2013-09-13.html" title="previous chapter">Interesting Problems</a></li>
+      <li>Next: <a href="2013-09-18.html" title="next chapter">More Decision Problems</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-09-16.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

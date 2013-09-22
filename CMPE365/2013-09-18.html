@@ -1,0 +1,222 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>More Decision Problems &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="Cook-Levin" href="2013-09-19.html" />
+    <link rel="prev" title="Easy Problems vs. Hard Problems" href="2013-09-16.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-19.html" title="Cook-Levin"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-16.html" title="Easy Problems vs. Hard Problems"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <blockquote class="epigraph">
+<div><div class="math">
+\[e^{i\pi} + 1 = 0\]</div>
+<p>Goodbye &amp; thanks to Leonhard Euler.</p>
+</div></blockquote>
+<div class="section" id="more-decision-problems">
+<h1>More Decision Problems<a class="headerlink" href="#more-decision-problems" title="Permalink to this headline">¶</a></h1>
+<p><span class="math">\(P\)</span>: decision problems that can be <em>solved</em> in polynomial time</p>
+<p><span class="math">\(NP\)</span>: decision problems that can be <em>verified</em> in polynomial time</p>
+<ul class="simple">
+<li>only verify <strong>yes</strong> answers</li>
+</ul>
+<div class="math">
+\[P \subseteq NP\]</div>
+<ul class="simple">
+<li>for example, if <span class="math">\(p \in P\)</span>, then <span class="math">\(p\)</span> has a solution algorithm in polynomial time - so run the solution algorithm again for verification - therefore it can be verified in polynomial time and <span class="math">\(p \in NP\)</span></li>
+</ul>
+<p>Is it a strict inclusion? i.e. does there exist a <span class="math">\(NP\)</span> problem that is not in <span class="math">\(P\)</span>?</p>
+<div class="section" id="problem-reduction">
+<h2>Problem Reduction<a class="headerlink" href="#problem-reduction" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(P_1\)</span> and <span class="math">\(P_2\)</span> be 2 problems.</p>
+<p>Suppose that if we find an algorithm that solves <span class="math">\(P_2\)</span>, then we have a solution of <span class="math">\(P_1\)</span>. Then <span class="math">\(P_1\)</span> is said to <em>reduce</em> to <span class="math">\(P_2\)</span>.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p><span class="math">\(P_1\)</span>: is <span class="math">\(x\)</span> the square root of <span class="math">\(y\)</span>?</p>
+<p><span class="math">\(P_2\)</span>: is <span class="math">\(x\)</span> the 4th root of <span class="math">\(y\)</span>?</p>
+<p><strong>If</strong> I knew how to solve <span class="math">\(P_2\)</span> in polynomial time, then I can also solve <span class="math">\(P_1\)</span> in polynomial time.</p>
+<div class="math">
+\[x = \sqrt y \iff x = \sqrt[4]{y^2}\]</div>
+<p>So, if we know how to solve <span class="math">\(P_2\)</span>, we can solve <span class="math">\(P_2\)</span> by squaring the input <span class="math">\(y\)</span> and feeding it into <span class="math">\(P_2\)</span>.</p>
+<p>Put another way, in functional form:</p>
+<div class="math">
+\[P_1(x,y) = P_2(x,y^2)\]</div>
+<p class="last">Therefore, <span class="math">\(P_1\)</span> <em>reduces</em> to <span class="math">\(P_2\)</span>; <span class="math">\(P_1 \propto P_2\)</span></p>
+</div>
+<p>This is technically called a <em>polynomial-time 1-1 reduction</em>, basically the transformation from <span class="math">\(P_1\)</span> to <span class="math">\(P_2\)</span> takes polynomial-time. This is the only type of reduction we will look at.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Reduction</p>
+<p>Let <span class="math">\(P_1\)</span> and <span class="math">\(P_2\)</span> be decision problems.</p>
+<p><span class="math">\(P_1 \propto P_2\)</span> <em>means</em> that:</p>
+<p class="last">any instance of <span class="math">\(P_1\)</span> can be <em>transformed</em> in polynomial time into an instance of <span class="math">\(P_2\)</span> in such a way that yes/no answers are preserved.</p>
+</div>
+</div>
+<div class="section" id="properties-of-reduction">
+<h2>Properties of Reduction<a class="headerlink" href="#properties-of-reduction" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><span class="math">\(P_1 \propto P_1\)</span></li>
+<li><span class="math">\(P_1 \propto P_2\)</span> and <span class="math">\(P_2 \propto P_3  \Rightarrow P_1 \propto P_3\)</span><ul>
+<li>transitive property of reduction</li>
+<li>this is relly useful - we can solve a bunch of problems at once!</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="partition-problem">
+<h3>Partition problem:<a class="headerlink" href="#partition-problem" title="Permalink to this headline">¶</a></h3>
+<p>Given a set of integers, <span class="math">\(S\)</span>, does <span class="math">\(S\)</span> have a subset that sums to <span class="math">\(\frac{1}{2}\)</span> the total sum?</p>
+</div>
+<div class="section" id="subset-sum">
+<h3>Subset sum:<a class="headerlink" href="#subset-sum" title="Permalink to this headline">¶</a></h3>
+<p>Given a set of integers, <span class="math">\(S\)</span>, and taget value <span class="math">\(k\)</span>, does <span class="math">\(S\)</span> have a subset that sums to <span class="math">\(k\)</span>?</p>
+<div class="section" id="claim">
+<h4>Claim:<a class="headerlink" href="#claim" title="Permalink to this headline">¶</a></h4>
+<p>Partition problem <span class="math">\(\propto\)</span> Subset sum problem</p>
+</div>
+<div class="section" id="proof">
+<h4>Proof:<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h4>
+<p>Let <span class="math">\(S\)</span> be an instance of of Partition</p>
+<p>Let <span class="math">\(S, \sum_{s \in S} \frac{S}{2}\)</span> be the constructed Subset sum instance.</p>
+<p>This transformation is <span class="math">\(O(n)\)</span>, and answer preserving.</p>
+<p>Therefore, Partition <span class="math">\(\propto\)</span> Subset Sum</p>
+<div class="admonition-fact admonition">
+<p class="first admonition-title">Fact</p>
+<p class="last">Subset Sum also reduces to Partition! - think about it! Solution on Friday.</p>
+</div>
+<p>Cooke and Levin, independently, searched for the <em>hardest</em> problem in <span class="math">\(NP\)</span> - one to which all others could be reduced.</p>
+<p>Can we find such a problem, <span class="math">\(X \in NP\)</span> such that <strong>all problems</strong> in <span class="math">\(NP\)</span> reduce to <span class="math">\(X\)</span>? - the holy grail of problems.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Conjunctive Normal Form Satisfiability (CNF-SAT) problem</p>
+<ul>
+<li><p class="first">a CNF is a boolean expression structured as a set of clauses joined by &#8220;<strong>and</strong>&#8221;, and containing only literals and &#8220;<strong>or</strong>&#8220;</p>
+<ul>
+<li><div class="admonition-example first admonition">
+<p class="first admonition-title">Example</p>
+<p class="last"><span class="math">\((X_1 + X_2 + \bar X_3) * (\bar X_1 + \bar X_2) * (X_1 + X_3 + X_4)\)</span></p>
+</div>
+</li>
+</ul>
+</li>
+<li><p class="first">SAT means: can it be true? i.e. does it not contain any contradictions?</p>
+</li>
+</ul>
+<p class="last">The problem is to determine whether or not a given CNF is satisfiable.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">More Decision Problems</a><ul>
+<li><a class="reference internal" href="#problem-reduction">Problem Reduction</a></li>
+<li><a class="reference internal" href="#properties-of-reduction">Properties of Reduction</a><ul>
+<li><a class="reference internal" href="#partition-problem">Partition problem:</a></li>
+<li><a class="reference internal" href="#subset-sum">Subset sum:</a><ul>
+<li><a class="reference internal" href="#claim">Claim:</a></li>
+<li><a class="reference internal" href="#proof">Proof:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="2013-09-16.html" title="previous chapter">Easy Problems vs. Hard Problems</a></li>
+      <li>Next: <a href="2013-09-19.html" title="next chapter">Cook-Levin</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-09-18.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

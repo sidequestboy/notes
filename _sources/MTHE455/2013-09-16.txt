@@ -1,0 +1,189 @@
+***********************
+Conditional Expectation
+***********************
+
+.. math::
+	E_Y[E[X|Y]] = E[X]
+
+.. admonition:: Example
+
+	Let :math:`X \sim Geometric(p)`.
+
+	.. admonition:: Reminder
+
+		:math:`X` is number of trials until first success in a sequence of i.i.d. (independent, identically distributed) :math:`Bernoulli(p)` trials.
+
+	.. math::
+		P(X=k) = (1-p)^{k-1}p
+
+	and the expectation of X:
+
+	.. math::
+		E[X] = \sum_{k=1}^\infty k(1-p)^{k-1}p = ... = \frac{1}{p}
+
+	We can find this answer also by conditioning on a new random variable, :math:`Y`.
+
+	Let:
+
+	.. math::
+		\displaystyle
+		Y = 
+		\cases {
+		1 &\text{if first trial is success}\cr
+		0 &\text{if first trial is failure}
+		}
+
+	We have that :math:`P(Y=1)=p` and :math:`P(Y=0)=1-p`.
+
+	.. math::
+		E[X|Y=1] = 1
+
+		E[X|Y=0] = 1 + E[X]
+
+	So,
+
+	.. math::
+		E[X] = p*1 + (1+E[x])(1-p)
+
+		E[X] = \frac{1}{p}
+
+	as before.
+
+Special Case
+============
+If
+
+.. math::
+	\displaystyle
+	X=I_A:=
+	\cases {
+	1 &\text{if A occurs}\cr
+	0 &\text{if A does not occur}
+	}
+
+Then :math:`E[X]=P(A)`.
+
+So, :math:`P(A) = \sum_Y P(A|Y=y)P(Y=y)`.
+
+This is dubbed *"The Law of Total Probability"*, and is a corollary of *The Law of Total Expectation*.
+
+.. admonition:: Example
+
+	Simple Random Walk
+	------------------
+
+	.. math::
+		X_0 = 0, X_n = \sum_{k=1}^n Y_k
+
+	where
+
+	.. math::
+		Y_1, Y_2, ... , Y_n
+
+	are independent, with
+
+	.. math::
+		P(Y_i = 1) = p
+
+	and
+
+	.. math::
+		P(Y_i = -1) = 1-p =: q
+
+	Question
+	########
+	What is the probability that :math:`X_n` ever reaches state 1?
+
+	Let :math:`p` denote this probability.
+
+	Similarly, what is :math:`p_r`? where :math:`p_r` is the probability that the walk ever reaches state :math:`r`, with :math:`r>1`.
+
+	Answer
+	######
+	Let:
+
+	.. math::
+		\displaystyle
+		Y = 
+			\cases {
+				1 &\text{if the walk ever reaches state 1}\cr
+				0 &\text{if not.}
+			}
+
+	Let :math:`A` be the event that the walk ever reaches state :math:`r`.
+
+	Then,
+
+	.. math::
+		P(A) = P(A|Y=1)P(Y=1) + P(A|Y=0)P(Y=0)
+
+	The condition :math:`A|Y=0` is obviously self-contradictory given the definitions of :math:`A` and :math:`Y`, so only the first term remains:
+
+	.. math::
+		P(A) = P(A|Y=1)P(Y=1) = p_1 P(A|Y=1)
+
+		= p_1*p_{r-1} = p_1^r
+
+	Let us now compute :math:`p_1`.
+
+	Let :math:`Y` be the state after the first step;
+
+	.. math::
+		\displaystyle
+		Y =
+			\cases {
+				1 &\text{with probability }p\cr
+				-1 &\text{with probability }q
+			}
+
+	.. math::
+		p_1 = P(\text{ever reaching }1 | Y=1)p + P(\text{ever reaching }1 | Y=-1)
+
+		= p + P(\text{ever reaching state 2 from state 0})q
+
+		= p + p_1^2q
+
+	Equivalently,
+
+	.. math::
+		qp_1^2 + p_1 + p = 0
+
+	Solving this quadratic, we get
+
+	.. math::
+		p_1 = \frac{-1 \pm \sqrt{1-4qp}}{2q}
+
+		= \frac{1 \pm \sqrt{1-4q(1-q)}}{2q}
+
+		= \frac{1 \pm \sqrt{4q^2-4q+1}}{2q}
+
+		= \frac{1 \pm \sqrt{(-2q + 1)}}{2q}
+
+		= \frac{1 \pm |1 - 2q|}{2q}
+
+	If :math:`q=\frac{1}{2}`, the roots are both 1, so :math:`p_1=1`
+
+	If :math:`q<\frac{1}{2}`, then :math:`|1-2q| = 1 - 2q`, so roots are:
+
+	.. math::
+		\frac{1 \pm (1-2q)}{2q} = 1 \text{ or } \frac{p}{q}
+
+	Only one of those (:math:`1`) is a valid probability.
+
+	If :math:`q > \frac{1}{2}`, then :math:`|1-2q| = 2q-1`, so:
+
+	.. math::
+		\frac{1 \pm (2q - 1)}{2q} = 1 \text{ or } \frac{p}{q}
+
+	Since the function of :math:`q` ought to be continuous (not proven here), :math:`\frac{p}{q}` is the correct root in this case.
+
+.. admonition:: Remark
+	
+	The law of total expectation can also be used to compute a conditional expectation:
+
+	.. math::
+		E[X|Y=y] = \sum_Z E[X|Y=y,Z=z]*P(Z=z|Y=y)
+
+
+
+

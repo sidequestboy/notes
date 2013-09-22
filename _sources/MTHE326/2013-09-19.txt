@@ -1,0 +1,139 @@
+**************************************
+Complex Exponents, Limits & Continuity
+**************************************
+
+Last time, visualizing :math:`f(z) = e^z`.
+
+.. image:: .static/09.19.1.png
+	:width: 50%
+
+.. image:: .static/09.19.2.png
+	:width: 50%
+
+Logarithms
+==========
+
+Need logarithms to define general complex exponentials.
+
+Usually logarithm is the inverse of the exponential. But in :math:`\Bbb C`, :math:`e^z` is *not* 1-1. So, we define a multivalued log.
+
+Let :math:`w \neq 0`.
+
+then, :math:`\log(w) := \{Ln|w|+i\theta | \theta \in arg(w)\}`
+
+where :math:`Ln: \Bbb R \to \Bbb R` is the regular natural log on :math:`\Bbb R`.
+
+Suppose :math:`\theta \in arg(w)`. then,
+
+.. math::
+	e^{ln|w| + i\theta} = e^{\ln|w|}(\cos \theta + i \sin \theta)
+
+	= |w|(\cos \theta + i \sin \theta)
+
+	= w
+
+So, :math:`\log(w)` is the set of points in :math:`\Bbb C` that exponentiates to :math:`w`.
+
+.. admonition:: Example
+
+	.. math::
+		\log(4) = \{Ln 4 + i \theta | \theta \in \arg(4)\}
+
+		= \{Ln 4 + 2 \pi i k | k \in \Bbb Z \}
+
+		\log(i) = \{Ln |1| + \pi/2 i  + 2 \pi i k | k \in \Bbb Z\}
+
+		= \{\pi/2 i  + 2 \pi i k | k \in \Bbb Z\}
+
+		\log(1 + i \sqrt 3) = \{Ln |2| + i (\arctan \sqrt 3 + 2 \pi k) | k \in \Bbb Z\}
+
+	.. image::
+
+	"Multi-valued log is weird"
+
+	-- you
+
+Fine,
+
+.. admonition:: Definition
+
+	Principal Branch of Log
+
+	.. math::
+		Log(w) = Ln |w| + i \theta
+
+		\theta = Arg(w), \theta \in (-\pi, \pi]
+
+.. admonition:: Example
+
+	.. math::
+		Log(4) = Ln |4|
+
+		Log(i) = i \pi/2
+
+		Log(1+i \sqrt 3) = Ln |2| + i \pi/3
+
+Where is :math:`Log(z)` continuous?
+
+I haven't defined continuity yet.
+
+.. image:: .static/09.19.3.png
+
+Complex Exponentials (again)
+============================
+How did we define :math:`a^b` for :math:`a,b \in \Bbb R`?
+
+.. math::
+	a^b := e^{b Ln a}
+
+So we can now define :math:`z^w` where :math:`z, w \in \Bbb C` and :math:`z \neq 0`.
+
+.. admonition:: Definition
+
+	.. math::
+		z^w = \{e^{wa} | a \in \log z\}
+
+	potentially has :math:`\infty`-many values!
+
+What is :math:`i^i`?
+
+:math:`\log(i) = \{i \pi/2 + 2 \pi i k | k \in \Bbb Z\}`
+
+:math:`i \log(i) = \{=\pi/2 - 2 \pi k | k \in \Bbb Z\}`
+
+:math:`i^i = e^{i \log i} = \{e^{e^{-\pi /2 - 2 \pi k} | k \in \Bbb Z\}`
+
+This is a set of infinitely many real values... bleh.
+
+.. admonition:: Definition
+
+	i^i = e^{i Log i} = e^{-\pi/2}
+
+	This has the same problem with branches.
+
+	This is called the *principal branch* of Log.
+
+.. admonition:: Example
+
+	:math:`()1+i \sqrt 3)^{1+i}` = ?
+
+	:math:`\log(1+i \sqrt 3) = \{Ln 2 + i (\pi / 3 + 2 \pi k) | k \in \Bbb Z\}`
+
+	:math:`(1+i) \log (1 + i \sqrt 3) = \{Ln 2 - (\pi/3 + 2 \pi k) + i(Ln 2 + \pi/3 + 2 \pi k) | k \in \Bbb Z\}`
+
+	:math:`e^{(1+i)\log(1+i \sqrt 3)} = \{e^{Ln 2 - (\pi/3 + 2 \pi k) + i(Ln 2 + \pi/3 + 2 \pi k)} | k \in \Bbb Z\}`
+
+.. admonition:: Remark
+
+	despite this definition, :math:`e^z` is *always* defined by the principal branch.
+
+.. admonition:: Proposition
+
+	(# of values in :math:`z^w`)
+
+	1) if :math:`w \in \Bbb Z`, :math:`z^w` is single-valued.
+
+	2) if :math:`w \in \Bbb Q`, then :math:`z^w` has :math:`q` values
+
+	3) if :math:`w` is any other point, :math:`z^w` is :math:`\infty`-valued
+

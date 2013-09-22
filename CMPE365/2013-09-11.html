@@ -1,0 +1,152 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>More Dijkstra’s &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="Interesting Problems" href="2013-09-13.html" />
+    <link rel="prev" title="Graph problems" href="2013-09-09.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-13.html" title="Interesting Problems"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-09.html" title="Graph problems"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="more-dijkstra-s">
+<h1>More Dijkstra&#8217;s<a class="headerlink" href="#more-dijkstra-s" title="Permalink to this headline">¶</a></h1>
+<p>We can adapt Dijkstra&#8217;s Algorithm to solve similar problems to the &#8220;vanilla&#8221; shortest-length on weighted graph problem.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Problem 1 - Given a network with edges weighted with bandwidths, find a path from node A to node B with maximum limiting bandwidth.</p>
+<img alt="../_images/09.11.1.jpg" src="../_images/09.11.1.jpg" style="width: 50%;" />
+<div class="code python last highlight-python"><div class="highlight"><pre><span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">]</span>
+
+<span class="n">graph</span> <span class="o">=</span> <span class="p">{(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">):</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">):</span> <span class="mi">6</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">):</span> <span class="mi">9</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">):</span> <span class="mi">20</span><span class="p">,</span>
+         <span class="p">(</span><span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">):</span> <span class="mi">15</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">):</span> <span class="mi">8</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">):</span> <span class="mi">12</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">):</span> <span class="mi">20</span><span class="p">,</span>
+         <span class="p">(</span><span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">):</span> <span class="mi">9</span><span class="p">,}</span>
+
+<span class="c"># limiting bandwidth from &quot;A&quot; to node</span>
+<span class="n">limiting_bw</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">}</span>
+
+<span class="n">not_done</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;A&quot;</span><span class="p">]</span>
+<span class="n">reached</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">predecessors</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="s">&quot;&quot;</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">}</span>
+
+<span class="k">while</span> <span class="n">not_done</span><span class="p">:</span>
+    <span class="n">current_node</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">not_done</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">limiting_bw</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+
+    <span class="n">unreached_neighbours</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">tup</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current_node</span> <span class="ow">in</span> <span class="n">tup</span><span class="p">:</span>
+            <span class="c"># select neighbour</span>
+            <span class="n">unreached_neighbours</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">tup</span><span class="p">[(</span><span class="n">tup</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">current_node</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)])</span>
+
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">unreached_neighbours</span><span class="p">:</span>
+        <span class="n">current_bandwidth</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">limiting_bw</span><span class="p">[</span><span class="n">current_node</span><span class="p">],</span>
+                                <span class="n">graph</span><span class="p">[(</span><span class="n">current_node</span><span class="p">,</span> <span class="n">node</span><span class="p">)])</span>
+        <span class="k">if</span> <span class="n">current_bandwidth</span> <span class="o">&gt;</span> <span class="n">limiting_bw</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+            <span class="n">limiting_bw</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_bandwidth</span>
+            <span class="n">predessors</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_node</span>
+
+            <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">not_done</span><span class="p">:</span>
+                <span class="n">not_done</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+        <span class="n">not_done</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">current_node</span><span class="p">)</span>
+        <span class="n">reached</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_node</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="2013-09-09.html" title="previous chapter">Graph problems</a></li>
+      <li>Next: <a href="2013-09-13.html" title="next chapter">Interesting Problems</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-09-11.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Complex Exponents, Limits &amp; Continuity &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-09-21.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-09-16.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-21.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-16.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="complex-exponents-limits-continuity">
+<h1>Complex Exponents, Limits &amp; Continuity<a class="headerlink" href="#complex-exponents-limits-continuity" title="Permalink to this headline">¶</a></h1>
+<p>Last time, visualizing <span class="math">\(f(z) = e^z\)</span>.</p>
+<img alt="MTHE326/.static/09.19.1.png" src="MTHE326/.static/09.19.1.png" style="width: 50%;" />
+<img alt="MTHE326/.static/09.19.2.png" src="MTHE326/.static/09.19.2.png" style="width: 50%;" />
+<div class="section" id="logarithms">
+<h2>Logarithms<a class="headerlink" href="#logarithms" title="Permalink to this headline">¶</a></h2>
+<p>Need logarithms to define general complex exponentials.</p>
+<p>Usually logarithm is the inverse of the exponential. But in <span class="math">\(\Bbb C\)</span>, <span class="math">\(e^z\)</span> is <em>not</em> 1-1. So, we define a multivalued log.</p>
+<p>Let <span class="math">\(w \neq 0\)</span>.</p>
+<p>then, <span class="math">\(\log(w) := \{Ln|w|+i\theta | \theta \in arg(w)\}\)</span></p>
+<p>where <span class="math">\(Ln: \Bbb R \to \Bbb R\)</span> is the regular natural log on <span class="math">\(\Bbb R\)</span>.</p>
+<p>Suppose <span class="math">\(\theta \in arg(w)\)</span>. then,</p>
+<div class="math">
+\[e^{ln|w| + i\theta} = e^{\ln|w|}(\cos \theta + i \sin \theta)\]\[= |w|(\cos \theta + i \sin \theta)\]\[= w\]</div>
+<p>So, <span class="math">\(\log(w)\)</span> is the set of points in <span class="math">\(\Bbb C\)</span> that exponentiates to <span class="math">\(w\)</span>.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[\log(4) = \{Ln 4 + i \theta | \theta \in \arg(4)\}\]\[= \{Ln 4 + 2 \pi i k | k \in \Bbb Z \}\]\[\log(i) = \{Ln |1| + \pi/2 i  + 2 \pi i k | k \in \Bbb Z\}\]\[= \{\pi/2 i  + 2 \pi i k | k \in \Bbb Z\}\]\[\log(1 + i \sqrt 3) = \{Ln |2| + i (\arctan \sqrt 3 + 2 \pi k) | k \in \Bbb Z\}\]</div>
+<p>&#8220;Multi-valued log is weird&#8221;</p>
+<p class="last">&#8211; you</p>
+</div>
+<p>Fine,</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Principal Branch of Log</p>
+<div class="last math">
+\[Log(w) = Ln |w| + i \theta\]\[\theta = Arg(w), \theta \in (-\pi, \pi]\]</div>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="last math">
+\[Log(4) = Ln |4|\]\[Log(i) = i \pi/2\]\[Log(1+i \sqrt 3) = Ln |2| + i \pi/3\]</div>
+</div>
+<p>Where is <span class="math">\(Log(z)\)</span> continuous?</p>
+<p>I haven&#8217;t defined continuity yet.</p>
+<img alt="MTHE326/.static/09.19.3.png" src="MTHE326/.static/09.19.3.png" />
+</div>
+<div class="section" id="complex-exponentials-again">
+<h2>Complex Exponentials (again)<a class="headerlink" href="#complex-exponentials-again" title="Permalink to this headline">¶</a></h2>
+<p>How did we define <span class="math">\(a^b\)</span> for <span class="math">\(a,b \in \Bbb R\)</span>?</p>
+<div class="math">
+\[a^b := e^{b Ln a}\]</div>
+<p>So we can now define <span class="math">\(z^w\)</span> where <span class="math">\(z, w \in \Bbb C\)</span> and <span class="math">\(z \neq 0\)</span>.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<div class="math">
+\[z^w = \{e^{wa} | a \in \log z\}\]</div>
+<p class="last">potentially has <span class="math">\(\infty\)</span>-many values!</p>
+</div>
+<p>What is <span class="math">\(i^i\)</span>?</p>
+<p><span class="math">\(\log(i) = \{i \pi/2 + 2 \pi i k | k \in \Bbb Z\}\)</span></p>
+<p><span class="math">\(i \log(i) = \{=\pi/2 - 2 \pi k | k \in \Bbb Z\}\)</span></p>
+<p><span class="math">\(i^i = e^{i \log i} = \{e^{e^{-\pi /2 - 2 \pi k} | k \in \Bbb Z\}\)</span></p>
+<p>This is a set of infinitely many real values... bleh.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>i^i = e^{i Log i} = e^{-pi/2}</p>
+<p>This has the same problem with branches.</p>
+<p class="last">This is called the <em>principal branch</em> of Log.</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p><span class="math">\(()1+i \sqrt 3)^{1+i}\)</span> = ?</p>
+<p><span class="math">\(\log(1+i \sqrt 3) = \{Ln 2 + i (\pi / 3 + 2 \pi k) | k \in \Bbb Z\}\)</span></p>
+<p><span class="math">\((1+i) \log (1 + i \sqrt 3) = \{Ln 2 - (\pi/3 + 2 \pi k) + i(Ln 2 + \pi/3 + 2 \pi k) | k \in \Bbb Z\}\)</span></p>
+<p class="last"><span class="math">\(e^{(1+i)\log(1+i \sqrt 3)} = \{e^{Ln 2 - (\pi/3 + 2 \pi k) + i(Ln 2 + \pi/3 + 2 \pi k)} | k \in \Bbb Z\}\)</span></p>
+</div>
+<div class="admonition-remark admonition">
+<p class="first admonition-title">Remark</p>
+<p class="last">despite this definition, <span class="math">\(e^z\)</span> is <em>always</em> defined by the principal branch.</p>
+</div>
+<div class="admonition-proposition admonition">
+<p class="first admonition-title">Proposition</p>
+<p>(# of values in <span class="math">\(z^w\)</span>)</p>
+<ol class="last arabic simple">
+<li>if <span class="math">\(w \in \Bbb Z\)</span>, <span class="math">\(z^w\)</span> is single-valued.</li>
+<li>if <span class="math">\(w \in \Bbb Q\)</span>, then <span class="math">\(z^w\)</span> has <span class="math">\(q\)</span> values</li>
+<li>if <span class="math">\(w\)</span> is any other point, <span class="math">\(z^w\)</span> is <span class="math">\(\infty\)</span>-valued</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Complex Exponents, Limits &amp; Continuity</a><ul>
+<li><a class="reference internal" href="#logarithms">Logarithms</a></li>
+<li><a class="reference internal" href="#complex-exponentials-again">Complex Exponentials (again)</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-09-16.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-09-21.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-09-19.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>
