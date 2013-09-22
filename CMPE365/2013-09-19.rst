@@ -1,0 +1,40 @@
+**********
+Cook-Levin
+**********
+
+.. admonition:: Theorem
+
+	If CNF-SAT :math:`\in` P, then :math:`P=NP`
+
+Proof would be to show that any decision problem in :math:`NP` can be transformed in polynomial time to an instance of CNF-SAT. i.e., all prolems in :math:`NP` reduce to CNF-SAT.
+
+NP-Complete Problems
+====================
+Problem :math:`X` is NP-Complete if :math:`X \in NP` and (:math:`Y \propto X` or :math:`Y \in P`)
+
+There are many NP-Complete problems.
+
+Given a new problem, :math:`Z`, we can show that :math:`Z` is NP-Complete.
+
+If we know problem :math:`X` is NP-Complete, all we need to show is that :math:`X \propto Z`.
+
+.. admonition:: Example
+
+	Show k-clique is NP-complete.
+
+	Given graph :math:`G`, :math:`k \in \Bbb Z_{\geq 0}`, does :math:`G` contain a complete subgraph of size :math:`k`?
+
+	We will show that CNF-SAT :math:`\propto` k-clique.
+
+	Suppose :math:`E = (x_{1,1} * x_{1,1} * ...) + (x_{2,1} * x_{2,1} * ...) + ... + (x_{n,1} * x_{n,1} * ...)` is the given instance of CNF-SAT.
+
+	Construct an instance of k-clique as follows:
+
+	1. Construct a vertex set for each clause of E - one vertex for each literal, labelled with the literal.
+
+	.. image:: .static/09.19.1.jpg
+		:width: 50%
+
+	2. Join all vertices that are in different sets *and* are not contradictory.
+
+	3. Choose k. Let k be the number of clauses in E.

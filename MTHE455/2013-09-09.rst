@@ -59,13 +59,13 @@ functions from :math:`I` to :math:`\Bbb R`.  For example, if
 :math:`X_{0}(\omega), X_{1}(\omega), ...` which we can view as a function from
 :math:`I` to :math:`\Bbb R` like so:
 
-.. image:: IMG_20130909_225813.jpg
+.. image:: .static/IMG_20130909_225813.jpg
 	:width: 50 %
 	:align: center
 
 If :math:`I = [0, \infty)`, then a given :math:`\omega` maps to e.g.:
 
-.. image:: IMG_20130909_225820.jpg
+.. image:: .static/IMG_20130909_225820.jpg
 	:width: 50 %
 	:align: center
 
@@ -75,6 +75,6 @@ There is exactly one sample path for each :math:`\omega \in \Omega`
 
 For our example,
 
-.. image:: IMG_20130909_225826.jpg
+.. image:: .static/IMG_20130909_225826.jpg
 	:width: 50 %
 	:align: center

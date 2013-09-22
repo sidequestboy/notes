@@ -1,0 +1,61 @@
+****************
+Time Homogeneity
+****************
+
+.. admonition:: Definition
+
+	A stochastic process is *time-homogenous* if:
+
+	.. math::
+		P(X_n = j | X_m = i) = P(X_{n+k} = j | X_{m+k} = i)
+
+	for all :math:`i`, :math:`j \in S` and for all :math:`m \leq n`.
+
+The simple symmetric random walk (from last lecture) is time-homogenous.
+
+.. admonition:: Definition
+
+	A stochastic process is *stationary* if:
+
+	:math:`P(X_{t_1} = i_1, ..., X_{t_k} = i_k) = P(X_{t_1}+s = i_1, ..., X_{t_k}+s = i_k)`
+
+	for all times :math:`t_1, ..., t_k` and any :math:`k \geq 1` and any states :math:`i_1, ... i_k`
+
+.. admonition:: Example
+
+	Galton-Watson Branching Process
+
+.. image:: 
+
+We assume that the family size distribution on :math:`\{0,1,2,3,...\}` is the same for all individuals and all family sizes are independent.
+
+Let :math:`Y_{n,k}` be i.i.d random variable, each with family size distribution :math:`n=0,1,2,...`
+
+Let :math:`X_n` be the number of individuals in generation :math:`n`.
+
+.. math::
+	X_0 = 1
+
+	X_1 = Y_{0,1}
+
+	X_2 = Y_{1,1} + Y_{1,2}
+
+	...
+
+	X_n = Y_{n-1, 1} + Y_{n-1, 2} + ... + Y_{n-1, X_{n-1}}
+
+This process is time-homogeneous, but not stationary.
+
+.. admonition:: Definition
+
+	A stochastic process is *spatially homogeneous* if
+
+	.. math::
+		P(X_1 = i_1, ..., X_n = i_n) = P(X_1 + k = i_1, ..., X_n + k = i_n)
+
+Conditional Expectation (a review)
+==================================
+If :math:`X` and :math:`Y` are discrete random variables, then the expectation of :math:`X` given :math:`Y=y` is:
+
+.. math::
+	E[X|Y=y] = \sum_\chi x P(X=x | Y=y)

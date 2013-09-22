@@ -1,0 +1,38 @@
+********************
+Interesting Problems
+********************
+
+1. Find the max "clique" of Facebook friends.
+
+2. Choose the maximum valued set of objects that does not exceed a given capacity.
+
+3. Plan a trip around the world, visiting each of :math:`n` cities exactly once in the best possible time. (Travelling Salesman Problem)
+
+4. Round Trip: Given a network with some connections, is it possible to visit each node exactly once and return to the start?
+
+5. Given a set of events, and a list of participants in each event, Find a minimum schedule that does not cause conflicts for participants. (Graph colouring problem)
+
+6. Given a set of values, divide the set into two disjoint, but equal valued, sets.
+
+7. Exact Trade: Given a set of values and a target value, is there a subset of the set that sums exactly to the target? (Subset Sum Problem)
+
+8. Find the largest set of mutually non-adjacent rooms on campus. (Max independent set)
+
+Early 1970s:
+============
+Steve Cook & Leonid Levin *independently* made the same discovery:
+
+Cook-Levin Theorem
+------------------
+
+.. admonition:: Definition
+
+	Decision Problem
+
+	A decision problem is a problem whose answer is (a) either *yes* or *no*, (b) completely determined by the input.
+
+	.. admonition:: Example
+
+		Halting Problem:
+
+		Does a given graph :math:`G` contain a triangle?

@@ -1,0 +1,58 @@
+*******************************
+Easy Problems vs. Hard Problems
+*******************************
+Last time:
+
+:math:`X` is a decision problem if the answer is yes or no and the answer is completely determined by the input.
+
+.. admonition:: Example
+
+	Does 12 have a factor less than 7?
+
+	Answer: yes.
+
+This example is an *instance* of the general problem:
+
+Does n have a factor less than m?
+
+.. admonition:: Definition
+
+	The class :math:`P` is the set of all decision problems that can be solved on a normal computer in polynomial time, that is, the complexity is at most :math:`O(n^k)` where :math:`n` is the "size" of the instance, and :math:`k` is fixed for the general problem.
+
+.. admonition:: Example
+
+	Given a graph :math:`G`, does :math:`G` contain a triangle?
+
+	This problem is solvable in :math:`O(n^3)` or better.
+
+.. admonition:: Example
+
+	Given a set :math:`S` of :math:`n` values, does :math:`S` contain a pair of values that sum to :math:`k`?
+
+.. admonition:: Definition
+
+	*Verification* is the process of checking the details of a solution to a problem
+
+.. admonition:: Definition
+
+	:math:`NP` is the class of all decision problems for which, if the answer to an instance is *yes*, and the details of that yes answer are given, the answer can be verified in polynomial time.
+
+.. math::
+	P \subseteq NP
+
+- every problem that can be solved in polynomial time can be verified in polynomial time (e.g. by simply re-running the solution algorithm).
+
+.. admonition:: Definition
+
+	A *non-deterministic Turing Machine* (NDTM) can guess (with complete accuracy) the solution to any decision problem instance and, if the answer is *yes*, provide details, then revert to an ordinary computer, then verify the solution in polynomial time.
+
+.. admonition:: Aside
+
+	David Copperfield was born today.
+
+	.. pull-quote::
+		"Magic is my part"
+
+		--David Copperfield
+
+

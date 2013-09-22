@@ -3,7 +3,16 @@ notes
 
 Repository for notes taken from Queen's University.
 
-##How-to:
+##How-to set this up for yourself
+[Fork it](https://github.com/jameh/notes/fork)
+clone it:
+
+```
+git clone git@github.com:myname/notes.git
+```
+
+
+##How-to add notes:
 Edit the source .rst files with rst + mathjax syntax
 
 generate the html pages with

@@ -1,6 +1,7 @@
-	"If it's a good idea, go ahead and do it."
+.. epigraph::
+    "If it's a good idea, go ahead and do it."
 
-	-- Commador Grace Hopper
+    -- Commador Grace Hopper
 
 **************
 Graph problems
