@@ -1,0 +1,181 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>More NP Complete Problems &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="MTHE 326 - Functions of a Complex Variable" href="../MTHE326/index.html" />
+    <link rel="prev" title="k-clique \(\in\) NP-Complete" href="2013-09-23.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE326/index.html" title="MTHE 326 - Functions of a Complex Variable"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-23.html" title="k-clique \(\in\) NP-Complete"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <blockquote class="epigraph">
+<div><p>Millie McDeerit screamed a scream so loud it made her eyebrows steam.</p>
+<p>-S.S.</p>
+</div></blockquote>
+<div class="section" id="more-np-complete-problems">
+<h1>More NP Complete Problems<a class="headerlink" href="#more-np-complete-problems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hamiltonian-cycle">
+<h2>Hamiltonian Cycle<a class="headerlink" href="#hamiltonian-cycle" title="Permalink to this headline">¶</a></h2>
+<p>Find a cycle going through every vertex exactly once.</p>
+</div>
+<div class="section" id="hamiltonian-path">
+<h2>Hamiltonian Path<a class="headerlink" href="#hamiltonian-path" title="Permalink to this headline">¶</a></h2>
+<p>Find a path going through every vertex exactly once.</p>
+</div>
+<div class="section" id="maze-problem">
+<h2>Maze Problem<a class="headerlink" href="#maze-problem" title="Permalink to this headline">¶</a></h2>
+<p>Find a path from <span class="math">\(\sigma_1\)</span> to <span class="math">\(\sigma_2\)</span> going through no vertex more than once, collect as much gold as possible.</p>
+<p>Given an instance of Hamiltonian Path,</p>
+<p>If a Maze-Problem algorithm existed, then applying it to <span class="math">\(v_1\)</span> and <span class="math">\(v_2\)</span> would answer &#8220;max-value=n&#8221; <span class="math">\(\iff\)</span> there exists a Hamiltonian Path from <span class="math">\(v_1\)</span> to <span class="math">\(v_2\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Each Hamiltonian Path is equivalent to multiple Maze Problems.</p>
+<p class="last">This is called a &#8220;one-to-many&#8221; type reduction.</p>
+</div>
+</div>
+<div class="section" id="subset-sum-again">
+<h2>Subset Sum (again)<a class="headerlink" href="#subset-sum-again" title="Permalink to this headline">¶</a></h2>
+<p>Given <span class="math">\(S=\{\text{set of integers}\}\)</span>, and <span class="math">\(k\)</span> an integer, Does <span class="math">\(S\)</span> have a subset that sums to <span class="math">\(k\)</span>?</p>
+<p>This problem is NP-Complete.</p>
+<p>Some sets of integers are easy, some are hard. e.g. <span class="math">\(\{1,2,4,...,2^n\}.\)</span></p>
+<p>The Brute-Force Ignorant algorithm for subset sum is: try every subset of <span class="math">\(S\)</span>. (there are <span class="math">\(2^n\)</span> of them), so <span class="math">\(O(2^n)\)</span> steps.</p>
+<p>We can actually do a little better :)</p>
+<p>Given 2 sets of size <span class="math">\(m\)</span>, can we find two elements, one from each set, that sum to a given target value?</p>
+<p>Brute-Force Algorithm for this is <span class="math">\(O(m^2)\)</span></p>
+<p>Horowitz &amp; Sahni algorithm:</p>
+<ul class="simple">
+<li>Sort the first set (<span class="math">\(S_1\)</span>) into ascending order, and the second set (<span class="math">\(S_2\)</span>) into descending order.</li>
+<li><span class="math">\(S_1: x_1 \leq x_2 \leq ... \leq x_m\)</span></li>
+<li><span class="math">\(S_1: y_1 \leq y_2 \leq ... \leq y_m\)</span></li>
+<li>Consider <span class="math">\(x_1+y_1\)</span>. If <span class="math">\(x_1+y_1=k\)</span>, then we&#8217;re done.</li>
+<li>else if <span class="math">\(x_1+y_1 &gt; k\)</span>, then we know <span class="math">\(x_i+y_1&gt;k\)</span> for all <span class="math">\(i \geq 1\)</span>.</li>
+</ul>
+<p>-else (<span class="math">\(x_1+y_1 &lt; k\)</span>), then we know <span class="math">\(x_1+y_i&lt;k\)</span> for all <span class="math">\(i \geq 1\)</span>.</p>
+<p>Every iteration eliminates a pair of numbers. Sorting takes <span class="math">\(O(m\log m)\)</span> and the rest takes <span class="math">\(O(m)\)</span>. That&#8217;s better than <span class="math">\(O(m^2)\)</span> :)</p>
+<div class="section" id="horowitz-sahni-algorithm-for-subset-sum">
+<h3>Horowitz &amp; Sahni Algorithm for Subset Sum<a class="headerlink" href="#horowitz-sahni-algorithm-for-subset-sum" title="Permalink to this headline">¶</a></h3>
+<p>Given <span class="math">\(S=\{s_1,...s_n\}\)</span>, <span class="math">\(k\)</span></p>
+<p>split <span class="math">\(S\)</span> into <span class="math">\(P\)</span> and <span class="math">\(Q\)</span>, equal size.</p>
+<p>Find all subset sums in <span class="math">\(P\)</span>, call this set <span class="math">\(X_P\)</span></p>
+<p>And find all subset sums in <span class="math">\(Q\)</span>, call this set <span class="math">\(X_Q\)</span>.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="last math">
+\[P=\{1,2,3\}\]\[X_P = \{0,1,2,3,4,5,6\}\]</div>
+</div>
+<p>Sort <span class="math">\(X_P\)</span> and <span class="math">\(X_Q\)</span>.</p>
+<div class="math">
+\[O(2^{n/2}\log 2^{n/2})\]\[= O(n*2^{n/2})\]</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">More NP Complete Problems</a><ul>
+<li><a class="reference internal" href="#hamiltonian-cycle">Hamiltonian Cycle</a></li>
+<li><a class="reference internal" href="#hamiltonian-path">Hamiltonian Path</a></li>
+<li><a class="reference internal" href="#maze-problem">Maze Problem</a></li>
+<li><a class="reference internal" href="#subset-sum-again">Subset Sum (again)</a><ul>
+<li><a class="reference internal" href="#horowitz-sahni-algorithm-for-subset-sum">Horowitz &amp; Sahni Algorithm for Subset Sum</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="2013-09-23.html" title="previous chapter">k-clique <span class="math">\(\in\)</span> NP-Complete</a></li>
+      <li>Next: <a href="../MTHE326/index.html" title="next chapter">MTHE 326 - Functions of a Complex Variable</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-09-25.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

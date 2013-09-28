@@ -1,0 +1,189 @@
+*************************************
+Limits, Continuity, Differentiability
+*************************************
+
+.. admonition:: Recall
+
+	Prop.1: Limits are unique if they exist
+
+.. admonition:: Proposition 2
+
+	Suppose :math:`\lim_{z \to z_0} f(z) = a` and :math:`\lim_{z \to z_0} g(z) = b`
+
+	a) :math:`\lim_{z \to z_0} (f(z) + g(z)) = a+b`
+
+	b) :math:`\lim_{z \to z_0} f(z)g(z) = ab`
+
+	c) :math:`\lim_{z \to z_0} f(z)/g(z) = a/b` if :math:`b \neq 0`
+
+	Proof:
+
+	b) We know
+
+	.. math::
+		|f(z)g(z) -ab| = |f(z)g(z) - ag(z) + ag(z) - ab|
+
+		\leq |g(z)||f(z) - a| + |a||g(z)-b|
+
+	by the triangle inequality.
+
+	then,
+
+	:math:`\forall \epsilon > 0`, :math:`\exists \delta_1, \delta_2` such that for
+
+	.. math::
+		|z-z_0| < min(\delta_1, \delta_2) = \delta
+
+		|g(z) -b| < min(\epsilon/(2(1+|a|)), 1)
+
+		|f(z) - a| < \epsilon/(2(1 + |a|))
+
+		\leq (1+|a|)(\epsilon/(2(1+|a|))) + |a|\epsilon/(2(1+|a|))
+
+		< \epsilon/2 + \epsilon/2 = \epsilon
+
+	So, :math:`\lim_{z \to z_0}f(z)g(z) = ab`
+
+Continuity
+==========
+A function :math:`f: S \subseteq \Bbb C \to \Bbb C`, where :math:`S` is open, is *continuous* at :math:`z` if :math:`\lim_{z \to z_0}f(z) = f(z_0)`.
+
+:math:`S` must be open because every point needs an open disks around it to take the complex limit.
+
+f is continuous on :math:`S` if it is continuous for all :math:`z_0 \in S`.
+
+the :math:`\epsilon-\delta` definition:
+
+.. math::
+	\forall \epsilon > 0, \exists \delta \text{ s.t.}
+
+	|f(z) - f(z_0)| < \epsilon \text{ if } |z - z_0| < \delta
+
+Not punctured disks anymore.
+
+.. admonition:: Proposition 3
+
+	If :math:`f(z)` and :math:`g(z)` are coninuous on the open set :math:`S \subseteq \Bbb C`, Then so are:
+
+	a) :math:`f+g`
+
+	b) :math:`fg`
+
+	c) :math:`f/g` when :math:`g(z) \neq 0`
+
+	Proof: use continuouty definition and Prop. 2
+
+.. admonition:: Corollary 1
+
+	All polynomials and rational functions are continuous.
+
+	polynomial example:
+
+	:math:`f(z) = a_nz^n + ... + a_1z + a_0`
+
+	rational function example:
+
+	:math:`f(z) = \frac{a_nz^n + ... + a_1z + a_0}{b_nz^n + ... + b_1z + b_0}`
+
+	Proof:
+
+	every rational function and polynomial can be built using :math:`f(z) = z` and :math:`f(z) = constant`. Then use Prop. 3.
+
+.. admonition:: Proposition 4
+
+	1) If :math:`\lim_{z \to z_0} f(z) = a`
+
+	and :math:`g(z)` is continuous at :math:`a`, then
+
+	.. math::
+		\lim_{z \to z_0}g(f(z)) = g(a)
+
+	2) If :math:`A,B` are open sets in :math:`\Bbb C` (:math:`f: A \to \Bbb C` and :math:`g: B \to \Bbb C`) are continuous, and :math:`f(A) \subseteq B` then :math:`g(f(z))` is continuous on :math:`A`.
+
+Complex Differentiability
+=========================
+Let :math:`S \subseteq \Bbb C` be open.
+
+A function :math:`f: S \to \Bbb C` is (complex) differentiable at :math:`z_0 \in S` if the limit:
+
+.. math::
+	\lim_{z \to z_0} (f(z) - f(z_0))/(z-z_0) = \lim{h \to 0} (f(z_0 + h) - f(z_0))/h
+
+exists.
+
+The limit is denoted :math:`f'(z_0)` or :math:`\frac{df}{dz}z_0`
+
+:math:`f` is said to be *holomorphic* or *analytic* on :math:`S` if it is differentiable for every :math:`z_0 \in S`.
+
+:math:`f` is *entire* if it is holomorphic on the all of :math:`\Bbb C`.
+
+Is this definition strange?
+
+when we had a function
+
+.. math::
+	F: \Bbb R^2 \to \Bbb R^2
+
+that is differentiable, what does that mean?
+
+Means the Jacobian exists.
+
+.. admonition:: Proposition 5
+
+	If :math:`f` is differentiable at :math:`z_0`, it is continuous at :math:`z_0`.
+
+	Proof:
+
+	We have that the limit
+
+	.. math::
+		\lim_{z \to z_0}\frac{f(z)- f(z_0)}{z - z_0}
+
+	exists, so we must have that the numerator limit exists.
+
+.. admonition:: Example
+
+	Is :math:`f(z) = z` entire?
+
+	Pick :math:`z_0 \in \Bbb C`
+
+	.. math::
+		\lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}
+
+		= \lim_{z \to z_0} \frac{z - z_0}{z - z_0} = 1
+
+		f'(z) = 1
+
+	So, yes!
+
+.. admonition:: Example
+
+	is :math:`f(z) = C` entire? :math:`C \in \Bbb C`
+
+	.. math::
+		f(z) = 0
+
+	everywhere
+
+.. admonition:: Example
+
+	is :math:`f(z) = \bar z` entire?
+
+	take the limit:
+
+	.. math::
+		\lim_{h \to 0} \frac{f(z_0+h)- f(z_0)}{h}
+
+		= \lim_{h \to 0}\frac{\bar z_0 + \bar h - \bar z_0}{h}
+
+		= \lim_{h \to 0} \frac{\bar h}{h}
+
+		= \lim_{|h| \to 0} e^{-2i \theta}
+
+	limit does not exist anywhere.
+
+	
+
+
+
+

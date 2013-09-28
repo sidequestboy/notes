@@ -1,0 +1,238 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Differentiation as a function from \(\Bbb R^2 \to \Bbb R^2\) &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="MTHE 455 - Stochastic Processes &amp; Applications" href="../MTHE455/index.html" />
+    <link rel="prev" title="Limits, Continuity, Differentiability" href="2013-09-24.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE455/index.html" title="MTHE 455 - Stochastic Processes &amp; Applications"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-24.html" title="Limits, Continuity, Differentiability"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="differentiation-as-a-function-from">
+<h1>Differentiation as a function from <span class="math">\(\Bbb R^2 \to \Bbb R^2\)</span><a class="headerlink" href="#differentiation-as-a-function-from" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p><span class="math">\(f(z)=\bar z\)</span> is not complex differentiable anywhere.</p>
+<div class="math">
+\[\lim_{h \to 0} \frac{f(z_0+h)-f(z_0)}{h}=\lim_{h \to 0}\frac{\bar h}{h}\]</div>
+<p>which does not exist.</p>
+<p><span class="math">\(h\)</span> can approach zero many ways.</p>
+<p>Let <span class="math">\(h\)</span> go to zero along the real axis. ie.e</p>
+<div class="math">
+\[h(t)=t\]</div>
+<p>So, <span class="math">\(h\to 0\)</span> as <span class="math">\(t\to 0\)</span>. <span class="math">\(t \in \Bbb R\)</span>.</p>
+<p>then the limit simplifies:</p>
+<div class="math">
+\[\lim_{t \to 0} \frac{f(z_0+t)-f(z_0)}{t}=\lim{t}{t}=1\]</div>
+<p>Let h go to zero along the imaginary axis now.</p>
+<div class="math">
+\[h(t) = it\]</div>
+<p>for <span class="math">\(t \in \Bbb R\)</span>.</p>
+<p>then the limit simplifies to:</p>
+<div class="math">
+\[\lim_{t \to 0} \frac{f(z_0+it)-f(z_0)}{it} = \lim_{t \to 0} \frac{\bar{it}}{it} = -1\]</div>
+<p class="last">So the limit is not unique, therefore does not exist.</p>
+</div>
+<div class="admonition-proposition-6 admonition">
+<p class="first admonition-title">Proposition 6</p>
+<p>Suppose :math`f` and :math`g` are analytic on the open set :math`S`. Then,</p>
+<ol class="loweralpha simple">
+<li><span class="math">\(f+g\)</span> is analytic</li>
+</ol>
+<blockquote>
+<div><span class="math">\((f+g)' = f' + g'\)</span></div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li><span class="math">\(fg\)</span> is analytic</li>
+</ol>
+<blockquote>
+<div><span class="math">\((fg) = f'g + fg'\)</span></div></blockquote>
+<ol class="loweralpha simple" start="3">
+<li><span class="math">\(\frac{f}{g}\)</span> is analytic (when <span class="math">\(g\neq 0\)</span>)</li>
+</ol>
+<blockquote>
+<div><span class="math">\((\frac{f}{g})' = \frac{gf' - g'f}{g^2}\)</span></div></blockquote>
+<p class="last">Proof: same as real case.</p>
+</div>
+<div class="admonition-corollary-2 admonition">
+<p class="first admonition-title">Corollary 2</p>
+<p>Polynomials and rational functions are analytic when denominator is not zero.</p>
+<p>If</p>
+<div class="math">
+\[f(z)=a_nz^n + ... + a_0\]</div>
+<p>then:</p>
+<div class="math">
+\[f'(z)=a_nnz^{n-1} + ... + a_1\]</div>
+<p class="last">same as real polynomials.</p>
+</div>
+<div class="admonition-proposition-7 admonition">
+<p class="first admonition-title">Proposition 7</p>
+<p>Chain Rule</p>
+<p>Suppose that</p>
+<div class="math">
+\[f: S_1 \to \Bbb C\]</div>
+<p>is analytic and</p>
+<div class="math">
+\[g: S_2 \to \Bbb C\]</div>
+<p>is also analytic, where <span class="math">\(S1,S2\)</span> are open sets.</p>
+<p>If <span class="math">\(f(S_1) \subseteq S_2\)</span>, then</p>
+<div class="math">
+\[g(f): S_1 \to \Bbb C\]</div>
+<p>is analytic, and</p>
+<div class="math">
+\[(g(f(z)))' = g'(f(z))f'(z)\]</div>
+<p class="last">Proof: see calculus.</p>
+</div>
+<div class="admonition-digression admonition">
+<p class="first admonition-title">Digression</p>
+<p>Let&#8217;s consider all linear functions from :math`Bbb R^2 to Bbb R^2` that preserve length.</p>
+<p>What do these look like?</p>
+<blockquote>
+<div><ul class="simple">
+<li>rotations</li>
+<li>reflections</li>
+</ul>
+</div></blockquote>
+<p>Suppose that</p>
+<div class="math">
+\[T: \Bbb R^2 \to \Bbb R^2\]</div>
+<p>preserves length. Then,</p>
+<div class="math">
+\[||Tv||=||v||\]</div>
+<p>for all <span class="math">\(v \in \Bbb R^2\)</span>.</p>
+<p>We also have a formula for the dot product.</p>
+<div class="math">
+\[v_1 \cdot v_2 = \frac{1}{2}(||v_1+v_2||^2-||v_1||^2-||v_2||^2)\]</div>
+<p>So,</p>
+<div class="math">
+\[T(v_1) \cdot T(v_2) = \frac{1}{2}(||T(v_1)+T(v_2)||^2-||T(v_1)||^2-||T(v_2)||^2)\]\[(T(v_1) + T(v_2) = T(v_1+v_2))\]\[T(v_1) \cdot T(v_2) = \frac{1}{2}(||v_1+v_2||^2-||v_1||^2-||v_2||^2 =v_1 \cdot v_2\]</div>
+<p>So, if it preserves length, it preserves angles between two vectors.</p>
+<div class="last math">
+\[\cos\theta = \frac{v_1 \cdot v_2}{||v_1||\cdot||v_2||}\]\[= \frac{T v_1 \cdot T v_2}{||Tv_1||\cdot||Tv_2||}\]\[= \cos \phi\]</div>
+</div>
+<p>If <span class="math">\(f: S \to \Bbb C\)</span> where <span class="math">\(S \subseteq \Bbb C\)</span>, then we can think of it as a function from <span class="math">\(\Bbb R^2 \to \Bbb R^2\)</span>.</p>
+<div class="math">
+\[z = x+iy\]\[= (x,y)\]</div>
+<p>where <span class="math">\(x,y \in \Bbb R\)</span>.</p>
+<div class="math">
+\[f(x+iy) = u(x,y)+iv(x,y)\]</div>
+<p>So, <span class="math">\(u\)</span> is the real part of <span class="math">\(f\)</span> and <span class="math">\(v\)</span> is the imaginary part of <span class="math">\(f\)</span>.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="last math">
+\[f(z) = z^2\]\[f(x+iy)= (x+iy)^2\]\[=(x^2-y^2)+i(2xy)\]</div>
+</div>
+<p>Define the associated function</p>
+<div class="math">
+\[F: \Bbb R^2 \to \Bbb R^2\]\[F(x,y)=(u(x,y),v(x,y))\]</div>
+<p>That is the pair of <span class="math">\(u\)</span> and <span class="math">\(v\)</span>.</p>
+<div class="section" id="multiplication-by-a-complex-number-as-a-matrix">
+<h2>Multiplication by a complex number as a matrix<a class="headerlink" href="#multiplication-by-a-complex-number-as-a-matrix" title="Permalink to this headline">¶</a></h2>
+<div class="math">
+\[z=a+ib=(a,b)\]</div>
+<p>The complex plane has basis vectors <span class="math">\(1\)</span> and <span class="math">\(i\)</span>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Differentiation as a function from <span class="math">\(\Bbb R^2 \to \Bbb R^2\)</span></a><ul>
+<li><a class="reference internal" href="#multiplication-by-a-complex-number-as-a-matrix">Multiplication by a complex number as a matrix</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-09-24.html" title="previous chapter">Limits, Continuity, Differentiability</a></li>
+      <li>Next: <a href="../MTHE455/index.html" title="next chapter">MTHE 455 - Stochastic Processes &amp; Applications</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-09-26.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

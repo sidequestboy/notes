@@ -1,0 +1,220 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Lossless Fixed Length (Block) Source Coding (Data Compression) &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="Test Note" href="../note.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-09-24.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../note.html" title="Test Note"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-24.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lossless-fixed-length-block-source-coding-data-compression">
+<h1>Lossless Fixed Length (Block) Source Coding (Data Compression)<a class="headerlink" href="#lossless-fixed-length-block-source-coding-data-compression" title="Permalink to this headline">¶</a></h1>
+<p>for Discrete Memoryless Source (DMS).</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Given integers <span class="math">\(n\)</span> and <span class="math">\(k\)</span> (<span class="math">\(k=k(n)\)</span>), then a <span class="math">\((k,n)\)</span> D-ary block encoder for a source <span class="math">\(\{X_i\}^\infty_{i=1}\)</span> with finite alphabet <span class="math">\(\chi\)</span> is a map:</p>
+<div class="math">
+\[f: \chi^n \to \{0,1,...D-1\}^k\]</div>
+<p>Where <span class="math">\(D\geq 2\)</span>, integer.</p>
+<p>The encoder represents <span class="math">\(n\)</span> consecutive symbols from the source by <span class="math">\(D\)</span> - ary <span class="math">\(k\)</span> -tuples, which we call <em>codewords</em>. (each codeword contains <span class="math">\(k\)</span> <span class="math">\(D\)</span> -ary code symbols.)</p>
+<p><em>wlog</em>, we will deal with the case <span class="math">\(D=2\)</span>:</p>
+<div class="math">
+\[f: \chi^n \to \{0,1\}^k\]</div>
+<p>In this case, a code symbol is a <strong>code bit</strong>.</p>
+<p>(Code compression rate)</p>
+<div class="math">
+\[R = \frac{k}{n}\]</div>
+<p class="last">where the unit is <span class="math">\(\frac{[code symbols (code bits)]}{some symbol}\)</span>.</p>
+</div>
+<div class="section" id="problem">
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
+<p>We want to construct a block encoder for a DMS:</p>
+<div class="math">
+\[f: \chi^n \to \{0,1\}^k\]</div>
+<p>coupled with a <em>decoder</em>:</p>
+<div class="math">
+\[g: \{0,1\}^k \to \chi^n\]</div>
+<p>such that</p>
+<div class="math">
+\[\begin{split}P_e:=P[g(f(x_1,...,x_n)) \neq (x_1,...,x_n)] &lt; \epsilon\end{split}\]</div>
+<p>for any <span class="math">\(\epsilon&gt;0\)</span>, where <span class="math">\(P_e\)</span> is the probability of decoding error.</p>
+<p><strong>and</strong></p>
+<div class="math">
+\[R=\frac{k}{n}\]</div>
+<p>is as <em>small</em> as possible.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><span class="math">\(\chi^n\)</span> could be anything like the English language for example based on the English alphabet.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Using block codes, not acutally Lossless compression; but asymptotically Lossless compression.</p>
+</div>
+<p>Question:</p>
+<p>How small can <span class="math">\(R\)</span> be for <span class="math">\(\epsilon\)</span> arbitrarily small?</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><strong>Block code</strong> <span class="math">\((k,n)\)</span> is the pair <span class="math">\((f,g)\)</span>. (encoder, decoder).</p>
+<p>codebook:</p>
+<div class="last math">
+\[e = f(\chi^n) = \text{set of all the codewords}\]</div>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A <span class="math">\((k,n)\)</span> binary block source code is <em>uniquely decodable</em> (UD) - or <em>lossless</em> - if every source <span class="math">\(n\)</span> -tuple is assigned to <strong>distinct</strong> codewords (binary <span class="math">\(k\)</span> -tuple), and all the codewords are used.</p>
+<p>i.e. <span class="math">\(f\)</span> is bijective.</p>
+<p><span class="math">\(\iff\)</span> <span class="math">\(f\)</span> is <em>invertible</em> and <span class="math">\(g=f^{-1}\)</span>.</p>
+<p>For a UD code, <span class="math">\(P_e=0\)</span>, its rate is given by:</p>
+<div class="math">
+\[|\chi|^n = 2^k\]\[\iff R \frac{k}{n} = \log{2} |\chi| \text{ code bits/source symbol}\]</div>
+<p>Question:</p>
+<p>Can we do better? i.e. have smaller compression rates with block source codes?</p>
+<p>Answer:</p>
+<p class="last">Yes, if we give up Unique Decodability for finite values of <span class="math">\(n\)</span>. and require it to hold as <span class="math">\(n \to \infty\)</span> and take into account the <em>statistical properties</em> of the source (think AEP).</p>
+</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Shannon&#8217;s Lossless Fixed Length Source Coding Theorem for DMSs</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Check Appendix A in online notes for background on infimum/supremum stuff.</p>
+</div>
+<p>Consider a DMS <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with alphabet <span class="math">\(\chi\)</span>, generic pmf <span class="math">\(p_X\)</span> and entropy:</p>
+<div class="math">
+\[H_D(X) = -\sum_{x \in \chi} p_X(x) \log{D}p_X(x)\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><span class="math">\(H_D\)</span> is in base <span class="math">\(D\)</span>.</p>
+</div>
+<ol class="lowerroman simple">
+<li>Forward (Achievability ) Part:</li>
+</ol>
+<p>For any <span class="math">\(a &lt; \epsilon &lt; 1\)</span> and <span class="math">\(\alpha &gt; 0\)</span>, there exists a sequence of <span class="math">\(D\)</span> -ary block codes <span class="math">\((k,n)\)</span> for the source such that:</p>
+<ol class="arabic simple">
+<li><span class="math">\(\frac{k}{n}&lt;H_D(X) + \alpha\)</span></li>
+</ol>
+<p>and</p>
+<ol class="arabic simple" start="2">
+<li><span class="math">\(P_e&lt;\epsilon\)</span></li>
+</ol>
+<p>for <span class="math">\(n\)</span> sufficiently large.</p>
+<ol class="lowerroman simple" start="2">
+<li>(Strong) Converse Part</li>
+</ol>
+<p>For any <span class="math">\(0&lt;\epsilon&lt;1\)</span> and any sequence of <span class="math">\(D\)</span> -ary block codes <span class="math">\((k,n)\)</span> for the source with rate:</p>
+<div class="math">
+\[\begin{split}R=\frac{k}{n} &lt; H_D(X)\end{split}\]</div>
+<p>and <span class="math">\(n\)</span> sufficiently large, we have that:</p>
+<div class="math">
+\[\begin{split}P_e &gt; 1-\epsilon\end{split}\]</div>
+<p>Conclusion:</p>
+<p>No matter how small the prescribed <span class="math">\(\epsilon\)</span>, the code rate can be brought close to <span class="math">\(H_D(X)\)</span>, but <strong>cannot</strong> go below it if we are to construct asymptotically lossless <span class="math">\(D\)</span> -ary block codes.</p>
+<p class="last"><strong>Therefore</strong>, <span class="math">\(H_D(X)\)</span> is the <em>smallest</em> block source coding rate for which <span class="math">\(\exists\)</span> <span class="math">\(D\)</span> -ary block codes for a DMS with asymptotically (in <span class="math">\(n\)</span>) vanishing probability of decoding error.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lossless Fixed Length (Block) Source Coding (Data Compression)</a><ul>
+<li><a class="reference internal" href="#problem">Problem</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-09-24.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="../note.html" title="next chapter">Test Note</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-09-26.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

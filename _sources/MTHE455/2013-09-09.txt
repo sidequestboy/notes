@@ -32,7 +32,7 @@ Let :math:`X_{0}=0` and :math:`X_{n} = \sum_{i=1}^{n} Y_{i}` for :math:`n \ge 1`
 
 Here, :math:`I=\mathbb Z_{\ge 0}` and :math:`S=\mathbb Z`
 
-for every given :math:`n`, :math:`X_{n}` can take values
+For every given :math:`n`, :math:`X_{n}` can take values
 :math:`-n, -n+2, ..., n-2, n`
 
 The Distribution of Stochastic Processes

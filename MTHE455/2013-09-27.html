@@ -1,0 +1,211 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Recurrence and Transience &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="MTHE 474 - Information Theory" href="../MTHE474/index.html" />
+    <link rel="prev" title="Notes on problems" href="2013-09-25.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE474/index.html" title="MTHE 474 - Information Theory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-25.html" title="Notes on problems"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="recurrence-and-transience">
+<h1>Recurrence and Transience<a class="headerlink" href="#recurrence-and-transience" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>In any Markov chain, define:</p>
+<div class="math">
+\[f_i=P(\text{eventually return to state }i | X_0=i)\]\[= P(X_n=i\text{ for some }n\geq 1 | X_0=i)\]</div>
+<p>We say sa state <span class="math">\(i\)</span> is &#8220;recurrent&#8221; if <span class="math">\(f_i=1\)</span></p>
+<p class="last">We say a state <span class="math">\(i\)</span> is &#8220;transient&#8221; if <span class="math">\(f_i&lt;1\)</span></p>
+</div>
+<div class="admonition-proposition admonition">
+<p class="first admonition-title">Proposition:</p>
+<p>State <span class="math">\(i\)</span> is recurrent <span class="math">\(\iff\)</span> the expected number of times we return to state <span class="math">\(i\)</span> given we start in state <span class="math">\(i\)</span> is infinite.</p>
+<p><span class="math">\((\iff)\)</span> Assume state <span class="math">\(i\)</span> is recurrent. Then with probability one, we will return to state <span class="math">\(i\)</span> again. But, by the homogeneity and the Markov property, the process &#8220;starts afresh&#8221; at this point - in other words, it is sdlfkj are back at the 0, in state <span class="math">\(i\)</span>.</p>
+<p>So we can apply the recurrence property again to conclude that we return to state <span class="math">\(i\)</span> a second time with probability 1.</p>
+<p>Carrying on this process inductively, we conclude that we return to state <span class="math">\(i\)</span> infinitely often with probability 1.</p>
+<p>To make this induction argument precise, let</p>
+<div class="math">
+\[A_n= \{\text{return to state }i\text{ }n\text{ more times}\}\]\[P(A_1)=1\]</div>
+<p>inductive hypothesis:</p>
+<div class="math">
+\[P(A_n|X_o=i)=1\]\[\implies P(A_n+1|X_0=i)=1\]</div>
+<p>Now assume state <span class="math">\(i\)</span> is not recurrent. Then we will show the expected number of times we return to state <span class="math">\(i\)</span> given we start in state <span class="math">\(i\)</span> is finite.</p>
+<p>If state <span class="math">\(i is transient, then every time the process returns to state :math:`i\)</span>, it is faced with the probability of returning again, with probability or never returning again, with probability <span class="math">\(i-f_i\)</span></p>
+<p>The return process is equivalent to a sequence of independent Bernoulli trials, where a &#8220;success&#8221; is the event we never return to state <span class="math">\(i\)</span> again, and the probability of success is <span class="math">\(1-f_i\)</span>.</p>
+<p class="last">The expected number of returns to state <span class="math">\(i\)</span> given we start in state <span class="math">\(i\)</span>, is then the mean of a geometric distribution, interpreted as the number of failures before the first success. The mean of this distribution is <span class="math">\(\frac{f_i}{1-f_i}\)</span>. Therefore, the expected number of returns to state <span class="math">\(i\)</span> given we start in state <span class="math">\(i\)</span> is <span class="math">\(\frac{f_i}{1-f_i}&lt;\infty\)</span>.</p>
+</div>
+<div class="admonition-proposition admonition">
+<p class="first admonition-title">Proposition</p>
+<p>State <span class="math">\(i\)</span> is recurrent iff:</p>
+<div class="math">
+\[\sum_{n=0}^\infty p_{i,i}(n)=\infty\]</div>
+<p>where <span class="math">\(p_{i,i}(n)\)</span> is the (i,i)th entry of the n-step transition matrix.</p>
+<p>Let <span class="math">\(I_n=\{X_n=i\}\)</span>. Let <span class="math">\(N_i\)</span> be the number of returns of the process to state <span class="math">\(i\)</span>.</p>
+<div class="math">
+\[N_i=\sum^\infty_{n=0} I_n\]\[E[N_i|X_0=i]=E[\sum_{n=0}^\infty I_n | X_0=i]\]\[= \sum_{n=0}^\infty E[I_n|X_0=i]\]\[= \sum_{n=0}^\infty P(X_n=i|X_0=i)\]\[= \sum_{n=0}^\infty p_{i,i}(n)\]</div>
+<p>From our previous proposition now, state <span class="math">\(i\)</span> is recurrent <span class="math">\(\iff E[N_i|X_0=i] = \infty\)</span>.</p>
+<p class="last"><span class="math">\(\iff \sum_{n=0}^\infty p_{i,i}(n) = \infty\)</span></p>
+</div>
+<div class="admonition-corollary-1 admonition">
+<p class="first admonition-title">Corollary 1</p>
+<p class="last">State <span class="math">\(i\)</span> is <em>transient</em> <span class="math">\(\iff\)</span> <span class="math">\(\sum_{n=0}^\infty p_{i,i}(n) &lt; \infty\)</span>.</p>
+</div>
+<div class="admonition-corollary-2 admonition">
+<p class="first admonition-title">Corollary 2</p>
+<p>if state <span class="math">\(i\)</span> is recurrent and state <span class="math">\(i\)</span> communicates with state <span class="math">\(j\)</span>, then state <span class="math">\(j\)</span> is recurrent.</p>
+<p>state <span class="math">\(i\)</span> communicates with state <span class="math">\(j\)</span> <span class="math">\(\implies\)</span> that there exists <span class="math">\(m,n\)</span> so that <span class="math">\(p_{i,j}(n)&gt;0\)</span> &amp; <span class="math">\(p_{j,i}(n)&gt;0\)</span></p>
+<p>Also, state <span class="math">\(i\)</span> is recurrent <span class="math">\(\implies\)</span> <span class="math">\(\sum_{n=0}^\infty p_{i,j}(n)=\infty\)</span></p>
+<p>For any positive integer <span class="math">\(r\)</span>, we have:</p>
+<div class="math">
+\[P(m,r,n)=P(m)P(r)P(n)\]</div>
+<p>by the Chapman-Kolmogorov Equation</p>
+<div class="math">
+\[p_{ij}(m+r+n)=\sum_{k \in S}p_{j,k}(m)p_{k,j}(r_n)\]\[= \sum{k\in S} p_{j,k}(m)\sum_{j \in S} p_{r,l}(r)p_{r,j}(n)\]\[= \sum_{k \in S}\sum_{n \in S} p_{j,k}(m)p_{k,l}(r)p_{n,j}(n)\]\[\geq p_{j,i}(m)p_{i,i}(r)p_{i,j}(n)\]</div>
+<p>Summing over <span class="math">\(r\)</span>:</p>
+<div class="last math">
+\[\sum_{r=1}^\infty p_{j,j}(m+r+n) \geq \sum_{r=0}^\infty p_{j,i}(m)p_{i,j}(n)p_{i,i}(r)\]\[\implies \sum_{r=0}^\infty p_{j,j}(m+r+n) \geq p_{i,j}(m)\sum_{r=0}^\infty p_{i,i}(r)\]\[= \infty\]\[\implies \sum_{n=0}^\infty p_{j,j}(m+r+n)=\infty\]\[\implies \sum_{r=0}^\infty p_{j,j}(r)=\infty\]\[\implies state :math:`j` is recurrent\]</div>
+</div>
+<div class="admonition-remark admonition">
+<p class="first admonition-title">Remark</p>
+<p class="last">Note that since every state must be either recurrent or transient; transience is a class property.</p>
+</div>
+<div class="section" id="recap">
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>Since we&#8217;ve just had a number of new definitions and results, let&#8217;s recap.</p>
+<p>To summarize, we categorized the relationship between pairs of states by defining the (asymmetric) notion of accesibility and the symmetric notion of communication. We saw communication is an equivalence relationship, and so divides the state space <span class="math">\(S\)</span> of any Markov Chain into equivalence classes.</p>
+<p>We categorized the individual states as transient or recurrent.</p>
+</div>
+<div class="section" id="generating-functions">
+<h2>Generating Functions<a class="headerlink" href="#generating-functions" title="Permalink to this headline">¶</a></h2>
+<p>For a sequence of numbers <span class="math">\(a_0,a_1,a_2,...\)</span>, we define the <em>generating function</em> of the sequence to be:</p>
+<div class="math">
+\[G(s) = \sum_{n=0}^\infty s^na_n\]</div>
+<p>where <span class="math">\(s\)</span> is a real number</p>
+<p>This brings the sequence into another domain, that is analogous to the <em>spectral frequency</em> domain.</p>
+<p>If the sequence <span class="math">\(\{a_n\}_{n=0}^\infty\)</span> is the pmg of a random variable, <span class="math">\(X\)</span> on the non-negative integers (<span class="math">\(a_n=P(X=n), n\geq 0\)</span>), then we call the generating function the <em>probability generating function</em> of <span class="math">\(X\)</span>.</p>
+<p>In this case, we have that</p>
+<div class="math">
+\[G(s) = E[s^X]\]</div>
+<p>If <span class="math">\(\{a_0,a_1,a_2,...\}\)</span> and <span class="math">\(\{b_0,b_1,b_2,...\}\)</span> are two sequences, then we define their <em>convolution</em> by the sequence <span class="math">\(\{c_0,c_1,...\}\)</span> where:</p>
+<div class="math">
+\[c_n=a_0b_n+a_1b_{n-1}+...+a_nb_0 = \sum_{i=0}^n a_i b_{n-i}\]</div>
+<p>In the case where <span class="math">\(\{a_n\}_{n=0}^\infty\)</span> and <span class="math">\(\{b_n\}_{n=0}^\infty\)</span> are probability distributions, and <span class="math">\(X\)</span> &amp; <span class="math">\(Y\)</span> independent random variables on the non-negative integers with <span class="math">\(P(X=n)=a_n\)</span> &amp; <span class="math">\(P(Y=n)=b_n\)</span>, then we see the convolution <span class="math">\(\{c_n\}_{n=0}^\infty\)</span> is just the distribution of <span class="math">\(X+Y\)</span>.</p>
+<p>i.e. <span class="math">\(P(X+Y=n)=c_n\)</span></p>
+<p>In this case, we have:</p>
+<div class="math">
+\[G_{X+Y}(s) = E[s^{X+Y}]=E[s^Xs^Y]=E[s^X]E[s^Y] = G_X(s)G_Y(s)\]</div>
+<p>The second important property is that if <span class="math">\(G_X(s)\)</span> is the generating function of a random variable <span class="math">\(X\)</span>, then:</p>
+<div class="math">
+\[G'_X(1)=E[X]\]</div>
+<p>This is straightforward to see:</p>
+<div class="math">
+\[G_X'(s) = \frac{d}{ds}(a_0+a_1s+...) = a_1+2a_2s+3a_3s^2+...\]\[\implies G'(1) = a_1+2a_2+3a_3+...=E[X]\]</div>
+<p>assuming <span class="math">\(a_n=P[X=n]\)</span>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Recurrence and Transience</a><ul>
+<li><a class="reference internal" href="#recap">Recap</a></li>
+<li><a class="reference internal" href="#generating-functions">Generating Functions</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-09-25.html" title="previous chapter">Notes on problems</a></li>
+      <li>Next: <a href="../MTHE474/index.html" title="next chapter">MTHE 474 - Information Theory</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-09-27.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

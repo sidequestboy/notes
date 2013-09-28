@@ -1,0 +1,225 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Markov Chains &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Notes on problems" href="2013-09-25.html" />
+    <link rel="prev" title="Another Graph with Conditioning" href="2013-09-20.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-25.html" title="Notes on problems"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-20.html" title="Another Graph with Conditioning"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="markov-chains">
+<h1>Markov Chains<a class="headerlink" href="#markov-chains" title="Permalink to this headline">¶</a></h1>
+<p>Chapter 4</p>
+<p>We will be dealing with stochastic processes with discrete state space <span class="math">\(S\)</span>, and index set a subset of the integers, usually <span class="math">\(\{0,1,2,...\}\)</span> and having the <em>Markov property</em></p>
+<p>&#8220;I&#8217;m thinking, I&#8217;m thinking, I&#8217;m thinking, that it might be a good idea, if we dont have any idea of what anything is!!!! :DD!!&#8221;</p>
+<div class="admonition-definition-version-1 admonition">
+<p class="first admonition-title">Definition Version 1</p>
+<p>For any <span class="math">\(s,i_0,i_1,...,i_{n-1} \in S\)</span>, and say <span class="math">\(n \geq 1\)</span>,</p>
+<div class="math">
+\[P(X_n=s|X_0=i_0,...,X_{n-1}=i_{n-1})\]\[= P(X_n=s|X_{n-1}=i_{n-1})\]</div>
+<p class="last">is conditional only on recent past.</p>
+</div>
+<div class="admonition-corollary admonition">
+<p class="first admonition-title">Corollary</p>
+<p>Note that we do not have to condition on the entire past.</p>
+<p>Say <span class="math">\(I' \subset \{0,1,...,n-2\}\)</span> and consider</p>
+<div class="math">
+\[P(X_n=s|X_{n-1}=i_{n-1}, X_k=i_k, k \in I')\]</div>
+<p>This probability is also equal to</p>
+<div class="math">
+\[P(X_n=s|X_{n-1}=i_{n-1})\]</div>
+<p>Proof:</p>
+<div class="last math">
+\[\sum_{i\in S, k \in I', j\in I''}P(X_n=s|X_{n-1}=i_{n-1}, X_k=i_k,k\in I', j\in I'')\cdot P(X_j=i_j,j\in I''|X_{n-1}=i_{n-1}, X_k=i_k,k\in I')\]\[= \sum_{i_j\in S, j\in I''}P(X_n=s|X_{n-1}=i_{n-1})\cdot 1\]</div>
+</div>
+<div class="admonition-definition-version-2 admonition">
+<p class="first admonition-title">Definition Version 2</p>
+<p>For any <span class="math">\(s,i_0,i_1,...,i_{n-1} \in S\)</span>, and say <span class="math">\(n \geq 1\)</span>, and <span class="math">\(m \geq 0\)</span>:</p>
+<div class="math">
+\[P(X_{n+m}=s|X_0=i_0,...,X_{n-1}=i_{n-1})\]\[= P(X_{n+m}=s|X_{n-1}=i_{n-1})\]</div>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p>Here we can again remove some of the events before time <span class="math">\(n-1\)</span> in the conditioning, and still have the same RHS as before</p>
+<p>Also note, that this probability possibly could reduce to</p>
+<div class="last math">
+\[P(X_{n+m})\]</div>
+</div>
+</div>
+<div class="section" id="proof-that-version-1-version-2">
+<h2>Proof that Version 1 <span class="math">\(\implies\)</span> Version 2:<a class="headerlink" href="#proof-that-version-1-version-2" title="Permalink to this headline">¶</a></h2>
+<p>Proof by induction on <span class="math">\(m\)</span>; for <span class="math">\(m=0\)</span>, Version 2 is the same as Version 1. Assume Version 2 holds for <span class="math">\(m\)</span>. We show it holds for <span class="math">\(m+1\)</span>. Condition on <span class="math">\(X_{n+m}\)</span>.</p>
+<div class="math">
+\[P(X_{n+m+1}=s|X_0=i_0,...,X_{n-1}=i_{n-1})\]\[= \sum_{s'\in S}P(X_{n+m+1}=s|X_{n+m}=s',X_0=i_0,...,X_{n-1}=i_{n-1})\cdot P(X_{n+m}=s'|X_0=i_0,...,X_{n-1}=i_{n-1})\]\[= \sum_{s'\in S}P(X_{n+m+1}=s|X_{n+m}=s',X_{n-1}=i_{n-1})\cdot P(X_{n+m}=s'|X_{n-1}=i_{n-1})\]</div>
+<p>where the first term reduces by Version 1, and second term reduces by induction hypothesis.</p>
+<div class="math">
+\[= 1\cdot \sum_{s'\in S}P(X_{n+m+1}=s|X_{n+m}=s',X_{n-1}=i_{n-1})\]\[= P(X_{n+m+1}=s|X_{n-1}=i_{n-1})\]</div>
+<p>So, Version 2 holds for Version 1.</p>
+<p><span class="math">\(\square\)</span></p>
+<p>In this course, we will consider only time-homogeneous Markov chains.</p>
+<p>i.e.</p>
+<div class="math">
+\[P(X_{n+m}=j|X_m=i)=P(X_{n+m+k}=j|X_{m+k}=i)\]</div>
+<p>for any <span class="math">\(i,j \in S\)</span>, and any <span class="math">\(m,n,k\)</span>.</p>
+<p>So, <span class="math">\(P(X_n=j|X_{n-1}=i)=P(X_1=j|X_0=i)\)</span> because of time-homogeneity.</p>
+<p>These are called <strong>one-step transition probabilities</strong> and denoted by <span class="math">\(p_{ij}\)</span>.</p>
+<p>They are usually put into a matrix (p_{ij})_{i,jin S}</p>
+<p>P is an <span class="math">\(|S|\)</span> by <span class="math">\(|S|\)</span> matrix.</p>
+<p>P is called the transition matrix.</p>
+<p>For any transition matrix,</p>
+<div class="math">
+\[\sum_{j\in S}p_{ij} = \sum_{j\in S}P(X_1=j|X_0=i)=1\]</div>
+<div class="section" id="chapman-kolmogorov-equations">
+<h3>Chapman-Kolmogorov Equations<a class="headerlink" href="#chapman-kolmogorov-equations" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math">\(p_{ij}(n)= P(X_n=j|X_0=i)\)</span></p>
+<p>denote the <span class="math">\(n\)</span> -step transition probabilities.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="last math">
+\[p_{ij}(1)=p_{ij}\]</div>
+</div>
+<p>and let <span class="math">\(P(n)\)</span> denote the <span class="math">\(n\)</span> - step transion matrix whose entries are <span class="math">\(p_{ij}(n)\)</span> (again an <span class="math">\(|S|\)</span> by <span class="math">\(|S|\)</span> matrix)</p>
+<p>The Chapman-Kolmogorov equations are:</p>
+<div class="math">
+\[P(m+n)=P(m)P(n)\]</div>
+<p>which is the same as</p>
+<div class="math">
+\[p_{ij}(m+n)=\sum_{k\in S}p_{ik}(m)p_{kj}(n)\]</div>
+</div>
+</div>
+<div class="section" id="proof">
+<h2>Proof:<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h2>
+<p>Condition on <span class="math">\(X_m\)</span></p>
+<div class="math">
+\[p_{ij}(m+n)=P(X_{m+n}=j|X_1=i)\]\[= \sum_{k\in S}P(X_{m+n}=j|X_m=k,X_0=k)P(X_m=k|X_0=i)\]\[= \sum_{k\in S}P(X_{m+n}=j|X_m=k)P(X_m=k|X_0=i)\]</div>
+<p>by the Markov Property</p>
+<div class="math">
+\[= \sum_{k\in S}P(X_{n}=j|X_0=k)P(X_m=k|X_0=i)\]</div>
+<p>by time-homogeneity.</p>
+<div class="math">
+\[= \sum_{k\in S}p_{kj}(n)p_{ik}(m)\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Applying the Chapman-Kolmogorov equations recursively, we get</p>
+<div class="math">
+\[P(n)=P(n-1)P(1)\]\[=P(n-2)P(1)^2\]\[=...\]\[=P(1)^n = p^n\]</div>
+<p class="last">So, <span class="math">\(p\)</span> determines all the <span class="math">\(n\)</span> - step probabilities.</p>
+</div>
+<p>Let <span class="math">\(X_{n_1},...X_{n_k}\)</span> be any finite collection of random variabales in our Markov chain, with</p>
+<div class="math">
+\[\begin{split}n_1 &lt; n_2 &lt; ... &lt; n_k\end{split}\]</div>
+<p>Then,</p>
+<div class="math">
+\[P(X_{n_1}=i_1,...X_{n_k}=i_k)\]\[= P(X_{n_k}=i_k|X_{n_1}=i_1,...,X_{n_{k-1}}=i_{k-1})\cdot P(X_{n_1}=i_1,...,X_{n_{k-1}}=i_{k-1})\]\[...\]\[= P(X_{n_k}=i_k|X_{n_{k-1}}=i_{k-1})\cdot P(X_{n_{k-1}}=i_{k-1}|X_{n_{k-1}}=i_{k-2})\cdot\cdot\cdot P(X_{n_2}=i_2|X_{n_1}=i_1)\cdot P(X_{n_1}=i_1)\]</div>
+<p>We have almost shown:</p>
+<p><span class="math">\(p\)</span> and the initial distribution of <span class="math">\(X_0\)</span> determine all finite-dimensional distributions.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Markov Chains</a><ul>
+<li><a class="reference internal" href="#proof-that-version-1-version-2">Proof that Version 1 <span class="math">\(\implies\)</span> Version 2:</a><ul>
+<li><a class="reference internal" href="#chapman-kolmogorov-equations">Chapman-Kolmogorov Equations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#proof">Proof:</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-09-20.html" title="previous chapter">Another Graph with Conditioning</a></li>
+      <li>Next: <a href="2013-09-25.html" title="next chapter">Notes on problems</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-09-23.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

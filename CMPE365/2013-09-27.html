@@ -1,0 +1,179 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Divide &amp; Conquer &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="MTHE 326 - Functions of a Complex Variable" href="../MTHE326/index.html" />
+    <link rel="prev" title="More NP Complete Problems" href="2013-09-25.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE326/index.html" title="MTHE 326 - Functions of a Complex Variable"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-25.html" title="More NP Complete Problems"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <blockquote class="epigraph">
+<div><p>The day that I ever become hip... please shoot me.</p>
+<p>Happy birthday to M.L.</p>
+</div></blockquote>
+<div class="section" id="divide-conquer">
+<h1>Divide &amp; Conquer<a class="headerlink" href="#divide-conquer" title="Permalink to this headline">¶</a></h1>
+<p>Given a problem of size <span class="math">\(n\)</span>,</p>
+<ol class="arabic simple">
+<li>Divide it into 2 (or more) disjoint smaller problems.</li>
+<li>Solve each smaller problem independently.</li>
+<li><strong>Combine</strong> the smaller solutions to solve the original problem.</li>
+</ol>
+<div class="admonition-examples admonition">
+<p class="first admonition-title">Examples</p>
+<ul class="last simple">
+<li>Binary Search</li>
+<li>Merge Sort</li>
+<li>Subset sum</li>
+</ul>
+</div>
+<div class="section" id="finding-the-longest-path-in-a-graph-is-sort-of-np-complete">
+<h2>Finding the longest path in a graph is (sort of) NP-complete.<a class="headerlink" href="#finding-the-longest-path-in-a-graph-is-sort-of-np-complete" title="Permalink to this headline">¶</a></h2>
+<p>What if we focus on trees? Is this special case better?</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>A tree is a graph that has no cycles.</p>
+<img alt="../_images/09.27.1.jpg" src="../_images/09.27.1.jpg" style="width: 50%;" />
+<p class="last">In trees, the shortest (resp. longest) path is the only path.</p>
+</div>
+<div class="admonition-algorithm admonition">
+<p class="first admonition-title">Algorithm</p>
+<p>for each <span class="math">\(x\)</span></p>
+<blockquote>
+<div><p>breadth-first-search from <span class="math">\(x\)</span></p>
+<p>gives distance from <span class="math">\(x\)</span> to all other vertices.</p>
+</div></blockquote>
+<p class="last">report the greatest distance (&amp; path if needed)</p>
+</div>
+</div>
+<div class="section" id="finding-the-longest-path-in-a-tree-is-p">
+<h2>Finding the longest path in a tree is <span class="math">\(\in\)</span> P.<a class="headerlink" href="#finding-the-longest-path-in-a-tree-is-p" title="Permalink to this headline">¶</a></h2>
+<p>(B.F.I. <span class="math">\(\in O(n^2)\)</span>)</p>
+<img alt="../_images/09.27.2.jpg" src="../_images/09.27.2.jpg" style="width: 50%;" />
+<p>Break the tree into sub-trees by removing nodes.</p>
+<div class="admonition-algorithm admonition">
+<p class="first admonition-title">Algorithm</p>
+<p>Given tree <span class="math">\(T\)</span>,</p>
+<img alt="../_images/09.27.3.jpg" src="../_images/09.27.3.jpg" style="width: 50%;" />
+<ul class="last simple">
+<li>arbitrarily choose <span class="math">\(v\)</span> in <span class="math">\(T\)</span></li>
+<li>split <span class="math">\(T\)</span> into <span class="math">\(T_1,...,T_k\)</span> where <span class="math">\(k\)</span> is the degree of <span class="math">\(v\)</span></li>
+<li>for each subtree, <span class="math">\(T_i\)</span>, determine the longest path completely in <span class="math">\(T_i\)</span> and longest path in <span class="math">\(T_i\)</span> that has <span class="math">\(v\)</span> &#8216;s  neighbour at one end.</li>
+<li>longest path in <span class="math">\(T\)</span> either includes <span class="math">\(v\)</span>, or it doesn&#8217;t.<ul>
+<li>if <em>not</em>, then one of the subtrees contains the longest path</li>
+<li>if <em>so</em>, the longest path consists of the longest top_to_bottom path + second longest top_to_bottom_path</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="math">
+\[Time(n) = T(n_1)+...+T(n_k)\]\[...\]\[\in O(n)\]</div>
+<p>where <span class="math">\(k\)</span> is the degree of <span class="math">\(v\)</span>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Divide &amp; Conquer</a><ul>
+<li><a class="reference internal" href="#finding-the-longest-path-in-a-graph-is-sort-of-np-complete">Finding the longest path in a graph is (sort of) NP-complete.</a></li>
+<li><a class="reference internal" href="#finding-the-longest-path-in-a-tree-is-p">Finding the longest path in a tree is <span class="math">\(\in\)</span> P.</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="2013-09-25.html" title="previous chapter">More NP Complete Problems</a></li>
+      <li>Next: <a href="../MTHE326/index.html" title="next chapter">MTHE 326 - Functions of a Complex Variable</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-09-27.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

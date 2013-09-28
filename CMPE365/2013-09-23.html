@@ -1,0 +1,164 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>k-clique \(\in\) NP-Complete &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="MTHE 326 - Functions of a Complex Variable" href="../MTHE326/index.html" />
+    <link rel="prev" title="Cook-Levin" href="2013-09-19.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE326/index.html" title="MTHE 326 - Functions of a Complex Variable"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-19.html" title="Cook-Levin"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <blockquote class="epigraph">
+<div><p>Why do you speak to me of the stones? It is only the arch that matters to me.</p>
+<p class="attribution">&mdash;K. K.</p>
+</div></blockquote>
+<div class="section" id="k-clique-np-complete">
+<h1>k-clique <span class="math">\(\in\)</span> NP-Complete<a class="headerlink" href="#k-clique-np-complete" title="Permalink to this headline">¶</a></h1>
+<p>Transforming CNF-SAT problem into k-clique problem:</p>
+<p><span class="math">\(E = (x_1 * x_2 * \bar x_3) + (\bar x_1 * \bar x_2) + (x_1 * \bar x_2 * x_3)\)</span></p>
+<img alt="../_images/09.23.1.jpg" src="../_images/09.23.1.jpg" style="width: 50%;" />
+<p>In each term of the sum of products, one of the factors must have a value of True.</p>
+<p>The lines of the graph were drawn such that the nodes they connect are mutually satisfiable - i.e. do not contain a contradiction.</p>
+<p>We need a bijective transformation from CNF-SAT to k-clique.</p>
+<p>Suppose <span class="math">\(E\)</span> is satisfiable. Then each clause has a True literal flag, and the vertices corresponding to those vertices <strong>must</strong> form a k-clique in the graph.</p>
+<p>Now suppose the graph <span class="math">\(G\)</span> has a k-clique. Then the k-clique must contain 1 vertex from each vertical set. (since there are no connections within a vertical set by construction). And, again by construction, since they are mutually adjacent in the graph, they must not contradict each other.</p>
+<p>Therefore, since a polynomial-time transformation exists from CNF-SAT to k-clique, k-clique is NP-Complete.</p>
+<div class="section" id="partition-subset-sum">
+<h2>Partition &amp; Subset-Sum<a class="headerlink" href="#partition-subset-sum" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="partition">
+<h3>Partition<a class="headerlink" href="#partition" title="Permalink to this headline">¶</a></h3>
+<p>Given a set of integers, is there a subset that sums to exactly <span class="math">\(\frac{1}{2}\)</span> the total?</p>
+</div>
+<div class="section" id="subset-sum">
+<h3>Subset-Sum<a class="headerlink" href="#subset-sum" title="Permalink to this headline">¶</a></h3>
+<p>Given a set of integers, and a target integer, <span class="math">\(k\)</span>, is there a subset that sums to <span class="math">\(k\)</span>?</p>
+<p>It is clear that every instance of Partition is also an instance of Subset-Sum (let <span class="math">\(k=\frac{1}{2}\)</span>). Therefore, Partition <span class="math">\(\propto\)</span> Subset-Sum.</p>
+<p>In general, special cases <em>always</em> reduce to general cases.</p>
+</div>
+<div class="section" id="does-subset-sum-partition">
+<h3>Does Subset-Sum <span class="math">\(\propto\)</span> Partition?<a class="headerlink" href="#does-subset-sum-partition" title="Permalink to this headline">¶</a></h3>
+<p>Given an instance of Subset-Sum, <span class="math">\(S= \{...\}\)</span>, <span class="math">\(k\)</span>. (Can we split <span class="math">\(S\)</span> into <span class="math">\(S_1 = \{...\}\)</span>, <span class="math">\(S_2 = \{...\}\)</span> s.t. <span class="math">\(S_1\)</span> sums to <span class="math">\(k\)</span>?)</p>
+<p>Try to construct <span class="math">\(S'\)</span> so that <span class="math">\(S'\)</span> has a partition <strong>iff</strong> <span class="math">\(S\)</span> has a subset summing to <span class="math">\(k\)</span>.</p>
+<p>Try adding some value <span class="math">\(x\)</span> to <span class="math">\(S\)</span>.</p>
+<p><span class="math">\(S' = \{s_1, ... s_n, x\}\)</span></p>
+<p>split <span class="math">\(S'\)</span> into <span class="math">\(S_1'\)</span> and <span class="math">\(S_2'\)</span> such that they have the same sum.</p>
+<p><span class="math">\(S_1' = \{..., x\}\)</span> <span class="math">\(S_2' = \{\text{all from } S\}\)</span></p>
+<p>Let <span class="math">\(T = \sum_S\)</span></p>
+<p>if <span class="math">\(S\)</span> has a subset summing to <span class="math">\(k\)</span>,</p>
+<p><span class="math">\(S_1 = \{...\}\)</span> sums to <span class="math">\(k\)</span>, <span class="math">\(S_2 = \{...\}\)</span> sums to <span class="math">\(T-k\)</span>.</p>
+<p>So let <span class="math">\(T-k +x = k\)</span> to make them equal partitions. Equivalently, <span class="math">\(x = 2k - T\)</span>.</p>
+<p>So with out Subset-Sum problem <span class="math">\((S, k)\)</span>, construct <span class="math">\(S' = S \cup \{2k-T\}\)</span> where <span class="math">\(T=\)</span> total sum of S.</p>
+<p>Then <span class="math">\(\sum S' = \sum S + 2k - T = 2k\)</span></p>
+<p>This transformation is bijective, and this shows that Subset-Sum <span class="math">\(\propto\)</span> Partition.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">k-clique <span class="math">\(\in\)</span> NP-Complete</a><ul>
+<li><a class="reference internal" href="#partition-subset-sum">Partition &amp; Subset-Sum</a><ul>
+<li><a class="reference internal" href="#partition">Partition</a></li>
+<li><a class="reference internal" href="#subset-sum">Subset-Sum</a></li>
+<li><a class="reference internal" href="#does-subset-sum-partition">Does Subset-Sum <span class="math">\(\propto\)</span> Partition?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="2013-09-19.html" title="previous chapter">Cook-Levin</a></li>
+      <li>Next: <a href="../MTHE326/index.html" title="next chapter">MTHE 326 - Functions of a Complex Variable</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-09-23.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

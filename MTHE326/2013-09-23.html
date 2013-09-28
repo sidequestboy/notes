@@ -1,0 +1,192 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Limits and Continuity &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="MTHE 455 - Stochastic Processes &amp; Applications" href="../MTHE455/index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-09-21.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE455/index.html" title="MTHE 455 - Stochastic Processes &amp; Applications"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-21.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="limits-and-continuity">
+<h1>Limits and Continuity<a class="headerlink" href="#limits-and-continuity" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="point-set-topology">
+<h2>Point-Set Topology<a class="headerlink" href="#point-set-topology" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(S \subseteq \Bbb C\)</span>, <span class="math">\(q \in \Bbb C\)</span>, <span class="math">\(\rho &gt; 0\)</span>.</p>
+<p>Let <span class="math">\(D_p(q) = \{x \in \Bbb C | |z-q| &lt; \rho \}\)</span>.</p>
+<img alt="../_images/09.23.11.jpg" src="../_images/09.23.11.jpg" style="width: 50%;" />
+<p>In words, this is the disk centered at <span class="math">\(q\)</span>, radius <span class="math">\(\rho\)</span>.</p>
+<p>And define <span class="math">\(D^*_p(q) = \{z \in \Bbb C | 0 &lt; |z-q| &lt; \rho \}\)</span></p>
+<img alt="../_images/09.23.2.jpg" src="../_images/09.23.2.jpg" style="width: 50%;" />
+<p>In words, this is the <em>punctured disk</em> centered at <span class="math">\(q\)</span>.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>We say that a point <span class="math">\(z_0 \in S\)</span> is in the <em>interior</em> of <span class="math">\(S\)</span> if <span class="math">\(\exists \rho &gt; 0\)</span> such that <span class="math">\(D_p(z_0) \subset S\)</span></p>
+<img alt="../_images/09.23.3.jpg" class="last" src="../_images/09.23.3.jpg" style="width: 50%;" />
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>We say that a point <span class="math">\(z_0\)</span> is a <em>boundary point</em> of <span class="math">\(S\)</span> if <span class="math">\(\forall \rho &gt; 0\)</span>, <span class="math">\(D_\rho(z_0) \cap S \neq \{\}\)</span>, <span class="math">\(D_\rho(z_0) \cap S^C \neq \{\}\)</span>.</p>
+<img alt="../_images/09.23.4.jpg" class="last" src="../_images/09.23.4.jpg" style="width: 50%;" />
+</div>
+<p>Exterior point:</p>
+<img alt="../_images/09.23.5.jpg" src="../_images/09.23.5.jpg" style="width: 50%;" />
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">We say a set is <em>open</em> if (1) Every <span class="math">\(z_0 \in S\)</span> is an interior point of <span class="math">\(S\)</span>, or, equivalently, (2) <span class="math">\(S\)</span> contains no boundary points.</p>
+</div>
+<p>Roughly, if the set is defined by a strict inequality, then the set will be open.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p class="last"><span class="math">\(S = \{ z \in \Bbb C | 2 &lt; |z| &lt; 5\}\)</span> is open.</p>
+</div>
+<p>Dotted lines are used in diagrams to show that the boundary is not included in the set. Conversely, closed lines mean boundary is included.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">We say that a set is <em>closed</em> if (a) it contains all of its boundary points, or, equivalently, (b) its complement is open.</p>
+</div>
+<p>Roughly, if the inequality is not strict, the set is closed.</p>
+<p>Is <span class="math">\(\Bbb R\)</span> closed?</p>
+<p>In the complex plane,</p>
+<img alt="../_images/09.23.6.jpg" src="../_images/09.23.6.jpg" style="width: 50%;" />
+<p>we can draw a neighbourhood around any point in <span class="math">\(\Bbb C - \Bbb R\)</span> that does not touch the real axis. So <span class="math">\(\Bbb C - \Bbb R\)</span> is open, and therefore, <span class="math">\(\Bbb R\)</span> is closed.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">A set <span class="math">\(S \subseteq \Bbb C\)</span> is <em>path connected</em> if for every pair <span class="math">\(z_0, z_1 \in S\)</span>, there exists a continuous map <span class="math">\(\gamma: [0,1] \to S\)</span> such that <span class="math">\(\gamma(0) = z_1\)</span> and <span class="math">\(\gamma(1) = z_2\)</span>.</p>
+</div>
+<img alt="../_images/09.23.7.jpg" src="../_images/09.23.7.jpg" style="width: 50%;" />
+<p>An open set is path-connected if for all <span class="math">\(z_1, z_2 \in S\)</span>, there is a sequence of line segments in <span class="math">\(S\)</span> joining <span class="math">\(z_1\)</span> and <span class="math">\(z_2\)</span>.</p>
+<img alt="../_images/09.23.8.jpg" src="../_images/09.23.8.jpg" style="width: 50%;" />
+<p>An open path-connected set in <span class="math">\(\Bbb C\)</span> is called a <em>domain</em>. These are sets that are good for continuity, differentiability, and integration.</p>
+</div>
+<div class="section" id="limits">
+<h2>Limits<a class="headerlink" href="#limits" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Convergence</p>
+<p>We say that a sequence of points in <span class="math">\(\Bbb C\)</span>, <span class="math">\(\{z_n\} \subseteq \Bbb C\)</span> of points in <span class="math">\(\Bbb C\)</span> converges to a limit, <span class="math">\(L \in \Bbb C\)</span>, if <span class="math">\(\forall \epsilon &gt; 0\)</span>, <span class="math">\(\exists N \in \Bbb N\)</span>, such that <span class="math">\(|z_n - L| &lt; \epsilon\)</span> for all <span class="math">\(n &gt; N\)</span>.</p>
+<p class="last">We write: <span class="math">\(lim_{n \to \infty} z_n = L\)</span>; sequence is <em>convergent</em>.</p>
+</div>
+<p>This definition is very similar to convergence on the real line.</p>
+<img alt="../_images/09.23.9.jpg" src="../_images/09.23.9.jpg" style="width: 50%;" />
+<p>If <span class="math">\(f: S \subseteq \Bbb C \to \Bbb C\)</span> and <span class="math">\(D_p^*(z_0) \subseteq S\)</span>, <span class="math">\(\rho &gt; 0\)</span>, then we say <span class="math">\(lim_{z \to z_0} f(z) = L\)</span> if <span class="math">\(\forall \epsilon &gt; 0\)</span>, <span class="math">\(\exists \delta &gt; 0\)</span> such that <span class="math">\(|f(z) - L| &lt; \epsilon\)</span> if <span class="math">\(0 &lt; |z - z_0| &lt; \delta\)</span>.</p>
+<img alt="../_images/09.23.10.jpg" src="../_images/09.23.10.jpg" style="width: 50%;" />
+<div class="section" id="proposition-1">
+<h3>Proposition 1:<a class="headerlink" href="#proposition-1" title="Permalink to this headline">¶</a></h3>
+<p>A limit is unique if it exists.</p>
+<p>Proof:</p>
+<p>Assume <span class="math">\(lim_{z \to z_0} f(z) = a\)</span> and <span class="math">\(lim_{z \to z_0} f(z) = b\)</span>.</p>
+<p>Then, for all <span class="math">\(\epsilon &gt; 0\)</span>, <span class="math">\(\exists \delta_1, \delta_2\)</span> such that if <span class="math">\(0 &lt; | z-z_0| &lt; \delta_1\)</span>, then <span class="math">\(|f(z) - a| &lt; \epsilon/2\)</span>.</p>
+<p>And if <span class="math">\(0 &lt; | z - z_0| &lt; \delta_2\)</span>, <span class="math">\(|f(z) - b| &lt; \epsilon/2\)</span>.</p>
+<p>So let <span class="math">\(\delta = min(\delta_1, \delta_2)\)</span>. Then if <span class="math">\(0 &lt; | z_0 - z| &lt; \delta\)</span> then <span class="math">\(|a-b| &lt; |f(z) - a| + |f(z) -b | &lt; \epsilon/2 + \epsilon/2 = \epsilon.\)</span></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Limits and Continuity</a><ul>
+<li><a class="reference internal" href="#point-set-topology">Point-Set Topology</a></li>
+<li><a class="reference internal" href="#limits">Limits</a><ul>
+<li><a class="reference internal" href="#proposition-1">Proposition 1:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-09-21.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="../MTHE455/index.html" title="next chapter">MTHE 455 - Stochastic Processes &amp; Applications</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-09-23.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

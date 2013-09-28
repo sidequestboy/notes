@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    <title>More Conditioning: Galton-Watson Branching Process &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -60,7 +60,66 @@
         <div class="bodywrapper">
           <div class="body">
             
-  
+  <div class="section" id="more-conditioning-galton-watson-branching-process">
+<h1>More Conditioning: Galton-Watson Branching Process<a class="headerlink" href="#more-conditioning-galton-watson-branching-process" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Galton-Watson Branching Process</p>
+<p><span class="math">\(X_0 = 1\)</span></p>
+<p><span class="math">\(X_n = Y_{n-1,1} + ... + Y_{n-1,X_{n-1}}\)</span></p>
+<p>where the <span class="math">\(Y_{k,j}\)</span> are independent, identically distributed random variables on <span class="math">\(\{0,1,2,...\}\)</span> representing family sizes; <span class="math">\(Y_{n,j}\)</span> is the family size of the <span class="math">\(j\)</span> th individual in generation <span class="math">\(n\)</span>.</p>
+<p>Let <span class="math">\(\mu\)</span> denote the mean family size.</p>
+<p>Compute <span class="math">\(E[X_n]\)</span>.</p>
+<p>To compute <span class="math">\(E[X_n]\)</span>, condition on <span class="math">\(X_{n-1}\)</span></p>
+<div class="math">
+\[E[X_n] = \sum\limits_{j=0}^\infty E[X_n | X_{n-1} = j]P(X_{n-1}=j)\]\[= \mu\sum\limits_{j=0}^\infty jP(X_{n-1} = j)\]\[= \mu E[X_{n-1}]\]\[= \mu^n\]</div>
+<p>if <span class="math">\(\mu&lt;1\)</span>, <span class="math">\(E[X_n] \to 0\)</span> as <span class="math">\(n \to \infty\)</span></p>
+<p>Consider the probability that the population eventually dies out (extinction probability). &#8220;eventually dies out&#8221; is the event that <span class="math">\(X_n=0\)</span> for some <span class="math">\(n\)</span>, which is:</p>
+<div class="math">
+\[\bigcup_{n=1}^\infty \{ X_n=0 \}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><span class="math">\(\{X_n=0\} \implies \{X_{n+1}=0\}\)</span> for all <span class="math">\(n\)</span>.</p>
+<p>So, <span class="math">\(\{\{X_n=0\}\}^\infty_{n=1}\)</span> is an increasing sequence of events.</p>
+<p class="last">Therefore, <span class="math">\(\bigcup_{n=1}^\infty \{X_n = 0\} = \lim_{n\to\infty}\)</span></p>
+</div>
+<p>So, <span class="math">\(P(extinction) = P(\lim_{n\to\infty}\{X_n=0\})\)</span></p>
+<p><span class="math">\(=\lim_{n\to\infty} P(X_n=0)\)</span> by continuity of probability.</p>
+<p>Now, <span class="math">\(E[X_n]=\sum\limits_{j=1}^{\infty}jP(X_n=j) \geq \sum\limits_{j=1}^{\infty} P(X_n=j)\)</span></p>
+<p><span class="math">\(= 1-P(X_n=0)\)</span></p>
+<p>So, <span class="math">\(\mu^n \geq 1 - P(X_n = 0)\)</span> or</p>
+<p><span class="math">\(P(X_n=0) \geq 1-\mu^n\)</span>, So <span class="math">\(\lim_{n\to\infty} P(X_n=0)=1\)</span></p>
+<div class="admonition-example last admonition">
+<p class="first admonition-title">Example</p>
+<p>A Random Graph</p>
+<img alt="../_images/09.18.1.jpg" src="../_images/09.18.1.jpg" style="width: 50%;" />
+<p>each node <span class="math">\(1...r\)</span> independently chooses another node as follows:</p>
+<p>Node 0 with probability <span class="math">\(\frac{k}{k+r}\)</span> and Node <span class="math">\(j\)</span> with probability <span class="math">\(\frac{1}{k+r}\)</span>, <span class="math">\(j \in \{1,2,...,r\}\)</span>.</p>
+<p>Then, draws an arc between itself and the chosen node.</p>
+<p>What is the probability that the resulting graph is connected?</p>
+<p>Let <span class="math">\(N\)</span> be the number of nodes that choose node 0.</p>
+<div class="math">
+\[N ~ Binomial(r,\frac{k}{k+r})\]</div>
+<p>We will show that <span class="math">\(P(connected)=\frac{k}{k+r}\)</span></p>
+<p>Proof by induction on <span class="math">\(r.\)</span></p>
+<p>For <span class="math">\(r=1\)</span>, obvious.</p>
+<p>Assume true for <span class="math">\(1,...,r-1\)</span></p>
+<p>For <span class="math">\(r\)</span>, condition on <span class="math">\(N\)</span>.</p>
+<p>So, <span class="math">\(P(connected) = \sum\limits_{j=0}^r P(connected|N=j)P(N=j)\)</span>
+For <span class="math">\(P(connected|N=j)\)</span>,</p>
+<img alt="../_images/09.18.2.jpg" src="../_images/09.18.2.jpg" style="width: 50%;" />
+<p>the pseudo-node has probability of being chosen of <span class="math">\(\frac{j}{r}\)</span> (conditioning on not choosing node 0).</p>
+<p>other nodes have probability of being chosen of <span class="math">\(\frac{1}{r}\)</span></p>
+<p>So, by the induction hypothesis,</p>
+<div class="math">
+\[P(connected | N=j) = \frac{j}{r}\]</div>
+<p>so,</p>
+<div class="last math">
+\[P(connected)=\frac{1}{r}\sum\limits^r_{j=0} jP(N=k)\]\[=\frac{1}{r} E[N] = \frac{1}{r}\frac{rk}{k+r}=\frac{k}{k+r}\]</div>
+</div>
+</div>
+</div>
+
 
           </div>
         </div>

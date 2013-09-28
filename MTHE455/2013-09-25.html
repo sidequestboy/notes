@@ -1,0 +1,206 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Notes on problems &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="MTHE 474 - Information Theory" href="../MTHE474/index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-09-24.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE474/index.html" title="MTHE 474 - Information Theory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-24.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="notes-on-problems">
+<h1>Notes on problems<a class="headerlink" href="#notes-on-problems" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://www.mast.queensu.ca/~stat455/assignments/ass1/ass1.pdf">Homework 1</a></p>
+<p>1(b)</p>
+<p>Simple Random Walk</p>
+<p><span class="math">\(A_{n,k}=\)</span> set of paths starting in 0 and ending in <span class="math">\(k\)</span> at time <span class="math">\(n\)</span>; <span class="math">\(k&gt;0\)</span>.</p>
+<p><span class="math">\(B_{n,k}=\)</span> paths in <span class="math">\(A_{n,k}\)</span> that visit state 0 at least once after time 0.</p>
+<p><span class="math">\(C_{n,k}=\)</span> paths in <span class="math">\(B_{n,k}\)</span> where first step is down.</p>
+<p>What is the <span class="math">\(P(A_{n,k} \backslash B_{n,k})\)</span></p>
+<img alt="../_images/09.25.1.jpg" src="../_images/09.25.1.jpg" style="width: 50%;" />
+<p>argue by a reflection argument (see image) that the number of paths in <span class="math">\(B_{n,k}\)</span> is 2 times the number of paths in <span class="math">\(C_{n,k}\)</span>. Since each path in <span class="math">\(B_{n,k}\)</span> is equally likely,</p>
+<div class="math">
+\[P(B_{n,k}) = 2P(C_{n,k})\]</div>
+<p>Then,</p>
+<div class="math">
+\[P(A_{n,k} \backslash B_{n,k}) = P(A_{n,k}) = P(B_{n,k})\]\[= P(A_{n,k}) - 2P(C_{n,k})\]</div>
+<p>Where the probability of a given path is:</p>
+<div class="math">
+\[p^{\text{# of moves up}}(1-p)^{\text{# of moves down}}\]</div>
+<p>So,</p>
+<div class="math">
+\[P(C_{n,k}) = P(\text{starting in state 0 you end in state }k+1\text{ at time }n-1)\]</div>
+<p>by temporal and spatial homogeneity.</p>
+<ol class="arabic simple" start="2">
+<li></li>
+</ol>
+<p><span class="math">\(L=\)</span> generation number of the most recent ancestor of two randomly chosen (with replacement) individuals in generation <span class="math">\(n\)</span>.</p>
+<img alt="../_images/09.25.2.jpg" src="../_images/09.25.2.jpg" style="width: 50%;" />
+<p>Condition on <span class="math">\(X_r=k\)</span></p>
+<p>Argue that any individual in generation <span class="math">\(L\)</span> is equally likely by a symmetry argument.</p>
+<p>Argue that two randomly chosen individuals in generation <span class="math">\(n\)</span> have the same common ancestor <span class="math">\(m\)</span> in generation <span class="math">\(r\)</span>, conditioned on <span class="math">\(X_r=k\)</span>, is <span class="math">\(\frac{1}{k}\)</span></p>
+<div class="section" id="classification-of-states">
+<h2>Classification of States<a class="headerlink" href="#classification-of-states" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="relationships-between-pairs-of-states">
+<h1>Relationships between pairs of states<a class="headerlink" href="#relationships-between-pairs-of-states" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>For two states <span class="math">\(i\)</span> and <span class="math">\(j\)</span>, we say that <span class="math">\(j\)</span> is <em>accessible</em> from state <span class="math">\(i\)</span> if <span class="math">\(p_{ij}(n) &gt; 0\)</span> for some <span class="math">\(n\)</span>.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Branching Process with family size pmf <span class="math">\(f(k)\)</span>, <span class="math">\(k=0,1,2,...\)</span> and <span class="math">\(f(0)&gt;0\)</span>.</p>
+<p>Further assume <span class="math">\(f(k) &gt; 0\)</span> for all <span class="math">\(k\)</span>.</p>
+<p>Consider state <span class="math">\(i\)</span> and <span class="math">\(j\)</span> with <span class="math">\(i \neq 0\)</span> and <span class="math">\(j \neq 0\)</span>.</p>
+<p>State <span class="math">\(j\)</span> is accessible from <span class="math">\(i\)</span>.</p>
+<p>and similarly, <span class="math">\(i\)</span> is accessible from <span class="math">\(j\)</span>.</p>
+<p class="last">If <span class="math">\(i&gt;0\)</span> and <span class="math">\(j=0\)</span>, then <span class="math">\(j\)</span> is accessible from <span class="math">\(i\)</span>; however, <span class="math">\(i\)</span> is not accessible from 0.</p>
+</div>
+<p>We write <span class="math">\(i \rightarrow j\)</span> if <span class="math">\(j\)</span> is accessible from <span class="math">\(i\)</span> and <span class="math">\(i \nrightarrow j\)</span> if not.</p>
+<p>If <span class="math">\(i \rightarrow j\)</span> and <span class="math">\(j \rightarrow i\)</span> then we write <span class="math">\(i \leftrightarrow j\)</span> and we say <span class="math">\(i\)</span> <em>communicates</em> with <span class="math">\(j\)</span></p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p class="last">Simple Random Walk, with <span class="math">\(0&lt;p&lt;1\)</span>. Here, every pair of states <span class="math">\(i\)</span> and <span class="math">\(j\)</span> communicate.</p>
+</div>
+<p class="last">If <span class="math">\(i \leftrightarrow j\)</span>, for all <span class="math">\(i,j \in S\)</span>, then we say the Markov chain is <em>irreducible</em>.</p>
+</div>
+<ol class="arabic">
+<li><p class="first"><span class="math">\(i \leftrightarrow i\)</span> somce <span class="math">\(p_{ii}(0)=1\)</span></p>
+<blockquote>
+<div><ul class="simple">
+<li>i.e. <span class="math">\(\leftrightarrow\)</span> is <em>reflexive</em></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><span class="math">\(i \leftrightarrow j \iff j \leftrightarrow i\)</span>.</p>
+<blockquote>
+<div><ul class="simple">
+<li>i.e. <span class="math">\(\leftrightarrow\)</span> is <em>commutative</em></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">If <span class="math">\(i \leftrightarrow j\)</span> and <span class="math">\(j \leftrightarrow k\)</span>, then <span class="math">\(i \leftrightarrow k\)</span>.</p>
+<blockquote>
+<div><p>Show that <span class="math">\(k\)</span> is accessible from <span class="math">\(i\)</span>.
+- i.e. <span class="math">\(\leftrightarrow\)</span> is <em>transitive</em></p>
+</div></blockquote>
+</li>
+</ol>
+<p>These 3 properties make <span class="math">\(\leftrightarrow\)</span> an <em>equivalence</em> relationship.</p>
+<p><span class="math">\(\leftrightarrow\)</span> partitions the state space <span class="math">\(S\)</span> into equivalence classes - where all states in the same class communicate with one another.</p>
+<p>Every state <span class="math">\(i\)</span> is in some equivalence class (the class containing <span class="math">\(i\)</span>)</p>
+<p>State <span class="math">\(i\)</span> cannot be in more than one equivalence class; suppose <span class="math">\(i \in C_1\)</span> and <span class="math">\(i \in C_2\)</span>, then any state <span class="math">\(j\)</span> in <span class="math">\(C_1\)</span> communicates with <span class="math">\(i \in C_2\)</span>, and by transitivity, <span class="math">\(j\)</span> communicates to every state in <span class="math">\(C_2\)</span> (and vice versa), so <span class="math">\(C_1=C_2\)</span>.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<ul class="last simple">
+<li>For the simple random walk, there is only 1 equivalence class.</li>
+<li>For the branching process considered <span class="math">\(\{1,2,...\}\)</span> <span class="math">\(\{0\}\)</span> are the equivalence classes.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Notes on problems</a><ul>
+<li><a class="reference internal" href="#classification-of-states">Classification of States</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#relationships-between-pairs-of-states">Relationships between pairs of states</a></li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-09-24.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="../MTHE474/index.html" title="next chapter">MTHE 474 - Information Theory</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-09-25.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

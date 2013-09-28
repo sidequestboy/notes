@@ -4,11 +4,12 @@ Complex Exponents, Limits & Continuity
 
 Last time, visualizing :math:`f(z) = e^z`.
 
-.. image:: .static/09.19.1.png
-	:width: 50%
+.. image:: .static/09.19.1.jpg
+	:width: 100%
 
-.. image:: .static/09.19.2.png
-	:width: 50%
+
+.. image:: .static/09.19.2.jpg
+	:width: 100%
 
 Logarithms
 ==========
@@ -47,7 +48,9 @@ So, :math:`\log(w)` is the set of points in :math:`\Bbb C` that exponentiates to
 
 		\log(1 + i \sqrt 3) = \{Ln |2| + i (\arctan \sqrt 3 + 2 \pi k) | k \in \Bbb Z\}
 
-	.. image::
+	.. image:: .static/09.19.3.jpg
+		:width: 100%
+
 
 	"Multi-valued log is weird"
 
@@ -101,13 +104,13 @@ What is :math:`i^i`?
 
 :math:`i \log(i) = \{=\pi/2 - 2 \pi k | k \in \Bbb Z\}`
 
-:math:`i^i = e^{i \log i} = \{e^{e^{-\pi /2 - 2 \pi k} | k \in \Bbb Z\}`
+:math:`i^i = e^{i \log i} = \{e^{e^{-\pi /2 - 2 \pi k}} | k \in \Bbb Z\}`
 
 This is a set of infinitely many real values... bleh.
 
 .. admonition:: Definition
 
-	i^i = e^{i Log i} = e^{-\pi/2}
+	:math:`i^i = e^{i Log i} = e^{-\pi/2}`
 
 	This has the same problem with branches.
 
@@ -115,9 +118,9 @@ This is a set of infinitely many real values... bleh.
 
 .. admonition:: Example
 
-	:math:`()1+i \sqrt 3)^{1+i}` = ?
+	:math:`(1+i \sqrt 3)^{1+i}` = ?
 
-	:math:`\log(1+i \sqrt 3) = \{Ln 2 + i (\pi / 3 + 2 \pi k) | k \in \Bbb Z\}`
+	:math:`\log(1+i \sqrt 3) = \{Ln 2 + i (\pi / 3 + 2 \pi k) | k \in \Bbb Z \}`
 
 	:math:`(1+i) \log (1 + i \sqrt 3) = \{Ln 2 - (\pi/3 + 2 \pi k) + i(Ln 2 + \pi/3 + 2 \pi k) | k \in \Bbb Z\}`
 

@@ -14,18 +14,17 @@ See this project on `Github`_
 
 This is a collection of my course notes written up in reStructuredText, compiled
 with Sphinx, and hosted on Github pages. I am in 4th year Math & Engineering
-in the Computing & Communications option.  Below is an index of my courses this
-year.
+in the Computing & Communications option.  Below is an index of the courses for
+which I will be taking notes with this system.
 
 Contents:
 ---------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :glob:
 
    */index
-   note
 
 
 

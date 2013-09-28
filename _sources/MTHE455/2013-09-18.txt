@@ -1,0 +1,106 @@
+**************************************************
+More Conditioning: Galton-Watson Branching Process
+**************************************************
+
+.. admonition:: Example
+
+    Galton-Watson Branching Process
+
+    :math:`X_0 = 1`
+
+    :math:`X_n = Y_{n-1,1} + ... + Y_{n-1,X_{n-1}}`
+
+    where the :math:`Y_{k,j}` are independent, identically distributed random variables on :math:`\{0,1,2,...\}` representing family sizes; :math:`Y_{n,j}` is the family size of the :math:`j` th individual in generation :math:`n`.
+
+    Let :math:`\mu` denote the mean family size.
+
+    Compute :math:`E[X_n]`.
+
+    To compute :math:`E[X_n]`, condition on :math:`X_{n-1}`
+
+    .. math::
+        E[X_n] = \sum\limits_{j=0}^\infty E[X_n | X_{n-1} = j]P(X_{n-1}=j)
+
+        = \mu\sum\limits_{j=0}^\infty jP(X_{n-1} = j)
+
+        = \mu E[X_{n-1}]
+
+        = \mu^n
+
+    if :math:`\mu<1`, :math:`E[X_n] \to 0` as :math:`n \to \infty`
+
+    Consider the probability that the population eventually dies out (extinction probability). "eventually dies out" is the event that :math:`X_n=0` for some :math:`n`, which is:
+
+    .. math::
+        \bigcup_{n=1}^\infty \{ X_n=0 \}
+
+    .. note::
+        :math:`\{X_n=0\} \implies \{X_{n+1}=0\}` for all :math:`n`.
+
+        So, :math:`\{\{X_n=0\}\}^\infty_{n=1}` is an increasing sequence of events.
+
+        Therefore, :math:`\bigcup_{n=1}^\infty \{X_n = 0\} = \lim_{n\to\infty}`
+
+    So, :math:`P(extinction) = P(\lim_{n\to\infty}\{X_n=0\})`
+
+    :math:`=\lim_{n\to\infty} P(X_n=0)` by continuity of probability.
+
+    Now, :math:`E[X_n]=\sum\limits_{j=1}^{\infty}jP(X_n=j) \geq \sum\limits_{j=1}^{\infty} P(X_n=j)`
+
+    :math:`= 1-P(X_n=0)`
+
+    So, :math:`\mu^n \geq 1 - P(X_n = 0)` or
+
+    :math:`P(X_n=0) \geq 1-\mu^n`, So :math:`\lim_{n\to\infty} P(X_n=0)=1`
+
+    .. admonition:: Example
+
+        A Random Graph
+
+        .. image:: .static/09.18.1.jpg
+            :width: 50%
+
+        each node :math:`1...r` independently chooses another node as follows:
+
+        Node 0 with probability :math:`\frac{k}{k+r}` and Node :math:`j` with probability :math:`\frac{1}{k+r}`, :math:`j \in \{1,2,...,r\}`.
+
+        Then, draws an arc between itself and the chosen node.
+
+        What is the probability that the resulting graph is connected?
+
+        Let :math:`N` be the number of nodes that choose node 0.
+
+        .. math::
+            N ~ Binomial(r,\frac{k}{k+r})
+
+        We will show that :math:`P(connected)=\frac{k}{k+r}`
+
+        Proof by induction on :math:`r.`
+
+        For :math:`r=1`, obvious.
+
+        Assume true for :math:`1,...,r-1`
+
+        For :math:`r`, condition on :math:`N`.
+
+        So, :math:`P(connected) = \sum\limits_{j=0}^r P(connected|N=j)P(N=j)`
+        For :math:`P(connected|N=j)`,
+
+        .. image:: .static/09.18.2.jpg
+            :width: 50%
+
+        the pseudo-node has probability of being chosen of :math:`\frac{j}{r}` (conditioning on not choosing node 0).
+
+        other nodes have probability of being chosen of :math:`\frac{1}{r}`
+
+        So, by the induction hypothesis,
+
+        .. math::
+            P(connected | N=j) = \frac{j}{r}
+
+        so,
+
+        .. math::
+            P(connected)=\frac{1}{r}\sum\limits^r_{j=0} jP(N=k)
+
+            =\frac{1}{r} E[N] = \frac{1}{r}\frac{rk}{k+r}=\frac{k}{k+r}

@@ -1,0 +1,75 @@
+.. epigraph::
+    The day that I ever become hip... please shoot me.
+
+    Happy birthday to M.L.
+
+****************
+Divide & Conquer
+****************
+Given a problem of size :math:`n`,
+
+1. Divide it into 2 (or more) disjoint smaller problems.
+2. Solve each smaller problem independently.
+3. **Combine** the smaller solutions to solve the original problem.
+
+.. admonition:: Examples
+
+    - Binary Search
+    - Merge Sort
+    - Subset sum
+
+Finding the longest path in a graph is (sort of) NP-complete.
+-------------------------------------------------------------
+
+What if we focus on trees? Is this special case better?
+
+.. note::
+    A tree is a graph that has no cycles.
+
+    .. image:: .static/09.27.1.jpg
+        :width: 50%
+
+    In trees, the shortest (resp. longest) path is the only path.
+
+.. admonition:: Algorithm
+
+    for each :math:`x`
+
+        breadth-first-search from :math:`x`
+
+        gives distance from :math:`x` to all other vertices.
+
+    report the greatest distance (& path if needed)
+
+Finding the longest path in a tree is :math:`\in` P.
+----------------------------------------------------
+(B.F.I. :math:`\in O(n^2)`)
+
+.. image:: .static/09.27.2.jpg
+    :width: 50%
+
+Break the tree into sub-trees by removing nodes.
+
+.. admonition:: Algorithm
+    
+    Given tree :math:`T`,
+
+    .. image:: .static/09.27.3.jpg
+        :width: 50%
+
+    - arbitrarily choose :math:`v` in :math:`T`
+    - split :math:`T` into :math:`T_1,...,T_k` where :math:`k` is the degree of :math:`v`
+    - for each subtree, :math:`T_i`, determine the longest path completely in :math:`T_i` and longest path in :math:`T_i` that has :math:`v` 's  neighbour at one end.
+    - longest path in :math:`T` either includes :math:`v`, or it doesn't.
+
+      - if *not*, then one of the subtrees contains the longest path
+      - if *so*, the longest path consists of the longest top_to_bottom path + second longest top_to_bottom_path
+
+.. math::
+    Time(n) = T(n_1)+...+T(n_k)
+    
+    ...
+
+    \in O(n)
+
+where :math:`k` is the degree of :math:`v`.

@@ -1,0 +1,146 @@
+**************************************************************
+Lossless Fixed Length (Block) Source Coding (Data Compression)
+**************************************************************
+for Discrete Memoryless Source (DMS).
+
+.. admonition:: Definition
+
+	Given integers :math:`n` and :math:`k` (:math:`k=k(n)`), then a :math:`(k,n)` D-ary block encoder for a source :math:`\{X_i\}^\infty_{i=1}` with finite alphabet :math:`\chi` is a map:
+
+	.. math::
+		f: \chi^n \to \{0,1,...D-1\}^k
+
+	Where :math:`D\geq 2`, integer.
+
+	Basic Idea
+	----------
+	The encoder represents :math:`n` consecutive symbols from the source by :math:`D` - ary :math:`k` -tuples, which we call *codewords*. (each codeword contains :math:`k` :math:`D` -ary code symbols.)
+
+	*wlog*, we will deal with the case :math:`D=2`:
+
+	.. math::
+		f: \chi^n \to \{0,1\}^k
+
+	In this case, a code symbol is a **code bit**.
+
+	The rate of the block code
+	--------------------------
+	(Code compression rate)
+
+	.. math::
+		R = \frac{k}{n}
+
+	where the unit is :math:`\frac{[code symbols (code bits)]}{some symbol}`.
+
+Problem
+=======
+We want to construct a block encoder for a DMS:
+
+.. math::
+	f: \chi^n \to \{0,1\}^k
+
+coupled with a *decoder*:
+
+.. math::
+	g: \{0,1\}^k \to \chi^n
+
+such that
+
+.. math::
+	P_e:=P[g(f(x_1,...,x_n)) \neq (x_1,...,x_n)] < \epsilon
+
+for any :math:`\epsilon>0`, where :math:`P_e` is the probability of decoding error.
+
+**and**
+
+.. math::
+	R=\frac{k}{n}
+
+is as *small* as possible.
+
+.. note::
+	:math:`\chi^n` could be anything like the English language for example based on the English alphabet.
+
+.. note::
+	Using block codes, not acutally Lossless compression; but asymptotically Lossless compression.
+
+Question:
+
+How small can :math:`R` be for :math:`\epsilon` arbitrarily small?
+
+.. note::
+	**Block code** :math:`(k,n)` is the pair :math:`(f,g)`. (encoder, decoder).
+
+	codebook:
+
+	.. math::
+		e = f(\chi^n) = \text{set of all the codewords}
+
+.. admonition:: Definition
+
+	A :math:`(k,n)` binary block source code is *uniquely decodable* (UD) - or *lossless* - if every source :math:`n` -tuple is assigned to **distinct** codewords (binary :math:`k` -tuple), and all the codewords are used.
+
+	i.e. :math:`f` is bijective.
+
+	:math:`\iff` :math:`f` is *invertible* and :math:`g=f^{-1}`.
+
+	For a UD code, :math:`P_e=0`, its rate is given by:
+
+	.. math::
+		|\chi|^n = 2^k
+
+		\iff R \frac{k}{n} = \log{2} |\chi| \text{ code bits/source symbol}
+
+	Question:
+
+	Can we do better? i.e. have smaller compression rates with block source codes?
+
+	Answer:
+
+	Yes, if we give up Unique Decodability for finite values of :math:`n`. and require it to hold as :math:`n \to \infty` and take into account the *statistical properties* of the source (think AEP).
+
+.. admonition:: Theorem
+
+	Shannon's Lossless Fixed Length Source Coding Theorem for DMSs
+
+	.. note::
+		Check Appendix A in online notes for background on infimum/supremum stuff.
+
+	Consider a DMS :math:`\{X_i\}_{i=1}^\infty` with alphabet :math:`\chi`, generic pmf :math:`p_X` and entropy:
+
+	.. math::
+		H_D(X) = -\sum_{x \in \chi} p_X(x) \log{D}p_X(x)
+
+	.. note::
+		:math:`H_D` is in base :math:`D`.
+
+	(i) Forward (Achievability ) Part:
+
+	For any :math:`a < \epsilon < 1` and :math:`\alpha > 0`, there exists a sequence of :math:`D` -ary block codes :math:`(k,n)` for the source such that:
+
+	(1) :math:`\frac{k}{n}<H_D(X) + \alpha`
+
+	and
+
+	(2) :math:`P_e<\epsilon`
+
+	for :math:`n` sufficiently large.
+
+	(ii) (Strong) Converse Part
+
+	For any :math:`0<\epsilon<1` and any sequence of :math:`D` -ary block codes :math:`(k,n)` for the source with rate:
+
+	.. math::
+		R=\frac{k}{n} < H_D(X)
+
+	and :math:`n` sufficiently large, we have that:
+
+	.. math::
+		P_e > 1-\epsilon
+
+	Conclusion:
+
+	No matter how small the prescribed :math:`\epsilon`, the code rate can be brought close to :math:`H_D(X)`, but **cannot** go below it if we are to construct asymptotically lossless :math:`D` -ary block codes.
+
+	**Therefore**, :math:`H_D(X)` is the *smallest* block source coding rate for which :math:`\exists` :math:`D` -ary block codes for a DMS with asymptotically (in :math:`n`) vanishing probability of decoding error.
+

@@ -1,0 +1,127 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Data Processing and Fano Inequalities &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-09-24.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-09-21.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-24.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-21.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <p>Conclusion of Information Measures</p>
+<div class="section" id="data-processing-and-fano-inequalities">
+<h1>Data Processing and Fano Inequalities<a class="headerlink" href="#data-processing-and-fano-inequalities" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Markov Propery</p>
+<p><span class="math">\((X,Y,Z) \sim^d p_{XYZ}\)</span></p>
+<p>We say <span class="math">\(X,Y,Z\)</span> have the <em>Markov property</em> or <em>form a Markov Chain</em> (MC) in that order, if:</p>
+<p><span class="math">\(X \perp\perp Z | Y  \iff p_{XZ|Y}(x,z|y) = p_{X|Y}(x|y)*p_{Z|Y}(z|y)\)</span> <span class="math">\(\forall (x,y,z)\)</span></p>
+<p class="last">We write <span class="math">\(X \to Y \to Z\)</span>.</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<img alt="MTHE474/.static/09.23.1.jpg" src="MTHE474/.static/09.23.1.jpg" style="width: 50%;" />
+<p>All random variables are binary-valued with common alphabet <span class="math">\(\{0,1\}\)</span>. Random variables <span class="math">\(X_0\)</span>, <span class="math">\(V_1\)</span>, and <span class="math">\(V_2\)</span> are independent of each other.</p>
+<p><span class="math">\(P[V_1 = 1] = P[V_2 = 1] = \epsilon\)</span> for <span class="math">\((0 \leq \epsilon \leq 1)\)</span></p>
+<p><span class="math">\(P[X_0 = 1] = q\)</span> for <span class="math">\((0 \leq q \leq 1)\)</span></p>
+<p>Claim: <span class="math">\(X_0 \to X_1 \to X_2\)</span>.</p>
+<p class="last"><span class="math">\(P[X_2 = a_2 | X_1 = a_1, X_0 = a_0] = P[X_0 + V_2 = ]\)</span></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-09-21.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-09-24.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-09-23.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

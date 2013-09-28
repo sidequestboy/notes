@@ -1,0 +1,234 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Limits, Continuity, Differentiability &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="MTHE 455 - Stochastic Processes &amp; Applications" href="../MTHE455/index.html" />
+    <link rel="prev" title="Limits and Continuity" href="2013-09-23.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE455/index.html" title="MTHE 455 - Stochastic Processes &amp; Applications"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-23.html" title="Limits and Continuity"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="limits-continuity-differentiability">
+<h1>Limits, Continuity, Differentiability<a class="headerlink" href="#limits-continuity-differentiability" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<p class="last">Prop.1: Limits are unique if they exist</p>
+</div>
+<div class="admonition-proposition-2 admonition">
+<p class="first admonition-title">Proposition 2</p>
+<p>Suppose <span class="math">\(\lim_{z \to z_0} f(z) = a\)</span> and <span class="math">\(\lim_{z \to z_0} g(z) = b\)</span></p>
+<ol class="loweralpha simple">
+<li><span class="math">\(\lim_{z \to z_0} (f(z) + g(z)) = a+b\)</span></li>
+<li><span class="math">\(\lim_{z \to z_0} f(z)g(z) = ab\)</span></li>
+<li><span class="math">\(\lim_{z \to z_0} f(z)/g(z) = a/b\)</span> if <span class="math">\(b \neq 0\)</span></li>
+</ol>
+<p>Proof:</p>
+<ol class="loweralpha simple" start="2">
+<li>We know</li>
+</ol>
+<div class="math">
+\[|f(z)g(z) -ab| = |f(z)g(z) - ag(z) + ag(z) - ab|\]\[\leq |g(z)||f(z) - a| + |a||g(z)-b|\]</div>
+<p>by the triangle inequality.</p>
+<p>then,</p>
+<p><span class="math">\(\forall \epsilon &gt; 0\)</span>, <span class="math">\(\exists \delta_1, \delta_2\)</span> such that for</p>
+<div class="math">
+\[\begin{split}|z-z_0| &lt; min(\delta_1, \delta_2) = \delta\end{split}\]\[\begin{split}|g(z) -b| &lt; min(\epsilon/(2(1+|a|)), 1)\end{split}\]\[\begin{split}|f(z) - a| &lt; \epsilon/(2(1 + |a|))\end{split}\]\[\leq (1+|a|)(\epsilon/(2(1+|a|))) + |a|\epsilon/(2(1+|a|))\]\[\begin{split}&lt; \epsilon/2 + \epsilon/2 = \epsilon\end{split}\]</div>
+<p class="last">So, <span class="math">\(\lim_{z \to z_0}f(z)g(z) = ab\)</span></p>
+</div>
+<div class="section" id="continuity">
+<h2>Continuity<a class="headerlink" href="#continuity" title="Permalink to this headline">¶</a></h2>
+<p>A function <span class="math">\(f: S \subseteq \Bbb C \to \Bbb C\)</span>, where <span class="math">\(S\)</span> is open, is <em>continuous</em> at <span class="math">\(z\)</span> if <span class="math">\(\lim_{z \to z_0}f(z) = f(z_0)\)</span>.</p>
+<p><span class="math">\(S\)</span> must be open because every point needs an open disks around it to take the complex limit.</p>
+<p>f is continuous on <span class="math">\(S\)</span> if it is continuous for all <span class="math">\(z_0 \in S\)</span>.</p>
+<p>the <span class="math">\(\epsilon-\delta\)</span> definition:</p>
+<div class="math">
+\[\begin{split}\forall \epsilon &gt; 0, \exists \delta \text{ s.t.}\end{split}\]\[\begin{split}|f(z) - f(z_0)| &lt; \epsilon \text{ if } |z - z_0| &lt; \delta\end{split}\]</div>
+<p>Not punctured disks anymore.</p>
+<div class="admonition-proposition-3 admonition">
+<p class="first admonition-title">Proposition 3</p>
+<p>If <span class="math">\(f(z)\)</span> and <span class="math">\(g(z)\)</span> are coninuous on the open set <span class="math">\(S \subseteq \Bbb C\)</span>, Then so are:</p>
+<ol class="loweralpha simple">
+<li><span class="math">\(f+g\)</span></li>
+<li><span class="math">\(fg\)</span></li>
+<li><span class="math">\(f/g\)</span> when <span class="math">\(g(z) \neq 0\)</span></li>
+</ol>
+<p class="last">Proof: use continuouty definition and Prop. 2</p>
+</div>
+<div class="admonition-corollary-1 admonition">
+<p class="first admonition-title">Corollary 1</p>
+<p>All polynomials and rational functions are continuous.</p>
+<p>polynomial example:</p>
+<p><span class="math">\(f(z) = a_nz^n + ... + a_1z + a_0\)</span></p>
+<p>rational function example:</p>
+<p><span class="math">\(f(z) = \frac{a_nz^n + ... + a_1z + a_0}{b_nz^n + ... + b_1z + b_0}\)</span></p>
+<p>Proof:</p>
+<p class="last">every rational function and polynomial can be built using <span class="math">\(f(z) = z\)</span> and <span class="math">\(f(z) = constant\)</span>. Then use Prop. 3.</p>
+</div>
+<div class="admonition-proposition-4 admonition">
+<p class="first admonition-title">Proposition 4</p>
+<ol class="arabic simple">
+<li>If <span class="math">\(\lim_{z \to z_0} f(z) = a\)</span></li>
+</ol>
+<p>and <span class="math">\(g(z)\)</span> is continuous at <span class="math">\(a\)</span>, then</p>
+<div class="math">
+\[\lim_{z \to z_0}g(f(z)) = g(a)\]</div>
+<ol class="last arabic simple" start="2">
+<li>If <span class="math">\(A,B\)</span> are open sets in <span class="math">\(\Bbb C\)</span> (<span class="math">\(f: A \to \Bbb C\)</span> and <span class="math">\(g: B \to \Bbb C\)</span>) are continuous, and <span class="math">\(f(A) \subseteq B\)</span> then <span class="math">\(g(f(z))\)</span> is continuous on <span class="math">\(A\)</span>.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="complex-differentiability">
+<h2>Complex Differentiability<a class="headerlink" href="#complex-differentiability" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(S \subseteq \Bbb C\)</span> be open.</p>
+<p>A function <span class="math">\(f: S \to \Bbb C\)</span> is (complex) differentiable at <span class="math">\(z_0 \in S\)</span> if the limit:</p>
+<div class="math">
+\[\lim_{z \to z_0} (f(z) - f(z_0))/(z-z_0) = \lim{h \to 0} (f(z_0 + h) - f(z_0))/h\]</div>
+<p>exists.</p>
+<p>The limit is denoted <span class="math">\(f'(z_0)\)</span> or <span class="math">\(\frac{df}{dz}z_0\)</span></p>
+<p><span class="math">\(f\)</span> is said to be <em>holomorphic</em> or <em>analytic</em> on <span class="math">\(S\)</span> if it is differentiable for every <span class="math">\(z_0 \in S\)</span>.</p>
+<p><span class="math">\(f\)</span> is <em>entire</em> if it is holomorphic on the all of <span class="math">\(\Bbb C\)</span>.</p>
+<p>Is this definition strange?</p>
+<p>when we had a function</p>
+<div class="math">
+\[F: \Bbb R^2 \to \Bbb R^2\]</div>
+<p>that is differentiable, what does that mean?</p>
+<p>Means the Jacobian exists.</p>
+<div class="admonition-proposition-5 admonition">
+<p class="first admonition-title">Proposition 5</p>
+<p>If <span class="math">\(f\)</span> is differentiable at <span class="math">\(z_0\)</span>, it is continuous at <span class="math">\(z_0\)</span>.</p>
+<p>Proof:</p>
+<p>We have that the limit</p>
+<div class="math">
+\[\lim_{z \to z_0}\frac{f(z)- f(z_0)}{z - z_0}\]</div>
+<p class="last">exists, so we must have that the numerator limit exists.</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Is <span class="math">\(f(z) = z\)</span> entire?</p>
+<p>Pick <span class="math">\(z_0 \in \Bbb C\)</span></p>
+<div class="math">
+\[\lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}\]\[= \lim_{z \to z_0} \frac{z - z_0}{z - z_0} = 1\]\[f'(z) = 1\]</div>
+<p class="last">So, yes!</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>is <span class="math">\(f(z) = C\)</span> entire? <span class="math">\(C \in \Bbb C\)</span></p>
+<div class="math">
+\[f(z) = 0\]</div>
+<p class="last">everywhere</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>is <span class="math">\(f(z) = \bar z\)</span> entire?</p>
+<p>take the limit:</p>
+<div class="math">
+\[\lim_{h \to 0} \frac{f(z_0+h)- f(z_0)}{h}\]\[= \lim_{h \to 0}\frac{\bar z_0 + \bar h - \bar z_0}{h}\]\[= \lim_{h \to 0} \frac{\bar h}{h}\]\[= \lim_{|h| \to 0} e^{-2i \theta}\]</div>
+<p class="last">limit does not exist anywhere.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Limits, Continuity, Differentiability</a><ul>
+<li><a class="reference internal" href="#continuity">Continuity</a></li>
+<li><a class="reference internal" href="#complex-differentiability">Complex Differentiability</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-09-23.html" title="previous chapter">Limits and Continuity</a></li>
+      <li>Next: <a href="../MTHE455/index.html" title="next chapter">MTHE 455 - Stochastic Processes &amp; Applications</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-09-24.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

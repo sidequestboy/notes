@@ -1,0 +1,181 @@
+*************
+Markov Chains
+*************
+Chapter 4
+
+We will be dealing with stochastic processes with discrete state space :math:`S`, and index set a subset of the integers, usually :math:`\{0,1,2,...\}` and having the *Markov property*
+
+"I'm thinking, I'm thinking, I'm thinking, that it might be a good idea, if we dont have any idea of what anything is!!!! :DD!!"
+
+.. admonition:: Definition Version 1
+
+	For any :math:`s,i_0,i_1,...,i_{n-1} \in S`, and say :math:`n \geq 1`,
+
+	.. math::
+		P(X_n=s|X_0=i_0,...,X_{n-1}=i_{n-1})
+
+		= P(X_n=s|X_{n-1}=i_{n-1})
+
+	is conditional only on recent past.
+
+.. admonition:: Corollary
+
+	Note that we do not have to condition on the entire past.
+
+	Say :math:`I' \subset \{0,1,...,n-2\}` and consider
+
+	.. math::
+		P(X_n=s|X_{n-1}=i_{n-1}, X_k=i_k, k \in I')
+
+	This probability is also equal to
+
+	.. math::
+		P(X_n=s|X_{n-1}=i_{n-1})
+
+
+	Proof:
+
+	.. math::
+		\sum_{i\in S, k \in I', j\in I''}P(X_n=s|X_{n-1}=i_{n-1}, X_k=i_k,k\in I', j\in I'')\cdot P(X_j=i_j,j\in I''|X_{n-1}=i_{n-1}, X_k=i_k,k\in I')
+
+		= \sum_{i_j\in S, j\in I''}P(X_n=s|X_{n-1}=i_{n-1})\cdot 1
+
+.. admonition:: Definition Version 2
+
+	For any :math:`s,i_0,i_1,...,i_{n-1} \in S`, and say :math:`n \geq 1`, and :math:`m \geq 0`:
+
+	.. math::
+		P(X_{n+m}=s|X_0=i_0,...,X_{n-1}=i_{n-1})
+
+		= P(X_{n+m}=s|X_{n-1}=i_{n-1})
+
+	.. note::
+		Here we can again remove some of the events before time :math:`n-1` in the conditioning, and still have the same RHS as before
+
+		Also note, that this probability possibly could reduce to
+
+		.. math::
+			P(X_{n+m})
+
+Proof that Version 1 :math:`\implies` Version 2:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Proof by induction on :math:`m`; for :math:`m=0`, Version 2 is the same as Version 1. Assume Version 2 holds for :math:`m`. We show it holds for :math:`m+1`. Condition on :math:`X_{n+m}`.
+
+.. math::
+	P(X_{n+m+1}=s|X_0=i_0,...,X_{n-1}=i_{n-1})
+
+	= \sum_{s'\in S}P(X_{n+m+1}=s|X_{n+m}=s',X_0=i_0,...,X_{n-1}=i_{n-1})\cdot P(X_{n+m}=s'|X_0=i_0,...,X_{n-1}=i_{n-1})
+
+	= \sum_{s'\in S}P(X_{n+m+1}=s|X_{n+m}=s',X_{n-1}=i_{n-1})\cdot P(X_{n+m}=s'|X_{n-1}=i_{n-1})
+
+where the first term reduces by Version 1, and second term reduces by induction hypothesis.
+
+.. math::
+	= 1\cdot \sum_{s'\in S}P(X_{n+m+1}=s|X_{n+m}=s',X_{n-1}=i_{n-1})
+
+	= P(X_{n+m+1}=s|X_{n-1}=i_{n-1})
+
+So, Version 2 holds for Version 1.
+
+:math:`\square`
+
+In this course, we will consider only time-homogeneous Markov chains.
+
+i.e.
+
+.. math::
+	P(X_{n+m}=j|X_m=i)=P(X_{n+m+k}=j|X_{m+k}=i)
+
+for any :math:`i,j \in S`, and any :math:`m,n,k`.
+
+So, :math:`P(X_n=j|X_{n-1}=i)=P(X_1=j|X_0=i)` because of time-homogeneity.
+
+These are called **one-step transition probabilities** and denoted by :math:`p_{ij}`.
+
+They are usually put into a matrix (p_{ij})_{i,j\in S}
+
+P is an :math:`|S|` by :math:`|S|` matrix.
+
+P is called the transition matrix.
+
+For any transition matrix,
+
+.. math::
+	\sum_{j\in S}p_{ij} = \sum_{j\in S}P(X_1=j|X_0=i)=1
+
+Chapman-Kolmogorov Equations
+============================
+Let :math:`p_{ij}(n)= P(X_n=j|X_0=i)`
+
+denote the :math:`n` -step transition probabilities.
+
+.. note::
+	.. math::
+		p_{ij}(1)=p_{ij}
+
+and let :math:`P(n)` denote the :math:`n` - step transion matrix whose entries are :math:`p_{ij}(n)` (again an :math:`|S|` by :math:`|S|` matrix)
+
+The Chapman-Kolmogorov equations are:
+
+.. math::
+	P(m+n)=P(m)P(n)
+
+which is the same as
+
+.. math::
+	p_{ij}(m+n)=\sum_{k\in S}p_{ik}(m)p_{kj}(n)
+
+Proof:
+^^^^^^
+Condition on :math:`X_m`
+
+.. math::
+	p_{ij}(m+n)=P(X_{m+n}=j|X_1=i)
+
+	= \sum_{k\in S}P(X_{m+n}=j|X_m=k,X_0=k)P(X_m=k|X_0=i)
+
+	= \sum_{k\in S}P(X_{m+n}=j|X_m=k)P(X_m=k|X_0=i)
+
+by the Markov Property
+
+.. math::
+	= \sum_{k\in S}P(X_{n}=j|X_0=k)P(X_m=k|X_0=i)
+
+by time-homogeneity.
+
+.. math::
+	= \sum_{k\in S}p_{kj}(n)p_{ik}(m)
+
+.. note::
+	Applying the Chapman-Kolmogorov equations recursively, we get
+
+	.. math::
+		P(n)=P(n-1)P(1)
+
+		=P(n-2)P(1)^2
+
+		=...
+
+		=P(1)^n = p^n
+
+	So, :math:`p` determines all the :math:`n` - step probabilities.
+
+Let :math:`X_{n_1},...X_{n_k}` be any finite collection of random variabales in our Markov chain, with
+
+.. math::
+	n_1 < n_2 < ... < n_k
+
+Then,
+
+.. math::
+	P(X_{n_1}=i_1,...X_{n_k}=i_k)
+
+	= P(X_{n_k}=i_k|X_{n_1}=i_1,...,X_{n_{k-1}}=i_{k-1})\cdot P(X_{n_1}=i_1,...,X_{n_{k-1}}=i_{k-1})
+
+	...
+
+	= P(X_{n_k}=i_k|X_{n_{k-1}}=i_{k-1})\cdot P(X_{n_{k-1}}=i_{k-1}|X_{n_{k-1}}=i_{k-2})\cdot\cdot\cdot P(X_{n_2}=i_2|X_{n_1}=i_1)\cdot P(X_{n_1}=i_1)
+
+We have almost shown:
+
+:math:`p` and the initial distribution of :math:`X_0` determine all finite-dimensional distributions.
