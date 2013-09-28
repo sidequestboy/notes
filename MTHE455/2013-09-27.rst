@@ -1,0 +1,181 @@
+*************************
+Recurrence and Transience
+*************************
+
+.. admonition:: Definition
+
+	In any Markov chain, define:
+
+	.. math::
+		f_i=P(\text{eventually return to state }i | X_0=i)
+
+		= P(X_n=i\text{ for some }n\geq 1 | X_0=i)
+
+	We say sa state :math:`i` is "recurrent" if :math:`f_i=1`
+
+	We say a state :math:`i` is "transient" if :math:`f_i<1`
+
+.. admonition:: Proposition:
+
+	State :math:`i` is recurrent :math:`\iff` the expected number of times we return to state :math:`i` given we start in state :math:`i` is infinite.
+
+	Proof:
+	------
+	:math:`(\iff)` Assume state :math:`i` is recurrent. Then with probability one, we will return to state :math:`i` again. But, by the homogeneity and the Markov property, the process "starts afresh" at this point - in other words, it is sdlfkj are back at the 0, in state :math:`i`.
+
+	So we can apply the recurrence property again to conclude that we return to state :math:`i` a second time with probability 1.
+
+	Carrying on this process inductively, we conclude that we return to state :math:`i` infinitely often with probability 1.
+
+	To make this induction argument precise, let
+
+	.. math::
+		A_n= \{\text{return to state }i\text{ }n\text{ more times}\}
+
+		P(A_1)=1
+
+	inductive hypothesis:
+
+	.. math::
+		P(A_n|X_o=i)=1
+
+		\implies P(A_n+1|X_0=i)=1
+
+	Now assume state :math:`i` is not recurrent. Then we will show the expected number of times we return to state :math:`i` given we start in state :math:`i` is finite.
+
+	If state :math:`i is transient, then every time the process returns to state :math:`i`, it is faced with the probability of returning again, with probability or never returning again, with probability :math:`i-f_i`
+
+	The return process is equivalent to a sequence of independent Bernoulli trials, where a "success" is the event we never return to state :math:`i` again, and the probability of success is :math:`1-f_i`.
+
+	The expected number of returns to state :math:`i` given we start in state :math:`i`, is then the mean of a geometric distribution, interpreted as the number of failures before the first success. The mean of this distribution is :math:`\frac{f_i}{1-f_i}`. Therefore, the expected number of returns to state :math:`i` given we start in state :math:`i` is :math:`\frac{f_i}{1-f_i}<\infty`.
+
+.. admonition:: Proposition
+
+	State :math:`i` is recurrent iff:
+
+	.. math::
+		\sum_{n=0}^\infty p_{i,i}(n)=\infty
+
+	where :math:`p_{i,i}(n)` is the (i,i)th entry of the n-step transition matrix.
+
+	Proof:
+	------
+	Let :math:`I_n=\{X_n=i\}`. Let :math:`N_i` be the number of returns of the process to state :math:`i`.
+
+	.. math::
+		N_i=\sum^\infty_{n=0} I_n
+
+		E[N_i|X_0=i]=E[\sum_{n=0}^\infty I_n | X_0=i]
+
+		= \sum_{n=0}^\infty E[I_n|X_0=i]
+
+		= \sum_{n=0}^\infty P(X_n=i|X_0=i)
+
+		= \sum_{n=0}^\infty p_{i,i}(n)
+
+	From our previous proposition now, state :math:`i` is recurrent :math:`\iff E[N_i|X_0=i] = \infty`.
+
+	:math:`\iff \sum_{n=0}^\infty p_{i,i}(n) = \infty`
+
+.. admonition:: Corollary 1
+
+	State :math:`i` is *transient* :math:`\iff` :math:`\sum_{n=0}^\infty p_{i,i}(n) < \infty`.
+
+.. admonition:: Corollary 2
+
+	if state :math:`i` is recurrent and state :math:`i` communicates with state :math:`j`, then state :math:`j` is recurrent.
+
+	Proof:
+	------
+	state :math:`i` communicates with state :math:`j` :math:`\implies` that there exists :math:`m,n` so that :math:`p_{i,j}(n)>0` & :math:`p_{j,i}(n)>0`
+
+	Also, state :math:`i` is recurrent :math:`\implies` :math:`\sum_{n=0}^\infty p_{i,j}(n)=\infty`
+
+	For any positive integer :math:`r`, we have:
+
+	.. math::
+		P(m,r,n)=P(m)P(r)P(n)
+
+	by the Chapman-Kolmogorov Equation
+
+	.. math::
+		p_{ij}(m+r+n)=\sum_{k \in S}p_{j,k}(m)p_{k,j}(r_n)
+
+		= \sum{k\in S} p_{j,k}(m)\sum_{j \in S} p_{r,l}(r)p_{r,j}(n)
+
+		= \sum_{k \in S}\sum_{n \in S} p_{j,k}(m)p_{k,l}(r)p_{n,j}(n)
+
+		\geq p_{j,i}(m)p_{i,i}(r)p_{i,j}(n)
+
+	Summing over :math:`r`:
+
+	.. math::
+		\sum_{r=1}^\infty p_{j,j}(m+r+n) \geq \sum_{r=0}^\infty p_{j,i}(m)p_{i,j}(n)p_{i,i}(r)
+
+		\implies \sum_{r=0}^\infty p_{j,j}(m+r+n) \geq p_{i,j}(m)\sum_{r=0}^\infty p_{i,i}(r)
+
+		= \infty
+
+		\implies \sum_{n=0}^\infty p_{j,j}(m+r+n)=\infty
+
+		\implies \sum_{r=0}^\infty p_{j,j}(r)=\infty
+
+		\implies state :math:`j` is recurrent
+
+.. admonition:: Remark
+
+	Note that since every state must be either recurrent or transient; transience is a class property.
+
+Recap
+=====
+Since we've just had a number of new definitions and results, let's recap.
+
+To summarize, we categorized the relationship between pairs of states by defining the (asymmetric) notion of accesibility and the symmetric notion of communication. We saw communication is an equivalence relationship, and so divides the state space :math:`S` of any Markov Chain into equivalence classes.
+
+We categorized the individual states as transient or recurrent.
+
+Generating Functions
+====================
+For a sequence of numbers :math:`a_0,a_1,a_2,...`, we define the *generating function* of the sequence to be:
+
+.. math::
+	G(s) = \sum_{n=0}^\infty s^na_n
+
+where :math:`s` is a real number
+
+This brings the sequence into another domain, that is analogous to the *spectral frequency* domain.
+
+If the sequence :math:`\{a_n\}_{n=0}^\infty` is the pmg of a random variable, :math:`X` on the non-negative integers (:math:`a_n=P(X=n), n\geq 0`), then we call the generating function the *probability generating function* of :math:`X`.
+
+In this case, we have that
+
+.. math::
+	G(s) = E[s^X]
+
+If :math:`\{a_0,a_1,a_2,...\}` and :math:`\{b_0,b_1,b_2,...\}` are two sequences, then we define their *convolution* by the sequence :math:`\{c_0,c_1,...\}` where:
+
+.. math::
+	c_n=a_0b_n+a_1b_{n-1}+...+a_nb_0 = \sum_{i=0}^n a_i b_{n-i}
+
+In the case where :math:`\{a_n\}_{n=0}^\infty` and :math:`\{b_n\}_{n=0}^\infty` are probability distributions, and :math:`X` & :math:`Y` independent random variables on the non-negative integers with :math:`P(X=n)=a_n` & :math:`P(Y=n)=b_n`, then we see the convolution :math:`\{c_n\}_{n=0}^\infty` is just the distribution of :math:`X+Y`.
+
+i.e. :math:`P(X+Y=n)=c_n`
+
+In this case, we have:
+
+.. math::
+	G_{X+Y}(s) = E[s^{X+Y}]=E[s^Xs^Y]=E[s^X]E[s^Y] = G_X(s)G_Y(s)
+
+The second important property is that if :math:`G_X(s)` is the generating function of a random variable :math:`X`, then:
+
+.. math::
+	G'_X(1)=E[X]
+
+This is straightforward to see:
+
+.. math::
+	G_X'(s) = \frac{d}{ds}(a_0+a_1s+...) = a_1+2a_2s+3a_3s^2+...
+
+	\implies G'(1) = a_1+2a_2+3a_3+...=E[X]
+
+assuming :math:`a_n=P[X=n]`.

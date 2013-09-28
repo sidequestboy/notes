@@ -1,0 +1,34 @@
+Conclusion of Information Measures
+
+*************************************
+Data Processing and Fano Inequalities
+*************************************
+
+.. admonition:: Definition
+
+	Markov Propery
+
+	:math:`(X,Y,Z) \sim^d p_{XYZ}`
+
+	We say :math:`X,Y,Z` have the *Markov property* or *form a Markov Chain* (MC) in that order, if:
+
+	:math:`X \perp\perp Z | Y  \iff p_{XZ|Y}(x,z|y) = p_{X|Y}(x|y)*p_{Z|Y}(z|y)` :math:`\forall (x,y,z)`
+
+	We write :math:`X \to Y \to Z`.
+
+.. admonition:: Example
+
+	.. image:: .static/09.23.1.jpg
+		:width: 50%
+
+	All random variables are binary-valued with common alphabet :math:`\{0,1\}`. Random variables :math:`X_0`, :math:`V_1`, and :math:`V_2` are independent of each other.
+
+	:math:`P[V_1 = 1] = P[V_2 = 1] = \epsilon` for :math:`(0 \leq \epsilon \leq 1)`
+
+	:math:`P[X_0 = 1] = q` for :math:`(0 \leq q \leq 1)`
+
+	Claim: :math:`X_0 \to X_1 \to X_2`.
+
+	:math:`P[X_2 = a_2 | X_1 = a_1, X_0 = a_0] = P[X_0 + V_2 = ]`
+
+

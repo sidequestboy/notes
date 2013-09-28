@@ -1,0 +1,81 @@
+.. epigraph::
+	Millie McDeerit screamed a scream so loud it made her eyebrows steam.
+
+	-S.S.
+
+*************************
+More NP Complete Problems
+*************************
+
+Hamiltonian Cycle
+=================
+Find a cycle going through every vertex exactly once.
+
+Hamiltonian Path
+================
+Find a path going through every vertex exactly once.
+
+Maze Problem
+============
+Find a path from :math:`\sigma_1` to :math:`\sigma_2` going through no vertex more than once, collect as much gold as possible.
+
+Given an instance of Hamiltonian Path,
+
+If a Maze-Problem algorithm existed, then applying it to :math:`v_1` and :math:`v_2` would answer "max-value=n" :math:`\iff` there exists a Hamiltonian Path from :math:`v_1` to :math:`v_2`.
+
+.. note::
+	Each Hamiltonian Path is equivalent to multiple Maze Problems.
+
+	This is called a "one-to-many" type reduction.
+
+Subset Sum (again)
+==================
+
+Given :math:`S=\{\text{set of integers}\}`, and :math:`k` an integer, Does :math:`S` have a subset that sums to :math:`k`?
+
+This problem is NP-Complete.
+
+Some sets of integers are easy, some are hard. e.g. :math:`\{1,2,4,...,2^n\}.`
+
+The Brute-Force Ignorant algorithm for subset sum is: try every subset of :math:`S`. (there are :math:`2^n` of them), so :math:`O(2^n)` steps.
+
+We can actually do a little better :)
+
+Given 2 sets of size :math:`m`, can we find two elements, one from each set, that sum to a given target value?
+
+Brute-Force Algorithm for this is :math:`O(m^2)`
+
+Horowitz & Sahni algorithm:
+
+- Sort the first set (:math:`S_1`) into ascending order, and the second set (:math:`S_2`) into descending order.
+- :math:`S_1: x_1 \leq x_2 \leq ... \leq x_m`
+- :math:`S_1: y_1 \leq y_2 \leq ... \leq y_m`
+- Consider :math:`x_1+y_1`. If :math:`x_1+y_1=k`, then we're done.
+- else if :math:`x_1+y_1 > k`, then we know :math:`x_i+y_1>k` for all :math:`i \geq 1`.
+-else (:math:`x_1+y_1 < k`), then we know :math:`x_1+y_i<k` for all :math:`i \geq 1`.
+
+Every iteration eliminates a pair of numbers. Sorting takes :math:`O(m\log m)` and the rest takes :math:`O(m)`. That's better than :math:`O(m^2)` :)
+
+Horowitz & Sahni Algorithm for Subset Sum
+-----------------------------------------
+Given :math:`S=\{s_1,...s_n\}`, :math:`k`
+
+split :math:`S` into :math:`P` and :math:`Q`, equal size.
+
+Find all subset sums in :math:`P`, call this set :math:`X_P`
+
+And find all subset sums in :math:`Q`, call this set :math:`X_Q`.
+
+.. admonition:: Example
+
+	.. math::
+		P=\{1,2,3\}
+
+		X_P = \{0,1,2,3,4,5,6\}
+
+Sort :math:`X_P` and :math:`X_Q`.
+
+.. math::
+	O(2^{n/2}\log 2^{n/2})
+
+	= O(n*2^{n/2})

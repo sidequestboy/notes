@@ -4,14 +4,14 @@ Time Homogeneity
 
 .. admonition:: Definition
 
-	A stochastic process is *time-homogenous* if:
+	A stochastic process is *time-homogeneous* if:
 
 	.. math::
 		P(X_n = j | X_m = i) = P(X_{n+k} = j | X_{m+k} = i)
 
 	for all :math:`i`, :math:`j \in S` and for all :math:`m \leq n`.
 
-The simple symmetric random walk (from last lecture) is time-homogenous.
+The simple symmetric random walk (from last lecture) is time-homogeneous.
 
 .. admonition:: Definition
 
@@ -25,7 +25,8 @@ The simple symmetric random walk (from last lecture) is time-homogenous.
 
 	Galton-Watson Branching Process
 
-.. image:: 
+.. image:: .static/09.10.1.jpg
+	:width: 50%
 
 We assume that the family size distribution on :math:`\{0,1,2,3,...\}` is the same for all individuals and all family sizes are independent.
 
@@ -59,3 +60,26 @@ If :math:`X` and :math:`Y` are discrete random variables, then the expectation o
 
 .. math::
 	E[X|Y=y] = \sum_\chi x P(X=x | Y=y)
+
+If :math:`X` and :math:`Y` are continuous,
+
+.. math::
+	E[X | Y=y] = \int\limits_{-\infty}^\infty x f(x|y)dx
+
+where :math:`f(x|y)` is the conditional pdf of :math:`X` given :math:`Y=y`. (:math:`f(x|y) = \frac{f(x,y)}{f_Y(y)}`)
+
+When we write :math:`E[X|Y]`, we think of it as a function of :math:`Y` whose value at :math:`y` is :math:`E[X|Y=y]`.
+
+So we can take the expected value of it as:
+
+.. math::
+	\sum\limits_Y E[X|Y=y]P(Y=y)
+
+	= \sum\limits_Y\sum\limits_X xP(X=x | Y=y)P(Y=y)
+
+	= \sum\limits_Y\sum\limits_X x \frac{P(X=x, Y=y)}{P(Y=y)}P(Y=y)
+
+	= \sum\limits_Y\sum\limits_X x P(X=x, Y=y)
+
+	= \sum\limits_X xP(X=x) = E[X]
+

@@ -3,7 +3,7 @@ MTHE 455 - Stochastic Processes & Applications
 :Professor: Glen Takahara
 :Website: www.mast.queensu.ca/~stat455
 :Textbook: Introduction to Probability Models, 10th Ed. Sheldon M. Ross, 2010
-	
+
 	* On 3 hour loan reserve in Douglas Hall.
 
 Content

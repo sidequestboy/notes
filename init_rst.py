@@ -30,7 +30,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Touch the notes files based on class schedule")
     parser.add_argument("--days", dest="days", type=int, nargs=1,
-                        help="number of days to touch in the past", default=0)
+                        help="number of days to touch in the past", default=[1])
 
     args = parser.parse_args()
 
@@ -39,9 +39,10 @@ if __name__ == '__main__':
     day_length = datetime.timedelta(days=1)
 
     for day in range(args.days[0]):
-        today -= day_length
         for course in schedule[day_of_week[today.weekday()]]:
+            print(day_of_week[today.weekday()])
             if course not in ignore:
                 print("touching course: {}".format(course))
                 print(course + "/" + strftime("%Y-%m-%d.rst"))
                 touch(course + "/" + strftime("%Y-%m-%d.rst"))
+        today -= day_length

@@ -1,0 +1,223 @@
+****************************************************************
+Differentiation as a function from :math:`\Bbb R^2 \to \Bbb R^2`
+****************************************************************
+
+.. admonition:: Example
+
+	:math:`f(z)=\bar z` is not complex differentiable anywhere.
+
+	.. math::
+		\lim_{h \to 0} \frac{f(z_0+h)-f(z_0)}{h}=\lim_{h \to 0}\frac{\bar h}{h}
+
+	which does not exist.
+
+	:math:`h` can approach zero many ways.
+
+	.. image::
+
+	Let :math:`h` go to zero along the real axis. ie.e
+
+	.. math::
+		h(t)=t
+
+	So, :math:`h\to 0` as :math:`t\to 0`. :math:`t \in \Bbb R`.
+
+	.. image::
+
+	then the limit simplifies:
+
+	.. math::
+		\lim_{t \to 0} \frac{f(z_0+t)-f(z_0)}{t}=\lim{t}{t}=1
+
+	Let h go to zero along the imaginary axis now.
+
+	.. image::
+
+	.. math::
+		h(t) = it
+
+	for :math:`t \in \Bbb R`.
+
+	then the limit simplifies to:
+
+	.. math::
+		\lim_{t \to 0} \frac{f(z_0+it)-f(z_0)}{it} = \lim_{t \to 0} \frac{\bar{it}}{it} = -1
+
+	So the limit is not unique, therefore does not exist.
+
+.. admonition:: Proposition 6
+
+	Suppose :math`f` and :math`g` are analytic on the open set :math`S`. Then,
+
+	a) :math:`f+g` is analytic
+
+	  :math:`(f+g)' = f' + g'`
+	b) :math:`fg` is analytic
+
+	  :math:`(fg) = f'g + fg'`
+	c) :math:`\frac{f}{g}` is analytic (when :math:`g\neq 0`)
+
+	  :math:`(\frac{f}{g})' = \frac{gf' - g'f}{g^2}`
+
+	Proof: same as real case.
+
+.. admonition:: Corollary 2
+
+	Polynomials and rational functions are analytic when denominator is not zero.
+
+	If
+
+	.. math::
+		f(z)=a_nz^n + ... + a_0
+
+	then:
+
+	.. math::
+		f'(z)=a_nnz^{n-1} + ... + a_1
+
+	same as real polynomials.
+
+.. admonition:: Proposition 7
+
+	Chain Rule
+
+	Suppose that
+
+	.. math::
+		f: S_1 \to \Bbb C
+
+	is analytic and
+
+	.. math::
+		g: S_2 \to \Bbb C
+
+	is also analytic, where :math:`S1,S2` are open sets.
+
+	If :math:`f(S_1) \subseteq S_2`, then
+
+	.. math::
+		g(f): S_1 \to \Bbb C
+
+	is analytic, and
+
+	.. math::
+		(g(f(z)))' = g'(f(z))f'(z)
+
+	Proof: see calculus.
+
+.. admonition:: Digression
+
+	Let's consider all linear functions from :math`\Bbb R^2 \to \Bbb R^2` that preserve length.
+
+	What do these look like?
+
+	  - rotations
+	  - reflections
+
+	Suppose that
+
+	.. math::
+		T: \Bbb R^2 \to \Bbb R^2
+
+	preserves length. Then,
+
+	.. math::
+		||Tv||=||v||
+
+	for all :math:`v \in \Bbb R^2`.
+
+	We also have a formula for the dot product.
+
+	.. math::
+		v_1 \cdot v_2 = \frac{1}{2}(||v_1+v_2||^2-||v_1||^2-||v_2||^2)
+
+	So,
+
+	.. math::
+		T(v_1) \cdot T(v_2) = \frac{1}{2}(||T(v_1)+T(v_2)||^2-||T(v_1)||^2-||T(v_2)||^2)
+
+		(T(v_1) + T(v_2) = T(v_1+v_2))
+
+		T(v_1) \cdot T(v_2) = \frac{1}{2}(||v_1+v_2||^2-||v_1||^2-||v_2||^2 =v_1 \cdot v_2
+
+	So, if it preserves length, it preserves angles between two vectors.
+
+	.. image::
+
+	.. image::
+
+	.. math::
+		\cos\theta = \frac{v_1 \cdot v_2}{||v_1||\cdot||v_2||}
+
+		= \frac{T v_1 \cdot T v_2}{||Tv_1||\cdot||Tv_2||}
+
+		= \cos \phi
+
+	.. admonition Example::
+
+		.. math::
+			v_1 = (1\\0)
+
+			v_2 = (0\\1)
+
+			T(1\\0)
+
+			T(0\\1)
+
+			T(v_1)= (\cos\theta \\ \sin\theta)
+
+			T(v_2)= (-\sin\theta \\ \cos\theta)
+
+		or
+
+		.. math::
+			T(v_2)= (\sin\theta \\ -cos\theta)
+
+		.. math::
+			T=(\cos\theta -\sin\theta \\ \sin\theta \cos\theta)
+
+		or
+
+		.. math::
+			T=(\cos\theta \sin\theta \\ \sin\theta -\cos\theta)
+
+If :math:`f: S \to \Bbb C` where :math:`S \subseteq \Bbb C`, then we can think of it as a function from :math:`\Bbb R^2 \to \Bbb R^2`.
+
+.. math::
+	z = x+iy
+
+	= (x,y)
+
+where :math:`x,y \in \Bbb R`.
+
+.. math::
+	f(x+iy) = u(x,y)+iv(x,y)
+
+So, :math:`u` is the real part of :math:`f` and :math:`v` is the imaginary part of :math:`f`.
+
+.. admonition:: Example
+
+	.. math::
+		f(z) = z^2
+
+		f(x+iy)= (x+iy)^2
+
+		=(x^2-y^2)+i(2xy)
+
+Define the associated function
+
+.. math::
+	F: \Bbb R^2 \to \Bbb R^2
+
+	F(x,y)=(u(x,y),v(x,y))
+
+That is the pair of :math:`u` and :math:`v`.
+
+Multiplication by a complex number as a matrix
+----------------------------------------------
+
+.. math::
+	z=a+ib=(a,b)
+
+The complex plane has basis vectors :math:`1` and :math:`i`.
+

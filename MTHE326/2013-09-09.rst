@@ -21,7 +21,7 @@ Lets us evaluate some real integrals e.g.
 3. Geometrically as a real vector space.
 
 .. admonition:: Definition
-	
+
 	:math:`z \in \Bbb C` are such that :math:`z=x+iy`, :math:`x,y \in \Bbb R`
 	where :math:`i^{2}=-1`.
 
