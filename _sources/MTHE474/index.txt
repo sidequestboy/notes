@@ -10,7 +10,7 @@ Content
 There are `online lecture notes`_ that compliment notes taken in-class - i.e.
 these notes.
 
-.. image:: general_communication_system.png
+.. image:: .static/general_communication_system.png
 
 Grading
 -------
