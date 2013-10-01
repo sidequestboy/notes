@@ -1,0 +1,262 @@
+************************
+Cauchy-Riemann Equations
+************************
+Last time:
+
+Consider multiplication by complex numbers as an action by a matrix.
+
+.. math::
+    z=a+ib \in \Bbb C
+
+    f_z(w)=zw
+
+If :math:`z=re^{i\theta}`, :math:`\theta\in (-\pi,\pi]`
+
+Then :math:`zw` multiplies :math:`|w|` by :math:`r` and rotates by :math:`\theta`.
+
+.. image::
+
+If :math:`f_z(w)=zw`
+
+.. math::
+    f_z(1) = z = a+ib = \left[\matrix{a\\b}\right]
+
+    f_z(i) = iz = -b+ia = \left[\matrix{-b\\a}\right]
+
+And if
+
+.. math::
+    F(w) = \left[\matrix{
+        a & -b \\
+        b & a
+    }\right]
+    \left[\matrix{
+    x \\ y }\right]
+
+If
+
+.. math::
+    z=i(\cos\theta + i\sin\theta)
+
+Then the matrix for :math:`z` is 
+
+.. math::
+    f_z \sim \left[\matrix{
+            r\cos\theta & -r\sin\theta \\
+            r\sin\theta & r\cos\theta
+        }\right]
+
+    = \left[\matrix{
+        r, 0 \\ 0, r
+    }\right]
+    \left[\matrix{
+        \cos\theta & -\sin\theta \\
+        \sin\theta & \cos\theta
+    }\right]
+
+If
+
+.. math::
+    f_{z_1} \sim \left[\matrix{r_1 & 0 \\ 0 & r_1}\right]\left[\matrix{\cos\theta_1 & -\sin\theta_1 \\ \sin\theta_1 & \cos\theta_1}\right]
+
+    f_{z_2} \sim \left[\matrix{r_2 & 0 \\ 0 & r_2}\right]\left[\matrix{\cos\theta_2 & -\sin\theta_2 \\ \sin\theta_2 & \cos\theta_2}\right]
+
+then
+
+.. math::
+    f_{z_1z_2} \sim 
+    \left[\matrix{
+    r_1r_2 & 0 \\ 0 & r_1r_2
+    }\right]
+    \left[\matrix{
+    \cos(\theta_1+\theta_2) & -\sin(\theta_1+\theta_2) \\
+    \sin(\theta_1+\theta_2) & \cos(\theta_1+\theta_2)
+    }\right]
+
+So :math:`\Bbb C` identifies with scaling and rotating matrices in :math:`Gl_q(\Bbb R)`
+
+Consider the derivative of:
+
+.. math::
+    F: S\subseteq \Bbb R^2 \to \Bbb R^2
+
+Differentiability of :math:`F` at :math:`z_0` means that :math:`F` is locally approximated by a 2 by 2 matrix, the Jacobian matrix.
+
+.. admonition:: Remember
+
+    Jacobian matrix of
+
+    .. math::
+        F(x,y) = (u(x,y),v(x,y))
+
+    is
+
+    .. math::
+        \left[\matrix{
+        \partial u/\partial x & \partial v/\partial x \\
+        \partial u/\partial y & \partial v/\partial y
+        }\right]
+
+This is different from compmlex differentiability where the derivative is a complex number, which means :math:`f(z)` is locally approximated by a scale:
+
+.. math::
+    f(z)-f(z_0) \approx f'(z_0)(z-z_0)
+
+when :math:`z` is "close" to :math:`z_0`.
+
+When do we think
+
+.. math::
+    F: \Bbb R \to \Bbb R
+
+corresponds to a complex differentiable function,
+
+.. math::
+    f: \Bbb C \to \Bbb C ?
+
+Answer:
+-------
+
+When 
+
+.. math::
+    \left[\matrix{
+    \frac{\partial u}{\partial x}(x_0,y_0) & -\frac{\partial u}{\partial y}(x_0,y_0) \\
+    \frac{\partial v}{\partial x}(x_0,y_0) & \frac{\partial v}{\partial y}(x_0,y_0)
+    }\right]
+
+corresponds to a complex number
+
+.. math::
+    a+ib \sim \left[\matrix{a & -b \\ b & a}\right]
+
+So, the Cauchy-Riemann Equations (CREs) are:
+
+.. math::
+    \partial u/\partial x = \partial v/\partial y
+
+    \partial v/\partial x = -\partial u/\partial y
+
+
+The Cauchy-Riemann Theorem
+==========================
+
+.. math::
+    f: S \subseteq \Bbb C \to \Bbb C
+
+    f(x+iy)=u(x,y)+iv(x,y)
+
+is complex differentiable at :math:`z_0=z_0+iy_0`
+
+**iff**
+
+.. math::
+    F(x,y) = (u(x,y),v(x,y))
+
+is differentiable at :math:`(x_0,y_0)` and CREs are satisfied.
+
+Furthermore,
+
+.. math::
+    \frac{df}{dz}(z_0) = \frac{\partial u}{\partial x}(x_0,y_0) + i\frac{\partial v}{\partial y}(x_0,y_0)
+
+    = \frac{\partial v}{\partial y}(x_0,y_0) - i\frac{\partial u}{\partial y}(x_0,y_0)
+
+    \sim \left[\matrix{
+    \frac{\partial u}{\partial x}(x_0,y_0) & -\frac{\partial u}{\partial y}(x_0,y_0) \\
+     \frac{\partial v}{\partial x}(x_0,y_0) & \frac{\partial v}{\partial y}(x_0,y_0)
+    }\right]
+
+This matrix acts as a complex number (proof later).
+
+.. admonition:: Example
+
+    Is :math:`f(z)=z` analytic?
+
+    .. math::
+        u(x,y) = x
+
+        v(x,y) = y
+
+    The derivative matrix:
+
+    .. math::
+        \left[\matrix{
+        \frac{\partial u}{\partial x}(x_0,y_0)=1 & -\frac{\partial u}{\partial y}(x_0,y_0)=0 \\
+         \frac{\partial v}{\partial x}(x_0,y_0)=0 &  \frac{\partial v}{\partial y}(x_0,y_0)=1
+        }\right]
+
+    Yes, by the CR Theorem.
+
+    :math:`f'(z) = 1`
+
+.. admonition:: Example
+
+    Is :math:`f(z) = \bar z` analytic?
+
+    .. math::
+        f(z) = \bar z
+
+        = x-iy = x+i(-y)
+
+    .. math::
+        u(x,y) = x
+
+        v(x,y) = -y
+
+    The derivative matrix:
+
+    .. math::
+        \left[\matrix{
+        \frac{\partial u}{\partial x}(x_0,y_0)=1 & -\frac{\partial u}{\partial y}(x_0,y_0)=0 \\
+         \frac{\partial v}{\partial x}(x_0,y_0)=0 &  \frac{\partial v}{\partial y}(x_0,y_0)=-1]
+        }\right]
+
+    No, by the CR Theorem.
+
+.. admonition:: Example
+
+    Is :math:`f(z) = e^z` analytic?
+
+    .. math::
+        e^z = e^x(\cos y + i \sin y)
+
+    .. math::
+        u(x,y) = e^x \cos y
+
+        v(x,y) = e^x \sin y
+
+    The derivative matrix:
+
+    .. math::
+        \left[
+        \matrix
+        {
+        \frac{\partial u}{\partial x}(x_0,y_0)=e^x \cos y & -\frac{\partial u}{\partial y}(x_0,y_0)=-e^x \sin y \\
+         \frac{\partial v}{\partial x}(x_0,y_0)=e^x \sin y &  \frac{\partial v}{\partial y}(x_0,y_0)=e^x \cos y
+        }
+        \right]
+
+    CREs hold, so, yes!
+
+    .. math::
+        f'(z) = e^x \cos y + i e^x \sin y
+
+        = e^z
+
+.. admonition:: Corollary
+
+    If :math:`f: S \to \Bbb C` where :math:`S \subseteq \Bbb C`
+
+    is complex differentiable on :math:`S` and :math:`f'(z)=0` everywhere on :math:`S`, then :math:`f(z)` is constant on :math:`S`.
+
+    Proof:
+
+    If :math:`f'(z)=0` on :math:`S`, then
+
+    .. math::
+        \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} = \frac{\partial u}{\partial y} = \frac{\partial v}{\partial x} = 0
+
+    Then by the Mean-Value Theorem on :math:`\Bbb R`, :math:`u(x,y)` and :math:`v(x,y)` are constant, thus, so is :math:`f(z)`.
+
+

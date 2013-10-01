@@ -1,0 +1,94 @@
+.. epigraph::
+    Come to the orchard in Spring
+
+    There is light, and wine,
+        and sweethearts in the
+            pomegranate flowers
+    If you do not come, these do not matter
+
+    If you do come, these do not matter
+
+    Happy Birthday **Rumi**
+
+**********************
+Longest Path in a Tree
+**********************
+BFI algorithm: :math:`O(n^2)`
+
+D&C algorithm:
+--------------
+
+.. image::
+    :width: 50%
+
+.. code::
+
+    Max_Tree_Path(T, x):
+        if T==x: # single vertex T
+            # longest contained path
+            L_C_P = {x}
+            # longest root path
+            # (longest path in T with one end at x)
+            L_R_P = {x}
+            return L_C_P, L_R_P
+        else:
+            let T_1, ..., T_k be the subtrees
+            with roots x_1, ..., x_k (neighbours of x)
+
+            let CP_i, RP_i <- Max_Tree_Path(T_i, x_i) for i=1,...,k
+
+            max_subtree_contained_path = max{CP_i} # for 1<=i<=k
+
+            max_path_through_root = max{RP_i} + x + 2nd_mac{RP_i} # over i
+
+            L_C_P = max{max_subtree_contained_path, max_path_through_root}
+
+            L_R_P = max{RP_i} + x # over i
+
+Complexity:
+
+:math:`Time(T(T,x)) = Time(T(T_1,x_1)+...+T(T_k,x_k))`
+
+* We call the function once for each vertex in the tree. :math:`=n`
+* The max calls can be made to be simply a single comparison for each call.
+* Each call creates **constant** work :math:`O(1)`
+
+so, D&C algorithm :math:`~ O(n)`
+
+D&C algorithm is not limited to trees either. We can solve a graph of this form:
+
+.. image::
+    :width: 50%
+
+Computational Geometry
+======================
+Guards
+
+.. image::
+    :width: 50%
+
+:math:`n` points in :math:`x-y` plane
+
+* find the 2 closest paths
+
+The naive algorithm (BFI) :math:`~O(n^2)`
+
+D&C approach
+------------
+* split into 2 sets of :math:`\frac{n}{2}` pairs
+
+.. image::
+    :width: 50%
+
+  * horizontally
+* solve recursively on each side
+
+  * min distance on left = :math:`\delta_l`
+  * min distance on right = :math:`\delta_r`
+* take the min of :math:`\{\delta_l,delta_r\}`
+* draw rectangle around center line of that width
+* consider the points inside that rectangle.
+
+.. image::
+    :width: 50%
+

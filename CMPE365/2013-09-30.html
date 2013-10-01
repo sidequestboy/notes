@@ -1,0 +1,195 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Longest Path in a Tree &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="MTHE 326 - Functions of a Complex Variable" href="../MTHE326/index.html" />
+    <link rel="prev" title="Divide &amp; Conquer" href="2013-09-27.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE326/index.html" title="MTHE 326 - Functions of a Complex Variable"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-27.html" title="Divide &amp; Conquer"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <blockquote class="epigraph">
+<div><p>Come to the orchard in Spring</p>
+<dl class="docutils">
+<dt>There is light, and wine,</dt>
+<dd><dl class="first last docutils">
+<dt>and sweethearts in the</dt>
+<dd>pomegranate flowers</dd>
+</dl>
+</dd>
+</dl>
+<p>If you do not come, these do not matter</p>
+<p>If you do come, these do not matter</p>
+<p>Happy Birthday <strong>Rumi</strong></p>
+</div></blockquote>
+<div class="section" id="longest-path-in-a-tree">
+<h1>Longest Path in a Tree<a class="headerlink" href="#longest-path-in-a-tree" title="Permalink to this headline">¶</a></h1>
+<p>BFI algorithm: <span class="math">\(O(n^2)\)</span></p>
+<div class="section" id="d-c-algorithm">
+<h2>D&amp;C algorithm:<a class="headerlink" href="#d-c-algorithm" title="Permalink to this headline">¶</a></h2>
+<div class="code highlight-python"><pre>Max_Tree_Path(T, x):
+    if T==x: # single vertex T
+        # longest contained path
+        L_C_P = {x}
+        # longest root path
+        # (longest path in T with one end at x)
+        L_R_P = {x}
+        return L_C_P, L_R_P
+    else:
+        let T_1, ..., T_k be the subtrees
+        with roots x_1, ..., x_k (neighbours of x)
+
+        let CP_i, RP_i &lt;- Max_Tree_Path(T_i, x_i) for i=1,...,k
+
+        max_subtree_contained_path = max{CP_i} # for 1&lt;=i&lt;=k
+
+        max_path_through_root = max{RP_i} + x + 2nd_mac{RP_i} # over i
+
+        L_C_P = max{max_subtree_contained_path, max_path_through_root}
+
+        L_R_P = max{RP_i} + x # over i</pre>
+</div>
+<p>Complexity:</p>
+<p><span class="math">\(Time(T(T,x)) = Time(T(T_1,x_1)+...+T(T_k,x_k))\)</span></p>
+<ul class="simple">
+<li>We call the function once for each vertex in the tree. <span class="math">\(=n\)</span></li>
+<li>The max calls can be made to be simply a single comparison for each call.</li>
+<li>Each call creates <strong>constant</strong> work <span class="math">\(O(1)\)</span></li>
+</ul>
+<p>so, D&amp;C algorithm <span class="math">\(~ O(n)\)</span></p>
+<p>D&amp;C algorithm is not limited to trees either. We can solve a graph of this form:</p>
+<div class="section" id="computational-geometry">
+<h3>Computational Geometry<a class="headerlink" href="#computational-geometry" title="Permalink to this headline">¶</a></h3>
+<p>Guards</p>
+<p><span class="math">\(n\)</span> points in <span class="math">\(x-y\)</span> plane</p>
+<ul class="simple">
+<li>find the 2 closest paths</li>
+</ul>
+<p>The naive algorithm (BFI) <span class="math">\(~O(n^2)\)</span></p>
+</div>
+</div>
+<div class="section" id="d-c-approach">
+<h2>D&amp;C approach<a class="headerlink" href="#d-c-approach" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>split into 2 sets of <span class="math">\(\frac{n}{2}\)</span> pairs</li>
+</ul>
+<ul class="simple">
+<li>solve recursively on each side<ul>
+<li>min distance on left = <span class="math">\(\delta_l\)</span></li>
+<li>min distance on right = <span class="math">\(\delta_r\)</span></li>
+</ul>
+</li>
+<li>take the min of <span class="math">\(\{\delta_l,delta_r\}\)</span></li>
+<li>draw rectangle around center line of that width</li>
+<li>consider the points inside that rectangle.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Longest Path in a Tree</a><ul>
+<li><a class="reference internal" href="#d-c-algorithm">D&amp;C algorithm:</a><ul>
+<li><a class="reference internal" href="#computational-geometry">Computational Geometry</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#d-c-approach">D&amp;C approach</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="2013-09-27.html" title="previous chapter">Divide &amp; Conquer</a></li>
+      <li>Next: <a href="../MTHE326/index.html" title="next chapter">MTHE 326 - Functions of a Complex Variable</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-09-30.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -1,0 +1,196 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Generating Functions &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="MTHE 474 - Information Theory" href="../MTHE474/index.html" />
+    <link rel="prev" title="Recurrence and Transience" href="2013-09-27.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE474/index.html" title="MTHE 474 - Information Theory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-27.html" title="Recurrence and Transience"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="generating-functions">
+<h1>Generating Functions<a class="headerlink" href="#generating-functions" title="Permalink to this headline">¶</a></h1>
+<div class="math">
+\[G(s) = \sum_{n=0}^\infty a_n s^n\]</div>
+<p>for a sequence <span class="math">\(\{a_n\}_{n=0}^\infty\)</span></p>
+<p>If the <span class="math">\(a_n\)</span> are <span class="math">\(P(X=n)\)</span> for some random variable <span class="math">\(X\)</span> on <span class="math">\(\{0,1,2,...\}\)</span>, then <span class="math">\(G(s)\)</span> is called a <em>probability</em> generating function.</p>
+<p>Also, <span class="math">\(G'(1)=E[X]\)</span> in this case.</p>
+<p>Since <span class="math">\(G'(s) = a_1+2a_2s + ... + na_ns^{n-1}+...\)</span></p>
+<p>So, <span class="math">\(G'(1) = a_1+2a_2 + ... + na_n+...=E[X]\)</span></p>
+<p>The nth derivative of <span class="math">\(G(s)\)</span> at <span class="math">\(s=0\)</span> is</p>
+<div class="math">
+\[n!a_n\]</div>
+<p>That is, <span class="math">\(G^{(n)}(0)=n!a_n\)</span> or,</p>
+<div class="math">
+\[a_n = \frac{1}{n!}G^{(n)}(0)\]</div>
+<p>So, <span class="math">\(G\)</span> determines <span class="math">\(a_n\)</span> for every <span class="math">\(n\)</span>. So there is a one-to-one correspondence between sequences and generating functions.</p>
+<div class="section" id="simple-random-walk-via-generating-functions">
+<h2>Simple Random Walk via Generating Functions<a class="headerlink" href="#simple-random-walk-via-generating-functions" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(T_r=\)</span> time the walk first reaches state <span class="math">\(r\)</span>, <span class="math">\(r \geq 1\)</span>.</p>
+<p><span class="math">\(T_0=\)</span> time the walk first returns to 0.</p>
+<p>Let <span class="math">\(f_r(n)=P(T_r=n|X_0=0)\)</span> for <span class="math">\(r \geq 0\)</span>, <span class="math">\(n \geq 0\)</span>.</p>
+<p>Note that <span class="math">\(f_r(0)=0\)</span> for all <span class="math">\(r\geq 0\)</span></p>
+<p>Let</p>
+<div class="math">
+\[G_r(s) = \sum_{n=0}^\infty f_r(n)s^n\]</div>
+<p>be the generating function of the sequence <span class="math">\(\{f_r(0),f_r(1),f_r(2),...\}\)</span> for <span class="math">\(r \geq 0\)</span>,</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="math">
+\[G_1(1) = \text{ probability walk ever goes to state 1.}\]</div>
+<p>and</p>
+<div class="last math">
+\[G_0(1) = \text{ probability walk ever returns to state 0.}\]</div>
+</div>
+<p>First, consider <span class="math">\(G_r(s)\)</span>, <span class="math">\(r&gt;1\)</span>. Consider</p>
+<div class="math">
+\[f_r(n) = P(T_r=n|X_0=0)\]\[= \sum_{k=0}^\infty P(T_r=n|T_1=k,X_0=0)P(T_1=k|X_0=0)\]\[= \sum_{k=0}^n P(T_r=n|T_1=k) f_1(k)\]</div>
+<p>because of Markov property, def&#8217;n of <span class="math">\(f_1(k)\)</span></p>
+<div class="math">
+\[= \sum_{k=0}^n f_{r-1}(n-k)f_1(k)\]</div>
+<p>by spatial &amp; temporal homogeneity.</p>
+<p>The summand is the nth term of convolution of <span class="math">\(\{f_{r-1}(n)\}\)</span> and <span class="math">\(\{f_1(n)\}\)</span></p>
+<p>Multiply both sides by <span class="math">\(s^n\)</span>, sum over <span class="math">\(n\)</span>, giving:</p>
+<div class="math">
+\[G_r(s) = G_{r-1}(s)G_1(s)\]</div>
+<p>Recursively then, we obtain:</p>
+<div class="math">
+\[G_r(s) = G_1(s)^r\]</div>
+<p>Now look at <span class="math">\(G_1(s)\)</span>. Now condition on <span class="math">\(X_1\)</span>.</p>
+<div class="math">
+\[f_1(n) = P(T_1=n|X_0=0)\]\[= P(T_1=n|X_1=1,X_0=0)P(X_1=1|X_0=0) + P(T_1=n|X_1=-1,X_0=0)P(X_1=-1|X_0=0)\]\[= P(T_1=n|X_1=1,X_0=0)p + P(T_1=n|X_1=-1,X_0=0)(q=1-p)\]\[= P(T_1=n|X_1=1)p + P(T_1=n|X_1=-1)q\]</div>
+<p>If <span class="math">\(n&gt;1\)</span>, then <span class="math">\(P(T_1=n|X_1=1) = 0\)</span>.</p>
+<p>Then</p>
+<div class="math">
+\[f_1(n)=P(T_1=n | X_1=-1)q\]\[= f_2(n-1)\]</div>
+<p>by temporal and spatial homogeneity.</p>
+<div class="math">
+\[\begin{split}f_1(n) = \cases \left \{f_2(n-1)q \text{ for }n&gt;1 \\
+p \text{ for }n=1 \\
+0 \text{ for }n=0 \right\end{split}\]</div>
+<p>Then</p>
+<div class="math">
+\[G_1(s) = \sum_{n=0}^\infty s^nf_1(n)\]\[= ps + \sum_{n=0}^\infty s^n f_2(n-1)q\]\[= sp + sq\sum_{n=2}^\infty s^{n-1}f_2(n-1)\]\[= sp + sq\sum_{n=1}^\infty s^n f_2(n)\]\[= sp + sqG_2(s)\]</div>
+<p>So,</p>
+<div class="math">
+\[G_1(s) = sp+sqG_2(s) = sp + sqG_1(s)^2\]\[\implies sqG_q(s)^2 - G_1(s) + sp = 0\]\[\implies \frac{q \pm \sqrt{1-4s^2pq}}{2sq}\]</div>
+<p>A boundary condition for <span class="math">\(G_1(s)\)</span> is <span class="math">\(G_1(0)=f_1(0)=0\)</span></p>
+<p>The only solution that satisfies the boundary condition is:</p>
+<div class="math">
+\[G_1(s) = \frac{1 - \sqrt{1-4s^2pq}}{2sq}\]</div>
+<p>(check using l&#8217;Hopital&#8217;s rule that this <span class="math">\(\to 0\)</span> as <span class="math">\(s \to 0\)</span>)</p>
+<p>Now,</p>
+<div class="math">
+\[G_1(1)=\frac{1-\sqrt{1-4pq}}{2q}\]\[=\frac{1-\sqrt{1-4(1-q)q}}{2q}\]\[=\frac{1-\sqrt{1-4q+4q^2}}{2q}\]\[=\frac{1-\sqrt{(1-2q)^2}}{2q}\]\[=\frac{1-|1-2q|}{2q}\]</div>
+<p>If <span class="math">\(q&lt;\frac{1}{2}\)</span>, then</p>
+<div class="math">
+\[G_1(1)=\frac{1-(1-2q)}{2q}\]\[= \frac{2q}{2q} = 1\]</div>
+<p>If <span class="math">\(q&lt;\frac{1}{2}\)</span>, then</p>
+<div class="math">
+\[G_1(1)=\frac{1-(2q-1)}{2q}\]\[=\frac{2-2q}{2q}\]\[=\frac{2(1-q)}{2q}\]\[=\frac{2p}{2q}\]\[= \frac{p}{q}\]</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Generating Functions</a><ul>
+<li><a class="reference internal" href="#simple-random-walk-via-generating-functions">Simple Random Walk via Generating Functions</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-09-27.html" title="previous chapter">Recurrence and Transience</a></li>
+      <li>Next: <a href="../MTHE474/index.html" title="next chapter">MTHE 474 - Information Theory</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-09-30.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

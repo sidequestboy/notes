@@ -1,0 +1,208 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Proof of (i) (Forward Achievability): &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="prev" title="Lossless Fixed Length (Block) Source Coding (Data Compression)" href="2013-09-26.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-26.html" title="Lossless Fixed Length (Block) Source Coding (Data Compression)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="proof-of-i-forward-achievability">
+<h1>Proof of (i) (Forward Achievability):<a class="headerlink" href="#proof-of-i-forward-achievability" title="Permalink to this headline">¶</a></h1>
+<p>wlog, assume that <span class="math">\(D=2\)</span> (binary codes).</p>
+<p>Therefore, <span class="math">\(H_D(x)=H(X)\)</span> (in base 2).</p>
+<p>Now, given <span class="math">\(\alpha&gt;0\)</span>, <span class="math">\(\epsilon&gt;0\)</span>, choose <span class="math">\(\delta\)</span> s.t. <span class="math">\(o&lt;\delta&lt;\alpha\)</span></p>
+<p>and choose <span class="math">\(n\)</span> and <span class="math">\(k(n)\)</span> such that</p>
+<div class="math">
+\[\begin{split}H(X)+\delta&lt;\frac{k}{m}&lt;H(X)+\alpha\end{split}\]</div>
+<p>Now increase <span class="math">\(n\)</span> to satisfy <span class="math">\(P[A_\delta^{(n)}]&gt;1-\epsilon\)</span></p>
+<p>(which is possible by (2) of previous theorem)</p>
+<p>while increasing <span class="math">\(k\)</span> to satisfy</p>
+<div class="math">
+\[\begin{split}H(X)+\delta&lt;\frac{k}{n}&lt;H(X)+\alpha\end{split}\]</div>
+<div class="section" id="encoder">
+<h2>Encoder:<a class="headerlink" href="#encoder" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/09-30-1.jpg" src="../_images/09-30-1.jpg" style="width: 50%;" />
+<ul class="simple">
+<li>For every <span class="math">\(\delta\)</span> - typical source <span class="math">\(n\)</span> - tuple <span class="math">\(x^n \in A_\delta^{(n)}\)</span>, assign a <strong>distinct</strong> (not all-zero) <span class="math">\(k\)</span> - tuple on its codeword</li>
+<li>If <span class="math">\(x^n \notin A_\delta^{(n)}\)</span>, assign it to a default (all-zero) codeword;</li>
+</ul>
+<div class="math">
+\[f(x^n) = 0^k = (0,0,...,0)\]</div>
+<p>This encoder is <strong>UP</strong> for <span class="math">\(x^n \in A_\delta^{(n)}\)</span>.</p>
+<p>Such an encoder exists <strong>iff</strong></p>
+<div class="math">
+\[\begin{split}2^k \geq |A_\delta^{(n)}|+1 \iff 2^k &gt; |A_\delta^{(n)}|\end{split}\]</div>
+<p>But we have chosen <span class="math">\(k\)</span> and <span class="math">\(n\)</span> (sufficiently large) to satisfy</p>
+<div class="math">
+\[\begin{split}\frac{k}{n} &gt; H(X)+\delta \iff 2^k &gt; 2^{n(H(X)+\delta)}\end{split}\]</div>
+<p>But we know that <span class="math">\(2^{n(H(X)+\delta)} \geq |A_\delta^{(n)}|\)</span></p>
+<p>(by result (3) of previous theorem)</p>
+<p>Therefore, indeed we do have:</p>
+<div class="math">
+\[\begin{split}2^k &gt; |A_\delta^{(n)}|\end{split}\]</div>
+</div>
+<div class="section" id="decoder">
+<h2>Decoder:<a class="headerlink" href="#decoder" title="Permalink to this headline">¶</a></h2>
+<p>For codewords in <span class="math">\(B\)</span>, map them back to their corresponding <span class="math">\(\delta\)</span> - typical sequences.</p>
+<p>For codewords in <span class="math">\(B^c\)</span>, map them <strong>all</strong> to a default non <span class="math">\(\delta\)</span> - typical source sequence <span class="math">\(x_0^n\)</span>.</p>
+<p>By construction, probability of decoding error:</p>
+<div class="math">
+\[P_e = P[X^n \notin A_\delta^{(n)}]\]\[= 1-P[X^n \in A_\delta^{(n)}]\]\[\begin{split}&lt; \epsilon\end{split}\]</div>
+<p>for <span class="math">\(n\)</span> sufficiently large.</p>
+</div>
+</div>
+<div class="section" id="proof-of-ii-strong-converse-part">
+<h1>Proof of (ii) (Strong) Converse Part<a class="headerlink" href="#proof-of-ii-strong-converse-part" title="Permalink to this headline">¶</a></h1>
+<p>Consider a binary <span class="math">\((k,n)\)</span> block code foor the source satisfying</p>
+<div class="math">
+\[\begin{split}\frac{k}{n} &lt; H(X)\end{split}\]</div>
+<p>Then we can find <span class="math">\(\delta&gt;0\)</span> s.t.</p>
+<div class="math">
+\[\frac{k}{n} \leq H(X)-2\delta\]\[\implies 2^k = \text{# of possible codewords }\leq 2^n(H(X)-2\delta) (*)\]</div>
+<p>Let <span class="math">\(C'\)</span> be the set of source <span class="math">\(n\)</span> - tuples <span class="math">\(x^n\)</span> that are encoded one-to-one onto distinct codewords:</p>
+<div class="math">
+\[C'=\{x^n\in\chi^n:g(f(x^n))=x^n\}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All the other <span class="math">\(n\)</span> - tuples are mapped many-to-one.</p>
+</div>
+<p>The probability of correct decoding (compliment of docoding error):</p>
+<p>For <span class="math">\(n\)</span> sufficiently large, the probability of correct decoding <span class="math">\(P_c\)</span>, is given by:</p>
+<div class="math">
+\[P_c=P[X^n \in C']\]\[= \sum_{x^n \in C'} P_{X^n}(x^n)\]\[= \sum_{x^n \in C'\cap A_\delta^{(n)}} P_{X^n}(x^n) + \sum_{x_n \in C' \cap [A_\delta^{(n)}]^c}\]\[\leq \sum_{x^n \in C'\cap A_\delta^{(n)}}P_{X^n}(x^n) + \sum_{x_n \in [A_\delta^{(n)}]^c} P_{X^n}(x^n)\]</div>
+<p>The second term has upper bound:</p>
+<div class="math">
+\[\begin{split}\sum_{x_n \in [A_\delta^{(n)}]^c} P_{X^n}(x^n) &lt; \frac{\epsilon}{2}\end{split}\]</div>
+<p>for <span class="math">\(n\)</span> suff. large. (by (2) of previous theorem)</p>
+<p>So,</p>
+<div class="math">
+\[\sum_{x^n \in C'\cap A_\delta^{(n)}}P_{X^n}(x^n) + \sum_{x_n \in [A_\delta^{(n)}]^c} P_{X^n}(x^n)\]\[\begin{split}&lt; \frac{\epsilon}{2} + |C'\cap A_\delta^{(n)}|[max_{x^n\in C'\cap A_\delta^{(n)}}P_{X^n}(x^n)]\end{split}\]\[\begin{split}&lt; \frac{\epsilon}{2} + |C'\cap A_\delta^{(n)}|[max_{x^n\in A_\delta^{(n)}}P_{X^n}(x^n)]\end{split}\]\[\begin{split}&lt; \frac{\epsilon}{2} + |C'|*2^{n(H(X)-\delta)}\end{split}\]\[(*) \implies |C'| \leq 2^k \leq 2^{n(H(X)-\delta)}\]\[\implies |C'| \leq 2^{n(H(X)-\delta)} (**)\]</div>
+<p>by (**):</p>
+<div class="math">
+\[\frac{\epsilon}{2} + |C'|*2^{n(H(X)-\delta)}\]</div>
+<p>by (**):</p>
+<div class="math">
+\[= \frac{\epsilon}{2}+2^{-n\delta}\]\[\begin{split}&lt; \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon\end{split}\]</div>
+<p>Therefore,</p>
+<div class="math">
+\[\begin{split}P_c = 1-P_e &lt; \epsilon\end{split}\]</div>
+<p>for <span class="math">\(n\)</span> sufficiently large.</p>
+<div class="math">
+\[\begin{split}\iff P_e &gt; 1-\epsilon\end{split}\]</div>
+</div>
+<div class="section" id="lossless-fixed-length-coding-for-sources-with-memory">
+<h1>Lossless Fixed-Length Coding for Sources with Memory<a class="headerlink" href="#lossless-fixed-length-coding-for-sources-with-memory" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="entropy-rate">
+<h2>Entropy Rate<a class="headerlink" href="#entropy-rate" title="Permalink to this headline">¶</a></h2>
+<p><span class="math">\(X_1,X_2,...\)</span></p>
+<div class="math">
+\[\{p_{X^n}(x_1,x_2,...x_n), n=1,2,..., x^n \in \chi^n\}\]</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Proof of (i) (Forward Achievability):</a><ul>
+<li><a class="reference internal" href="#encoder">Encoder:</a></li>
+<li><a class="reference internal" href="#decoder">Decoder:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#proof-of-ii-strong-converse-part">Proof of (ii) (Strong) Converse Part</a></li>
+<li><a class="reference internal" href="#lossless-fixed-length-coding-for-sources-with-memory">Lossless Fixed-Length Coding for Sources with Memory</a><ul>
+<li><a class="reference internal" href="#entropy-rate">Entropy Rate</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-09-26.html" title="previous chapter">Lossless Fixed Length (Block) Source Coding (Data Compression)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-09-30.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

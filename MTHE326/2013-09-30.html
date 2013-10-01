@@ -1,0 +1,283 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cauchy-Riemann Equations &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="MTHE 455 - Stochastic Processes &amp; Applications" href="../MTHE455/index.html" />
+    <link rel="prev" title="Differentiation as a function from \(\Bbb R^2 \to \Bbb R^2\)" href="2013-09-26.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE455/index.html" title="MTHE 455 - Stochastic Processes &amp; Applications"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-26.html" title="Differentiation as a function from \(\Bbb R^2 \to \Bbb R^2\)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cauchy-riemann-equations">
+<h1>Cauchy-Riemann Equations<a class="headerlink" href="#cauchy-riemann-equations" title="Permalink to this headline">¶</a></h1>
+<p>Last time:</p>
+<p>Consider multiplication by complex numbers as an action by a matrix.</p>
+<div class="math">
+\[z=a+ib \in \Bbb C\]\[f_z(w)=zw\]</div>
+<p>If <span class="math">\(z=re^{i\theta}\)</span>, <span class="math">\(\theta\in (-\pi,\pi]\)</span></p>
+<p>Then <span class="math">\(zw\)</span> multiplies <span class="math">\(|w|\)</span> by <span class="math">\(r\)</span> and rotates by <span class="math">\(\theta\)</span>.</p>
+<p>If <span class="math">\(f_z(w)=zw\)</span></p>
+<div class="math">
+\[\begin{split}f_z(1) = z = a+ib = \left[\matrix{a\\b}\right]\end{split}\]\[\begin{split}f_z(i) = iz = -b+ia = \left[\matrix{-b\\a}\right]\end{split}\]</div>
+<p>And if</p>
+<div class="math">
+\[\begin{split}F(w) = \left[\matrix{
+    a &amp; -b \\
+    b &amp; a
+}\right]
+\left[\matrix{
+x \\ y }\right]\end{split}\]</div>
+<p>If</p>
+<div class="math">
+\[z=i(\cos\theta + i\sin\theta)\]</div>
+<p>Then the matrix for <span class="math">\(z\)</span> is</p>
+<div class="math">
+\[\begin{split}f_z \sim \left[\matrix{
+        r\cos\theta &amp; -r\sin\theta \\
+        r\sin\theta &amp; r\cos\theta
+    }\right]\end{split}\]\[\begin{split}= \left[\matrix{
+    r, 0 \\ 0, r
+}\right]
+\left[\matrix{
+    \cos\theta &amp; -\sin\theta \\
+    \sin\theta &amp; \cos\theta
+}\right]\end{split}\]</div>
+<p>If</p>
+<div class="math">
+\[\begin{split}f_{z_1} \sim \left[\matrix{r_1 &amp; 0 \\ 0 &amp; r_1}\right]\left[\matrix{\cos\theta_1 &amp; -\sin\theta_1 \\ \sin\theta_1 &amp; \cos\theta_1}\right]\end{split}\]\[\begin{split}f_{z_2} \sim \left[\matrix{r_2 &amp; 0 \\ 0 &amp; r_2}\right]\left[\matrix{\cos\theta_2 &amp; -\sin\theta_2 \\ \sin\theta_2 &amp; \cos\theta_2}\right]\end{split}\]</div>
+<p>then</p>
+<div class="math">
+\[\begin{split}f_{z_1z_2} \sim
+\left[\matrix{
+r_1r_2 &amp; 0 \\ 0 &amp; r_1r_2
+}\right]
+\left[\matrix{
+\cos(\theta_1+\theta_2) &amp; -\sin(\theta_1+\theta_2) \\
+\sin(\theta_1+\theta_2) &amp; \cos(\theta_1+\theta_2)
+}\right]\end{split}\]</div>
+<p>So <span class="math">\(\Bbb C\)</span> identifies with scaling and rotating matrices in <span class="math">\(Gl_q(\Bbb R)\)</span></p>
+<p>Consider the derivative of:</p>
+<div class="math">
+\[F: S\subseteq \Bbb R^2 \to \Bbb R^2\]</div>
+<p>Differentiability of <span class="math">\(F\)</span> at <span class="math">\(z_0\)</span> means that <span class="math">\(F\)</span> is locally approximated by a 2 by 2 matrix, the Jacobian matrix.</p>
+<div class="admonition-remember admonition">
+<p class="first admonition-title">Remember</p>
+<p>Jacobian matrix of</p>
+<div class="math">
+\[F(x,y) = (u(x,y),v(x,y))\]</div>
+<p>is</p>
+<div class="last math">
+\[\begin{split}\left[\matrix{
+\partial u/\partial x &amp; \partial v/\partial x \\
+\partial u/\partial y &amp; \partial v/\partial y
+}\right]\end{split}\]</div>
+</div>
+<p>This is different from compmlex differentiability where the derivative is a complex number, which means <span class="math">\(f(z)\)</span> is locally approximated by a scale:</p>
+<div class="math">
+\[f(z)-f(z_0) \approx f'(z_0)(z-z_0)\]</div>
+<p>when <span class="math">\(z\)</span> is &#8220;close&#8221; to <span class="math">\(z_0\)</span>.</p>
+<p>When do we think</p>
+<div class="math">
+\[F: \Bbb R \to \Bbb R\]</div>
+<p>corresponds to a complex differentiable function,</p>
+<div class="math">
+\[f: \Bbb C \to \Bbb C ?\]</div>
+<div class="section" id="answer">
+<h2>Answer:<a class="headerlink" href="#answer" title="Permalink to this headline">¶</a></h2>
+<p>When</p>
+<div class="math">
+\[\begin{split}\left[\matrix{
+\frac{\partial u}{\partial x}(x_0,y_0) &amp; -\frac{\partial u}{\partial y}(x_0,y_0) \\
+\frac{\partial v}{\partial x}(x_0,y_0) &amp; \frac{\partial v}{\partial y}(x_0,y_0)
+}\right]\end{split}\]</div>
+<p>corresponds to a complex number</p>
+<div class="math">
+\[\begin{split}a+ib \sim \left[\matrix{a &amp; -b \\ b &amp; a}\right]\end{split}\]</div>
+<p>So, the Cauchy-Riemann Equations (CREs) are:</p>
+<div class="math">
+\[\partial u/\partial x = \partial v/\partial y\]\[\partial v/\partial x = -\partial u/\partial y\]</div>
+<div class="section" id="the-cauchy-riemann-theorem">
+<h3>The Cauchy-Riemann Theorem<a class="headerlink" href="#the-cauchy-riemann-theorem" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[f: S \subseteq \Bbb C \to \Bbb C\]\[f(x+iy)=u(x,y)+iv(x,y)\]</div>
+<p>is complex differentiable at <span class="math">\(z_0=z_0+iy_0\)</span></p>
+<p><strong>iff</strong></p>
+<div class="math">
+\[F(x,y) = (u(x,y),v(x,y))\]</div>
+<p>is differentiable at <span class="math">\((x_0,y_0)\)</span> and CREs are satisfied.</p>
+<p>Furthermore,</p>
+<div class="math">
+\[\frac{df}{dz}(z_0) = \frac{\partial u}{\partial x}(x_0,y_0) + i\frac{\partial v}{\partial y}(x_0,y_0)\]\[= \frac{\partial v}{\partial y}(x_0,y_0) - i\frac{\partial u}{\partial y}(x_0,y_0)\]\[\begin{split}\sim \left[\matrix{
+\frac{\partial u}{\partial x}(x_0,y_0) &amp; -\frac{\partial u}{\partial y}(x_0,y_0) \\
+ \frac{\partial v}{\partial x}(x_0,y_0) &amp; \frac{\partial v}{\partial y}(x_0,y_0)
+}\right]\end{split}\]</div>
+<p>This matrix acts as a complex number (proof later).</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Is <span class="math">\(f(z)=z\)</span> analytic?</p>
+<div class="math">
+\[u(x,y) = x\]\[v(x,y) = y\]</div>
+<p>The derivative matrix:</p>
+<div class="math">
+\[\begin{split}\left[\matrix{
+\frac{\partial u}{\partial x}(x_0,y_0)=1 &amp; -\frac{\partial u}{\partial y}(x_0,y_0)=0 \\
+ \frac{\partial v}{\partial x}(x_0,y_0)=0 &amp;  \frac{\partial v}{\partial y}(x_0,y_0)=1
+}\right]\end{split}\]</div>
+<p>Yes, by the CR Theorem.</p>
+<p class="last"><span class="math">\(f'(z) = 1\)</span></p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Is <span class="math">\(f(z) = \bar z\)</span> analytic?</p>
+<div class="math">
+\[f(z) = \bar z\]\[= x-iy = x+i(-y)\]</div>
+<div class="math">
+\[u(x,y) = x\]\[v(x,y) = -y\]</div>
+<p>The derivative matrix:</p>
+<div class="math">
+\[\begin{split}\left[\matrix{
+\frac{\partial u}{\partial x}(x_0,y_0)=1 &amp; -\frac{\partial u}{\partial y}(x_0,y_0)=0 \\
+ \frac{\partial v}{\partial x}(x_0,y_0)=0 &amp;  \frac{\partial v}{\partial y}(x_0,y_0)=-1]
+}\right]\end{split}\]</div>
+<p class="last">No, by the CR Theorem.</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Is <span class="math">\(f(z) = e^z\)</span> analytic?</p>
+<div class="math">
+\[e^z = e^x(\cos y + i \sin y)\]</div>
+<div class="math">
+\[u(x,y) = e^x \cos y\]\[v(x,y) = e^x \sin y\]</div>
+<p>The derivative matrix:</p>
+<div class="math">
+\[\begin{split}\left[
+\matrix
+{
+\frac{\partial u}{\partial x}(x_0,y_0)=e^x \cos y &amp; -\frac{\partial u}{\partial y}(x_0,y_0)=-e^x \sin y \\
+ \frac{\partial v}{\partial x}(x_0,y_0)=e^x \sin y &amp;  \frac{\partial v}{\partial y}(x_0,y_0)=e^x \cos y
+}
+\right]\end{split}\]</div>
+<p>CREs hold, so, yes!</p>
+<div class="last math">
+\[f'(z) = e^x \cos y + i e^x \sin y\]\[= e^z\]</div>
+</div>
+<div class="admonition-corollary admonition">
+<p class="first admonition-title">Corollary</p>
+<p>If <span class="math">\(f: S \to \Bbb C\)</span> where <span class="math">\(S \subseteq \Bbb C\)</span></p>
+<p>is complex differentiable on <span class="math">\(S\)</span> and <span class="math">\(f'(z)=0\)</span> everywhere on <span class="math">\(S\)</span>, then <span class="math">\(f(z)\)</span> is constant on <span class="math">\(S\)</span>.</p>
+<p>Proof:</p>
+<p>If <span class="math">\(f'(z)=0\)</span> on <span class="math">\(S\)</span>, then</p>
+<div class="math">
+\[\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} = \frac{\partial u}{\partial y} = \frac{\partial v}{\partial x} = 0\]</div>
+<p class="last">Then by the Mean-Value Theorem on <span class="math">\(\Bbb R\)</span>, <span class="math">\(u(x,y)\)</span> and <span class="math">\(v(x,y)\)</span> are constant, thus, so is <span class="math">\(f(z)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cauchy-Riemann Equations</a><ul>
+<li><a class="reference internal" href="#answer">Answer:</a><ul>
+<li><a class="reference internal" href="#the-cauchy-riemann-theorem">The Cauchy-Riemann Theorem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-09-26.html" title="previous chapter">Differentiation as a function from <span class="math">\(\Bbb R^2 \to \Bbb R^2\)</span></a></li>
+      <li>Next: <a href="../MTHE455/index.html" title="next chapter">MTHE 455 - Stochastic Processes &amp; Applications</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-09-30.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>
