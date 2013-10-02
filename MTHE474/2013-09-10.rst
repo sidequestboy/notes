@@ -42,20 +42,20 @@ For the first part of the course, we will deal with discrete time (discrete valu
 
 .. admonition:: Notation
 
-	Let :math:`X` be a discrete random variable with finite alphabet :math:`\chi` and pmf :math:`p(x):=P[X=x]` for :math:`x \in \chi` or :math:`p_X(a):=P[X=a]` for :math:`a \in \chi`.
+	Let :math:`X` be a discrete random variable with finite alphabet :math:`\mathcal X` and pmf :math:`p(x):=P[X=x]` for :math:`x \in \mathcal X` or :math:`p_X(a):=P[X=a]` for :math:`a \in \mathcal X`.
 
 .. admonition:: Definition
 
 	Entropy:
 
-	The *entropy* of a discrete random variable :math:`X` with alphabet :math:`\chi` and pmf :math:`p_X(.)` is denoted by :math:`H(X)` or :math:`H(p_X)` or :math:`H(p)` and defined by:
+	The *entropy* of a discrete random variable :math:`X` with alphabet :math:`\mathcal X` and pmf :math:`p_X(.)` is denoted by :math:`H(X)` or :math:`H(p_X)` or :math:`H(p)` and defined by:
 
 	.. math::
-		H(X) := -\sum_{x \in \chi} p(x) log_2 p(x)
+		H(X) := -\sum_{x \in \mathcal X} p(x) log_2 p(x)
 
 .. note::
 
-	:math:`H(X) = \sum_{x \in \chi} p(x) (-\log_2 p(x))`
+	:math:`H(X) = \sum_{x \in \mathcal X} p(x) (-\log_2 p(x))`
 
 	where the summand is the product of :math:`p(x)` and the self information of event :math:`X=x`.
 
@@ -69,7 +69,7 @@ For the first part of the course, we will deal with discrete time (discrete valu
 	.. math::
 		I(x) = -\log_2 p(x)
 
-Therefore, :math:`H(X)` is the statistical average amount of information gained when you learn that one of the :math:`|\chi|` outcomes of :math:`X` has occured.
+Therefore, :math:`H(X)` is the statistical average amount of information gained when you learn that one of the :math:`|\mathcal X|` outcomes of :math:`X` has occured.
 
 .. admonition:: Lemma
 
@@ -81,7 +81,7 @@ Therefore, :math:`H(X)` is the statistical average amount of information gained 
 	(2)
 
 		.. math::
-			H_b(X):= -\sum_{x \in \chi} p(x) log_b p(x) = log_b 2 H(X)
+			H_b(X):= -\sum_{x \in \mathcal X} p(x) log_b p(x) = log_b 2 H(X)
 
 		where :math:`H(X)` is in base 2.
 
@@ -90,7 +90,7 @@ Therefore, :math:`H(X)` is the statistical average amount of information gained 
 	Binary Entropy function:
 
 	.. math::
-		\chi = \{0,1\}, 0 \leq p \leq 1
+		\mathcal X = \{0,1\}, 0 \leq p \leq 1
 
 		P[X=0]=1-p
 
@@ -132,19 +132,19 @@ So, two useful forms of the Fundamental Inequality are:
 
 	Joint Entropy
 
-	Given two jointly distributed discrete random variables :math:`X` and :math:`Y`, (with alphabets :math:`\chi` and :math:`Y`) with join pmf
+	Given two jointly distributed discrete random variables :math:`X` and :math:`Y`, (with alphabets :math:`\mathcal X` and :math:`Y`) with join pmf
 
 	.. math::
 		p_{XY}(x,y) = p(x,y) = P(X=x, Y=y)
 
-	where :math:`x \in \chi` and :math:`y \in Y`
+	where :math:`x \in \mathcal X` and :math:`y \in Y`
 
 	Their *joint entropy*, denoted :math:`H(X,Y)` is:
 
 	.. math::
 		H(X,Y) := E_{XY}[-log p(X,Y)]
 
-		= -\sum_{x \in \chi} \sum_{y \in Y} p(x,y) \log_2 p(x,y)
+		= -\sum_{x \in \mathcal X} \sum_{y \in Y} p(x,y) \log_2 p(x,y)
 
 .. admonition:: Definition
 
@@ -155,7 +155,7 @@ So, two useful forms of the Fundamental Inequality are:
 	.. math::
 		H(X|Y) := E_{XY}[-log p(X|Y)]
 
-		= - \sum_{x \in \chi} \sum_{y \in Y} p(x,y) \log_2 p(x|y)
+		= - \sum_{x \in \mathcal X} \sum_{y \in Y} p(x,y) \log_2 p(x|y)
 
 	where
 

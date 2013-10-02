@@ -5,10 +5,10 @@ for Discrete Memoryless Source (DMS).
 
 .. admonition:: Definition
 
-	Given integers :math:`n` and :math:`k` (:math:`k=k(n)`), then a :math:`(k,n)` D-ary block encoder for a source :math:`\{X_i\}^\infty_{i=1}` with finite alphabet :math:`\chi` is a map:
+	Given integers :math:`n` and :math:`k` (:math:`k=k(n)`), then a :math:`(k,n)` D-ary block encoder for a source :math:`\{X_i\}^\infty_{i=1}` with finite alphabet :math:`\mathcal X` is a map:
 
 	.. math::
-		f: \chi^n \to \{0,1,...D-1\}^k
+		f: \mathcal X^n \to \{0,1,...D-1\}^k
 
 	Where :math:`D\geq 2`, integer.
 
@@ -19,7 +19,7 @@ for Discrete Memoryless Source (DMS).
 	*wlog*, we will deal with the case :math:`D=2`:
 
 	.. math::
-		f: \chi^n \to \{0,1\}^k
+		f: \mathcal X^n \to \{0,1\}^k
 
 	In this case, a code symbol is a **code bit**.
 
@@ -37,12 +37,12 @@ Problem
 We want to construct a block encoder for a DMS:
 
 .. math::
-	f: \chi^n \to \{0,1\}^k
+	f: \mathcal X^n \to \{0,1\}^k
 
 coupled with a *decoder*:
 
 .. math::
-	g: \{0,1\}^k \to \chi^n
+	g: \{0,1\}^k \to \mathcal X^n
 
 such that
 
@@ -59,7 +59,7 @@ for any :math:`\epsilon>0`, where :math:`P_e` is the probability of decoding err
 is as *small* as possible.
 
 .. note::
-	:math:`\chi^n` could be anything like the English language for example based on the English alphabet.
+	:math:`\mathcal X^n` could be anything like the English language for example based on the English alphabet.
 
 .. note::
 	Using block codes, not acutally Lossless compression; but asymptotically Lossless compression.
@@ -74,7 +74,7 @@ How small can :math:`R` be for :math:`\epsilon` arbitrarily small?
 	codebook:
 
 	.. math::
-		e = f(\chi^n) = \text{set of all the codewords}
+		e = f(\mathcal X^n) = \text{set of all the codewords}
 
 .. admonition:: Definition
 
@@ -87,9 +87,9 @@ How small can :math:`R` be for :math:`\epsilon` arbitrarily small?
 	For a UD code, :math:`P_e=0`, its rate is given by:
 
 	.. math::
-		|\chi|^n = 2^k
+		|\mathcal X|^n = 2^k
 
-		\iff R \frac{k}{n} = \log{2} |\chi| \text{ code bits/source symbol}
+		\iff R \frac{k}{n} = \log{2} |\mathcal X| \text{ code bits/source symbol}
 
 	Question:
 
@@ -106,10 +106,10 @@ How small can :math:`R` be for :math:`\epsilon` arbitrarily small?
 	.. note::
 		Check Appendix A in online notes for background on infimum/supremum stuff.
 
-	Consider a DMS :math:`\{X_i\}_{i=1}^\infty` with alphabet :math:`\chi`, generic pmf :math:`p_X` and entropy:
+	Consider a DMS :math:`\{X_i\}_{i=1}^\infty` with alphabet :math:`\mathcal X`, generic pmf :math:`p_X` and entropy:
 
 	.. math::
-		H_D(X) = -\sum_{x \in \chi} p_X(x) \log{D}p_X(x)
+		H_D(X) = -\sum_{x \in \mathcal X} p_X(x) \log{D}p_X(x)
 
 	.. note::
 		:math:`H_D` is in base :math:`D`.
