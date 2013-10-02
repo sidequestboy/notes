@@ -116,18 +116,18 @@
 <p>For the first part of the course, we will deal with discrete time (discrete valued) systems</p>
 <div class="admonition-notation admonition">
 <p class="first admonition-title">Notation</p>
-<p class="last">Let <span class="math">\(X\)</span> be a discrete random variable with finite alphabet <span class="math">\(\chi\)</span> and pmf <span class="math">\(p(x):=P[X=x]\)</span> for <span class="math">\(x \in \chi\)</span> or <span class="math">\(p_X(a):=P[X=a]\)</span> for <span class="math">\(a \in \chi\)</span>.</p>
+<p class="last">Let <span class="math">\(X\)</span> be a discrete random variable with finite alphabet <span class="math">\(\mathcal X\)</span> and pmf <span class="math">\(p(x):=P[X=x]\)</span> for <span class="math">\(x \in \mathcal X\)</span> or <span class="math">\(p_X(a):=P[X=a]\)</span> for <span class="math">\(a \in \mathcal X\)</span>.</p>
 </div>
 <div class="admonition-definition admonition">
 <p class="first admonition-title">Definition</p>
 <p>Entropy:</p>
-<p>The <em>entropy</em> of a discrete random variable <span class="math">\(X\)</span> with alphabet <span class="math">\(\chi\)</span> and pmf <span class="math">\(p_X(.)\)</span> is denoted by <span class="math">\(H(X)\)</span> or <span class="math">\(H(p_X)\)</span> or <span class="math">\(H(p)\)</span> and defined by:</p>
+<p>The <em>entropy</em> of a discrete random variable <span class="math">\(X\)</span> with alphabet <span class="math">\(\mathcal X\)</span> and pmf <span class="math">\(p_X(.)\)</span> is denoted by <span class="math">\(H(X)\)</span> or <span class="math">\(H(p_X)\)</span> or <span class="math">\(H(p)\)</span> and defined by:</p>
 <div class="last math">
-\[H(X) := -\sum_{x \in \chi} p(x) log_2 p(x)\]</div>
+\[H(X) := -\sum_{x \in \mathcal X} p(x) log_2 p(x)\]</div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p><span class="math">\(H(X) = \sum_{x \in \chi} p(x) (-\log_2 p(x))\)</span></p>
+<p><span class="math">\(H(X) = \sum_{x \in \mathcal X} p(x) (-\log_2 p(x))\)</span></p>
 <p>where the summand is the product of <span class="math">\(p(x)\)</span> and the self information of event <span class="math">\(X=x\)</span>.</p>
 <p>Thus, the entropy of a system is the <em>expected value</em> of self information for the system of events.</p>
 <div class="math">
@@ -136,7 +136,7 @@
 <div class="last math">
 \[I(x) = -\log_2 p(x)\]</div>
 </div>
-<p>Therefore, <span class="math">\(H(X)\)</span> is the statistical average amount of information gained when you learn that one of the <span class="math">\(|\chi|\)</span> outcomes of <span class="math">\(X\)</span> has occured.</p>
+<p>Therefore, <span class="math">\(H(X)\)</span> is the statistical average amount of information gained when you learn that one of the <span class="math">\(|\mathcal X|\)</span> outcomes of <span class="math">\(X\)</span> has occured.</p>
 <div class="admonition-lemma admonition">
 <p class="first admonition-title">Lemma</p>
 <ol class="last arabic">
@@ -147,7 +147,7 @@
 </div></blockquote>
 </li>
 <li><div class="first math">
-\[H_b(X):= -\sum_{x \in \chi} p(x) log_b p(x) = log_b 2 H(X)\]</div>
+\[H_b(X):= -\sum_{x \in \mathcal X} p(x) log_b p(x) = log_b 2 H(X)\]</div>
 <p>where <span class="math">\(H(X)\)</span> is in base 2.</p>
 </li>
 </ol>
@@ -156,7 +156,7 @@
 <p class="first admonition-title">Example</p>
 <p>Binary Entropy function:</p>
 <div class="last math">
-\[\chi = \{0,1\}, 0 \leq p \leq 1\]\[P[X=0]=1-p\]\[P[X=1]=p\]\[H(X) = \sum_{x=0}^1 = p(x) log_2 p(x)\]\[= -p log_2 p -(1-p) log_2 (1-p) =: h(p)\]</div>
+\[\mathcal X = \{0,1\}, 0 \leq p \leq 1\]\[P[X=0]=1-p\]\[P[X=1]=p\]\[H(X) = \sum_{x=0}^1 = p(x) log_2 p(x)\]\[= -p log_2 p -(1-p) log_2 (1-p) =: h(p)\]</div>
 </div>
 <img src="../_images/Binary_entropy_plot.svg" width="50%" /><div class="section" id="the-fundamental-inequality-fi">
 <h2>The fundamental inequality (FI)<a class="headerlink" href="#the-fundamental-inequality-fi" title="Permalink to this headline">¶</a></h2>
@@ -177,20 +177,20 @@
 <div class="admonition-definition admonition">
 <p class="first admonition-title">Definition</p>
 <p>Joint Entropy</p>
-<p>Given two jointly distributed discrete random variables <span class="math">\(X\)</span> and <span class="math">\(Y\)</span>, (with alphabets <span class="math">\(\chi\)</span> and <span class="math">\(Y\)</span>) with join pmf</p>
+<p>Given two jointly distributed discrete random variables <span class="math">\(X\)</span> and <span class="math">\(Y\)</span>, (with alphabets <span class="math">\(\mathcal X\)</span> and <span class="math">\(Y\)</span>) with join pmf</p>
 <div class="math">
 \[p_{XY}(x,y) = p(x,y) = P(X=x, Y=y)\]</div>
-<p>where <span class="math">\(x \in \chi\)</span> and <span class="math">\(y \in Y\)</span></p>
+<p>where <span class="math">\(x \in \mathcal X\)</span> and <span class="math">\(y \in Y\)</span></p>
 <p>Their <em>joint entropy</em>, denoted <span class="math">\(H(X,Y)\)</span> is:</p>
 <div class="last math">
-\[H(X,Y) := E_{XY}[-log p(X,Y)]\]\[= -\sum_{x \in \chi} \sum_{y \in Y} p(x,y) \log_2 p(x,y)\]</div>
+\[H(X,Y) := E_{XY}[-log p(X,Y)]\]\[= -\sum_{x \in \mathcal X} \sum_{y \in Y} p(x,y) \log_2 p(x,y)\]</div>
 </div>
 <div class="admonition-definition admonition">
 <p class="first admonition-title">Definition</p>
 <p>Conditional Entropy</p>
 <p>The <em>conditional entropy</em> of random variable <span class="math">\(X\)</span> given <span class="math">\(Y\)</span> is</p>
 <div class="math">
-\[H(X|Y) := E_{XY}[-log p(X|Y)]\]\[= - \sum_{x \in \chi} \sum_{y \in Y} p(x,y) \log_2 p(x|y)\]</div>
+\[H(X|Y) := E_{XY}[-log p(X|Y)]\]\[= - \sum_{x \in \mathcal X} \sum_{y \in Y} p(x,y) \log_2 p(x|y)\]</div>
 <p>where</p>
 <div class="last math">
 \[p(x|y) = \frac{p(x,y)}{p(y)}\]</div>

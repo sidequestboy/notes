@@ -18,7 +18,7 @@ BFI algorithm: :math:`O(n^2)`
 D&C algorithm:
 --------------
 
-.. image::
+.. image:: .static/09.30.1.jpg
     :width: 50%
 
 .. code::
@@ -57,14 +57,14 @@ so, D&C algorithm :math:`~ O(n)`
 
 D&C algorithm is not limited to trees either. We can solve a graph of this form:
 
-.. image::
+.. image:: .static/09.30.2.jpg
     :width: 50%
 
 Computational Geometry
 ======================
 Guards
 
-.. image::
+.. image:: .static/09.30.3.jpg
     :width: 50%
 
 :math:`n` points in :math:`x-y` plane
@@ -77,7 +77,7 @@ D&C approach
 ------------
 * split into 2 sets of :math:`\frac{n}{2}` pairs
 
-.. image::
+.. image:: .static/09.30.4.jpg
     :width: 50%
 
   * horizontally
@@ -89,6 +89,6 @@ D&C approach
 * draw rectangle around center line of that width
 * consider the points inside that rectangle.
 
-.. image::
+.. image:: .static/09.30.5.jpg
     :width: 50%
 

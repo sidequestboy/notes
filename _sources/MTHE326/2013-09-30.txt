@@ -14,7 +14,8 @@ If :math:`z=re^{i\theta}`, :math:`\theta\in (-\pi,\pi]`
 
 Then :math:`zw` multiplies :math:`|w|` by :math:`r` and rotates by :math:`\theta`.
 
-.. image::
+.. image:: .static/09-30-1.jpg
+    :width: 50%
 
 If :math:`f_z(w)=zw`
 

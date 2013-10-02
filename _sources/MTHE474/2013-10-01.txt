@@ -1,0 +1,179 @@
+************************************
+Entropy Rate for Sources with Memory
+************************************
+A general discrete source :math:`\{X_i\}_{i=1}^\infty` with memory, and of alphabet :math:`\mathcal X`, is described by the sequence of :math:`n` - fold joint pmgs:
+
+.. math::
+    p_{X^m}(x_1,x_2,...,x_n)=P[X_1=x_1,X_2=x_2,...,X_n=x_n]
+
+    n = 1,2,...
+
+    x^n = (x_1,...,x_n) \in \mathcal X^n
+
+.. note::
+    .. math::
+        p_{X^n}(x^n)=p_{X_1}(x_1)\prod_{i=2}^n p_{X_i|X^{i-1}}(x_i|x_{i-1},...,x_1)
+
+.. admonition:: Definition
+
+    A stochastic process (or source) :math:`\{X_i\}{i=1}^\infty` is called **stationary** (or **strictly stationary**) if:
+
+    .. math::
+        P[X_1=x_1,X_2=x_2,...,X_n=x_n]=P[X_{1+\tau}=x_1,X_{2+\tau}=x_2,...,X_{n+\tau}=x_n] (*)
+
+The idea: joint :math:`n` - fold dist. of the source is **invariant** under time shifts:
+
+i.e. :math:`X_1,X_2,...X_n` has the same distribution as :math:`X_{1+\tau},X_{2+\tau},...,X_{n+\tau}`.
+
+In practice, many sources are modeled via stationary processes.
+
+.. note::
+    (a) source stationarity :math:`\implies` source identically distributed (**same marginal**)
+
+      .. math::
+          P[X_1=a] = P[X_{1+\tau}=a]
+
+          \forall \tau, \forall a \in \mathcal X
+
+      This follows by using (*) with :math:`n=1`.
+    (b) A DMS (which consists of **iid** RVs) is stationary.
+
+      .. math::
+          P[X_1=x_1,X_2=x_2,...,X_n=x_n]
+
+          =\prod_{i=1}^\infty p_{X_i}(x_i)
+
+      by independence
+
+      .. math::
+          = \prod_{i=1}^n p_{X_{i+\tau}}(x_i)
+
+      by identical distribution
+
+      .. math::
+          = P[X_{1+\tau}=x_1,...,X_{n+\tau}=x_n]
+
+      by independence.
+
+Overview of Markov chains (Markov sources)
+==========================================
+.. admonition:: Definition
+
+    A discrete process :math:`\{X_i\}_{i=1}^\infty` with finite alphabet :math:`\mathcal X` is called a *Markov source* or a *Markov chain* (MC) if for :math:`n=1,2,...`
+
+    .. math::
+        P[X_n=x_n|X_{n-1}=x_{n-1},...,X_1=x_1]=P[X_n=x_n|X_{n-1}=x_{n-1}]
+
+    for all :math:`x^n=(x_1,...,x_n) \in \mathcal X^n`
+
+    In this case:
+
+    .. math::
+    p_{X^n}(x^n)=p_{X^n}(x^n)=p_{X_1}(x_1)\prod_{i=2}^n p_{X_i|X_{i-1}}(x_i|x_{i-1})
+
+Also, :math:`\{X_i\}` is called a *Markov source of order :math:`M`* (or *memory* :math:`M`), where :math:`M>0` an integer - if:
+
+.. math::
+    P[X_n=x_n|X_{n-1}=x_{n-1},...X_1=x_1]=P[X_n=x_n|X_{n-1}=x_{n-1},...,X_{n-m}=x_{n-m}]
+
+for all :math:`n>M` and :math:`x^n \in \mathcal X^n`
+
+.. admonition:: Definition
+
+    A MC :math:`\{X_i\}` is *homogeneous* or *time-invariant* if :math:`p_{X_n|X_{n-1}}` does not depend on :math:`n` for all :math:`n` - i.e.
+
+    .. math::
+        p_{X_n|X_{n-1}}(a|b):=P[X_n=1|X_n-1=b]=P[X_2=a|X_1=b]=p_{X_2|X_1}(a|b)
+
+.. admonition:: Definition
+
+    For a MC :math:`\{X_i\}`, :math:`X_i` is called the "state" of the MC at time :math:`i`.
+
+.. note::
+    Using (1) and (2), we remark that a homogeneous MC is fully described by its initial state distribution
+
+    .. math::
+        p_{X_1}(x)=P[X_1=x], x \in \mathcal X
+
+    and its conditional distribution :math:`p_{X_2|X_1}` which can be expressed via a so-called *transition probability matrix* :math:`|\mathcal X|` by :math:`|\mathcal X|`:
+
+    .. math::
+        Q = [p_{ij}]
+
+    where :math:`p_{ij} := P[X_2=j|X_1=i]`
+
+.. admonition:: Definition
+
+    A MC :math:`\{X_i\}` is *irreducible* if one can go from any state value in :math:`\mathcal X` to any other state value in :math:`\mathcal X` in a finite number of steps (transitions) with positive probability. i.e.
+
+    .. math::
+        \forall b,c \in \mathcal X,i=1,2,...
+
+        \exists \text{ integer } t>0 \text{ s.t.}
+
+        P[X_{i+t}=b|X_i=c]>0
+
+    .. admonition:: Example
+
+        .. math::
+            \mathcal X = \{0,1,2\}
+
+        .. image:: .static/10-01-1.jpg
+            :width: 50%
+        
+        irreducible
+
+        .. image:: .static/10-01-2.jpg
+            :width: 50%
+        
+        not irreducible (reducible)
+
+.. admonition:: Definition
+
+    For a MC :math:`\{X_i\}` with finite alphabet
+
+    .. math::
+        \mathcal X = \{1,2,3,...,m\}
+
+    and with transition probability matrix
+
+    .. math::
+        Q=[p_{ij}]
+
+    then the probability vector
+
+    .. math::
+        \Pi:=(\Pi_1,\Pi_2,...,\Pi_m)
+
+    on :math:`\mathcal X` where :math:`\Pi_i:=P[X_i]`, :math:`i \in \mathcal X`
+
+    is called a stationary (or steady-state) distribution for the MC if it satisfies:
+
+    .. math::
+        \sum_{i\in\mathcal X}\Pi_i p_{ij}
+
+        \sum_{i\in\mathcal X}\Pi_i P[X_2=j|X_1=i]
+
+    or equivalently, in matrix form:
+
+    .. math::
+        \Pi = \Pi Q
+
+    .. note:: 
+        :math:`\Pi` is a left eigenvector of :math:`Q` with eigenvalue 1.
+
+.. admonition:: Facts
+    
+    * For a finite-alphabet MC, :math:`\Pi` always exists.
+
+      * Also, if the MC is irreducible, then :math:`\Pi` is unique
+    * If a homogeneous MC is identically distributed, then it is stationary.
+    * If a homogeneous MC, :math:`\{X_i\}` has an initial state distribution given by :math:`\Pi`, i.e.
+    
+      .. math::
+          P[X_1=i]=\Pi_i
+
+      for every :math:`i \in\mathcal X`
+
+      then the MC is identically distributed and hence (by the above fact) it is stationary.
+

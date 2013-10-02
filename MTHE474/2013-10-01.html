@@ -1,0 +1,248 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Entropy Rate for Sources with Memory &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="prev" title="Proof of (i) (Forward Achievability):" href="2013-09-30.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-09-30.html" title="Proof of (i) (Forward Achievability):"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="entropy-rate-for-sources-with-memory">
+<h1>Entropy Rate for Sources with Memory<a class="headerlink" href="#entropy-rate-for-sources-with-memory" title="Permalink to this headline">¶</a></h1>
+<p>A general discrete source <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with memory, and of alphabet <span class="math">\(\mathcal X\)</span>, is described by the sequence of <span class="math">\(n\)</span> - fold joint pmgs:</p>
+<div class="math">
+\[p_{X^m}(x_1,x_2,...,x_n)=P[X_1=x_1,X_2=x_2,...,X_n=x_n]\]\[n = 1,2,...\]\[x^n = (x_1,...,x_n) \in \mathcal X^n\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="last math">
+\[p_{X^n}(x^n)=p_{X_1}(x_1)\prod_{i=2}^n p_{X_i|X^{i-1}}(x_i|x_{i-1},...,x_1)\]</div>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A stochastic process (or source) <span class="math">\(\{X_i\}{i=1}^\infty\)</span> is called <strong>stationary</strong> (or <strong>strictly stationary</strong>) if:</p>
+<div class="last math">
+\[P[X_1=x_1,X_2=x_2,...,X_n=x_n]=P[X_{1+\tau}=x_1,X_{2+\tau}=x_2,...,X_{n+\tau}=x_n] (*)\]</div>
+</div>
+<p>The idea: joint <span class="math">\(n\)</span> - fold dist. of the source is <strong>invariant</strong> under time shifts:</p>
+<p>i.e. <span class="math">\(X_1,X_2,...X_n\)</span> has the same distribution as <span class="math">\(X_{1+\tau},X_{2+\tau},...,X_{n+\tau}\)</span>.</p>
+<p>In practice, many sources are modeled via stationary processes.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ol class="loweralpha simple">
+<li>source stationarity <span class="math">\(\implies\)</span> source identically distributed (<strong>same marginal</strong>)</li>
+</ol>
+<blockquote>
+<div><div class="math">
+\[P[X_1=a] = P[X_{1+\tau}=a]\]\[\forall \tau, \forall a \in \mathcal X\]</div>
+<p>This follows by using (*) with <span class="math">\(n=1\)</span>.</p>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li>A DMS (which consists of <strong>iid</strong> RVs) is stationary.</li>
+</ol>
+<blockquote class="last">
+<div><div class="math">
+\[P[X_1=x_1,X_2=x_2,...,X_n=x_n]\]\[=\prod_{i=1}^\infty p_{X_i}(x_i)\]</div>
+<p>by independence</p>
+<div class="math">
+\[= \prod_{i=1}^n p_{X_{i+\tau}}(x_i)\]</div>
+<p>by identical distribution</p>
+<div class="math">
+\[= P[X_{1+\tau}=x_1,...,X_{n+\tau}=x_n]\]</div>
+<p>by independence.</p>
+</div></blockquote>
+</div>
+<div class="section" id="overview-of-markov-chains-markov-sources">
+<h2>Overview of Markov chains (Markov sources)<a class="headerlink" href="#overview-of-markov-chains-markov-sources" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A discrete process <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with finite alphabet <span class="math">\(\mathcal X\)</span> is called a <em>Markov source</em> or a <em>Markov chain</em> (MC) if for <span class="math">\(n=1,2,...\)</span></p>
+<div class="math">
+\[P[X_n=x_n|X_{n-1}=x_{n-1},...,X_1=x_1]=P[X_n=x_n|X_{n-1}=x_{n-1}]\]</div>
+<p>for all <span class="math">\(x^n=(x_1,...,x_n) \in \mathcal X^n\)</span></p>
+<p>In this case:</p>
+<div class="math">
+</div>
+<p class="last">p_{X^n}(x^n)=p_{X^n}(x^n)=p_{X_1}(x_1)prod_{i=2}^n p_{X_i|X_{i-1}}(x_i|x_{i-1})</p>
+</div>
+<p>Also, <span class="math">\(\{X_i\}\)</span> is called a <em>Markov source of order :math:`M`</em> (or <em>memory</em> <span class="math">\(M\)</span>), where <span class="math">\(M&gt;0\)</span> an integer - if:</p>
+<div class="math">
+\[P[X_n=x_n|X_{n-1}=x_{n-1},...X_1=x_1]=P[X_n=x_n|X_{n-1}=x_{n-1},...,X_{n-m}=x_{n-m}]\]</div>
+<p>for all <span class="math">\(n&gt;M\)</span> and <span class="math">\(x^n \in \mathcal X^n\)</span></p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A MC <span class="math">\(\{X_i\}\)</span> is <em>homogeneous</em> or <em>time-invariant</em> if <span class="math">\(p_{X_n|X_{n-1}}\)</span> does not depend on <span class="math">\(n\)</span> for all <span class="math">\(n\)</span> - i.e.</p>
+<div class="last math">
+\[p_{X_n|X_{n-1}}(a|b):=P[X_n=1|X_n-1=b]=P[X_2=a|X_1=b]=p_{X_2|X_1}(a|b)\]</div>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">For a MC <span class="math">\(\{X_i\}\)</span>, <span class="math">\(X_i\)</span> is called the &#8220;state&#8221; of the MC at time <span class="math">\(i\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Using (1) and (2), we remark that a homogeneous MC is fully described by its initial state distribution</p>
+<div class="math">
+\[p_{X_1}(x)=P[X_1=x], x \in \mathcal X\]</div>
+<p>and its conditional distribution <span class="math">\(p_{X_2|X_1}\)</span> which can be expressed via a so-called <em>transition probability matrix</em> <span class="math">\(|\mathcal X|\)</span> by <span class="math">\(|\mathcal X|\)</span>:</p>
+<div class="math">
+\[Q = [p_{ij}]\]</div>
+<p class="last">where <span class="math">\(p_{ij} := P[X_2=j|X_1=i]\)</span></p>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A MC <span class="math">\(\{X_i\}\)</span> is <em>irreducible</em> if one can go from any state value in <span class="math">\(\mathcal X\)</span> to any other state value in <span class="math">\(\mathcal X\)</span> in a finite number of steps (transitions) with positive probability. i.e.</p>
+<div class="math">
+\[\forall b,c \in \mathcal X,i=1,2,...\]\[\begin{split}\exists \text{ integer } t&gt;0 \text{ s.t.}\end{split}\]\[\begin{split}P[X_{i+t}=b|X_i=c]&gt;0\end{split}\]</div>
+<div class="admonition-example last admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[\mathcal X = \{0,1,2\}\]</div>
+<img alt="../_images/10-01-1.jpg" src="../_images/10-01-1.jpg" style="width: 50%;" />
+<p>irreducible</p>
+<img alt="../_images/10-01-2.jpg" src="../_images/10-01-2.jpg" style="width: 50%;" />
+<p class="last">not irreducible (reducible)</p>
+</div>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>For a MC <span class="math">\(\{X_i\}\)</span> with finite alphabet</p>
+<div class="math">
+\[\mathcal X = \{1,2,3,...,m\}\]</div>
+<p>and with transition probability matrix</p>
+<div class="math">
+\[Q=[p_{ij}]\]</div>
+<p>then the probability vector</p>
+<div class="math">
+\[\Pi:=(\Pi_1,\Pi_2,...,\Pi_m)\]</div>
+<p>on <span class="math">\(\mathcal X\)</span> where <span class="math">\(\Pi_i:=P[X_i]\)</span>, <span class="math">\(i \in \mathcal X\)</span></p>
+<p>is called a stationary (or steady-state) distribution for the MC if it satisfies:</p>
+<div class="math">
+\[\sum_{i\in\mathcal X}\Pi_i p_{ij}\]\[\sum_{i\in\mathcal X}\Pi_i P[X_2=j|X_1=i]\]</div>
+<p>or equivalently, in matrix form:</p>
+<div class="math">
+\[\Pi = \Pi Q\]</div>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><span class="math">\(\Pi\)</span> is a left eigenvector of <span class="math">\(Q\)</span> with eigenvalue 1.</p>
+</div>
+</div>
+<div class="admonition-facts admonition">
+<p class="first admonition-title">Facts</p>
+<ul class="last">
+<li><p class="first">For a finite-alphabet MC, <span class="math">\(\Pi\)</span> always exists.</p>
+<ul class="simple">
+<li>Also, if the MC is irreducible, then <span class="math">\(\Pi\)</span> is unique</li>
+</ul>
+</li>
+<li><p class="first">If a homogeneous MC is identically distributed, then it is stationary.</p>
+</li>
+<li><p class="first">If a homogeneous MC, <span class="math">\(\{X_i\}\)</span> has an initial state distribution given by <span class="math">\(\Pi\)</span>, i.e.</p>
+<div class="math">
+\[P[X_1=i]=\Pi_i\]</div>
+<p>for every <span class="math">\(i \in\mathcal X\)</span></p>
+<p>then the MC is identically distributed and hence (by the above fact) it is stationary.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Entropy Rate for Sources with Memory</a><ul>
+<li><a class="reference internal" href="#overview-of-markov-chains-markov-sources">Overview of Markov chains (Markov sources)</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-09-30.html" title="previous chapter">Proof of (i) (Forward Achievability):</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-10-01.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

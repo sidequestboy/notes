@@ -27,7 +27,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
-    <link rel="next" title="Test Note" href="../note.html" />
+    <link rel="next" title="Proof of (i) (Forward Achievability):" href="2013-09-30.html" />
     <link rel="prev" title="&lt;no title&gt;" href="2013-09-24.html" />
    
   
@@ -45,7 +45,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../note.html" title="Test Note"
+          <a href="2013-09-30.html" title="Proof of (i) (Forward Achievability):"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="2013-09-24.html" title="&lt;no title&gt;"
@@ -65,14 +65,14 @@
 <p>for Discrete Memoryless Source (DMS).</p>
 <div class="admonition-definition admonition">
 <p class="first admonition-title">Definition</p>
-<p>Given integers <span class="math">\(n\)</span> and <span class="math">\(k\)</span> (<span class="math">\(k=k(n)\)</span>), then a <span class="math">\((k,n)\)</span> D-ary block encoder for a source <span class="math">\(\{X_i\}^\infty_{i=1}\)</span> with finite alphabet <span class="math">\(\chi\)</span> is a map:</p>
+<p>Given integers <span class="math">\(n\)</span> and <span class="math">\(k\)</span> (<span class="math">\(k=k(n)\)</span>), then a <span class="math">\((k,n)\)</span> D-ary block encoder for a source <span class="math">\(\{X_i\}^\infty_{i=1}\)</span> with finite alphabet <span class="math">\(\mathcal X\)</span> is a map:</p>
 <div class="math">
-\[f: \chi^n \to \{0,1,...D-1\}^k\]</div>
+\[f: \mathcal X^n \to \{0,1,...D-1\}^k\]</div>
 <p>Where <span class="math">\(D\geq 2\)</span>, integer.</p>
 <p>The encoder represents <span class="math">\(n\)</span> consecutive symbols from the source by <span class="math">\(D\)</span> - ary <span class="math">\(k\)</span> -tuples, which we call <em>codewords</em>. (each codeword contains <span class="math">\(k\)</span> <span class="math">\(D\)</span> -ary code symbols.)</p>
 <p><em>wlog</em>, we will deal with the case <span class="math">\(D=2\)</span>:</p>
 <div class="math">
-\[f: \chi^n \to \{0,1\}^k\]</div>
+\[f: \mathcal X^n \to \{0,1\}^k\]</div>
 <p>In this case, a code symbol is a <strong>code bit</strong>.</p>
 <p>(Code compression rate)</p>
 <div class="math">
@@ -83,10 +83,10 @@
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
 <p>We want to construct a block encoder for a DMS:</p>
 <div class="math">
-\[f: \chi^n \to \{0,1\}^k\]</div>
+\[f: \mathcal X^n \to \{0,1\}^k\]</div>
 <p>coupled with a <em>decoder</em>:</p>
 <div class="math">
-\[g: \{0,1\}^k \to \chi^n\]</div>
+\[g: \{0,1\}^k \to \mathcal X^n\]</div>
 <p>such that</p>
 <div class="math">
 \[\begin{split}P_e:=P[g(f(x_1,...,x_n)) \neq (x_1,...,x_n)] &lt; \epsilon\end{split}\]</div>
@@ -97,7 +97,7 @@
 <p>is as <em>small</em> as possible.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><span class="math">\(\chi^n\)</span> could be anything like the English language for example based on the English alphabet.</p>
+<p class="last"><span class="math">\(\mathcal X^n\)</span> could be anything like the English language for example based on the English alphabet.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -110,7 +110,7 @@
 <p><strong>Block code</strong> <span class="math">\((k,n)\)</span> is the pair <span class="math">\((f,g)\)</span>. (encoder, decoder).</p>
 <p>codebook:</p>
 <div class="last math">
-\[e = f(\chi^n) = \text{set of all the codewords}\]</div>
+\[e = f(\mathcal X^n) = \text{set of all the codewords}\]</div>
 </div>
 <div class="admonition-definition admonition">
 <p class="first admonition-title">Definition</p>
@@ -119,7 +119,7 @@
 <p><span class="math">\(\iff\)</span> <span class="math">\(f\)</span> is <em>invertible</em> and <span class="math">\(g=f^{-1}\)</span>.</p>
 <p>For a UD code, <span class="math">\(P_e=0\)</span>, its rate is given by:</p>
 <div class="math">
-\[|\chi|^n = 2^k\]\[\iff R \frac{k}{n} = \log{2} |\chi| \text{ code bits/source symbol}\]</div>
+\[|\mathcal X|^n = 2^k\]\[\iff R \frac{k}{n} = \log{2} |\mathcal X| \text{ code bits/source symbol}\]</div>
 <p>Question:</p>
 <p>Can we do better? i.e. have smaller compression rates with block source codes?</p>
 <p>Answer:</p>
@@ -132,9 +132,9 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Check Appendix A in online notes for background on infimum/supremum stuff.</p>
 </div>
-<p>Consider a DMS <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with alphabet <span class="math">\(\chi\)</span>, generic pmf <span class="math">\(p_X\)</span> and entropy:</p>
+<p>Consider a DMS <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with alphabet <span class="math">\(\mathcal X\)</span>, generic pmf <span class="math">\(p_X\)</span> and entropy:</p>
 <div class="math">
-\[H_D(X) = -\sum_{x \in \chi} p_X(x) \log{D}p_X(x)\]</div>
+\[H_D(X) = -\sum_{x \in \mathcal X} p_X(x) \log{D}p_X(x)\]</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last"><span class="math">\(H_D\)</span> is in base <span class="math">\(D\)</span>.</p>
@@ -185,7 +185,7 @@
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
       <li>Previous: <a href="2013-09-24.html" title="previous chapter">&lt;no title&gt;</a></li>
-      <li>Next: <a href="../note.html" title="next chapter">Test Note</a></li>
+      <li>Next: <a href="2013-09-30.html" title="next chapter">Proof of (i) (Forward Achievability):</a></li>
   </ul></li>
   </ul></li>
 </ul>

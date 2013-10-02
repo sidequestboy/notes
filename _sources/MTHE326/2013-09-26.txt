@@ -13,7 +13,8 @@ Differentiation as a function from :math:`\Bbb R^2 \to \Bbb R^2`
 
 	:math:`h` can approach zero many ways.
 
-	.. image::
+	.. image:: .static/09-26-1.jpg
+		:width: 50%
 
 	Let :math:`h` go to zero along the real axis. ie.e
 
@@ -22,7 +23,8 @@ Differentiation as a function from :math:`\Bbb R^2 \to \Bbb R^2`
 
 	So, :math:`h\to 0` as :math:`t\to 0`. :math:`t \in \Bbb R`.
 
-	.. image::
+	.. image:: .static/09-26-2.jpg
+		:width: 50%
 
 	then the limit simplifies:
 
@@ -31,7 +33,8 @@ Differentiation as a function from :math:`\Bbb R^2 \to \Bbb R^2`
 
 	Let h go to zero along the imaginary axis now.
 
-	.. image::
+	.. image:: .static/09-26-3.jpg
+		:width: 50%
 
 	.. math::
 		h(t) = it
@@ -47,7 +50,7 @@ Differentiation as a function from :math:`\Bbb R^2 \to \Bbb R^2`
 
 .. admonition:: Proposition 6
 
-	Suppose :math`f` and :math`g` are analytic on the open set :math`S`. Then,
+	Suppose :math:`f` and :math:`g` are analytic on the open set :math:`S`. Then,
 
 	a) :math:`f+g` is analytic
 
@@ -107,7 +110,7 @@ Differentiation as a function from :math:`\Bbb R^2 \to \Bbb R^2`
 
 .. admonition:: Digression
 
-	Let's consider all linear functions from :math`\Bbb R^2 \to \Bbb R^2` that preserve length.
+	Let's consider all linear functions from :math:`\Bbb R^2 \to \Bbb R^2` that preserve length.
 
 	What do these look like?
 
@@ -142,9 +145,11 @@ Differentiation as a function from :math:`\Bbb R^2 \to \Bbb R^2`
 
 	So, if it preserves length, it preserves angles between two vectors.
 
-	.. image::
+	.. image:: .static/09-26-4.jpg
+		:width: 50%
 
-	.. image::
+	.. image:: .static/09-26-5.jpg
+		:width: 50%
 
 	.. math::
 		\cos\theta = \frac{v_1 \cdot v_2}{||v_1||\cdot||v_2||}

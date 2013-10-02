@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Proof of Cauchy-Riemann Equations and Conformality &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="MTHE 455 - Stochastic Processes &amp; Applications" href="../MTHE455/index.html" />
+    <link rel="prev" title="Cauchy-Riemann Equations" href="2013-09-30.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE455/index.html" title="MTHE 455 - Stochastic Processes &amp; Applications"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-30.html" title="Cauchy-Riemann Equations"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="proof-of-cauchy-riemann-equations-and-conformality">
+<h1>Proof of Cauchy-Riemann Equations and Conformality<a class="headerlink" href="#proof-of-cauchy-riemann-equations-and-conformality" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="proof-of-cauchy-riemann-theorem">
+<h2>Proof of Cauchy-Riemann Theorem<a class="headerlink" href="#proof-of-cauchy-riemann-theorem" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><span class="math">\(&quot;\implies&quot;\)</span></li>
+</ol>
+<p><span class="math">\(f\)</span> is complex differentiable at <span class="math">\(z_0\)</span></p>
+<p><strong>iff</strong></p>
+<div class="math">
+\[\lim_{h\to 0} \frac{f(x+0+h)-f(z_0)}{h}\]</div>
+<p>exists.</p>
+<p>This limit exists no matter how <span class="math">\(h\)</span> approaches 0.</p>
+<p>Let <span class="math">\(h=t\)</span> where <span class="math">\(t \in \Bbb R\)</span></p>
+<div class="math">
+\[\lim_{h\to 0}\frac{f(z_0+h)-f(z_0)}{h}\]\[= \frac{f(z_0+t)-f(z_0)}{t}\]</div>
+<p>and since</p>
+<div class="math">
+\[f(z_0)=f(x_0+iy_0)=u(x_0,y_0)+iv(x_0,y_0)\]</div>
+<p>then</p>
+<div class="math">
+\[\lim_{t\to 0} \frac{u(x_0+t,y_0)+iv(x_0+t,y_0)-(u(x_0,y_0)+iv(x_0,y_0))}{t}\]\[= \lim_{t\to 0} \frac{u(x_0+t,y_0)-u(x_0,y_0)}{t}+\lim_{t\to 0}i\frac{v(x_0+t,y_0)-v(x_0,y_0)}{t}\]\[= \frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x}\]</div>
+<p>cool. Now let&#8217;s approach along the imaginary axis!</p>
+<p>Let <span class="math">\(h=it\)</span> where <span class="math">\(t \in \Bbb R\)</span>.</p>
+<p>then</p>
+<div class="math">
+\[\lim_{h\to 0}\frac{f(z_0+h)-f(z_0)}{h}\]\[\lim_{t\to 0} \frac{u(x_0,y_0+t)+iv(x_0,y_0+t)-(u(x_0,y_0)+iv(x_0,y_0))}{t}\]\[= \lim_{t\to 0} -i\frac{u(x_0,y_0+t)-u(x_0,y_0)}{t}+\lim_{t\to 0}\frac{v(x_0,y_0+t)-v(x_0,y_0)}{t}\]\[=-i\frac{\partial u}{\partial y}(x_0,y_0)+\frac{\partial u}{\partial x}(x_0,y_0)\]</div>
+<p>So, equating the real and imaginary parts of the two results,</p>
+<div class="math">
+\[-\frac{\partial u}{\partial y}(x_0,y_0)=\frac{\partial v(x_0,y_0)}{\partial x(x_0,y_0)}\]</div>
+<p>and</p>
+<div class="math">
+\[\frac{\partial u}{\partial x}(x_0,y_0)=\frac{\partial u}{\partial x}\]</div>
+<p>2)
+We need to now proove that</p>
+<div class="math">
+\[F(x,y)=(u(x,y),v(x,y))\]</div>
+<p>is differentiable at <span class="math">\((x_0,y_0)\)</span></p>
+<p>Recall what it means for</p>
+<div class="math">
+\[F: S\subseteq \Bbb R \to \Bbb R\]</div>
+<p>to be differentiable at <span class="math">\((x_0,y_0)\)</span>.</p>
+<p>It means that there exists a 2-by-2 matrix, <span class="math">\(DF_{(x_0,y_0)}\)</span> such that:</p>
+<div class="math">
+\[\lim_{(h_x,h_y)\to (0,0)} \frac{||F(x_0+h_x,y_0+h_y)-F(x_0,y_0)-DF_{(x_0,y_0)}(h_x,h_y)||}{||(h_x,h_y)||}=0\]</div>
+<p>where <span class="math">\(||\cdot ||\)</span> is the norm on <span class="math">\(\Bbb R^2\)</span>, i.e.</p>
+<div class="math">
+\[||(h_x,h_y)||=\sqrt{h_x^2+h_y^2}\]</div>
+<p>If the Cauchy-Riemann Equations hold, then <span class="math">\(DF_{(x_0,y_0)}\)</span> can be represented by a complex number.</p>
+<p>Call <span class="math">\(w=DF_{(x_0,y_0)}\)</span></p>
+<p>and <span class="math">\(DF_{(x_0,y_0)}(h_x,h_y)=wh\)</span></p>
+<p>So we can equivalently rewrite the limit as:</p>
+<div class="math">
+\[\lim_{h\to 0}\frac{|f(z_0+h)-f(z_0)-wh|}{|h|}=0\]\[\iff \lim_{h\to 0}\left|\frac{f(z_0+h)-f(z_0)-wh}{h}\right|=0\]\[\iff lim_{h\to 0}\frac{f(z_0+h)-f(z_0)-wh}{h}=0\]\[\iff lim_{h\to 0}\frac{f(z_0+h)-f(z_0)}{h}-w=0\]\[\iff lim_{h\to 0}\frac{f(z_0+h)-f(z_0)}{h}=w\]</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Where is <span class="math">\(f(z)=|z|^2\)</span> differentiable?</p>
+<div class="math">
+\[f(x+iy) =x^2+y^2\]\[u(x,y)=x^2+y^2\]\[v(x,y)=0\]</div>
+<p>Then, the Jacobian is</p>
+<div class="math">
+\[\begin{split}\left[\matrix{
+2x &amp; 2y \\ 0 &amp; 0
+}\right]\end{split}\]</div>
+<p class="last">CREs only hold at <span class="math">\((x,y)=(0,0)\)</span>, so it is only differentiable at <span class="math">\((0,0)\)</span></p>
+</div>
+</div>
+<div class="section" id="conformality">
+<h2>Conformality<a class="headerlink" href="#conformality" title="Permalink to this headline">¶</a></h2>
+<p>Let</p>
+<div class="math">
+\[f(z)=\frac{1}{z}=\frac{x}{x^2+y^2}+i(\frac{-y}{x^2+y^2})\]\[F(x,y)=(\frac{1}{z}=\frac{x}{x^2+y^2},(\frac{-y}{x^2+y^2}))\]\[\begin{split}DF=\frac{1}{x^2+y^2}\left[\matrix{
+y^2-x^2 &amp; -2xy \\
+2xy &amp; y^2-x^2
+}\right]\end{split}\]</div>
+<p>Consider the curves:</p>
+<div class="math">
+\[\gamma_1(t)=[t,1]\]\[\gamma_2(t)=[2,s]\]\[t,s \in \Bbb R\]</div>
+<p>let <span class="math">\(t=2, s=1\)</span></p>
+<img alt="MTHE326/.static/10-01-1.jpg" src="MTHE326/.static/10-01-1.jpg" style="width: 50%;" />
+<p>What angle do <span class="math">\(F(\gamma_1(t))\)</span> and <span class="math">\(F(\gamma_2(t))\)</span> make at <span class="math">\(F(2,1)\)</span>?</p>
+<p>More about this on Thursday.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Proof of Cauchy-Riemann Equations and Conformality</a><ul>
+<li><a class="reference internal" href="#proof-of-cauchy-riemann-theorem">Proof of Cauchy-Riemann Theorem</a></li>
+<li><a class="reference internal" href="#conformality">Conformality</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-09-30.html" title="previous chapter">Cauchy-Riemann Equations</a></li>
+      <li>Next: <a href="../MTHE455/index.html" title="next chapter">MTHE 455 - Stochastic Processes &amp; Applications</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-10-01.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -88,7 +88,7 @@ Then we can find :math:`\delta>0` s.t.
 Let :math:`C'` be the set of source :math:`n` - tuples :math:`x^n` that are encoded one-to-one onto distinct codewords:
 
 .. math::
-	C'=\{x^n\in\chi^n:g(f(x^n))=x^n\}
+	C'=\{x^n\in\mathcal X^n:g(f(x^n))=x^n\}
 
 .. note::
 	All the other :math:`n` - tuples are mapped many-to-one.
@@ -157,4 +157,4 @@ Entropy Rate
 :math:`X_1,X_2,...`
 
 .. math::
-	\{p_{X^n}(x_1,x_2,...x_n), n=1,2,..., x^n \in \chi^n\}
+	\{p_{X^n}(x_1,x_2,...x_n), n=1,2,..., x^n \in \mathcal X^n\}

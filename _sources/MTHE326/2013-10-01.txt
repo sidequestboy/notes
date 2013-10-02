@@ -1,0 +1,159 @@
+**************************************************
+Proof of Cauchy-Riemann Equations and Conformality
+**************************************************
+Proof of Cauchy-Riemann Theorem
+===============================
+1) :math:`"\implies"`
+
+:math:`f` is complex differentiable at :math:`z_0`
+
+**iff**
+
+.. math::
+	\lim_{h\to 0} \frac{f(x+0+h)-f(z_0)}{h}
+
+exists.
+
+This limit exists no matter how :math:`h` approaches 0.
+
+Let :math:`h=t` where :math:`t \in \Bbb R`
+
+.. math::
+	\lim_{h\to 0}\frac{f(z_0+h)-f(z_0)}{h}
+
+	= \frac{f(z_0+t)-f(z_0)}{t}
+
+and since
+
+.. math::
+	f(z_0)=f(x_0+iy_0)=u(x_0,y_0)+iv(x_0,y_0)
+
+then
+
+.. math::
+	\lim_{t\to 0} \frac{u(x_0+t,y_0)+iv(x_0+t,y_0)-(u(x_0,y_0)+iv(x_0,y_0))}{t}
+
+	= \lim_{t\to 0} \frac{u(x_0+t,y_0)-u(x_0,y_0)}{t}+\lim_{t\to 0}i\frac{v(x_0+t,y_0)-v(x_0,y_0)}{t}
+
+	= \frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x}
+
+cool. Now let's approach along the imaginary axis!
+
+Let :math:`h=it` where :math:`t \in \Bbb R`.
+
+then
+
+.. math::
+	\lim_{h\to 0}\frac{f(z_0+h)-f(z_0)}{h}
+
+	\lim_{t\to 0} \frac{u(x_0,y_0+t)+iv(x_0,y_0+t)-(u(x_0,y_0)+iv(x_0,y_0))}{t}
+
+	= \lim_{t\to 0} -i\frac{u(x_0,y_0+t)-u(x_0,y_0)}{t}+\lim_{t\to 0}\frac{v(x_0,y_0+t)-v(x_0,y_0)}{t}
+
+	=-i\frac{\partial u}{\partial y}(x_0,y_0)+\frac{\partial u}{\partial x}(x_0,y_0)
+
+So, equating the real and imaginary parts of the two results,
+
+.. math::
+	-\frac{\partial u}{\partial y}(x_0,y_0)=\frac{\partial v(x_0,y_0)}{\partial x(x_0,y_0)}
+
+and 
+
+.. math::
+	\frac{\partial u}{\partial x}(x_0,y_0)=\frac{\partial u}{\partial x}
+
+2)
+We need to now proove that
+
+.. math::
+	F(x,y)=(u(x,y),v(x,y))
+
+is differentiable at :math:`(x_0,y_0)`
+
+Recall what it means for 
+
+.. math::
+	F: S\subseteq \Bbb R \to \Bbb R
+
+to be differentiable at :math:`(x_0,y_0)`.
+
+It means that there exists a 2-by-2 matrix, :math:`DF_{(x_0,y_0)}` such that:
+
+.. math::
+	\lim_{(h_x,h_y)\to (0,0)} \frac{||F(x_0+h_x,y_0+h_y)-F(x_0,y_0)-DF_{(x_0,y_0)}(h_x,h_y)||}{||(h_x,h_y)||}=0
+
+where :math:`||\cdot ||` is the norm on :math:`\Bbb R^2`, i.e.
+
+.. math::
+	||(h_x,h_y)||=\sqrt{h_x^2+h_y^2}
+
+If the Cauchy-Riemann Equations hold, then :math:`DF_{(x_0,y_0)}` can be represented by a complex number.
+
+Call :math:`w=DF_{(x_0,y_0)}`
+
+and :math:`DF_{(x_0,y_0)}(h_x,h_y)=wh`
+
+So we can equivalently rewrite the limit as:
+
+.. math::
+	\lim_{h\to 0}\frac{|f(z_0+h)-f(z_0)-wh|}{|h|}=0
+
+	\iff \lim_{h\to 0}\left|\frac{f(z_0+h)-f(z_0)-wh}{h}\right|=0
+
+	\iff lim_{h\to 0}\frac{f(z_0+h)-f(z_0)-wh}{h}=0
+
+	\iff lim_{h\to 0}\frac{f(z_0+h)-f(z_0)}{h}-w=0
+
+	\iff lim_{h\to 0}\frac{f(z_0+h)-f(z_0)}{h}=w
+
+.. admonition:: Example
+
+	Where is :math:`f(z)=|z|^2` differentiable?
+
+	.. math::
+		f(x+iy) =x^2+y^2
+
+		u(x,y)=x^2+y^2
+
+		v(x,y)=0
+
+	Then, the Jacobian is
+
+	.. math::
+		\left[\matrix{
+		2x & 2y \\ 0 & 0
+		}\right]
+
+	CREs only hold at :math:`(x,y)=(0,0)`, so it is only differentiable at :math:`(0,0)`
+
+Conformality
+============
+Let
+
+.. math::
+	f(z)=\frac{1}{z}=\frac{x}{x^2+y^2}+i(\frac{-y}{x^2+y^2})
+
+	F(x,y)=(\frac{1}{z}=\frac{x}{x^2+y^2},(\frac{-y}{x^2+y^2}))
+
+	DF=\frac{1}{x^2+y^2}\left[\matrix{
+	y^2-x^2 & -2xy \\
+	2xy & y^2-x^2
+	}\right]
+
+Consider the curves:
+
+.. math::
+	\gamma_1(t)=[t,1]
+
+	\gamma_2(t)=[2,s]
+
+	t,s \in \Bbb R
+
+let :math:`t=2, s=1`
+
+.. image:: .static/10-01-1.jpg
+	:width: 50%
+
+What angle do :math:`F(\gamma_1(t))` and :math:`F(\gamma_2(t))` make at :math:`F(2,1)`?
+
+More about this on Thursday.

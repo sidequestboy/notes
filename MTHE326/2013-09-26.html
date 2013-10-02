@@ -27,7 +27,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
-    <link rel="next" title="MTHE 455 - Stochastic Processes &amp; Applications" href="../MTHE455/index.html" />
+    <link rel="next" title="Cauchy-Riemann Equations" href="2013-09-30.html" />
     <link rel="prev" title="Limits, Continuity, Differentiability" href="2013-09-24.html" />
    
   
@@ -45,7 +45,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../MTHE455/index.html" title="MTHE 455 - Stochastic Processes &amp; Applications"
+          <a href="2013-09-30.html" title="Cauchy-Riemann Equations"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="2013-09-24.html" title="Limits, Continuity, Differentiability"
@@ -69,14 +69,17 @@
 \[\lim_{h \to 0} \frac{f(z_0+h)-f(z_0)}{h}=\lim_{h \to 0}\frac{\bar h}{h}\]</div>
 <p>which does not exist.</p>
 <p><span class="math">\(h\)</span> can approach zero many ways.</p>
+<img alt="MTHE326/.static/09-26-1.jpg" src="MTHE326/.static/09-26-1.jpg" style="width: 50%;" />
 <p>Let <span class="math">\(h\)</span> go to zero along the real axis. ie.e</p>
 <div class="math">
 \[h(t)=t\]</div>
 <p>So, <span class="math">\(h\to 0\)</span> as <span class="math">\(t\to 0\)</span>. <span class="math">\(t \in \Bbb R\)</span>.</p>
+<img alt="MTHE326/.static/09-26-2.jpg" src="MTHE326/.static/09-26-2.jpg" style="width: 50%;" />
 <p>then the limit simplifies:</p>
 <div class="math">
 \[\lim_{t \to 0} \frac{f(z_0+t)-f(z_0)}{t}=\lim{t}{t}=1\]</div>
 <p>Let h go to zero along the imaginary axis now.</p>
+<img alt="MTHE326/.static/09-26-3.jpg" src="MTHE326/.static/09-26-3.jpg" style="width: 50%;" />
 <div class="math">
 \[h(t) = it\]</div>
 <p>for <span class="math">\(t \in \Bbb R\)</span>.</p>
@@ -87,7 +90,7 @@
 </div>
 <div class="admonition-proposition-6 admonition">
 <p class="first admonition-title">Proposition 6</p>
-<p>Suppose :math`f` and :math`g` are analytic on the open set :math`S`. Then,</p>
+<p>Suppose <span class="math">\(f\)</span> and <span class="math">\(g\)</span> are analytic on the open set <span class="math">\(S\)</span>. Then,</p>
 <ol class="loweralpha simple">
 <li><span class="math">\(f+g\)</span> is analytic</li>
 </ol>
@@ -136,7 +139,7 @@
 </div>
 <div class="admonition-digression admonition">
 <p class="first admonition-title">Digression</p>
-<p>Let&#8217;s consider all linear functions from :math`Bbb R^2 to Bbb R^2` that preserve length.</p>
+<p>Let&#8217;s consider all linear functions from <span class="math">\(\Bbb R^2 \to \Bbb R^2\)</span> that preserve length.</p>
 <p>What do these look like?</p>
 <blockquote>
 <div><ul class="simple">
@@ -158,6 +161,8 @@
 <div class="math">
 \[T(v_1) \cdot T(v_2) = \frac{1}{2}(||T(v_1)+T(v_2)||^2-||T(v_1)||^2-||T(v_2)||^2)\]\[(T(v_1) + T(v_2) = T(v_1+v_2))\]\[T(v_1) \cdot T(v_2) = \frac{1}{2}(||v_1+v_2||^2-||v_1||^2-||v_2||^2 =v_1 \cdot v_2\]</div>
 <p>So, if it preserves length, it preserves angles between two vectors.</p>
+<img alt="MTHE326/.static/09-26-4.jpg" src="MTHE326/.static/09-26-4.jpg" style="width: 50%;" />
+<img alt="MTHE326/.static/09-26-5.jpg" src="MTHE326/.static/09-26-5.jpg" style="width: 50%;" />
 <div class="last math">
 \[\cos\theta = \frac{v_1 \cdot v_2}{||v_1||\cdot||v_2||}\]\[= \frac{T v_1 \cdot T v_2}{||Tv_1||\cdot||Tv_2||}\]\[= \cos \phi\]</div>
 </div>
@@ -203,7 +208,7 @@
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
       <li>Previous: <a href="2013-09-24.html" title="previous chapter">Limits, Continuity, Differentiability</a></li>
-      <li>Next: <a href="../MTHE455/index.html" title="next chapter">MTHE 455 - Stochastic Processes &amp; Applications</a></li>
+      <li>Next: <a href="2013-09-30.html" title="next chapter">Cauchy-Riemann Equations</a></li>
   </ul></li>
   </ul></li>
 </ul>
