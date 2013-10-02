@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>More Divide and Conquer &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="MTHE 326 - Functions of a Complex Variable" href="../MTHE326/index.html" />
+    <link rel="prev" title="Longest Path in a Tree" href="2013-09-30.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE326/index.html" title="MTHE 326 - Functions of a Complex Variable"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-30.html" title="Longest Path in a Tree"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <dl class="docutils">
+<dt>..epigraph::</dt>
+<dd><p class="first">We cannot prevent the Singularity</p>
+<p>Happy Birthday to Verner Vinge</p>
+<p class="last">(author of <em>True Names</em>, <em>Fire Upon the Deep</em>)</p>
+</dd>
+</dl>
+<div class="section" id="more-divide-and-conquer">
+<h1>More Divide and Conquer<a class="headerlink" href="#more-divide-and-conquer" title="Permalink to this headline">¶</a></h1>
+<img alt="../_images/10.02.1.jpg" src="../_images/10.02.1.jpg" style="width: 50%;" />
+<ul class="simple">
+<li>Split the points into 2 horizontally separate halves: Left &amp; Right</li>
+<li>Solve recursively on L &amp; R</li>
+<li>Look for points across the dividing line that are close together. (*)</li>
+</ul>
+<p>What if all the points are in a vertical line?</p>
+<img alt="../_images/10.02.2.jpg" src="../_images/10.02.2.jpg" style="width: 50%;" />
+<p>Still can constrain to a rectangle of :math:’delta_r times 2delta_r‘</p>
+<p>And there’s only 5 other points to compare to (the vertices of the rectangle)</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Could be 7 closest points, worst case if two equal points on dividing line somehow get sorted to either side. Actually definitely less than 7 (even less than 5), but we&#8217;re sure it&#8217;s less than 7.</p>
+</div>
+<img alt="../_images/10.02.3.jpg" src="../_images/10.02.3.jpg" style="width: 50%;" />
+<p>(*) becomes then,
+* Find the points in the vertical strip of interest for each point, compute its distance to the 5 (7) points closest above this point, looking for points that are close together.</p>
+<div class="math">
+\[Time(n) = 2Time(\frac{n}{2})+O(n)+O(n\log n)\]\[= O(n\log n)\]</div>
+<div class="section" id="road-trip">
+<h2>Road Trip<a class="headerlink" href="#road-trip" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/10.02.4.jpg" src="../_images/10.02.4.jpg" style="width: 50%;" />
+<ul class="simple">
+<li>range of car on single tank of gas <span class="math">\(=D\)</span>.</li>
+<li>want to make as few stops as possible</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">optimal solution is not unique</p>
+</div>
+<img alt="../_images/10.02.5.jpg" src="../_images/10.02.5.jpg" style="width: 50%;" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">More Divide and Conquer</a><ul>
+<li><a class="reference internal" href="#road-trip">Road Trip</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="2013-09-30.html" title="previous chapter">Longest Path in a Tree</a></li>
+      <li>Next: <a href="../MTHE326/index.html" title="next chapter">MTHE 326 - Functions of a Complex Variable</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-10-02.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>
