@@ -1,0 +1,201 @@
+
+
+Given a finite alphabet homogeneous Markov Chain :math:`\{X_i\}` with alphabet
+
+.. math::
+	\cal X = \{1,2,...,m\}
+
+and state transition probability matrix
+
+.. math::
+	Q_{|\cal X|\times |\cal X|}=[p_{ij}]
+
+where :math:`p_{ij}:=P[X_n=j|X_{n-1}=i]`, :math:`i,j \in \cal X`
+
+then the probability distribution vector,
+
+.. math::
+	\Pi=(\Pi_1,\Pi_2,...,\Pi_m)
+
+such that :math:`\Pi_l\geq 0`, :math:`l=1,2,...m` and :math:`\sum_{l=1}^m \Pi_l=1`
+
+.. math::
+	\Pi=\Pi Q
+
+.. admonition:: Example
+
+	Homogeneous Binary Markov Chain
+
+	.. math::
+		\cal X=\{0,1\}
+
+		Q_{2\times 2}=[p_{ij}]=\left[\matrix{p_00 & p_01 \\ p_10 & p_11}\right]
+
+		= \left[\matrix{1-\alpha & \alpha \\ \beta & \1-\beta}\right]
+
+		.. image::
+
+	Solve for :math:`\Pi=(\Pi_1,\Pi_2)`:
+
+	.. math::
+		\Pi = \Pi Q
+
+		(\Pi_0,1-\Pi_0)=(\Pi_0,1-\Pi_0)\left(\matrix{1-\alpha & \alpha \\ \beta & \1-\beta}\right)
+
+		\implies \Pi_0=\frac{\beta}{\alpha+\beta}
+
+		\Pi_1=1-\Pi_0
+
+	therefore,
+
+	.. math::
+		\Pi=(\Pi_0,\Pi_1)=(\frac{\beta}{\alpha+\beta},\frac{\alpha}{\alpha+\beta})
+
+	So if,
+
+	.. math::
+		P[X_1=0]=\Pi_0=1-P[X_1=1]
+
+	then the MC is *stationary*.
+
+Entropy Rate:
+=============
+For a DMS, we defined the source entropy as the entropy of any RV in the DMS. (since all its RVs are iid.)
+
+Question:
+
+How might we define the notion of entropy for a source with memory?
+
+.. admonition:: Definition
+
+	The *entropy rate* of a source :math:`\{X_i\}_{i=1}^\infty` with alphabet :math:`\cal X` is denoted by :math:`H(\cal X)` (or :math:`H_\infty(X)` or :math:`H(X_\infty)`) and defined by:
+
+	.. math::
+		H(\cal X):=\lim_{n\to \infty} \frac{1}{n}H(X_1,X_2,...X_n)
+
+	provided that the limit exists.
+
+.. note::
+	For a DMS, we know that
+
+	.. math::
+		H(X_1,X_2,...,X_n)=H(X_1)+H(X_2)+...+H(X_n)
+
+	by independence
+
+	.. math::
+		=nH(X_1)
+
+	by identical distribution
+
+	therefore,
+
+	.. math::
+		H(\cal X)=H(X_1)
+
+.. admonition:: Lemma
+
+	For a stationary source, :math:`\{X_i\}_{i=1}^\infty`, the conditional entropy, :math:`H(X_n|X_{n-1},...H_1)` is decreasing in :math:`n`, and has *a limit*:
+
+	.. math::
+		H'(\cal X):=\lim_{n\to \infty}H(X_n|X_{n-1},...X_1)
+
+		H'(\cal X):=\lim_{n\to \infty}H(X_n|X^{n-1})
+
+	Proof:
+
+	.. math::
+		H(X_n|X_{n-1},...,X_1)\leq H(X_n|X_{n-1},...,X_2)
+
+	since conditioning reduces entropy
+
+	.. math::
+		=H(X_n,...X_2)-H(X_{n-1},...,X_2)
+
+	by chain rule for entropy
+
+	And, by stationarity,
+
+	.. math::
+		= H(X_{n-1},...,X_1)-H(X_{n-2},...,X_1)
+
+		=H(X_{n-1}|X^{n-2})
+
+	by the chain rule.
+
+	Since :math:`H(C_n|X^{n-1})` is a decreasing sequence in :math:`n`, and is bounded below (by 0), it must have a limit:
+
+	.. math::
+		H'(\cal X)=\lim_{n\to\infty} H(X_n|X_{n-1})
+
+.. admonition:: Theorem
+
+	Cesaro-Mean Theorem
+
+	If :math:`a_n\to_{n\to\infty} a`, and :math:`b_n=\frac{1}{n}\sum_{i=1}^\infty a_i`, then
+
+	.. math::
+		b_n\to_{n\to\infty} a
+
+	Proof pg 76 in Textbook
+
+.. admonition:: Theorem
+
+	For a stationary source :math:`\{X_1\}_{i=1}^\infty` with alphabet :math:`\cal X`, its entropy rate :math:`H(\cal X)` always exists, and is given by:
+
+	.. math::
+		H(\cal X)=H'(\cal X)
+
+		=\lim_{n\to \infty}H(X_n|X_{n-1},...,X_1)
+
+	Proof:
+
+	.. math::
+		\frac{1}{n}H(X_1,...,X_n)=\frac{1}{n}\sum_{i=1}^n H(C_1|X^{i-1})
+
+	by chain rule.
+
+	But, we know that :math:`H(X_i|X^{i-1})` decreases with :math:`i`, and converges to :math:`H'(\cal X)` as :math:`i\to\infty`
+
+	So by the Cesaro-Mean Theorem, 
+
+	.. math::
+		H(\cal X)=H'(\cal X)
+
+	.. note::
+		For any :math:`n`,
+
+		.. math::
+			H(\cal X)\leqH(X_n|X^{n-1})
+
+		and
+
+		.. math::
+			\frac{1}{n}H(X_1,...,X_n)
+
+		is decreasing in :math:`n`.
+
+.. admonition:: Example
+
+	Consider the stationary binary Markov Chain
+
+	.. math::
+		H(\cal X)=\lim_{n\to\infty}H(X_n|X^{n-1})
+
+		= \lim_{n\to\infty}H(X_n|X_{n-1})
+
+		=H(X_2|X_1)
+
+		=-\sum_{i\in\cal X}\sum_{j\in\cal X}P[X_2=j|X_1=i]P[X_1=i]\log_2 P[C_2=j|Xi=i]
+
+		=-\sum_{i\in\cal X}\sum_{j\in\cal X}p_{ij}\Pi_i\log_2 p_{ij}
+
+		=\frac{\beta}{\alpha+\beta}h_b(\alpha)-\frac{\alpha}{\alpha+\beta}h_b(\beta)
+
+	where :math:`h_b(c)=\x\log_2 x - (1-x)\log_2 (1-x)` is the binary entropy function.
+
+Stationary Ergodic Sources
+==========================
+Loosely speaking, stationary sources that cannot be separated into different persisting asymptotic modes of behaviour are known as *ergodic sources*.
+
+A *stationary ergodic* source satisfies the Law of Large Numbers.c

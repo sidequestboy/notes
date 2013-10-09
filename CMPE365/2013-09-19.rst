@@ -4,9 +4,9 @@ Cook-Levin
 
 .. admonition:: Theorem
 
-	If CNF-SAT :math:`\in` P, then :math:`P=NP`
+	If CNF-SAT :math:`\in P`, then :math:`P=NP`
 
-Proof would be to show that any decision problem in :math:`NP` can be transformed in polynomial time to an instance of CNF-SAT. i.e., all prolems in :math:`NP` reduce to CNF-SAT.
+Proof would be to show that any decision problem in :math:`NP` can be transformed in polynomial time to an instance of CNF-SAT. i.e., all problems in :math:`NP` reduce to CNF-SAT.
 
 NP-Complete Problems
 ====================

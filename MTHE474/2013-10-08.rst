@@ -1,0 +1,146 @@
+*******************
+Unique Decodability
+*******************
+Goal:
+
+Find out how efficiently one can represent a discrete source :math:`\{X_i\}_{i=1}^\infty` with a **UD** (lossless) VLC (Variable Length Code) and give a construction technique that (at least asymptotically) attains optimal "efficiency"
+
+.. admonition:: Question
+    
+    What is "efficiency"?
+
+    We want to minimize the *average code rate* (or, equivalently, the *average codeword length*):
+
+    If souce :math:`\{X_i\}_{i=1}^\infty` has alphabet :math:`\mathcal X` and join pmfs :math:`p_{X^m}(x^m)`, :math:`x^m\in \mathcal X^m`, :math:`m=1,2,...`
+
+    VLC:
+
+    For :math:`n\geq 1`, encoder:
+
+    .. math::
+        f:\mathcal X^n\to B^*
+
+        B=\{0,1,2,...,D-1\}
+
+    :math:`l(x^n):=` length of the codeword :math:`f(x^n)` associated to :math:`x^n`.
+
+    Average codeword length:
+
+    .. math::
+        \bar l:=\sum_{x^n\in \mathcal X^n}p_{X^n}(x^n)l(x^n)=E_{X^n}[l(X^n)]
+
+    Average code rate:
+
+    .. math::
+        \bar R:=\frac{\bar l}{n}=\frac{1}{n}\sum_{x^n\in\mathcal X^n}p_{X^n}(x^n)l(x^n)
+
+    with units :math:`\frac{\text{D-ary code symbol}}{\text{Source symbol}}`
+
+.. admonition:: Definition
+
+    A prefix (or "instantaneous") code is a variable-length code with the property that none of its codewords can be a prefix of any of them.
+
+    .. admonition:: note
+
+        A prefix code is Uniquely Decodable since no codeword is a prefix of another: as soon as the receiver sees a codeword, one can decode it "instantaneously". i.e. it is immediately recognizable.
+
+.. admonition:: Example
+
+    DMS :math:`\{X_i\}_{i=1}^\infty`
+
+    Binary VLC :math:`f:\mathcal X\to\{0,1\}^*`
+
+    (here :math:`n=1`)
+
+    ===================================== =================== ====== ====== ====== ====== ======
+    Source symbol :math:`x\in \mathcal X` :math:`p_X(x)`      Code 1 Code 2 Code 3 Code 4 Code 5
+    ===================================== =================== ====== ====== ====== ====== ======
+    :math:`a_1`                           :math:`\frac{1}{2}` 00     0      0      0      0
+    :math:`a_2`                           :math:`\frac{1}{4}` 01     0      1      01     10
+    :math:`a_3`                           :math:`\frac{1}{8}` 10     10     10     011    110
+    :math:`a_4`                           :math:`\frac{1}{8}` 11     01     01     0111   111
+    ===================================== =================== ====== ====== ====== ====== ======
+
+    First: source entropy
+
+    .. math::
+        H(X)=-\sum_{x\in\mathcal X}p_X(x)log_2(p_X(x))=\frac{7}{4}\text{ bits}
+
+    Code 1: Fixed length (block) code with :math:`\bar R=\frac{\bar l}{1}=2\frac{\text{code bits}}{\text{source symbol}}`
+
+    * it is UD
+
+    Code 2: VLC, clearly *not* UD.
+
+    .. math::
+        \bar R=\frac{\bar l}{1}=\frac{7}{8}(1)+\frac{1}{8}(2)=\frac{9}{8}\frac{\text{code bits}}{\text{source symbol}}
+
+    .. admonition:: note
+
+        computation error, check.
+
+    Code 3: VLC, Not UD.
+
+    .. math::
+        0\mapsto \text{ decoded in 2 ways }01\text{ or }0,1
+
+    Code 4: VLC
+
+    .. math::
+        \bar R=\frac{15}{8}
+
+    It is UD, it is a suffix code. As soon as you see a "0", you know that a codeword has just begun.
+
+    Code 5: prefix code :math:`\implies` UD
+
+    .. math::
+        \bar R = \frac{\bar l}{1}=\frac{7}{4}=H(X)
+
+    !!
+
+Tree representation of a VLC
+============================
+Basic idea:
+
+Represent a UD VLC with a D-ary code alphabet as a D-ary tree, with branches labeled with code symbols, and a source n-tuple (or equivalently its associated codeword) "sitting" at a node such that traversing the path from the root node of the tree to that node yields the associated code word.
+
+.. admonition:: Example
+    
+    Code 4:
+
+    .. math::
+        \mathcal C=\{0,01,011,0111\}
+
+        f:\mathcal X\to\{0,1\}^*
+
+        a_1\to 0
+
+        a_2\to 01
+
+        a_3\to 011
+
+        a_4\to 0111
+
+    .. image::
+
+    Code 5:
+
+    .. math::
+        \mathcal C=\{0,10,110,111\}
+
+        f:\mathcal X\to\{0,1\}^*
+
+        a_1\to 0
+
+        a_2\to 10
+
+        a_3\to 110
+
+        a_4\to 111
+
+    .. image::
+
+    .. admonition:: note
+
+        In the tree representation of a prefix code, every source n-tuple (or its associated codeword) "sits" at a terminal node in the tree (leaf node).
+

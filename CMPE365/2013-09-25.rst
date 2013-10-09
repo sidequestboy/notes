@@ -17,7 +17,7 @@ Find a path going through every vertex exactly once.
 
 Maze Problem
 ============
-Find a path from :math:`\sigma_1` to :math:`\sigma_2` going through no vertex more than once, collect as much gold as possible.
+Find a path from :math:`v_1` to :math:`v_2` going through no vertex more than once, collect as much gold as possible.
 
 Given an instance of Hamiltonian Path,
 
@@ -52,7 +52,7 @@ Horowitz & Sahni algorithm:
 - :math:`S_1: y_1 \leq y_2 \leq ... \leq y_m`
 - Consider :math:`x_1+y_1`. If :math:`x_1+y_1=k`, then we're done.
 - else if :math:`x_1+y_1 > k`, then we know :math:`x_i+y_1>k` for all :math:`i \geq 1`.
--else (:math:`x_1+y_1 < k`), then we know :math:`x_1+y_i<k` for all :math:`i \geq 1`.
+- else (:math:`x_1+y_1 < k`), then we know :math:`x_1+y_i<k` for all :math:`i \geq 1`.
 
 Every iteration eliminates a pair of numbers. Sorting takes :math:`O(m\log m)` and the rest takes :math:`O(m)`. That's better than :math:`O(m^2)` :)
 

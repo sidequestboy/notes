@@ -10,18 +10,18 @@ k-clique :math:`\in` NP-Complete
 
 Transforming CNF-SAT problem into k-clique problem:
 
-:math:`E = (x_1 * x_2 * \bar x_3) + (\bar x_1 * \bar x_2) + (x_1 * \bar x_2 * x_3)`
+:math:`E = (x_1 + x_2 + \bar x_3) * (\bar x_1 + \bar x_2) * (x_1 + \bar x_2 + x_3)`
 
 .. image:: .static/09.23.1.jpg
 	:width: 50%
 
-In each term of the sum of products, one of the factors must have a value of True.
+In each term of the product of sums, one of the summands must have a value of True.
 
 The lines of the graph were drawn such that the nodes they connect are mutually satisfiable - i.e. do not contain a contradiction.
 
 We need a bijective transformation from CNF-SAT to k-clique.
 
-Suppose :math:`E` is satisfiable. Then each clause has a True literal flag, and the vertices corresponding to those vertices **must** form a k-clique in the graph.
+Suppose :math:`E` is satisfiable. Then each clause has a True literal flag, and the vertices corresponding to those clauses **must** form a k-clique in the graph.
 
 Now suppose the graph :math:`G` has a k-clique. Then the k-clique must contain 1 vertex from each vertical set. (since there are no connections within a vertical set by construction). And, again by construction, since they are mutually adjacent in the graph, they must not contradict each other.
 
