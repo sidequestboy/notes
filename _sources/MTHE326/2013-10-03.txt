@@ -1,0 +1,150 @@
+**********************************
+Conformatlity & Harmonic Functions
+**********************************
+Last time:
+
+.. math::
+	f(z) = \frac{1}{z}
+
+	F(x,y)=(\frac{x}{x^2+y^2},\frac{-y}{x^2+y^2})
+
+	DF=\frac{1}{(x^2+y^2)^2}\left[\matrix{
+	y^2-x^2 & -2xy \\
+	2xy & y^2-x^2
+	}\right]
+
+Consider the curves:
+
+.. math::
+	\gamma_1(t)=[t,1]
+
+	\gamma_2(s)=[2,s]
+
+.. image::
+
+At what angle do :math:`F(\gamma_1(t))` and :math:`F(\gamma_2(s))` meet at :math:`F(2,1)`?
+
+.. math::
+	F(\gamma_1(t))=[\frac{t}{t^2+1},\frac{-1}{t^2+1}]
+
+	\implies x^2+(y+\frac{1}{2})^2=\frac{1}{4}
+
+and 
+
+.. math::
+	F(\gamma_2(s))=[\frac{2}{4+s^2},\frac{-s}{4+s^2}]
+
+	\implies (x-\frac{1}{4})^2+y^2=\frac{1}{16}
+
+.. image::
+
+.. math::
+	\frac{d}{dt}F(\gamma_1(t)) |_{t=2}=[\frac{1-t^2}{(1+t^2)^2},\frac{2t}{(1+t^2)^2}] |_{t=2}
+
+	=[\frac{-3}{25},\frac{4}{25}]
+
+and
+
+.. math::
+	\frac{d}{ds}F(\gamma_2(s)) |_{s=1}=[\frac{2}{4+s^2},\frac{-s}{4+s^2}] |_{s=1}
+
+	=[\frac{-4}{25},\frac{-3}{25}]
+
+So the angle between :math:`\gamma_1(t)` and :math:`gamma_2(s)` is preserved by :math:`F` (vectors are orthogonal.)
+
+Explain!
+
+.. math::
+	\gamma_1(t)=[t,1], \gamma_2(t)=[2,s]
+
+	\frac{d}{dt}\gamma_1(t)=[1,0]
+
+	\frac{d}{ds}\gamma_2(s)=[0,1]
+
+	DF_{(2,1)}=\frac{1}{25}\left[\matrix{
+	-3 & -4 \\
+	4 & -3
+	}\right]
+
+The property that a function preserves angles between curves is called *conformality*.
+
+All complex-differentiable functions are conformal at :math:`z_0` if the :math:`f'(z_0)\neq 0`.
+
+Harmonic Functions
+==================
+If :math:`S\subseteq \mathbb R^2`, open subset,
+
+A function :math:`\phi: S\to\mathbb R^2` is *harmonic* if :math:`\phi` is twice differentiable and
+
+.. math::
+	\frac{\partial^2 \phi}{\partial x^2}+\frac{\partial^2 \phi}{\partial y^2}=0
+
+These arise naturally in physical problems.
+
+.. admonition:: Examples
+
+	* Electrostatic Potential of static charges
+
+		.. image::
+	* Potential function of an incompressible fluid
+	* Temperature of a slab at equilibrium
+
+Why?!
+
+Harmonic functions usually arise from conservative vector fields. These arise from symmetry.
+
+Section 2.6 in Textbook
+
+.. admonition:: Theorem
+
+	If
+
+	.. math::
+		f: S\to\mathbb C
+
+	is analytic and
+
+	.. math::
+		f(x+iy)=u(x,y)+iv(x,y)
+
+	then :math:`u` and :math:`v` are harmonic.
+
+	Proof:
+
+	Assuming a fact we will prove later, 
+
+	If :math:`f` is analytic, :math:`u` and :math:`v` are infinitely differentiable.
+
+	:math:`f` is analytic, so:
+
+	.. math::
+		\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}
+
+	and 
+
+	.. math::
+		\frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}
+
+	then, differentiating again,
+
+	.. math::
+		\frac{\partial^2 u}{\partial x^2}=\frac{\partial^2 v}{\partial y\partial x}
+
+	and 
+
+	.. math::
+		\frac{\partial^2 u}{\partial y^2}=-\frac{\partial^2 v}{\partial x\partial y}
+
+	and because :math:`v` is infinitely differentiable,
+
+	.. math::
+		\frac{\partial^2 v}{\partial x\partial y}=\frac{\partial^2 v}{\partial y\partial x}
+
+	So,
+
+	.. math::
+		\frac{\partial^2 u}{\partial x^2}=-\frac{\partial^2 u}{\partial y^2}
+
+		\implies \frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=0
+
+

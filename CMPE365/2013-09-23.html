@@ -27,7 +27,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
-    <link rel="next" title="MTHE 326 - Functions of a Complex Variable" href="../MTHE326/index.html" />
+    <link rel="next" title="More NP Complete Problems" href="2013-09-25.html" />
     <link rel="prev" title="Cook-Levin" href="2013-09-19.html" />
    
   
@@ -45,7 +45,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../MTHE326/index.html" title="MTHE 326 - Functions of a Complex Variable"
+          <a href="2013-09-25.html" title="More NP Complete Problems"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="2013-09-19.html" title="Cook-Levin"
@@ -67,12 +67,12 @@
 <div class="section" id="k-clique-np-complete">
 <h1>k-clique <span class="math">\(\in\)</span> NP-Complete<a class="headerlink" href="#k-clique-np-complete" title="Permalink to this headline">¶</a></h1>
 <p>Transforming CNF-SAT problem into k-clique problem:</p>
-<p><span class="math">\(E = (x_1 * x_2 * \bar x_3) + (\bar x_1 * \bar x_2) + (x_1 * \bar x_2 * x_3)\)</span></p>
+<p><span class="math">\(E = (x_1 + x_2 + \bar x_3) * (\bar x_1 + \bar x_2) * (x_1 + \bar x_2 + x_3)\)</span></p>
 <img alt="../_images/09.23.1.jpg" src="../_images/09.23.1.jpg" style="width: 50%;" />
-<p>In each term of the sum of products, one of the factors must have a value of True.</p>
+<p>In each term of the product of sums, one of the summands must have a value of True.</p>
 <p>The lines of the graph were drawn such that the nodes they connect are mutually satisfiable - i.e. do not contain a contradiction.</p>
 <p>We need a bijective transformation from CNF-SAT to k-clique.</p>
-<p>Suppose <span class="math">\(E\)</span> is satisfiable. Then each clause has a True literal flag, and the vertices corresponding to those vertices <strong>must</strong> form a k-clique in the graph.</p>
+<p>Suppose <span class="math">\(E\)</span> is satisfiable. Then each clause has a True literal flag, and the vertices corresponding to those clauses <strong>must</strong> form a k-clique in the graph.</p>
 <p>Now suppose the graph <span class="math">\(G\)</span> has a k-clique. Then the k-clique must contain 1 vertex from each vertical set. (since there are no connections within a vertical set by construction). And, again by construction, since they are mutually adjacent in the graph, they must not contradict each other.</p>
 <p>Therefore, since a polynomial-time transformation exists from CNF-SAT to k-clique, k-clique is NP-Complete.</p>
 <div class="section" id="partition-subset-sum">
@@ -129,7 +129,7 @@
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
       <li>Previous: <a href="2013-09-19.html" title="previous chapter">Cook-Levin</a></li>
-      <li>Next: <a href="../MTHE326/index.html" title="next chapter">MTHE 326 - Functions of a Complex Variable</a></li>
+      <li>Next: <a href="2013-09-25.html" title="next chapter">More NP Complete Problems</a></li>
   </ul></li>
   </ul></li>
 </ul>

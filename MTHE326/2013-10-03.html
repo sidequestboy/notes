@@ -1,0 +1,201 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Conformatlity &amp; Harmonic Functions &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="MTHE 455 - Stochastic Processes &amp; Applications" href="../MTHE455/index.html" />
+    <link rel="prev" title="Proof of Cauchy-Riemann Equations and Conformality" href="2013-10-01.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE455/index.html" title="MTHE 455 - Stochastic Processes &amp; Applications"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-01.html" title="Proof of Cauchy-Riemann Equations and Conformality"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="conformatlity-harmonic-functions">
+<h1>Conformatlity &amp; Harmonic Functions<a class="headerlink" href="#conformatlity-harmonic-functions" title="Permalink to this headline">¶</a></h1>
+<p>Last time:</p>
+<div class="math">
+\[f(z) = \frac{1}{z}\]\[F(x,y)=(\frac{x}{x^2+y^2},\frac{-y}{x^2+y^2})\]\[\begin{split}DF=\frac{1}{(x^2+y^2)^2}\left[\matrix{
+y^2-x^2 &amp; -2xy \\
+2xy &amp; y^2-x^2
+}\right]\end{split}\]</div>
+<p>Consider the curves:</p>
+<div class="math">
+\[\gamma_1(t)=[t,1]\]\[\gamma_2(s)=[2,s]\]</div>
+<p>At what angle do <span class="math">\(F(\gamma_1(t))\)</span> and <span class="math">\(F(\gamma_2(s))\)</span> meet at <span class="math">\(F(2,1)\)</span>?</p>
+<div class="math">
+\[F(\gamma_1(t))=[\frac{t}{t^2+1},\frac{-1}{t^2+1}]\]\[\implies x^2+(y+\frac{1}{2})^2=\frac{1}{4}\]</div>
+<p>and</p>
+<div class="math">
+\[F(\gamma_2(s))=[\frac{2}{4+s^2},\frac{-s}{4+s^2}]\]\[\implies (x-\frac{1}{4})^2+y^2=\frac{1}{16}\]</div>
+<div class="math">
+\[\frac{d}{dt}F(\gamma_1(t)) |_{t=2}=[\frac{1-t^2}{(1+t^2)^2},\frac{2t}{(1+t^2)^2}] |_{t=2}\]\[=[\frac{-3}{25},\frac{4}{25}]\]</div>
+<p>and</p>
+<div class="math">
+\[\frac{d}{ds}F(\gamma_2(s)) |_{s=1}=[\frac{2}{4+s^2},\frac{-s}{4+s^2}] |_{s=1}\]\[=[\frac{-4}{25},\frac{-3}{25}]\]</div>
+<p>So the angle between <span class="math">\(\gamma_1(t)\)</span> and <span class="math">\(gamma_2(s)\)</span> is preserved by <span class="math">\(F\)</span> (vectors are orthogonal.)</p>
+<p>Explain!</p>
+<div class="math">
+\[\gamma_1(t)=[t,1], \gamma_2(t)=[2,s]\]\[\frac{d}{dt}\gamma_1(t)=[1,0]\]\[\frac{d}{ds}\gamma_2(s)=[0,1]\]\[\begin{split}DF_{(2,1)}=\frac{1}{25}\left[\matrix{
+-3 &amp; -4 \\
+4 &amp; -3
+}\right]\end{split}\]</div>
+<p>The property that a function preserves angles between curves is called <em>conformality</em>.</p>
+<p>All complex-differentiable functions are conformal at <span class="math">\(z_0\)</span> if the <span class="math">\(f'(z_0)\neq 0\)</span>.</p>
+<div class="section" id="harmonic-functions">
+<h2>Harmonic Functions<a class="headerlink" href="#harmonic-functions" title="Permalink to this headline">¶</a></h2>
+<p>If <span class="math">\(S\subseteq \mathbb R^2\)</span>, open subset,</p>
+<p>A function <span class="math">\(\phi: S\to\mathbb R^2\)</span> is <em>harmonic</em> if <span class="math">\(\phi\)</span> is twice differentiable and</p>
+<div class="math">
+\[\frac{\partial^2 \phi}{\partial x^2}+\frac{\partial^2 \phi}{\partial y^2}=0\]</div>
+<p>These arise naturally in physical problems.</p>
+<div class="admonition-examples admonition">
+<p class="first admonition-title">Examples</p>
+<ul class="last">
+<li><p class="first">Electrostatic Potential of static charges</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p class="first">Potential function of an incompressible fluid</p>
+</li>
+<li><p class="first">Temperature of a slab at equilibrium</p>
+</li>
+</ul>
+</div>
+<p>Why?!</p>
+<p>Harmonic functions usually arise from conservative vector fields. These arise from symmetry.</p>
+<p>Section 2.6 in Textbook</p>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>If</p>
+<div class="math">
+\[f: S\to\mathbb C\]</div>
+<p>is analytic and</p>
+<div class="math">
+\[f(x+iy)=u(x,y)+iv(x,y)\]</div>
+<p>then <span class="math">\(u\)</span> and <span class="math">\(v\)</span> are harmonic.</p>
+<p>Proof:</p>
+<p>Assuming a fact we will prove later,</p>
+<p>If <span class="math">\(f\)</span> is analytic, <span class="math">\(u\)</span> and <span class="math">\(v\)</span> are infinitely differentiable.</p>
+<p><span class="math">\(f\)</span> is analytic, so:</p>
+<div class="math">
+\[\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}\]</div>
+<p>and</p>
+<div class="math">
+\[\frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}\]</div>
+<p>then, differentiating again,</p>
+<div class="math">
+\[\frac{\partial^2 u}{\partial x^2}=\frac{\partial^2 v}{\partial y\partial x}\]</div>
+<p>and</p>
+<div class="math">
+\[\frac{\partial^2 u}{\partial y^2}=-\frac{\partial^2 v}{\partial x\partial y}\]</div>
+<p>and because <span class="math">\(v\)</span> is infinitely differentiable,</p>
+<div class="math">
+\[\frac{\partial^2 v}{\partial x\partial y}=\frac{\partial^2 v}{\partial y\partial x}\]</div>
+<p>So,</p>
+<div class="last math">
+\[\frac{\partial^2 u}{\partial x^2}=-\frac{\partial^2 u}{\partial y^2}\]\[\implies \frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=0\]</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Conformatlity &amp; Harmonic Functions</a><ul>
+<li><a class="reference internal" href="#harmonic-functions">Harmonic Functions</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-10-01.html" title="previous chapter">Proof of Cauchy-Riemann Equations and Conformality</a></li>
+      <li>Next: <a href="../MTHE455/index.html" title="next chapter">MTHE 455 - Stochastic Processes &amp; Applications</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-10-03.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

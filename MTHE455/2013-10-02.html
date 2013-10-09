@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    <title>Generating Function Example &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
-    <link rel="next" title="MTHE 474 - Information Theory" href="../MTHE474/index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-10-08.html" />
     <link rel="prev" title="&lt;no title&gt;" href="2013-10-01.html" />
    
   
@@ -45,7 +45,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../MTHE474/index.html" title="MTHE 474 - Information Theory"
+          <a href="2013-10-08.html" title="&lt;no title&gt;"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="2013-10-01.html" title="&lt;no title&gt;"
@@ -60,7 +60,85 @@
         <div class="bodywrapper">
           <div class="body">
             
-  
+  <div class="section" id="generating-function-example">
+<h1>Generating Function Example<a class="headerlink" href="#generating-function-example" title="Permalink to this headline">¶</a></h1>
+<p>Recall,</p>
+<div class="math">
+\[G_r(s) = \sum_{n=0}^\infty f_r(n)s^n\]</div>
+<p>Where <span class="math">\(f_r(n)=P(T_r=n|X_0=0)\)</span></p>
+<div class="math">
+\[\begin{split}T_r=\begin{cases}
+\text{first time walk reaches }r &amp; r\geq 1 \\
+\text{first time walk returns to 0,}&amp; r=0
+\end{cases}\end{split}\]</div>
+<div class="math">
+\[G_1(s) = \frac{1-\sqrt{1-4pqs^2}}{2qs}\]</div>
+<p>Now consider <span class="math">\(G_0(s)\)</span>. We have (conditioning on <span class="math">\(X_1\)</span>):</p>
+<div class="math">
+\[f_0(n)=P(T_0=n|X_0=0)\]\[=P(T_0=n|X_1=1,X_0=0)P(X_1=1|X_0=0)+P(T_0=n|X_1=-1,X_0=0)P(X_1=-1|X_0=0)\]\[=P(T_0=n|X_1=1)p + P(T_0=n|X_1=-1)q\]</div>
+<p>Consider <span class="math">\(P(T_0=n|X_1=-1)\)</span></p>
+<img alt="MTHE455/.static/10.02.1.jpg" src="MTHE455/.static/10.02.1.jpg" style="width: 50%;" />
+<p>By temporal and spatial homogeneity,</p>
+<div class="math">
+\[P(T_0=n|X_1=-1)=f_1(n-1)\]</div>
+<p>For <span class="math">\(P(T_0=n|X_1=1)\)</span>, the picture is:</p>
+<p>By flipping the picture around the <span class="math">\(x\)</span> - axis, interchange roles of <span class="math">\(p\)</span> and <span class="math">\(q\)</span>, and using temporal spatial homogeneity,</p>
+<div class="math">
+\[P(T_0=n|X_1=1)f_1^*(n-1)\]</div>
+<p>where &#8220;*&#8221; refers to a random walk where the &#8220;up&#8221; probability is <span class="math">\(q\)</span>, and the &#8220;down&#8221; probability is <span class="math">\(p\)</span>.</p>
+<p>So,</p>
+<div class="math">
+\[f_0(n)=f_1^*(n-1)p+f_1(n-1)q\]</div>
+<p>Multiply by <span class="math">\(s^n, n\geq 1\)</span> and sum over <span class="math">\(n\)</span>:</p>
+<div class="math">
+\[\sum_{n=1}^\infty f_0(n)s^n=\sum_{n=1}^\infty pf_1^*(n-1)s^n+\sum_{n=1}^\infty qf_1(n-1)s^n\]</div>
+<p>or</p>
+<div class="math">
+\[G_0(s)=psG_1^*(s)+qsG_1(s)\]\[=ps\frac{1-\sqrt{1-4pqs^2}}{2ps}+qs\frac{1-\sqrt{1-4qps^2}}{2qs}\]\[=1-\sqrt{1-4pqs^2}\]</div>
+<p>Now, we can compute the probability:</p>
+<div class="math">
+\[P(\text{walk ever returns to }0|X_0=0)\]\[=G_0(1)\]\[=1-\sqrt{1-4pq}\]\[=1-\sqrt{1-4(1-q)q}\]\[=1-\sqrt{1-4+4q^2}\]\[=1-\sqrt{(1-2q)^2}\]\[=1-|1-2q|\]</div>
+<p>If <span class="math">\(q=\frac{1}{2}\)</span>, then <span class="math">\(G_0(1)=1\)</span></p>
+<p>If <span class="math">\(q&lt;\frac{1}{2}\)</span>, then <span class="math">\(G_0(1)=2q&lt;1\)</span></p>
+<p>If <span class="math">\(q&gt;\frac{1}{2}\)</span>, then <span class="math">\(G_0(1)=2p&lt;1\)</span></p>
+<p>Therefore, if <span class="math">\(p=\frac{1}{2}\)</span>, then state 0 and, by irreducibility, all states, are recurrent.</p>
+<p>If <span class="math">\(p\neq \frac{1}{2}\)</span>, then state 0 (and all states) are transient.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Note that when <span class="math">\(p=\frac{1}{2}\)</span>, <span class="math">\(T_0\)</span> is a proper random variable; i.e. it is real-valued with probability 1.</p>
+<p class="last">If <span class="math">\(p\neq \frac{1}{2}\)</span>, then the probability that <span class="math">\(T_0\)</span> is real-valued is less than 1 (i.e. <span class="math">\(P(T_0=\infty|X_0=0)&gt;0\)</span>). In this case, we call <span class="math">\(T_0\)</span> a defective random variable.</p>
+</div>
+<p>When <span class="math">\(p=\frac{1}{2}\)</span>, we can use <span class="math">\(G_0(s)\)</span> to find <span class="math">\(E[T_0]\)</span>, via:</p>
+<div class="math">
+\[E[T_0]=G_0'(1)\]\[G_0'(s)=\frac{8pqs}{\sqrt{1-4pqs^2}}\]\[=\frac{2s}{\sqrt{1-s^2}}\]</div>
+<p>when <span class="math">\(p=q=\frac{1}{2}\)</span>.</p>
+<p>So, <span class="math">\(G_0'(1)=\infty\)</span> (i.e. the expected time to return to 0 is <span class="math">\(\infty\)</span>)</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">A recurrent state is called <em>null recurrent</em> if the expected time to return is <span class="math">\(+\infty\)</span>. Otherwise, it is called <em>positive recurrent</em>.</p>
+</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Recurrent classes are closed.</p>
+<p>That is, one the Markov chain is in a recurrent class, it will never leave the class (with probability 1).</p>
+<p>Proof:</p>
+<p>Suppose the recurrent class was not closed.</p>
+<p class="last">Then there must be some state <span class="math">\(i\)</span> in the class and some state <span class="math">\(j\)</span> outside the class such that <span class="math">\(p_{ij}&gt;0\)</span>. But it must be possible to return to state <span class="math">\(i\)</span> with positive probability since <span class="math">\(i\)</span> is recurrent. But then, <span class="math">\(i\)</span> and <span class="math">\(j\)</span> communicate; so <span class="math">\(j\)</span> could not have been outside the class.</p>
+</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Let <span class="math">\(X_i, i=1,2,...\)</span>  be i.i.d. random variable and <span class="math">\(N\)</span> be a random variable independent of <span class="math">\(X_i`s on the non-negative integers, with generating functions :math:`G_X(s)\)</span> and <span class="math">\(G_N(s)\)</span> resp.</p>
+<p>Let <span class="math">\(Y=X_1+X_2+...X_n\)</span></p>
+<p>Then the generating function of <span class="math">\(Y\)</span> is:</p>
+<div class="math">
+\[G_Y(s)=G_N(G_X(S))\]</div>
+<p>Proof:</p>
+<p>We have</p>
+<div class="last math">
+\[G_Y(s) = E[s^Y]\]\[=E[s^{X_1+...+X_N}]\]\[=\sum_{n=0}^{\infty}E[s^{X_1+...+X_N} |N=n]P(N=n)\]\[=\sum_{n=0}^\infty E[s^{X_1+...+X^n}]P(N=n)\]\[=\sum_{n=0}^\infty E[\prod_{i=1}^n s^{X_i}]P(X=n)\]\[=\sum_{n=0}^\infty \prod_{i=1}^n E[s^{X_i}]P(X=n)\]\[=\sum_{n=0}^\infty \prod_{i=1}^n G_X(s)^n P(X=n)\]\[=E[G_X(s)^N]\]\[=G_N(G_X(s))\]</div>
+</div>
+</div>
+
 
           </div>
         </div>
@@ -71,7 +149,7 @@
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
       <li>Previous: <a href="2013-10-01.html" title="previous chapter">&lt;no title&gt;</a></li>
-      <li>Next: <a href="../MTHE474/index.html" title="next chapter">MTHE 474 - Information Theory</a></li>
+      <li>Next: <a href="2013-10-08.html" title="next chapter">&lt;no title&gt;</a></li>
   </ul></li>
   </ul></li>
 </ul>

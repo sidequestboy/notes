@@ -1,0 +1,244 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Unique Decodability &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="prev" title="Entropy Rate:" href="2013-10-03.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-03.html" title="Entropy Rate:"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="unique-decodability">
+<h1>Unique Decodability<a class="headerlink" href="#unique-decodability" title="Permalink to this headline">¶</a></h1>
+<p>Goal:</p>
+<p>Find out how efficiently one can represent a discrete source <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with a <strong>UD</strong> (lossless) VLC (Variable Length Code) and give a construction technique that (at least asymptotically) attains optimal &#8220;efficiency&#8221;</p>
+<div class="admonition-question admonition">
+<p class="first admonition-title">Question</p>
+<p>What is &#8220;efficiency&#8221;?</p>
+<p>We want to minimize the <em>average code rate</em> (or, equivalently, the <em>average codeword length</em>):</p>
+<p>If souce <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> has alphabet <span class="math">\(\mathcal X\)</span> and join pmfs <span class="math">\(p_{X^m}(x^m)\)</span>, <span class="math">\(x^m\in \mathcal X^m\)</span>, <span class="math">\(m=1,2,...\)</span></p>
+<p>VLC:</p>
+<p>For <span class="math">\(n\geq 1\)</span>, encoder:</p>
+<div class="math">
+\[f:\mathcal X^n\to B^*\]\[B=\{0,1,2,...,D-1\}\]</div>
+<p><span class="math">\(l(x^n):=\)</span> length of the codeword <span class="math">\(f(x^n)\)</span> associated to <span class="math">\(x^n\)</span>.</p>
+<p>Average codeword length:</p>
+<div class="math">
+\[\bar l:=\sum_{x^n\in \mathcal X^n}p_{X^n}(x^n)l(x^n)=E_{X^n}[l(X^n)]\]</div>
+<p>Average code rate:</p>
+<div class="math">
+\[\bar R:=\frac{\bar l}{n}=\frac{1}{n}\sum_{x^n\in\mathcal X^n}p_{X^n}(x^n)l(x^n)\]</div>
+<p class="last">with units <span class="math">\(\frac{\text{D-ary code symbol}}{\text{Source symbol}}\)</span></p>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A prefix (or &#8220;instantaneous&#8221;) code is a variable-length code with the property that none of its codewords can be a prefix of any of them.</p>
+<div class="admonition-note last admonition">
+<p class="first admonition-title">note</p>
+<p class="last">A prefix code is Uniquely Decodable since no codeword is a prefix of another: as soon as the receiver sees a codeword, one can decode it &#8220;instantaneously&#8221;. i.e. it is immediately recognizable.</p>
+</div>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>DMS <span class="math">\(\{X_i\}_{i=1}^\infty\)</span></p>
+<p>Binary VLC <span class="math">\(f:\mathcal X\to\{0,1\}^*\)</span></p>
+<p>(here <span class="math">\(n=1\)</span>)</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="22%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Source symbol <span class="math">\(x\in \mathcal X\)</span></th>
+<th class="head"><span class="math">\(p_X(x)\)</span></th>
+<th class="head">Code 1</th>
+<th class="head">Code 2</th>
+<th class="head">Code 3</th>
+<th class="head">Code 4</th>
+<th class="head">Code 5</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><span class="math">\(a_1\)</span></td>
+<td><span class="math">\(\frac{1}{2}\)</span></td>
+<td>00</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_2\)</span></td>
+<td><span class="math">\(\frac{1}{4}\)</span></td>
+<td>01</td>
+<td>0</td>
+<td>1</td>
+<td>01</td>
+<td>10</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_3\)</span></td>
+<td><span class="math">\(\frac{1}{8}\)</span></td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+<td>011</td>
+<td>110</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_4\)</span></td>
+<td><span class="math">\(\frac{1}{8}\)</span></td>
+<td>11</td>
+<td>01</td>
+<td>01</td>
+<td>0111</td>
+<td>111</td>
+</tr>
+</tbody>
+</table>
+<p>First: source entropy</p>
+<div class="math">
+\[H(X)=-\sum_{x\in\mathcal X}p_X(x)log_2(p_X(x))=\frac{7}{4}\text{ bits}\]</div>
+<p>Code 1: Fixed length (block) code with <span class="math">\(\bar R=\frac{\bar l}{1}=2\frac{\text{code bits}}{\text{source symbol}}\)</span></p>
+<ul class="simple">
+<li>it is UD</li>
+</ul>
+<p>Code 2: VLC, clearly <em>not</em> UD.</p>
+<div class="math">
+\[\bar R=\frac{\bar l}{1}=\frac{7}{8}(1)+\frac{1}{8}(2)=\frac{9}{8}\frac{\text{code bits}}{\text{source symbol}}\]</div>
+<div class="admonition-note admonition">
+<p class="first admonition-title">note</p>
+<p class="last">computation error, check.</p>
+</div>
+<p>Code 3: VLC, Not UD.</p>
+<div class="math">
+\[0\mapsto \text{ decoded in 2 ways }01\text{ or }0,1\]</div>
+<p>Code 4: VLC</p>
+<div class="math">
+\[\bar R=\frac{15}{8}\]</div>
+<p>It is UD, it is a suffix code. As soon as you see a &#8220;0&#8221;, you know that a codeword has just begun.</p>
+<p>Code 5: prefix code <span class="math">\(\implies\)</span> UD</p>
+<div class="math">
+\[\bar R = \frac{\bar l}{1}=\frac{7}{4}=H(X)\]</div>
+<p class="last">!!</p>
+</div>
+<div class="section" id="tree-representation-of-a-vlc">
+<h2>Tree representation of a VLC<a class="headerlink" href="#tree-representation-of-a-vlc" title="Permalink to this headline">¶</a></h2>
+<p>Basic idea:</p>
+<p>Represent a UD VLC with a D-ary code alphabet as a D-ary tree, with branches labeled with code symbols, and a source n-tuple (or equivalently its associated codeword) &#8220;sitting&#8221; at a node such that traversing the path from the root node of the tree to that node yields the associated code word.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Code 4:</p>
+<div class="math">
+\[\mathcal C=\{0,01,011,0111\}\]\[f:\mathcal X\to\{0,1\}^*\]\[a_1\to 0\]\[a_2\to 01\]\[a_3\to 011\]\[a_4\to 0111\]</div>
+<p>Code 5:</p>
+<div class="math">
+\[\mathcal C=\{0,10,110,111\}\]\[f:\mathcal X\to\{0,1\}^*\]\[a_1\to 0\]\[a_2\to 10\]\[a_3\to 110\]\[a_4\to 111\]</div>
+<div class="admonition-note last admonition">
+<p class="first admonition-title">note</p>
+<p class="last">In the tree representation of a prefix code, every source n-tuple (or its associated codeword) &#8220;sits&#8221; at a terminal node in the tree (leaf node).</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Unique Decodability</a><ul>
+<li><a class="reference internal" href="#tree-representation-of-a-vlc">Tree representation of a VLC</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-10-03.html" title="previous chapter">Entropy Rate:</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-10-08.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

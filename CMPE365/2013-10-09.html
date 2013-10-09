@@ -1,0 +1,196 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>More Greedy Algorithms &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="MTHE 326 - Functions of a Complex Variable" href="../MTHE326/index.html" />
+    <link rel="prev" title="More Divide and Conquer" href="2013-10-02.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE326/index.html" title="MTHE 326 - Functions of a Complex Variable"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-02.html" title="More Divide and Conquer"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <blockquote class="epigraph">
+<div><p>Imagine</p>
+<p>Happy Birthday John Lennon</p>
+</div></blockquote>
+<div class="section" id="more-greedy-algorithms">
+<h1>More Greedy Algorithms<a class="headerlink" href="#more-greedy-algorithms" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="road-trip-algorithm-proof-of-correctness">
+<h2>Road Trip Algorithm Proof of Correctness<a class="headerlink" href="#road-trip-algorithm-proof-of-correctness" title="Permalink to this headline">¶</a></h2>
+<p>Show:</p>
+<ol class="arabic simple">
+<li>If solution ecists, algorithm finds a solution.</li>
+<li>Prove algorithm&#8217;s solution is optimal</li>
+</ol>
+<blockquote>
+<div>2.1 Prove <span class="math">\(\exists\)</span> and optimal solution that contains the algorithm&#8217;s 1st choice
+2.2 Prove the algorithm&#8217;s complete solution is optimal</div></blockquote>
+<p>Use induction on the number of states between out location and the goal.</p>
+<p>Base case: <span class="math">\(n=0\)</span></p>
+<blockquote>
+<div>Algorithm correctly solves this case.</div></blockquote>
+<p>Suppose algorithm finds optimal solution whenever there are <span class="math">\(&lt;n\)</span>,:math:<cite>ngeq 1</cite> stations bolatg</p>
+<p>Consider the case when there are <span class="math">\(n\)</span> stations bolatg</p>
+<p>Let <span class="math">\(A=\{s_1,...\}\)</span> be the algorithm&#8217;s solution.</p>
+<p>Let <span class="math">\(O=\{2_1,...\}\)</span> be an optimal solution. i.e. <span class="math">\(|O|\)</span> is minimal.</p>
+<p>Let <span class="math">\(A'=\{...\}\)</span> be A after <span class="math">\(s_1\)</span>.</p>
+<p>Let <span class="math">\(O'=\{...\}\)</span> be O after <span class="math">\(s_1\)</span>.</p>
+<p><span class="math">\(A'\)</span> is an optimal solution to the reduced problem</p>
+<p>Suppose <span class="math">\(|A'|&lt;|O'|\)</span> which contradicts <span class="math">\(O\)</span> being optimal</p>
+<p>Suppose <span class="math">\(|O'|&lt;|A'|\)</span> which contradicts <span class="math">\(A\)</span> being optimal</p>
+<p>therefore, <span class="math">\(|A'|=|O'|\)</span></p>
+<p>therefore, <span class="math">\(|A|=|O|\)</span>.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Given a set of activities, each with known start time and finish time,</p>
+<p>Find the maximum cardinality set of non-overlapping activities</p>
+<p>Sort activities according to finish time.</p>
+<p>while there are still activities to consider, choose the first activity that does not conflict our earlier choices</p>
+<p>Prove algorithm&#8217;s 1st choice is correct.</p>
+<p>Algorithm&#8217;s first choice = x, activity with earliest finish time.</p>
+<p>Consider <em>an</em> optimal solution <span class="math">\(O\)</span></p>
+<blockquote>
+<div><ul class="simple">
+<li>if <span class="math">\(x\in O\)</span>, done.</li>
+<li>if <span class="math">\(x\notin O\)</span>, let <span class="math">\(o_1\)</span> be <span class="math">\(O\)</span> first choice.</li>
+</ul>
+</div></blockquote>
+<p>Then <span class="math">\(finish(x)\leq finish(o_1)\leq start(o_2)\)</span></p>
+<p><span class="math">\(\implies O=\{x,o_2,o_3,...\}\)</span> is feasible</p>
+<p><span class="math">\(\implies O\)</span> is optimal, contains <span class="math">\(X\)</span>.</p>
+<p>Now proceed with induction:</p>
+<blockquote class="last">
+<div><p>Base Case:</p>
+<blockquote>
+<div><p>Suppose there are 0 activities to choose from</p>
+<blockquote>
+<div><ul class="simple">
+<li>Algorithm correctly chooses optimal solution.</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>Suppose Algorithm finds <em>an</em> optimal solution whenever there are <span class="math">\(&lt;n\)</span>,:math:<cite>ngeq 1</cite> activites to choose from.</p>
+<p>Consider <span class="math">\(n\)</span> activities</p>
+<p>Let <span class="math">\(A=\{x,...\}\)</span> be the algorithm&#8217;s solution</p>
+<p>And <span class="math">\(O=\{x,...\}\)</span> be some optimal solution containing alg&#8217;s 1st choice.</p>
+<p><span class="math">\(|A|=|O|\)</span>, as before, thus <span class="math">\(A\)</span> is optimal.</p>
+</div></blockquote>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Minimum Weight Spanning Trees</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Spanning tree of graph <span class="math">\(G\)</span> is a set of edges in <span class="math">\(G\)</span> that form a tree containing all vertices of <span class="math">\(G\)</span></p>
+<p class="last">(i.e. a set of <span class="math">\(n-1\)</span> edges in <span class="math">\(G\)</span> that do not form any cycles.)</p>
+</div>
+<div class="admonition-definition last admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">Minimum Spanning Tree is a spanning tree with the smallest possible sum of edge weights.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">More Greedy Algorithms</a><ul>
+<li><a class="reference internal" href="#road-trip-algorithm-proof-of-correctness">Road Trip Algorithm Proof of Correctness</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="2013-10-02.html" title="previous chapter">More Divide and Conquer</a></li>
+      <li>Next: <a href="../MTHE326/index.html" title="next chapter">MTHE 326 - Functions of a Complex Variable</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-10-09.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

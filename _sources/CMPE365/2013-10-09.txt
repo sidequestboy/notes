@@ -1,0 +1,108 @@
+.. epigraph::
+    Imagine
+
+    Happy Birthday John Lennon
+
+**********************
+More Greedy Algorithms
+**********************
+
+Road Trip Algorithm Proof of Correctness
+========================================
+Show:
+
+1. If solution ecists, algorithm finds a solution.
+2. Prove algorithm's solution is optimal
+
+  2.1 Prove :math:`\exists` and optimal solution that contains the algorithm's 1st choice
+  2.2 Prove the algorithm's complete solution is optimal
+
+Use induction on the number of states between out location and the goal.
+
+Base case: :math:`n=0`
+
+  Algorithm correctly solves this case.
+Suppose algorithm finds optimal solution whenever there are :math:`<n`,:math:`n\geq 1` stations bolatg
+
+Consider the case when there are :math:`n` stations bolatg
+
+Let :math:`A=\{s_1,...\}` be the algorithm's solution.
+
+Let :math:`O=\{2_1,...\}` be an optimal solution. i.e. :math:`|O|` is minimal.
+
+Let :math:`A'=\{...\}` be A after :math:`s_1`.
+
+Let :math:`O'=\{...\}` be O after :math:`s_1`.
+
+:math:`A'` is an optimal solution to the reduced problem
+
+Suppose :math:`|A'|<|O'|` which contradicts :math:`O` being optimal
+
+Suppose :math:`|O'|<|A'|` which contradicts :math:`A` being optimal
+
+therefore, :math:`|A'|=|O'|`
+
+therefore, :math:`|A|=|O|`.
+
+.. admonition:: Example
+
+    Given a set of activities, each with known start time and finish time,
+
+    Find the maximum cardinality set of non-overlapping activities
+
+    Greedy Activity Selection
+    -------------------------
+    Sort activities according to finish time.
+
+    while there are still activities to consider, choose the first activity that does not conflict our earlier choices
+
+    Proof of Correctness
+    --------------------
+    Prove algorithm's 1st choice is correct.
+
+    Algorithm's first choice = x, activity with earliest finish time.
+
+    Consider *an* optimal solution :math:`O`
+
+      * if :math:`x\in O`, done.
+      * if :math:`x\notin O`, let :math:`o_1` be :math:`O` first choice.
+
+    Then :math:`finish(x)\leq finish(o_1)\leq start(o_2)`
+
+    :math:`\implies O=\{x,o_2,o_3,...\}` is feasible
+
+    :math:`\implies O` is optimal, contains :math:`X`.
+
+    Now proceed with induction:
+
+      Base Case:
+
+        Suppose there are 0 activities to choose from
+
+          * Algorithm correctly chooses optimal solution.
+      Suppose Algorithm finds *an* optimal solution whenever there are :math:`<n`,:math:`n\geq 1` activites to choose from.
+
+      Consider :math:`n` activities
+
+      Let :math:`A=\{x,...\}` be the algorithm's solution
+
+      And :math:`O=\{x,...\}` be some optimal solution containing alg's 1st choice.
+
+      :math:`|A|=|O|`, as before, thus :math:`A` is optimal.
+
+.. admonition:: Example
+
+    Minimum Weight Spanning Trees
+
+    .. admonition:: Definition
+
+        Spanning tree of graph :math:`G` is a set of edges in :math:`G` that form a tree containing all vertices of :math:`G`
+
+        (i.e. a set of :math:`n-1` edges in :math:`G` that do not form any cycles.)
+
+    .. admonition:: Definition
+
+        Minimum Spanning Tree is a spanning tree with the smallest possible sum of edge weights.
+
+    
+

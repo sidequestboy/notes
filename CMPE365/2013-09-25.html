@@ -27,7 +27,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
-    <link rel="next" title="MTHE 326 - Functions of a Complex Variable" href="../MTHE326/index.html" />
+    <link rel="next" title="Divide &amp; Conquer" href="2013-09-27.html" />
     <link rel="prev" title="k-clique \(\in\) NP-Complete" href="2013-09-23.html" />
    
   
@@ -45,7 +45,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../MTHE326/index.html" title="MTHE 326 - Functions of a Complex Variable"
+          <a href="2013-09-27.html" title="Divide &amp; Conquer"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="2013-09-23.html" title="k-clique \(\in\) NP-Complete"
@@ -76,7 +76,7 @@
 </div>
 <div class="section" id="maze-problem">
 <h2>Maze Problem<a class="headerlink" href="#maze-problem" title="Permalink to this headline">¶</a></h2>
-<p>Find a path from <span class="math">\(\sigma_1\)</span> to <span class="math">\(\sigma_2\)</span> going through no vertex more than once, collect as much gold as possible.</p>
+<p>Find a path from <span class="math">\(v_1\)</span> to <span class="math">\(v_2\)</span> going through no vertex more than once, collect as much gold as possible.</p>
 <p>Given an instance of Hamiltonian Path,</p>
 <p>If a Maze-Problem algorithm existed, then applying it to <span class="math">\(v_1\)</span> and <span class="math">\(v_2\)</span> would answer &#8220;max-value=n&#8221; <span class="math">\(\iff\)</span> there exists a Hamiltonian Path from <span class="math">\(v_1\)</span> to <span class="math">\(v_2\)</span>.</p>
 <div class="admonition note">
@@ -101,8 +101,8 @@
 <li><span class="math">\(S_1: y_1 \leq y_2 \leq ... \leq y_m\)</span></li>
 <li>Consider <span class="math">\(x_1+y_1\)</span>. If <span class="math">\(x_1+y_1=k\)</span>, then we&#8217;re done.</li>
 <li>else if <span class="math">\(x_1+y_1 &gt; k\)</span>, then we know <span class="math">\(x_i+y_1&gt;k\)</span> for all <span class="math">\(i \geq 1\)</span>.</li>
+<li>else (<span class="math">\(x_1+y_1 &lt; k\)</span>), then we know <span class="math">\(x_1+y_i&lt;k\)</span> for all <span class="math">\(i \geq 1\)</span>.</li>
 </ul>
-<p>-else (<span class="math">\(x_1+y_1 &lt; k\)</span>), then we know <span class="math">\(x_1+y_i&lt;k\)</span> for all <span class="math">\(i \geq 1\)</span>.</p>
 <p>Every iteration eliminates a pair of numbers. Sorting takes <span class="math">\(O(m\log m)\)</span> and the rest takes <span class="math">\(O(m)\)</span>. That&#8217;s better than <span class="math">\(O(m^2)\)</span> :)</p>
 <div class="section" id="horowitz-sahni-algorithm-for-subset-sum">
 <h3>Horowitz &amp; Sahni Algorithm for Subset Sum<a class="headerlink" href="#horowitz-sahni-algorithm-for-subset-sum" title="Permalink to this headline">¶</a></h3>
@@ -146,7 +146,7 @@
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
       <li>Previous: <a href="2013-09-23.html" title="previous chapter">k-clique <span class="math">\(\in\)</span> NP-Complete</a></li>
-      <li>Next: <a href="../MTHE326/index.html" title="next chapter">MTHE 326 - Functions of a Complex Variable</a></li>
+      <li>Next: <a href="2013-09-27.html" title="next chapter">Divide &amp; Conquer</a></li>
   </ul></li>
   </ul></li>
 </ul>
