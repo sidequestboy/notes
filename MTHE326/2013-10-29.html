@@ -1,0 +1,180 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Liouville Theorem, Cauchy Differentiation Formula &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Fundamental Theorm of Algebra &amp; Max Modulus Theorems" href="2013-10-31.html" />
+    <link rel="prev" title="Winding Numbers" href="2013-10-28.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-31.html" title="Fundamental Theorm of Algebra &amp; Max Modulus Theorems"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-28.html" title="Winding Numbers"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="liouville-theorem-cauchy-differentiation-formula">
+<h1>Liouville Theorem, Cauchy Differentiation Formula<a class="headerlink" href="#liouville-theorem-cauchy-differentiation-formula" title="Permalink to this headline">¶</a></h1>
+<p>Proof of Theorem 1 (For first derivative only)</p>
+<div class="math">
+\[G(z)=\frac{1}{2πi}\int_γ\frac{g(w)}{w-z}dw\]</div>
+<p>(<span class="math">\(z\in \mathbb C\backslash γ\)</span>)</p>
+<div class="math">
+\[\begin{split}&amp;\frac{G(z+h)-G(z)}{h}\\
+=&amp;\frac{1}{h}\frac{1}{2πi}\int_γ\frac{g(w)}{w-(z+h)}-\frac{g(w)}{w-z}dw\\
+=&amp;\frac{1}{h}\frac{1}{2πi}\int_γ\frac{hg(w)}{(w-(z+h))(w-z)}dw\\
+=&amp;\frac{1}{2πi}\int_γ\frac{g(w)}{(w-(z+h))(w-z)}dw\end{split}\]</div>
+<p>We want to show this converges to</p>
+<div class="math">
+\[\frac{1}{2πi}\int_γ\frac{g(w)}{(w-z)^2}dw\]</div>
+<p>as <span class="math">\(h\to 0\)</span>.</p>
+<p>Well, <span class="math">\(|(w-(z+h))(w-z)^2|\geq δ^3\)</span>, so</p>
+<div class="math">
+\[\begin{split}&amp;\frac{1}{2πi}(\int_γ\frac{g(w)}{(w-(z+h))(w-z)}dz-\int_γ\frac{g(w)}{(w-z)^2}dz)\\
+=&amp;\frac{1}{2πi}\int_γ\frac{hg(w)}{(w-(z+h))(w-z)^2}dw\end{split}\]</div>
+<p>By uniform convergence argument.</p>
+<p>Let <span class="math">\(L=length(γ)\)</span> and <span class="math">\(M=max_{w\in γ}|g(w)|\)</span>, then:</p>
+<div class="math">
+\[\begin{split}&amp;|\frac{1}{2πi}\int_γ\frac{hg(w)}{(w-(z+h))(w-z)^2}dw|\\
+\leq &amp;\frac{h}{2π}\frac{LM}{δ^3}\to_{h\to 0}\to 0\end{split}\]</div>
+<p>Giving results.</p>
+<p>Argument for higher derivatives follows similarly from induction.</p>
+<div class="admonition-corollary-1-a-holomorphic-function-is-infinitely-differentiable admonition">
+<p class="first admonition-title">Corollary 1 (A holomorphic function is infinitely differentiable.)</p>
+<p>Proof:</p>
+<p class="last">If <span class="math">\(f:D\to\mathbb C\)</span> is holomorphic on some open set, then <span class="math">\(\forall z_0\in D\)</span>, <span class="math">\(\exists ρ&gt;0\)</span> s.t. <span class="math">\(D_ρ(z_0)\subset D\)</span> and disks are simple connected. Use CDF.</p>
+</div>
+<div class="admonition-corollary-2-cauchy-s-inequality-for-derivative admonition">
+<p class="first admonition-title">Corollary 2 (Cauchy&#8217;s Inequality for Derivative)</p>
+<p>If <span class="math">\(f:D\to\mathbb C\)</span> is holomorphic and a circle <span class="math">\(γ\subset D\)</span> has radius <span class="math">\(R\)</span> centered at <span class="math">\(z_0\)</span> and <span class="math">\(max_{w\in γ}|f(z)\leq M|\)</span> then,</p>
+<div class="math">
+\[|f^{(k)}(z_0)|\leq \frac{k!}{R^k}M\]</div>
+<p>Proof:</p>
+<div class="last math">
+\[\begin{split}|f^{(k)}(z_0)|=|\frac{k!}{2πi}\int_γ\frac{f(w)}{(w-z)^{k+1}}dw|\\
+\leq \frac{k!}{2πi}\frac{M}{R^{k+1}}2πR\\
+=\frac{k!M}{R^k}\end{split}\]</div>
+</div>
+<div class="admonition-corollary-3-liouville-s-theorem admonition">
+<p class="first admonition-title">Corollary 3 (Liouville&#8217;s Theorem)</p>
+<p>The only bounded entire functions are constant.</p>
+<p>Proof:</p>
+<p>If <span class="math">\(f:\mathbb C\to\mathbb C\)</span> is holomorphic and bounded, <span class="math">\(\exists M&gt;0\)</span> s.t. <span class="math">\(|f(z)|\leq M\)</span> for all <span class="math">\(R&gt;0\)</span>, <span class="math">\(\forall z\in \mathbb C\)</span> since we can take <span class="math">\(γ\)</span> arbitrarily large.</p>
+<p class="last">So <span class="math">\(f'(z)=0\)</span> for all <span class="math">\(z\in\mathbb C\)</span>. So <span class="math">\(f(z)\)</span> is constant.</p>
+</div>
+<div class="admonition-corollary-4-fundamental-theorem-of-algebra-fta admonition">
+<p class="first admonition-title">Corollary 4: (Fundamental Theorem of Algebra) (FTA)</p>
+<p>Ever Polynomial on <span class="math">\(\mathbb C\)</span> factors completely into linear components</p>
+<p>Proof:</p>
+<p>If <span class="math">\(P(z)=a_nz^n+...+a_1z+a_0\)</span> is a polynomial of degree <span class="math">\(n\geq 1\)</span>, then if <span class="math">\(P(α)=C\)</span>, <span class="math">\(P(z)-C=g(z)(z-α)\)</span> where <span class="math">\(g(z)\)</span> is a polynomial of degree <span class="math">\(n-1\)</span>.</p>
+<p>Why? Polynomial long-division</p>
+<p>So it is enough to show <span class="math">\(P(α)=0\)</span> for some <span class="math">\(α\in\mathbb C\)</span>, then <span class="math">\(P(z)=q(z)(z-α)\)</span> and we have reduced the problem to degree <span class="math">\(n-1\)</span> and we can proceed by induction until <span class="math">\(g(z)\)</span> is degree 1 (linear).</p>
+<p>So FTA <span class="math">\(\iff\)</span> <span class="math">\(P(α)=0\)</span> for <span class="math">\(α\in\mathbb C\)</span>.</p>
+<p>Proof by Contradiction:</p>
+<p>Suppose <span class="math">\(p(α)\neq 0\)</span> for all <span class="math">\(α\in \mathbb C\)</span>. Then <span class="math">\(f(z)=\frac{1}{P(z)}\)</span> is entire.</p>
+<p>Since <span class="math">\(|P(z)|\geq |a_n||z|^n-|a_{n-1}||z|^{n-1}-...-|a_1||z|+|a_0|\)</span>,</p>
+<p>We have</p>
+<div class="math">
+\[|P(z)|\geq \frac{|a_n|}{2}|z|^n\]</div>
+<p>for sufficiently large <span class="math">\(|z|\geq ρ&gt;0\)</span></p>
+<p>So</p>
+<div class="math">
+\[|f(z)|=\frac{1}{|P(z)|}\leq \frac{2}{|a_n||z|^n}\leq \frac{2}{p^n|a_n|}\]</div>
+<p>for <span class="math">\(|z|\geq ρ\)</span>.</p>
+<p>and <span class="math">\(M=max_{|z|\leq ρ}|f(z)|\)</span> exists since <span class="math">\(f(z)\)</span> is continuous everywhere and <span class="math">\(|z|\leq ρ\)</span> is compact so:</p>
+<div class="math">
+\[|f(z)|\leq max(M,\frac{2}{ρ^n|a_n|})\]</div>
+<p class="last">so <span class="math">\(f(z)\)</span> is bounded, thus constant.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-10-28.html" title="previous chapter">Winding Numbers</a></li>
+      <li>Next: <a href="2013-10-31.html" title="next chapter">Fundamental Theorm of Algebra &amp; Max Modulus Theorems</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-10-29.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

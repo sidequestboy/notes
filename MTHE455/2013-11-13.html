@@ -1,0 +1,200 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Review of Order Statistics &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-11-15.html" />
+    <link rel="prev" title="More Poisson" href="2013-11-11.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-15.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-11.html" title="More Poisson"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="review-of-order-statistics">
+<h1>Review of Order Statistics<a class="headerlink" href="#review-of-order-statistics" title="Permalink to this headline">¶</a></h1>
+<p>Suppose <span class="math">\(X_1,...,X_n\)</span> are independent, identically distributedm continuous random variables with common pdf <span class="math">\(f\)</span>.</p>
+<p>The joint pdf of <span class="math">\((X_1,...,X_n)\)</span> is</p>
+<div class="math">
+\[f_n(x_1,...,x_n)=\prod^n_{i=1}f(x_i)\]</div>
+<p>The order statistics of <span class="math">\(X_1,...,X_n\)</span> are denoted <span class="math">\(X_{(1)},...,X_{(n)}\)</span>, where</p>
+<div class="math">
+\[\begin{split}X_{(1)}&amp;=min(X_1,...,X_n)\\
+...\\
+X_{(k)}&amp;=\text{kth smallest of }X_1,...,X_n\\
+...\\
+X_{(n)}&amp;=max(X_1,...,X_n)\end{split}\]</div>
+<p>Let us consider the joint pdf of the order statistics <span class="math">\(X_{(1)},...,X_{(n)}\)</span></p>
+<p>Call this <span class="math">\(g(x_1,...,x_n)\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If <span class="math">\(x_1,...,x_n\)</span> do not satisfy <span class="math">\(x_1&lt;x_2&lt;...&lt;x_n\)</span>, then <span class="math">\(g(x_1,...,x_n)\)</span> will be 0. So let <span class="math">\(x_1,...,x_n\)</span> be such that <span class="math">\(x_1&lt;x_2&lt;...&lt;x_n\)</span></p>
+</div>
+<p>Consider</p>
+<div class="math">
+\[\begin{split}P(X_{(i)}\in [x_i,x_i+h),i=1,...,n)\\
+=\sum_Π P(X_{Π_i}\in [x_i,x_i+h),i=1,...,n)\end{split}\]</div>
+<p>where the sum is over all permutations <span class="math">\((Π_1,...,Π_n)\)</span> of <span class="math">\((1,...,n)\)</span></p>
+<div class="math">
+\[=n!P(X_i\in[x_i,x_i+h),i=1,...,n)\]</div>
+<p>Dividing this by <span class="math">\(h^n\)</span> and letting <span class="math">\(h\to 0\)</span> gives <span class="math">\(g(x_1,...,x_n)\)</span></p>
+<p>So</p>
+<div class="math">
+\[\begin{split}g(x_1,...,x_n)&amp;=n!f_n(x_1,...,x_n)\\
+&amp;=n!\prod_{i=1}^n f(x_i)\end{split}\]</div>
+<p>Last time, we got that the conditional joint density of the arrival times <span class="math">\(S_1,...,S_n\)</span> given <span class="math">\(N(t)=n\)</span> is</p>
+<div class="math">
+\[h(s_1,...,s_n|N(t)=n)=\frac{n!}{t^n}\]</div>
+<p>for <span class="math">\(0&lt;s_1&lt;s_2&lt;...&lt;s_n&lt;t\)</span>, and 0 otherwise</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="last math">
+\[\frac{n!}{t^n}=n!\prod_{i=1}^n\frac{1}{t}\]</div>
+</div>
+<p>In other words, the conditional distribution of the arrival times <span class="math">\(S_1,...,S_n\)</span> given <span class="math">\(N(t)=n\)</span> is that of the order statistics of <span class="math">\(n\)</span> i.i.d. <span class="math">\(Uniform(0,t)\)</span> random variables.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>An insurance company receives claims according to a Poisson process with rate <span class="math">\(λ\)</span>. The cost of the ith claim is <span class="math">\(C_i\)</span>, where <span class="math">\(C_1,C_2,...\)</span> are independent and identically distributed with mean <span class="math">\(μ\)</span>.</p>
+<p>Then, in the interval <span class="math">\([0,t]\)</span>, the total discounted cost of the claims is</p>
+<div class="math">
+\[D(t)=\sum_1^{N(t)} e^{-αS_i}C_i\]</div>
+<p>Where <span class="math">\(S_i\)</span> is the arrival time of the ith claim and <span class="math">\(α\)</span> is the discount rate.</p>
+<p>Let us compute <span class="math">\(E[D(t)]\)</span>.</p>
+<p>Conditioning on <span class="math">\(N(t)\)</span>, we have</p>
+<div class="math" id="equation-a">
+<span class="eqno">(1)</span>\[\begin{split}E[D(t)]&amp;=\sum_{n=0}^\infty E[D(t)|N(t)=n]P(N(t)=n)\\
+       &amp;=\sum_{n=0}^\infty E[\sum_{i=1}^{N(t)} e^{-αS_i}C_i|N(t)=n] P(N(t)=n)\end{split}\]</div>
+<p>where</p>
+<div class="math">
+\[E[\sum_{i=1}^{N(t)} e^{-αS_i}C_i|N(t)=n]=E[\sum_{i=1}^ne^{-αU_{(i)}}C_i]\]</div>
+<p>where <span class="math">\(U_{(i)}\)</span> is the ith order statistic from <span class="math">\(U_1,...,U_n\)</span> where <span class="math">\(U_i\)</span> is <span class="math">\(Uniform(0,t)\)</span></p>
+<div class="math">
+\[\begin{split}&amp;=\sum_{i=1}^n E[C_i]E[e^{-αU_{(i)}}]\\
+&amp;=μ\sum_{i=1}^n E[e^{-αU_{(i)}}]\\
+&amp;=μΕ[\sum_{i=1}^n e^{-αU_{(i)}}]\\
+&amp;=μE[\sum_{i=1}^n e^{-αU_i}]\\
+&amp;=μnE[e^{-αU_1}]\\
+&amp;=μn\int_0^t \frac{1}{t}e^{-αu}du\\
+&amp;=μn\frac{1}{t}\frac{1}{α}(1-e^{-αt})\end{split}\]</div>
+<p>Putting this back into <a href="#equation-a">(1)</a> gives</p>
+<div class="last math">
+\[\begin{split}E[D(t)]&amp;=μ\frac{1}{αt}(1-e^{-αt})E[N(t)]\\
+       &amp;=\frac{μλ}{α}(1-e^{-αt})\end{split}\]</div>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Filtered Poisson Process</p>
+<p>Suppose</p>
+<div class="math">
+\[X(t)=\sum_{i=1}^{N(t)}f(t,S_i,Y_i)\]</div>
+<p>where <span class="math">\(\{N(t):t\geq 0\}\)</span> is  Poisson process with rate <span class="math">\(λ\)</span>, <span class="math">\(S_1,...,S_n\)</span> are the arrival times, and <span class="math">\(Y_1,Y_2,...\)</span> are independent and identically distributed random variables.</p>
+<p>Let us compute <span class="math">\(E[s^{X(t)}]\)</span>.</p>
+<p>We have</p>
+<div class="math">
+\[\begin{split}E[s^{X(t)}]&amp;=E[s^{\sum_{i=1}^{N(t)}f(t,S_i,Y_i)}]\\
+           &amp;=\sum_{k=0}^\infty E[s^{\sum_{i=1}^{N(t)}f(t,S_i,Y_i)}|N(t)=k]P(N(t)=k)\\
+           &amp;=\sum_{k=0}^\infty E[s^{\sum_{i=1}^k f(t,U_{(i)},Y_i)}]P(N(t)=k)\\
+           &amp;=\sum_{k=0}^\infty E[s^{\sum_{i=1}^k f(t,U_i,Y_i)}]P(N(t)=k)\\
+           &amp;=\sum_{k=0}^\infty E[\prod_{i=1}^k s^{f(t,U_i,Y_i)}]P(N(t)=k)\\
+           &amp;=\sum_{k=0}^\infty \prod_{i=1}^k E[s^{f(t,U_i,Y_i)}]P(N(t)=k)\\
+           &amp;=\sum_{k=0}^\infty E[s^{f(t,U_i,Y_i)}]^k P(N(t)=k)\\
+           =G_{N(t)}(E[s^{f(t,U_1,Y_1)}])\end{split}\]</div>
+<p>where <span class="math">\(G_{N(t)}(s)\)</span> is the generating function of <span class="math">\(N(t)\)</span>. Since <span class="math">\(N(t)\)</span> is <span class="math">\(Poisson(λt)\)</span>, <span class="math">\(G_{N(t)}\)</span> is</p>
+<div class="last math">
+\[\begin{split}\sum_{k=0}^\infty s^k\frac{(λt)^k}{k!}e^{-λt}\\
+=e^{-λt}e^{sλt}=e^{λt(s-1)}\end{split}\]</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-11-11.html" title="previous chapter">More Poisson</a></li>
+      <li>Next: <a href="2013-11-15.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-11-13.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

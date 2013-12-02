@@ -1,0 +1,111 @@
+*******************
+Contour Integration
+*******************
+We will integrate along paths.
+
+For :math:`g:(a,b)\subseteq\mathbb R^2\to\mathbb C`
+
+where :math:`g(t)=u(t)+iv(t)`, we define:
+
+.. math::
+    \int_a^b g(t)dt=\int_a^bu(t)dt+i\int_a^bv(t)dt
+
+.. admonition:: Example
+
+    .. math::
+        f:(0,\frac{\pi}{4})\to\mathbb C
+
+        f(t)=cos(t)+isin(t)
+
+        \int_0^{\frac{\pi}{4}}f(t)dt=\int_0^{\frac{\pi}{4}}\cos tdt+i\int_0^{\frac{\pi}{4}}\sin t dt
+
+        =[\sin t]|^{\frac{pi}/{4}}_0+i[-\cos t]|^{\frac{pi}/{4}}_0
+
+        =\frac{\sqrt(2)}{2}+i(-\frac{\sqrt(2)}{2}+1)
+
+    but :math:`f(t)=e^{it}`
+
+    So, one may wonder,
+
+    .. math::
+        \int_0^{\frac{\pi}{4}}e^{it}dt=^?[\frac{1}{t}e^{it}]{\frac{\pi}{4}}
+
+    well,
+
+    .. math::
+        =\frac{1}{i}(\frac{\sqrt{2}}{2}+i\frac{\sqrt{2}}{2}-1)
+
+        =\frac{\sqrt{2}}{2}+i(1-\frac{\sqrt{2}}{2})
+
+.. admonition:: Recall
+
+    That an oriented (directed) curve :math:`\gamma:[a,b]\to\mathbb C` is said to be *smooth* pr :math:`C^1` if
+
+    .. math::
+        \gamma(t)=x(t)+iy(t)
+
+    and 
+
+    .. math::
+        \gamma'(t)=x'(t)+iy'(t)
+
+    exists, and is continuous.
+
+    A curve is *piecewise-smooth* if it finitely divides into smooth pieces
+
+If :math:`f:S\to\mathbb C` is a complex-valued function (not necessarily analytic) and :math:`\gamma\subset S` is a curve, we want to define
+
+.. math::
+    \int_\gamma f(z)dz
+
+How do we do this? -Riemann Sums.
+
+.. image::
+
+consider the sum
+
+.. math::
+    \sum_{k=1}^n f(z_k)(z_k=z_{k-1})
+
+If :math:`\gamma:[a,b]\to\mathbb C`, we can partition :math:`[a,b]` so that
+
+.. math::
+    \gamma(t_k)=z_k
+
+Rewrite the sum as:
+
+.. math::
+    \sum_{k=1}^n f(\gamma(t_k))(\gamma(t_k)=\gamma(t_{k-1}))
+
+    =\sum_{k=1}^n f(\gamma(t_k))\frac{(\gamma(t_k)=\gamma(t_{k-1}))}{t_k-t_{k-1}}(t_k-t_{k-1})
+
+Taking the limit of the partition as :math:`n\to\infty`, the sum becomes:
+
+.. math::
+    \int_a^b f(\gamma(t))\gamma'(t)dt
+
+    =: \int_\gamma f(z)dz
+
+.. admonition:: Example
+
+    f(z)=\frac{1}{z}
+
+    \gamma(t)=\cos(t)+i\sin(t)
+
+for :math:`t\in [0,2\pi]`
+
+.. math::
+    \int_\gamma f(z)dz=\int_0^{2\pi}f(\gamma(t))\gamma'(t)dt
+
+    =\int_0^{2\pi}\frac{1}{\cos t+i\sin t}(-\sin t+i\cos t)dt
+
+(and since :math:`\frac{1}{\cos t+i\sin t}=e^{-it}=\cos t-i\sin t`)
+
+
+.. math::
+    =\int_0^{2\pi}(\cos t-i\sin t)(-\sin t+i\cos t)
+
+    =i\int_0^{2\pi}1dt
+
+    =2\pi i
+

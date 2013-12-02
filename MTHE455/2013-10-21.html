@@ -1,0 +1,217 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Limiting Probabilities &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Flow" href="2013-10-23.html" />
+    <link rel="prev" title="Results from Number Theory (contd)" href="2013-10-18.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-23.html" title="Flow"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-18.html" title="Results from Number Theory (contd)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="limiting-probabilities">
+<h1>Limiting Probabilities<a class="headerlink" href="#limiting-probabilities" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="last-time">
+<h2>Last time:<a class="headerlink" href="#last-time" title="Permalink to this headline">¶</a></h2>
+<p><span class="math">\(\{X_n:n\geq 0\}\)</span> is an irreducible, positive recurrent, and aperiodic.</p>
+<div class="math">
+\[\lim_{n\to\infty}(Π_j-p_{ij}(n))=\sum_{k\in S}Π_k\lim_{n\to\infty}(p_{kj}(n)-p_{ij}(n))\]</div>
+<p>So our goal is to show:</p>
+<div class="math">
+\[\lim_{n\to\infty}(p_{kj}(n)-p_{ij}(n))=0\]</div>
+</div>
+<div class="section" id="basic-idea">
+<h2>Basic idea:<a class="headerlink" href="#basic-idea" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p><em>Coupling</em>: consider an independent Markov chain <span class="math">\(Y=\{Y_n:n\geq 0\}\)</span> with the same transition probabiliities as <span class="math">\(X\)</span> chain.</p>
+<p class="last">Start <span class="math">\(Y\)</span> in state <span class="math">\(k\)</span>. Start <span class="math">\(X\)</span> in state <span class="math">\(i\)</span>. When they reach a common state, we say they have &#8220;coupled&#8221;. After this point, they have the same distribution.</p>
+</div>
+<p>Define the bivariate process</p>
+<div class="math">
+\[Z=\{Z_n:n\geq 0\}\]</div>
+<p>where <span class="math">\(Z_n=(X_n,Y_n)\)</span> with state space <span class="math">\(S\times S\)</span>.</p>
+<p>Then,</p>
+<ol class="arabic">
+<li><p class="first"><span class="math">\(\{Z_n: n\geq 0\}\)</span> is a Markov chain (Markov property is inherited from <span class="math">\(X\)</span> and <span class="math">\(Y\)</span> chains)</p>
+</li>
+<li><p class="first">The transition probabilities for the <span class="math">\(Z\)</span> chain are:</p>
+<blockquote>
+<div><div class="math">
+\[p_{(i,k),(j.l)}=p_{ij}p_{kl}\]</div>
+<p>More generally, the n-step transition probabilities are</p>
+<div class="math">
+\[p_{(i,k),(j.l)}(n)=p_{ij}(n)p_{kl}(n)\]</div>
+</div></blockquote>
+</li>
+<li><p class="first">From (2.) and our number theory results, there is an <span class="math">\(N_1\)</span> such that <span class="math">\(p_{ij}(n)&gt;0\)</span> for all <span class="math">\(n\geq N_1\)</span> and an <span class="math">\(N_2\)</span> such that <span class="math">\(p_{kl}(n)&gt;0\)</span> for all <span class="math">\(n\geq N_2\)</span>.</p>
+<blockquote>
+<div><p>So for <span class="math">\(n\geq max(N_1,N_2)\)</span>, <span class="math">\(p_{ij}(n)p_{kl}(n)&gt;0\)</span></p>
+<p>So, <span class="math">\(p_{ij}(n)p_{kl}(n)\)</span> for some <span class="math">\(n\)</span>.</p>
+<p>So, <span class="math">\((j,l)\)</span> is accessible from <span class="math">\((i,k)\)</span>. This holds for all states <span class="math">\((i,k)\)</span> and <span class="math">\((j,l)\)</span>. So the <span class="math">\(Z\)</span> chain is irreducible.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Suppose</p>
+<div class="math">
+\[\begin{split}P=\left[\matrix{0 &amp; 1 \\ 1 &amp; 0}\right]\end{split}\]</div>
+<p>The period is 2. Then the bivariate chain <span class="math">\(Z\)</span> will not be irreducible since for example, if it starts in <span class="math">\((1,2)\)</span>, it will oscillate between <span class="math">\((1,2)\)</span> and <span class="math">\((2,1)\)</span>.</p>
+<p class="last">So, for example <span class="math">\((2,2)\)</span> is not accessible from <span class="math">\((1,2)\)</span>.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">The stationary distribution for the <span class="math">\(Z\)</span> chain is given by <span class="math">\(Π_{(i,k)}=Π_iΠ_k\)</span> (where <span class="math">\(Π\)</span> is the stationary distribution of <span class="math">\(X\)</span> and <span class="math">\(Y\)</span> chains).</p>
+<blockquote>
+<div><p>To check this:</p>
+<div class="math">
+\[\begin{split}Π_{(j,l)}&amp;=\sum_{(i,j)\in S\times S}Π_{(i,k)}p_{(i,k),(j,l)}\\
+   Π_jΠ_l&amp;=\sum_{(i,j)\in S\times S}Π_iΠ_kp_{ij}p_{kl}\\
+         &amp;=\sum_{i\in S}Π_ip_{ij}\sum_{k\in S}Π_kp_{kl}\\
+         &amp;=Π_jΠ_l\end{split}\]</div>
+<p>Therefore, the <span class="math">\(Z\)</span> chain is positive recurrent.</p>
+<p>So, for a state <span class="math">\((s,s)\)</span>, where <span class="math">\(s\in S\)</span>, if <span class="math">\(T=\)</span> first time chain visites <span class="math">\((s,s)\)</span>, then <span class="math">\(P(T&lt;\infty|X_0=i,Y_0=k)=1\)</span> for any states <span class="math">\(i\)</span> and <span class="math">\(k\)</span>.</p>
+</div></blockquote>
+</li>
+</ol>
+<p>Now consider the following probability:</p>
+<div class="math">
+\[P(X_n=j, T=m|X_0=i,Y_0=k)\]</div>
+<p>for <span class="math">\(m&lt;n\)</span>.</p>
+<div class="math">
+\[\begin{split}&amp;=P(X_n=j|T=m,X_0=i,Y_0=k)P(T=m|X_0=i, Y_0=k)\\
+&amp;=P(X_n=j|X_m=s,Y_m=s,(X_r,Y_r)\neq (s,s), r=1,...m-1, X_0=i,Y_0=k)\\
+&amp;=P(X_n=j|X_m=s)\end{split}\]</div>
+<p>By independence of <span class="math">\(X,Y\)</span> and by Markov property of <span class="math">\(X\)</span>.</p>
+<div class="math">
+\[=P(Y_n=j|Y_m=s)\]</div>
+<p>because <span class="math">\(Y\)</span> has the same transition probabilities as <span class="math">\(X\)</span>.</p>
+<div class="math">
+\[\begin{split}&amp;=P(Y_n=j|X_m=s,Y_m=s,(X_r,Y_r)\neq (s,s), r=1,...m-1, Y_0=i,X_0=k)\\
+&amp;=P(Y_n=j|T=m,Y_0=i,X_0=k)P(T=m|Y_0=i, X_0=k)\\
+&amp;=P(Y_n=j, T=m|Y_0=i,X_0=k)\end{split}\]</div>
+<p>So now we have:</p>
+<div class="math">
+\[\begin{split}p_{ij}(n)&amp;=P(X_n=j|X_0=i)\\
+         &amp;=P(X_n=j|X_0=i, Y_0=k)\\
+         &amp;=\sum_{m=1}^{n-1}P(X_n=j,T=m|X_0=i,Y_0=k)+P(X_n=j,T\geq n|X_0=i,Y_0=k)\\
+         &amp;=\sum_{m=1}^{n-1}P(Y_n=j,T=m|Y_0=i,X_0=k)+P(Y_n=j,T\geq n|Y_0=i,X_0=k)\\
+         &amp;=P(Y_n=n,T&lt;n|X_0=i,Y_0=j)+P(X_n=j,T\geq n|X_0=i,Y_0=k)\\
+         &amp;\leq P(Y_n=j|X_0=i,Y_0=k)+P(X_n=j,T\geq n|X_0=i,Y_0=k)\\
+         &amp;=P(Y_n=j|Y_0=k)+P(T\geq n| X_0=i,Y_0=k)\\
+         &amp;=p_{kj}(n)+P(T\geq n|X_0=i,Y_0=k)\end{split}\]</div>
+<p>So <span class="math">\(p_{ij}(n)-p_{kj}(n)\leq P(T\geq n|X_0=i,Y_0=k)\)</span>.</p>
+<p>Now, interchange <span class="math">\(i\)</span> and <span class="math">\(k\)</span> and <span class="math">\(X\)</span> and <span class="math">\(Y\)</span> in the previous calculations, giving:</p>
+<div class="math">
+\[p_{kj}(n)-p_{ij}(n)\leq P(T\geq n|X_0=i,Y_0=k)\]</div>
+<p>This gives:</p>
+<div class="math">
+\[|p_{ij}(n)-p_{kj}(n)|\leq P(T\geq n|X_0=i,Y_0=k)\to 0\text{ as }n\to\infty\]</div>
+<p>Since <span class="math">\(P(T&lt;\infty|X_0=i,Y_0=k)=1\)</span></p>
+<p>By the limit result just proved, one way to numerically approximate the stationary distribution <span class="math">\(Π\)</span> is to take <span class="math">\(P,P^2,P^4,P^16\)</span> to get <span class="math">\(P^n\)</span> large enough so all the rows of <span class="math">\(P_n\)</span> are close to <span class="math">\(Π\)</span>.</p>
+<p>Or take <span class="math">\(Π^(0)\)</span>. Then compute <span class="math">\(Π^(1)=Π^(0)P\)</span></p>
+<p>Recursively compure <span class="math">\(Π^(k)=Π^(k-1)P\)</span>, which for <span class="math">\(k\)</span> large, goes to <span class="math">\(Π\)</span></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Limiting Probabilities</a><ul>
+<li><a class="reference internal" href="#last-time">Last time:</a></li>
+<li><a class="reference internal" href="#basic-idea">Basic idea:</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-10-18.html" title="previous chapter">Results from Number Theory (contd)</a></li>
+      <li>Next: <a href="2013-10-23.html" title="next chapter">Flow</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-10-21.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -1,0 +1,85 @@
+.. epigraph::
+    Success in life is beingables to do fo a living that which makes you happy
+
+    Happy birthday to Weird Al Yankovich
+
+************************
+More Dynamic Programming
+************************
+Dynamic Programming for Subset Sum
+==================================
+
+Give :math:`S=`set of integers :math:`=\{s_1,s_2,...,s_n\}`, target value :math:`k`.
+
+.. image::
+
+:math:`T(s_i,x):=`True iff there exists a subset of :math:`\{s_1,s_2,...,s_i\}` that sums to :math:`x`.
+
+if there is such a subset, it either includes :math:`s_i`, or it doesn't.
+
+if it does include :math:`s_i`, then :math:`\{s_1,...,s_{i-1}\}` has a subset that sums to :math:`x-s_i`
+
+if it doesn't, then :math:`\{s_1,...,s_{i-1}\}` has a subset that sums to :math:`x`
+
+.. admonition:: Example
+
+    .. math::
+        S=\{1,3,5,8,12\}\\
+        k=14
+
+    .. image::
+
+    So there is a subset that sums to 14: :math:`\{8,5,1\}`
+
+    This is NP-Complete?
+    --------------------
+
+    Size of input is :math:`=n+1`
+
+    Size of table is :math:`n\cdot k`
+
+    So, alg :math:`\in O(n\cdot k)`
+
+
+Dynamic Programming for Longest Common Subsequence
+==================================================
+Suppose we have a partial DNA sample e.g.
+
+...GATT...CA...TAA...
+
+Catalogue:
+
+1. xxGxxATTCxx
+
+Given :math:`S_1,S_2`, strings of characters, find the longest sequence of characters that is a subsequence of :math:`S_1` and :math:`S_2`.
+
+:math:`S_1`: "caller"
+
+:math:`S_2`: "clearer"
+
++---+---+---+-------+---+---+---+---+
+| . | c | l | e     | a | r | e | r |
++===+===+===+=======+===+===+===+===+
+| c | 1 | 1 | 1     | 1 | 1 | 1 | 1 |
++---+---+---+-------+---+---+---+---+
+| a | 1 | 1 | 1     | 2 | 2 | 2 | 2 |
++---+---+---+-------+---+---+---+---+
+| l | 1 | 2 | 2     | 2 | 2 | 2 | 2 |
++---+---+---+-------+---+---+---+---+
+| l | 1 | 2 | 2     | 2 | 2 | 2 | 2 |
++---+---+---+-------+---+---+---+---+
+| e | 1 | 2 | 3     | 3 | 3 | 3 | 3 |
++---+---+---+-------+---+---+---+---+
+| r | 1 | 2 | **3** | 3 | 4 | 4 | 4 |
++---+---+---+-------+---+---+---+---+
+
+Cell :math:`(l_2,r_1)`contains the length of the longest common subsequence of "call" and "clear"
+
+.. math::
+    T(i,j)=|l.c.s.|\text{ of }S_1[1...i]\text{ and }S_2[1...j]
+
+if :math:`S_1[i]==S_2[j]`, :math:`T(i,j)=1+T(i-1,j-1)`
+
+else :math:`T(i,j)=max\{T(i,j-1),T(i-1,j),T(i-1,j-1)\}`
+
+"cler" or "caer"

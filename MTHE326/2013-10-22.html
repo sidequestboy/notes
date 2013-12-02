@@ -1,0 +1,171 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Proof of Cauchy’s Theorem (version 2, 3) and Homotopy &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Proof of Cauchy’s Theorem (version 3), Consequences, Cauchy Integral Formula" href="2013-10-24.html" />
+    <link rel="prev" title="Cauchy’s Theorem (version 2)" href="2013-10-21.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-24.html" title="Proof of Cauchy’s Theorem (version 3), Consequences, Cauchy Integral Formula"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-21.html" title="Cauchy’s Theorem (version 2)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="proof-of-cauchy-s-theorem-version-2-3-and-homotopy">
+<h1>Proof of Cauchy&#8217;s Theorem (version 2, 3) and Homotopy<a class="headerlink" href="#proof-of-cauchy-s-theorem-version-2-3-and-homotopy" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<p>If <span class="math">\(f: D\to\mathbb C\)</span> is holomorphic and <span class="math">\(γ_0,γ_1\)</span> are simple, closed curves oriented the same way</p>
+<div class="math">
+\[\begin{split}γ_0,γ_1\subset D &amp;&amp; γ_1\subset Int(γ_0)\cap D\\
+Int(γ_1)-Int(γ_0)\subset D\end{split}\]</div>
+<p>(see shitty image from last time)</p>
+<p>then:</p>
+<div class="last math">
+\[\int_{γ_0}f(z)dz=\int_{γ_1}f(z)dz\]</div>
+</div>
+<div class="section" id="proof-of-cauchy-s-theorem-version-2">
+<h2>Proof of Cauchy&#8217;s Theorem (version 2)<a class="headerlink" href="#proof-of-cauchy-s-theorem-version-2" title="Permalink to this headline">¶</a></h2>
+<p>Consider the simple curve, <span class="math">\(\tilde γ\)</span>, containing <span class="math">\(γ_0\)</span> and <span class="math">\(γ_1\)</span></p>
+<div class="section" id="claim">
+<h3>Claim:<a class="headerlink" href="#claim" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[\int_{γ_0}+\int_{\tilde γ}+\int_{-γ_1}+\int_{-\tilde γ}\]</div>
+<p>We use green&#8217;s theorem (as in Cauchy&#8217;s Theorem version 1) to relate the integral around the boundary of <span class="math">\(R\)</span> to an integral on <span class="math">\(R\)</span></p>
+<div class="admonition-definition-we-say-the-loops-math-0-and-math-1-are-homotopic-within-a-domain-math-d-if-there-exists-a-continuous-differentiable-mapping admonition">
+<p class="first admonition-title">Definition
+We say the loops <span class="math">\(γ_0\)</span> and <span class="math">\(γ_1\)</span> are homotopic within a domain <span class="math">\(D\)</span> if there exists a continuous, differentiable mapping:</p>
+<div class="math">
+\[H:[0,1]\times[0,1]\to D\]</div>
+<p>such that:</p>
+<div class="math">
+</div>
+<p>H(0,t)=γ_0(t) &amp;&amp; H(1,t)=γ_1(t)\
+H(s,0)=H(s,1)</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The in-between curves defined by <span class="math">\(H\)</span> mustn&#8217;t leave <span class="math">\(D\)</span> at any point.</p>
+</div>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Let <span class="math">\(γ_0=5\cos 2πt+i\sin 2πt &amp;&amp; t\in[0,1]\)</span></p>
+<p>And <span class="math">\(γ_1=3\cos 2πt+i\sin 2πt &amp;&amp; t\in[0,1]\)</span></p>
+<div class="last math">
+\[H(s,t)=(5-2s)e^{2πit}\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="cauchy-s-theorem-version-3">
+<h2>Cauchy&#8217;s Theorem (version 3)<a class="headerlink" href="#cauchy-s-theorem-version-3" title="Permalink to this headline">¶</a></h2>
+<p>If <span class="math">\(f:D\to \mathbb C\)</span> is holomorphic and <span class="math">\(γ_0\)</span> and <span class="math">\(γ_1\)</span> are closed loops in <span class="math">\(D\)</span> which are homotopic in <span class="math">\(D\)</span>, then:</p>
+<div class="math">
+\[\int_{γ_0}f(z)dz=\int_{γ_1}f(z)dz\]</div>
+<p>In version 1, <span class="math">\(γ\)</span> was a simple closed curve and <span class="math">\(Int(γ)\subset D\)</span></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Proof of Cauchy&#8217;s Theorem (version 2, 3) and Homotopy</a><ul>
+<li><a class="reference internal" href="#proof-of-cauchy-s-theorem-version-2">Proof of Cauchy&#8217;s Theorem (version 2)</a><ul>
+<li><a class="reference internal" href="#claim">Claim:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cauchy-s-theorem-version-3">Cauchy&#8217;s Theorem (version 3)</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-10-21.html" title="previous chapter">Cauchy&#8217;s Theorem (version 2)</a></li>
+      <li>Next: <a href="2013-10-24.html" title="next chapter">Proof of Cauchy&#8217;s Theorem (version 3), Consequences, Cauchy Integral Formula</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-10-22.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

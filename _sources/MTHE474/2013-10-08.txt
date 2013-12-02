@@ -121,7 +121,8 @@ Represent a UD VLC with a D-ary code alphabet as a D-ary tree, with branches lab
 
         a_4\to 0111
 
-    .. image::
+    .. image:: .static/10-08-1.jpg
+        :width: 50%
 
     Code 5:
 
@@ -138,7 +139,8 @@ Represent a UD VLC with a D-ary code alphabet as a D-ary tree, with branches lab
 
         a_4\to 111
 
-    .. image::
+    .. image:: .static/10-08-2.jpg
+        :width: 50%
 
     .. admonition:: note
 

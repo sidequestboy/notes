@@ -1,0 +1,205 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Kraft Inequality &amp; Lossless Variable-Length Source-Coding &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-10-14.html" />
+    <link rel="prev" title="Unique Decodability" href="2013-10-08.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-14.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-08.html" title="Unique Decodability"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="kraft-inequality-lossless-variable-length-source-coding">
+<h1>Kraft Inequality &amp; Lossless Variable-Length Source-Coding<a class="headerlink" href="#kraft-inequality-lossless-variable-length-source-coding" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A set of positive integers <span class="math">\(\{l_1,l_2,...l_n\}\)</span> is said to satisfy the <em>Kraft</em> (or Kraft-McMillan) inequality if:</p>
+<div class="math">
+\[\sum_{i=1}^M D^{-l_i}\leq 1\]</div>
+<p class="last">Where <span class="math">\(D\)</span> is a given integer, <span class="math">\(D\geq 2\)</span></p>
+</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Kraft Inequality for Uniquely Decodable Codes:</p>
+<p>A <em>UD</em> Variable length code (VLC) <span class="math">\(\mathcal C\)</span> with D-ary code alphabet and <span class="math">\(M\)</span> codewords having lengths <span class="math">\(l_1,l_2,...,l_M\)</span> (<span class="math">\(M=|\mathcal X|^n\)</span>) (where <span class="math">\(f:\mathcal X^n\to\{0,1,...D-1\}\)</span>)</p>
+<p>must satisfy the Kraft inequality:</p>
+<div class="math">
+\[\sum_{i=1}^M D^{-l_i}\leq 1\]</div>
+<p>Suppose that we use the code <span class="math">\(\mathcal C\)</span> to encode <span class="math">\(\mathcal N\)</span> n-tuples, that is:</p>
+<div class="math">
+\[x_i^n\in\mathcal X^n,i=1,...,N\]</div>
+<p>arriving in sequence.</p>
+<p>This yields a concatenated codeword sequence:</p>
+<div class="math">
+\[f(x_1^n)f(x_2^n)\cdot\cdot\cdot f(x_N^n)=c_1c_2\cdot\cdot\cdot c_N\]</div>
+<p>Let the lengths of these codewords respectively be given by:</p>
+<div class="math">
+\[l(c_1),l(c_2),...,l(c_N)\]</div>
+<p>Consider the following expression:</p>
+<div class="math">
+\[\sum_{c_1\in\mathcal C}\sum_{c_2\in\mathcal C}...\sum_{c_N\in\mathcal C}D^{(l(c_1)+l(c_n)+...+l(c_N))} (*)\]</div>
+<p>It is clear the the above expression can be written as:</p>
+<div class="math">
+\[\left[\sum_{c\in \mathcal C}D^{-l(c)}\right]^N\]\[=\left[\sum_{m=1}^M D^{-lm}\right]^N (**)\]</div>
+<p>where <span class="math">\(|\mathcal C|=M\)</span></p>
+<p>Now, <span class="math">\(l(c_1)+l(c_2)+...+l(c_n)\)</span> is the total length of the codeword sequence <span class="math">\(c_1,c_2,...,c_N\)</span>:</p>
+<p>It can take values anywhere between <span class="math">\(NL_1\)</span> and <span class="math">\(NL_2\)</span> where</p>
+<div class="math">
+\[L_1:=min_{c\in\mathcal C}\{l_1,...,l_M\}\]\[L_2:=max_{c\in\mathcal C}\{l_1,...,l_M\}\]</div>
+<p>Define <span class="math">\(A_j\)</span> as the <em>number</em> of N-codeword sequences of total length <span class="math">\(j\)</span>. Then, by collecting the terms in (*), we have the following for the right-hand side term in (**):</p>
+<div class="math">
+\[\left[\sum_{m=1}^M D^{-lm}\right]^N=\sum_{j=NL_1}^{NL_2} A_j D^{-j}\]</div>
+<p>Since the code <span class="math">\(\mathcal C\)</span> is UD (by assumption), we have that sequences of codewords of total length <span class="math">\(j\)</span> must be distinct (unambiguously decodable). But the maximum possible number of distinct such sequences of length <span class="math">\(j\)</span> id <span class="math">\(D^j\)</span>.</p>
+<p>Therefore, we must have that <span class="math">\(A_j\leq D^j\)</span></p>
+<p>Proceeding, we have:</p>
+<div class="math">
+\[\sum_{j=NL_1}^{NL_2} A_j D^{-j}\leq \sum_{j=NL_1}^{NL_2} D^j D^{-j}=N(L_2-L_1)+1\]\[\leq NL_2\]</div>
+<p>(since <span class="math">\(L_1\geq 1\)</span>)</p>
+<p>Therefore,</p>
+<div class="math">
+\[\sum_{n=1}^M D^{-ln}\leq (NL_2)^{\frac{1}{N}}=e^{\frac{1}{N}ln(NL_2)}\]</div>
+<p>Note the above inequality hols <span class="math">\(\forall N\geq 1\)</span>; it also holds in the limit on <span class="math">\(N\to\infty\)</span>. But as <span class="math">\(N\to\infty\)</span>,:math:<cite>e^{frac{1}{N}ln(NL_2)}to 1</cite></p>
+<p>Therefore,</p>
+<div class="last math">
+\[\sum_{m=1}^M D^{-lm}\leq 1\]</div>
+</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<ul class="simple">
+<li>Every D-ary prefix variable length code with <span class="math">\(M\)</span> codeword lengths <span class="math">\(l_1,_2,...l_M\)</span> satisfies the Kraft inequality.</li>
+<li>Conversely, given a set of lengths <span class="math">\(l_1,_2,...l_M\)</span> that satisfy the Kraft inequality, there <em>exists</em> a D-ary prefix code with these lengths as its codeword lengths</li>
+</ul>
+<p class="last">see online notes (Theorem 3.20)</p>
+</div>
+<div class="section" id="big-picture">
+<h2>Big Picture<a class="headerlink" href="#big-picture" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/10-10-1.jpg" src="../_images/10-10-1.jpg" style="width: 50%;" />
+<div class="section" id="conclusion-of-previous-two-theorems">
+<h3>Conclusion of previous two theorems:<a class="headerlink" href="#conclusion-of-previous-two-theorems" title="Permalink to this headline">¶</a></h3>
+<p>A UD VLC can always be replaced with a <em>prefix code</em> of <em>identical codeword lengths</em> (and thus identical rates).</p>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Consider a DMS <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with finite alphabet <span class="math">\(\mathcal X\)</span> and entropy in base <span class="math">\(D\)</span>, <span class="math">\(H_D(X)=-\sum_{x\in\mathcal X}p_X(x)log_D p_X(x)\)</span></p>
+<p>For any <span class="math">\(\epsilon&gt;0\)</span>, there exists a prefix (hence UD) code for the source:</p>
+<div class="math">
+\[f:\mathcal X^n\to\{0,1,...,D-1\}^*\]</div>
+<p>satisfying</p>
+<div class="math">
+\[\begin{split}\bar R&lt;H_D(X)+\epsilon\end{split}\]</div>
+<p>for <span class="math">\(n\)</span> sufficiently large.</p>
+<p>Conversely, <em>every</em> UD VLC for the source</p>
+<div class="math">
+\[f:\mathcal X^n\to\{0,1,...,D-1\}^*\]</div>
+<p>has average code rate:</p>
+<div class="last math">
+\[\bar R\geq H_D(X)\]</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Kraft Inequality &amp; Lossless Variable-Length Source-Coding</a><ul>
+<li><a class="reference internal" href="#big-picture">Big Picture</a><ul>
+<li><a class="reference internal" href="#conclusion-of-previous-two-theorems">Conclusion of previous two theorems:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-10-08.html" title="previous chapter">Unique Decodability</a></li>
+      <li>Next: <a href="2013-10-14.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-10-10.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

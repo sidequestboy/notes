@@ -1,0 +1,192 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Properties of Poisson Process - Superpositioning &amp; Thinning &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="More Poisson" href="2013-11-11.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-11-06.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-11.html" title="More Poisson"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-06.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="properties-of-poisson-process-superpositioning-thinning">
+<h1>Properties of Poisson Process - Superpositioning &amp; Thinning<a class="headerlink" href="#properties-of-poisson-process-superpositioning-thinning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="superposition-of-poisson-process">
+<h2>Superposition of Poisson Process<a class="headerlink" href="#superposition-of-poisson-process" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(\{N_1(t): t\geq 0\}\)</span> and <span class="math">\(\{N_1(t): t\geq 0\}\)</span> be independent Poisson processes with rates <span class="math">\(λ_1,λ_2\)</span> resp. Let <span class="math">\(N(t)=N_1(t)+N_2(t)\)</span>, <span class="math">\(t\geq 0\)</span>.</p>
+<p>Then <span class="math">\(\{N(t): t\geq 0\}\)</span> is a Poisson process with rate <span class="math">\(λ_1+λ_2\)</span>.</p>
+<ol class="lowerroman simple">
+<li><span class="math">\(N(0)=N_1(0)+N_2(0)=0+0=0\)</span></li>
+<li>We have that</li>
+</ol>
+<blockquote>
+<div><div class="math">
+\[\begin{split}N(t_2)-N(t_1)&amp;=N_1(t_2)+N_2(t_2)-N_1(t_1)-N_2(t_2)\\
+&amp;=(N_1(t_2)-N_1(t_2))+(N_2(t_2)-N_2(t_2))\\
+&amp;\sim Poisson(λ_1(t_2-t_1)) + Poisson(λ_2(t_2-t_1))\\
+&amp;= Poisson((λ_1+λ_2)(t_2-t_1))\end{split}\]</div>
+<p>This distribution depends on <span class="math">\(t_1\)</span> and <span class="math">\(t_2\)</span> only through <span class="math">\(t_2-t_1\)</span>, so <span class="math">\(N\)</span> has stationary increments.</p>
+<p>Let <span class="math">\(t_1&lt;t_2&lt;t_3&lt;t_4\)</span>.</p>
+<p>Then</p>
+<div class="math">
+\[\begin{split}N(t_2)-N(t_1)=(N_1(t_2)-N_1(t_1))+(N_2(t_2)-N_2(t_1))\\
+N(t_4)-N(t_3)=(N_1(t_4)-N_1(t_3))+(N_2(t_4)-N_2(t_3))\end{split}\]</div>
+<p>Everything in first line is independent of everything in second line, so <span class="math">\(N\)</span> has stationary and independent increments.</p>
+</div></blockquote>
+<ol class="lowerroman simple" start="3">
+<li><span class="math">\(N(t)=N_1(t)+N_2(t)\sim Poisson(λ_1t)+Poisson(λ_2t)=Poisson((λ_1+λ_2)t)\)</span></li>
+</ol>
+</div>
+<div class="section" id="thinning-a-poisson-process">
+<h2>Thinning a Poisson Process<a class="headerlink" href="#thinning-a-poisson-process" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(\{N(t): t\geq 0\}\)</span> be a Poisson process with rate <span class="math">\(λ\)</span>. Suppose, independently from event to event, that each event is a type &#8220;1&#8221; event with probability <span class="math">\(p\)</span> and a type &#8220;2&#8221; event with probability <span class="math">\(1-p\)</span>, with <span class="math">\(0&lt;p&lt;1\)</span> fixed.</p>
+<p>Let</p>
+<div class="math">
+\[\begin{split}N_1(t)=\text{# of type 1 events in }[0,t]\\
+N_2(t)=\text{# of type 2 events in }[0,t]\end{split}\]</div>
+<p>Then <span class="math">\(\{N_1(t):t\geq 0\}\)</span> and <span class="math">\(\{N_2(t):t\geq 0\}\)</span> are Poisson processes, with rates <span class="math">\(λp\)</span> and <span class="math">\(λ(1-p)\)</span> respectively, and these &#8220;thinned&#8221; processes are independent.</p>
+<p>Consider <span class="math">\(\{N_1(t):t\geq 0\}\)</span>,</p>
+<div class="math">
+\[\begin{split}P(N_1(h)=1)&amp;=(λh+o(h))p+o(h)\\
+           &amp;=λph+o(h)\\
+P(N_1(h)=0)&amp;=1-λh+o(h)+(λh+o(h))(1-p)\\
+           &amp;=1 - λph + o(h)\end{split}\]</div>
+<p>So <span class="math">\(N_1\)</span> satisfies condition (iii) of definition 2.</p>
+<p>Also clearly <span class="math">\(N_1(0)=0\)</span></p>
+<p>It remains to show stationary and independent increments.</p>
+<div class="section" id="stationary-increments">
+<h3>Stationary Increments<a class="headerlink" href="#stationary-increments" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math">\(t_1&lt;t_2\)</span>.</p>
+<div class="math">
+\[\begin{split}&amp;P(N_1(t_2)-N_1(t_1)=k)\\
+&amp;=\sum_{n=k}^\infty P(N_1(t_2)-N_1(t_1)=k|N(t_2)-N(t_1)=n)\times P(N(t_2)-N(t_1)=n)\\
+&amp;=\sum_{n=k}^\infty {n \choose k} p^k(1-p)^{n-k}\frac{(λ(t_2-t_1))^n}{n!}e^{-λ(t_2-t_1)}\\
+&amp;=\frac{[λp(t_2-t_1)]^k}{k!}e^{-λp(t_2-t_1)}\sum_{n=k}^\infty \frac{[(1-p)λ(t_2-t_1)]^{n-k}}{(n-k)!}e^{-λ(1-p)(t_2-t_1)}\\
+&amp;=\frac{[λp(t_2-t_1)]^k}{k!}e^{-λp(t_2-t_1)}e^{(1-p)λ(t_2-t_1)}e^{-λ(1-p)(t_2-t_1)}\\
+&amp;=\frac{[λp(t_2-t_1)]^k}{k!}e^{-λp(t_2-t_1)}\end{split}\]</div>
+<p>So <span class="math">\(N_1(t_2)-N_1(t_1)\sim Poisson(λp(t_2-t_1))\)</span>, which depends on <span class="math">\(t_1\)</span> and <span class="math">\(t_2\)</span> only though <span class="math">\(t_2-t_1\)</span>, so <span class="math">\(N_1\)</span> has stationary increments.</p>
+</div>
+<div class="section" id="independent-increments">
+<h3>Independent Increments<a class="headerlink" href="#independent-increments" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math">\(t_1&lt;t_2&lt;t_3&lt;t_4\)</span></p>
+<div class="math">
+\[P(N_1(t_2)-N_1(t_1)=n_1,N_1(t_4)-N_1(t_3)=n_2)\]</div>
+<p>Condition on <span class="math">\(N(t_2)-N(t_1)\)</span> and <span class="math">\(N(t_4)-N(t_3)\)</span>.</p>
+<p>Then, the conditional probability will factor, and the <span class="math">\(P(N(t_2)-N(t_1)=k_1,N(t_4)-N(t_3)=k_2)\)</span> will also factor, then summing over all <span class="math">\(k_1\)</span> and <span class="math">\(k_2\)</span> factors the above joint probability.</p>
+<p>So conditions (i),(ii),(iii) are satisfied to show <span class="math">\(N_1\)</span> is a Poisson process with rate <span class="math">\(λp\)</span>. Similar arguments show <span class="math">\(N_2\)</span> is a Poisson process with rate <span class="math">\(λ(1-p)\)</span>.</p>
+<p>This generalizes to more than 2 types. If you have <span class="math">\(n\)</span> types with probabilities</p>
+<div class="math">
+\[p_1,p_2,...,p_n\]</div>
+<p>with <span class="math">\(p_1+...+p_n=1\)</span>, we can break this down iteratively one by one</p>
+<p>Similarly, summing <span class="math">\(n\)</span> independent Poisson processes with rates <span class="math">\(λ_1,...,λ_n\)</span> yields a Poisson process with rate <span class="math">\(λ_1+...+λ_n\)</span>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Properties of Poisson Process - Superpositioning &amp; Thinning</a><ul>
+<li><a class="reference internal" href="#superposition-of-poisson-process">Superposition of Poisson Process</a></li>
+<li><a class="reference internal" href="#thinning-a-poisson-process">Thinning a Poisson Process</a><ul>
+<li><a class="reference internal" href="#stationary-increments">Stationary Increments</a></li>
+<li><a class="reference internal" href="#independent-increments">Independent Increments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-11-06.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-11-11.html" title="next chapter">More Poisson</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-11-08.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

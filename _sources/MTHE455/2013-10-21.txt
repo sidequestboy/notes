@@ -1,0 +1,137 @@
+**********************
+Limiting Probabilities
+**********************
+Last time:
+----------
+:math:`\{X_n:n\geq 0\}` is an irreducible, positive recurrent, and aperiodic.
+
+.. math::
+    \lim_{n\to\infty}(Π_j-p_{ij}(n))=\sum_{k\in S}Π_k\lim_{n\to\infty}(p_{kj}(n)-p_{ij}(n))
+
+So our goal is to show:
+
+.. math::
+    \lim_{n\to\infty}(p_{kj}(n)-p_{ij}(n))=0
+
+Basic idea:
+-----------
+.. admonition:: Definition
+
+    *Coupling*: consider an independent Markov chain :math:`Y=\{Y_n:n\geq 0\}` with the same transition probabiliities as :math:`X` chain.
+
+    Start :math:`Y` in state :math:`k`. Start :math:`X` in state :math:`i`. When they reach a common state, we say they have "coupled". After this point, they have the same distribution.
+
+Define the bivariate process
+
+.. math::
+    Z=\{Z_n:n\geq 0\}
+
+where :math:`Z_n=(X_n,Y_n)` with state space :math:`S\times S`.
+
+Then,
+
+1. :math:`\{Z_n: n\geq 0\}` is a Markov chain (Markov property is inherited from :math:`X` and :math:`Y` chains)
+2. The transition probabilities for the :math:`Z` chain are:
+   
+    .. math::
+        p_{(i,k),(j.l)}=p_{ij}p_{kl}
+
+    More generally, the n-step transition probabilities are
+
+    .. math::
+        p_{(i,k),(j.l)}(n)=p_{ij}(n)p_{kl}(n)
+3. From (2.) and our number theory results, there is an :math:`N_1` such that :math:`p_{ij}(n)>0` for all :math:`n\geq N_1` and an :math:`N_2` such that :math:`p_{kl}(n)>0` for all :math:`n\geq N_2`.
+   
+    So for :math:`n\geq max(N_1,N_2)`, :math:`p_{ij}(n)p_{kl}(n)>0`
+
+    So, :math:`p_{ij}(n)p_{kl}(n)` for some :math:`n`.
+
+    So, :math:`(j,l)` is accessible from :math:`(i,k)`. This holds for all states :math:`(i,k)` and :math:`(j,l)`. So the :math:`Z` chain is irreducible.
+
+    .. admonition:: Example
+
+        Suppose
+
+        .. math::
+            P=\left[\matrix{0 & 1 \\ 1 & 0}\right]
+
+        The period is 2. Then the bivariate chain :math:`Z` will not be irreducible since for example, if it starts in :math:`(1,2)`, it will oscillate between :math:`(1,2)` and :math:`(2,1)`.
+
+        So, for example :math:`(2,2)` is not accessible from :math:`(1,2)`.
+4. The stationary distribution for the :math:`Z` chain is given by :math:`Π_{(i,k)}=Π_iΠ_k` (where :math:`Π` is the stationary distribution of :math:`X` and :math:`Y` chains).
+    
+    To check this:
+
+    .. math::
+        Π_{(j,l)}&=\sum_{(i,j)\in S\times S}Π_{(i,k)}p_{(i,k),(j,l)}\\
+           Π_jΠ_l&=\sum_{(i,j)\in S\times S}Π_iΠ_kp_{ij}p_{kl}\\
+                 &=\sum_{i\in S}Π_ip_{ij}\sum_{k\in S}Π_kp_{kl}\\
+                 &=Π_jΠ_l
+
+    Therefore, the :math:`Z` chain is positive recurrent.
+
+    So, for a state :math:`(s,s)`, where :math:`s\in S`, if :math:`T=` first time chain visites :math:`(s,s)`, then :math:`P(T<\infty|X_0=i,Y_0=k)=1` for any states :math:`i` and :math:`k`.
+
+Now consider the following probability:
+
+.. math::
+    P(X_n=j, T=m|X_0=i,Y_0=k)
+
+for :math:`m<n`.
+
+.. math::
+    &=P(X_n=j|T=m,X_0=i,Y_0=k)P(T=m|X_0=i, Y_0=k)\\
+    &=P(X_n=j|X_m=s,Y_m=s,(X_r,Y_r)\neq (s,s), r=1,...m-1, X_0=i,Y_0=k)\\
+    &=P(X_n=j|X_m=s)
+
+By independence of :math:`X,Y` and by Markov property of :math:`X`.
+
+.. math::
+    =P(Y_n=j|Y_m=s)
+
+because :math:`Y` has the same transition probabilities as :math:`X`.
+
+.. math::
+    &=P(Y_n=j|X_m=s,Y_m=s,(X_r,Y_r)\neq (s,s), r=1,...m-1, Y_0=i,X_0=k)\\
+    &=P(Y_n=j|T=m,Y_0=i,X_0=k)P(T=m|Y_0=i, X_0=k)\\
+    &=P(Y_n=j, T=m|Y_0=i,X_0=k)
+
+So now we have:
+
+.. math::
+    p_{ij}(n)&=P(X_n=j|X_0=i)\\
+             &=P(X_n=j|X_0=i, Y_0=k)\\
+             &=\sum_{m=1}^{n-1}P(X_n=j,T=m|X_0=i,Y_0=k)+P(X_n=j,T\geq n|X_0=i,Y_0=k)\\
+             &=\sum_{m=1}^{n-1}P(Y_n=j,T=m|Y_0=i,X_0=k)+P(Y_n=j,T\geq n|Y_0=i,X_0=k)\\
+             &=P(Y_n=n,T<n|X_0=i,Y_0=j)+P(X_n=j,T\geq n|X_0=i,Y_0=k)\\
+             &\leq P(Y_n=j|X_0=i,Y_0=k)+P(X_n=j,T\geq n|X_0=i,Y_0=k)\\
+             &=P(Y_n=j|Y_0=k)+P(T\geq n| X_0=i,Y_0=k)\\
+             &=p_{kj}(n)+P(T\geq n|X_0=i,Y_0=k)
+
+So :math:`p_{ij}(n)-p_{kj}(n)\leq P(T\geq n|X_0=i,Y_0=k)`.
+
+Now, interchange :math:`i` and :math:`k` and :math:`X` and :math:`Y` in the previous calculations, giving:
+
+.. math::
+    p_{kj}(n)-p_{ij}(n)\leq P(T\geq n|X_0=i,Y_0=k)
+
+This gives:
+
+.. math::
+    |p_{ij}(n)-p_{kj}(n)|\leq P(T\geq n|X_0=i,Y_0=k)\to 0\text{ as }n\to\infty
+
+Since :math:`P(T<\infty|X_0=i,Y_0=k)=1`
+
+By the limit result just proved, one way to numerically approximate the stationary distribution :math:`Π` is to take :math:`P,P^2,P^4,P^16` to get :math:`P^n` large enough so all the rows of :math:`P_n` are close to :math:`Π`.
+
+Or take :math:`Π^(0)`. Then compute :math:`Π^(1)=Π^(0)P`
+
+Recursively compure :math:`Π^(k)=Π^(k-1)P`, which for :math:`k` large, goes to :math:`Π`
+
+
+
+
+
+   
+
+

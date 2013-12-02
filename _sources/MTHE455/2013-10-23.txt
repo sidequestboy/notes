@@ -1,0 +1,92 @@
+
+
+Set :math:`Π^{(0)}` to be some arbitrary distribution over :math:`S`. Set :math:`Π^{(1)}=Π^{(0)}P`, and :math:`Π^{(k)}=Π^{(k-1)}P`.
+
+Then :math:`Π^{(k)}\to Π` since
+
+.. math::
+    Π^{(k)}&=Π^{(k-1)}P\\
+           &=Π^{(k-2)}P^2\\
+           &...\\
+           &=Π^{(0)}P^k
+
+For :math:`k` large, :math:`p_{ij}(k)` will be close to :math:`Π_j`.
+
+Then :math:`Π_j^{(k)}=\sum_{i\in S}Π_i^{(0)}p_{ij}(k)\approx\sum_{i\in S}Π_i^{(0)}Π_j=Π_j`
+
+.. admonition:: Practical note
+
+    In many practical modelling situations, the number of nonzero entries in any given row of :math:`P` is bounded by some :math:`M`, where :math:`M` is much smaller than the total number of states :math:`|S|`. Most of the entries in :math:`P` are zero. So one only needs to store the nonzero entries of :math:`P` and where they are in :math:`P` to compute :math:`Π^{(k)}=Π^{(k-1)}P`, which can make the complexity and storage requirements linear in :math:`|S|`, and so if we're lucky we can find :math:`Π` for very large state spaces e.g. hundreds of thousands of states.
+
+Flow
+====
+We have the following interpretations:
+
+* :math:`Π_i` is the long run proportion of time the chain is in state :math:`i`
+* :math:`p_{ij}` is the long run proportion of time that the chain transitions from state :math:`i` to :math:`j`
+* :math:`Π_ip_{ij}` is the long run proportion of all transitions that are from :math:`i` to :math:`j`. prop
+
+We call this the *flow* from state :math:`i` to state :math:`j`.
+
+Summing this flow over all :math:`i\in S`, we get the *flow* into state :math:`j`.
+
+Interchanging :math:`i` and :math:`j`: :math:`Π_jp_{ji}` is the flow from :math:`j` to :math:`i`
+
+Summing this over :math:`i` is the flow *out* of state :math:`j`.
+
+.. note::
+    The stationary distribution satisfies:
+
+    .. math::
+        Π_j=\sum_{i\in S}Π_ip_{ij}
+
+    which is the same as:
+
+    .. math::
+        :label: 1
+
+        Π_j=\sum_{i\in S}Π_jp_{ji}=\sum_{i\in S}Π_ip_{ij}
+
+    Thus, the stationary probabilities make the flow into :math:`j` equal to the flow out of :math:`j`.
+
+    For this reason, the equations :math:`Π_j=\sum_{i\in S}Π_ip_{ij}` are called the **balance equations**, or global balance equations.
+
+    In :eq:`1`, if each of the terms is equal (for each :math:`i`) then we say that *local balance* or *detailed balance* is satisfied.
+
+    Clearly, if :math:`Π` satisfies local balance, that is :math:`Π_jp_{ji}=Π_ip_{ij}` for all :math:`i,j\in S` then global balance will be satisfied and so :math:`Π` is the stationary distribution.
+
+    The converse is not true: one can easily have a Markov chain where :math:`p_{ij}>0` but :math:`p_{ij}=0` in which case, :math:`Π_ip_{ij}\neq Π_jp_{ji}=0`.
+
+    There are :math:`\left(\matrix{|S| \\ 2}\right)` (nontrivial) local balance equations. However, often, the majority of these equations are for states :math:`i,j` such that :math:`p_{ij}=p_{ji}=0`
+
+    Moreover, each local balance equation involves only 2 unknowns.
+
+.. admonition:: Example
+
+    (4.36 in text)
+
+    Consider a graph with :math:`N` nodes and arcs (edges) between nodes and the arc between node :math:`i` and node :math:`j` (if there is an arc) has weight :math:`w_{ij}>0`. We assume :math:`w_{ji}=w_{ij}`. A particle performs a random walk on the graph. When at node :math:`i`, the particle will move next to node :math:`j` (if there is an arc) with probability :math:`\frac{w_{ij}}{\sum_{k\in N_i}w_{ik}}` (where :math:`N_i` is the set of all nodes joined by an arc to node :math:`i`).
+
+    Let :math:`X_n=` node label at step :math:`n`, :math:`n=0,1,2,...`
+
+    The transition probabilities are given by :math:`p_{ij}=\frac{w_{ij}}{\sum_{k\in N_i}w_{ik}}`.
+
+    Assume graph is connected, so the Markov chain is irreducible.
+
+    In this situation, we can try to solve the local balance equations (since :math:`p_{ij}=p_{ji}` for all :math:`i,j`). For 2 states :math:`i` and :math:`j` connected by an arc,
+
+    .. math::
+        Π_i\frac{w_{ij}}{\sum_{k\in N_i}w_{ik}}&=Π_j\frac{w_{ji}}{\sum_{l\in N_j}w_{jl}}\\
+        \frac{Π_i}{\sum_{k\in N_i}w_{ik}}&=\frac{Π_j}{\sum_{l\in N_j}w_{jl}}
+
+    So setting :math:`Π_i=k\sum_{k\in N_i}w_{ik}`, the local balance equations will be satisfied.
+
+    So
+
+    .. math::
+        Π_i=\frac{\sum_{k\in N_i}w_{ik}}{\sum_{i\in S}\sum_{k\in N_i}w_{ik}}
+
+* one cat
+* two dogs
+* a hippopotamus
+* and 

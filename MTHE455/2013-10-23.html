@@ -1,0 +1,170 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Flow &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="An Example of solving a Stationary Distribution" href="2013-10-25.html" />
+    <link rel="prev" title="Limiting Probabilities" href="2013-10-21.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-25.html" title="An Example of solving a Stationary Distribution"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-21.html" title="Limiting Probabilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <p>Set <span class="math">\(Π^{(0)}\)</span> to be some arbitrary distribution over <span class="math">\(S\)</span>. Set <span class="math">\(Π^{(1)}=Π^{(0)}P\)</span>, and <span class="math">\(Π^{(k)}=Π^{(k-1)}P\)</span>.</p>
+<p>Then <span class="math">\(Π^{(k)}\to Π\)</span> since</p>
+<div class="math">
+\[\begin{split}Π^{(k)}&amp;=Π^{(k-1)}P\\
+       &amp;=Π^{(k-2)}P^2\\
+       &amp;...\\
+       &amp;=Π^{(0)}P^k\end{split}\]</div>
+<p>For <span class="math">\(k\)</span> large, <span class="math">\(p_{ij}(k)\)</span> will be close to <span class="math">\(Π_j\)</span>.</p>
+<p>Then <span class="math">\(Π_j^{(k)}=\sum_{i\in S}Π_i^{(0)}p_{ij}(k)\approx\sum_{i\in S}Π_i^{(0)}Π_j=Π_j\)</span></p>
+<div class="admonition-practical-note admonition">
+<p class="first admonition-title">Practical note</p>
+<p class="last">In many practical modelling situations, the number of nonzero entries in any given row of <span class="math">\(P\)</span> is bounded by some <span class="math">\(M\)</span>, where <span class="math">\(M\)</span> is much smaller than the total number of states <span class="math">\(|S|\)</span>. Most of the entries in <span class="math">\(P\)</span> are zero. So one only needs to store the nonzero entries of <span class="math">\(P\)</span> and where they are in <span class="math">\(P\)</span> to compute <span class="math">\(Π^{(k)}=Π^{(k-1)}P\)</span>, which can make the complexity and storage requirements linear in <span class="math">\(|S|\)</span>, and so if we&#8217;re lucky we can find <span class="math">\(Π\)</span> for very large state spaces e.g. hundreds of thousands of states.</p>
+</div>
+<div class="section" id="flow">
+<h1>Flow<a class="headerlink" href="#flow" title="Permalink to this headline">¶</a></h1>
+<p>We have the following interpretations:</p>
+<ul class="simple">
+<li><span class="math">\(Π_i\)</span> is the long run proportion of time the chain is in state <span class="math">\(i\)</span></li>
+<li><span class="math">\(p_{ij}\)</span> is the long run proportion of time that the chain transitions from state <span class="math">\(i\)</span> to <span class="math">\(j\)</span></li>
+<li><span class="math">\(Π_ip_{ij}\)</span> is the long run proportion of all transitions that are from <span class="math">\(i\)</span> to <span class="math">\(j\)</span>. prop</li>
+</ul>
+<p>We call this the <em>flow</em> from state <span class="math">\(i\)</span> to state <span class="math">\(j\)</span>.</p>
+<p>Summing this flow over all <span class="math">\(i\in S\)</span>, we get the <em>flow</em> into state <span class="math">\(j\)</span>.</p>
+<p>Interchanging <span class="math">\(i\)</span> and <span class="math">\(j\)</span>: <span class="math">\(Π_jp_{ji}\)</span> is the flow from <span class="math">\(j\)</span> to <span class="math">\(i\)</span></p>
+<p>Summing this over <span class="math">\(i\)</span> is the flow <em>out</em> of state <span class="math">\(j\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The stationary distribution satisfies:</p>
+<div class="math">
+\[Π_j=\sum_{i\in S}Π_ip_{ij}\]</div>
+<p>which is the same as:</p>
+<div class="math" id="equation-1">
+<span class="eqno">(1)</span>\[Π_j=\sum_{i\in S}Π_jp_{ji}=\sum_{i\in S}Π_ip_{ij}\]</div>
+<p>Thus, the stationary probabilities make the flow into <span class="math">\(j\)</span> equal to the flow out of <span class="math">\(j\)</span>.</p>
+<p>For this reason, the equations <span class="math">\(Π_j=\sum_{i\in S}Π_ip_{ij}\)</span> are called the <strong>balance equations</strong>, or global balance equations.</p>
+<p>In <a href="#equation-1">(1)</a>, if each of the terms is equal (for each <span class="math">\(i\)</span>) then we say that <em>local balance</em> or <em>detailed balance</em> is satisfied.</p>
+<p>Clearly, if <span class="math">\(Π\)</span> satisfies local balance, that is <span class="math">\(Π_jp_{ji}=Π_ip_{ij}\)</span> for all <span class="math">\(i,j\in S\)</span> then global balance will be satisfied and so <span class="math">\(Π\)</span> is the stationary distribution.</p>
+<p>The converse is not true: one can easily have a Markov chain where <span class="math">\(p_{ij}&gt;0\)</span> but <span class="math">\(p_{ij}=0\)</span> in which case, <span class="math">\(Π_ip_{ij}\neq Π_jp_{ji}=0\)</span>.</p>
+<p>There are <span class="math">\(\left(\matrix{|S| \\ 2}\right)\)</span> (nontrivial) local balance equations. However, often, the majority of these equations are for states <span class="math">\(i,j\)</span> such that <span class="math">\(p_{ij}=p_{ji}=0\)</span></p>
+<p class="last">Moreover, each local balance equation involves only 2 unknowns.</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>(4.36 in text)</p>
+<p>Consider a graph with <span class="math">\(N\)</span> nodes and arcs (edges) between nodes and the arc between node <span class="math">\(i\)</span> and node <span class="math">\(j\)</span> (if there is an arc) has weight <span class="math">\(w_{ij}&gt;0\)</span>. We assume <span class="math">\(w_{ji}=w_{ij}\)</span>. A particle performs a random walk on the graph. When at node <span class="math">\(i\)</span>, the particle will move next to node <span class="math">\(j\)</span> (if there is an arc) with probability <span class="math">\(\frac{w_{ij}}{\sum_{k\in N_i}w_{ik}}\)</span> (where <span class="math">\(N_i\)</span> is the set of all nodes joined by an arc to node <span class="math">\(i\)</span>).</p>
+<p>Let <span class="math">\(X_n=\)</span> node label at step <span class="math">\(n\)</span>, <span class="math">\(n=0,1,2,...\)</span></p>
+<p>The transition probabilities are given by <span class="math">\(p_{ij}=\frac{w_{ij}}{\sum_{k\in N_i}w_{ik}}\)</span>.</p>
+<p>Assume graph is connected, so the Markov chain is irreducible.</p>
+<p>In this situation, we can try to solve the local balance equations (since <span class="math">\(p_{ij}=p_{ji}\)</span> for all <span class="math">\(i,j\)</span>). For 2 states <span class="math">\(i\)</span> and <span class="math">\(j\)</span> connected by an arc,</p>
+<div class="math">
+\[\begin{split}Π_i\frac{w_{ij}}{\sum_{k\in N_i}w_{ik}}&amp;=Π_j\frac{w_{ji}}{\sum_{l\in N_j}w_{jl}}\\
+\frac{Π_i}{\sum_{k\in N_i}w_{ik}}&amp;=\frac{Π_j}{\sum_{l\in N_j}w_{jl}}\end{split}\]</div>
+<p>So setting <span class="math">\(Π_i=k\sum_{k\in N_i}w_{ik}\)</span>, the local balance equations will be satisfied.</p>
+<p>So</p>
+<div class="last math">
+\[Π_i=\frac{\sum_{k\in N_i}w_{ik}}{\sum_{i\in S}\sum_{k\in N_i}w_{ik}}\]</div>
+</div>
+<ul class="simple">
+<li>one cat</li>
+<li>two dogs</li>
+<li>a hippopotamus</li>
+<li>and</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-10-21.html" title="previous chapter">Limiting Probabilities</a></li>
+      <li>Next: <a href="2013-10-25.html" title="next chapter">An Example of solving a Stationary Distribution</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-10-23.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

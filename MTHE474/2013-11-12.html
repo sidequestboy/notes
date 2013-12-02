@@ -1,0 +1,230 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Joint Source Coding Theorem &amp; Continuous Information Theory &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="Differential Entropy of a Continuous Source" href="2013-11-14.html" />
+    <link rel="prev" title="Proof of Channel Coding Thm contd, Feedback" href="2013-11-11.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-14.html" title="Differential Entropy of a Continuous Source"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-11.html" title="Proof of Channel Coding Thm contd, Feedback"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="joint-source-coding-theorem-continuous-information-theory">
+<h1>Joint Source Coding Theorem &amp; Continuous Information Theory<a class="headerlink" href="#joint-source-coding-theorem-continuous-information-theory" title="Permalink to this headline">¶</a></h1>
+<p>Diagram:</p>
+<p>Source <span class="math">\(\mathcal V\to^{V^n}\)</span> Source Enc. <span class="math">\(f(\cdot)\to^{X^n}\)</span> channel <span class="math">\(p_{Y^n|X^n}\to^{Y^n}\)</span> SC decoder <span class="math">\(g(\cdot)\to \hat V\)</span> message word estimate</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Consider a source <span class="math">\(\{V_i\}_{i=1}^\infty\)</span> with finite alphabet <span class="math">\(\mathcal V\)</span> and discrete channel <span class="math">\((\mathcal X, \mathcal Y, \{p_{X^n|Y^n}\}_{n=1}^\infty)\)</span> A (joint) <strong>source-channel</strong> code of rate 1 and blocklength <span class="math">\(n\)</span> is a pair of maps <span class="math">\((f,g)\)</span></p>
+<div class="math">
+\[\begin{split}f: \mathcal V^n\to\mathcal X^n\text{ encoder}\\
+g: \mathcal Y^n\to\mathcal V^n\text{ decoder}\end{split}\]</div>
+<p>To send source word <span class="math">\(V^n=(v_1,...,v_n)\)</span>, encoder transmits <span class="math">\(X^n(V^n)=f(V^n)\)</span> over the channel. At receiver, <span class="math">\(Y^n\)</span> is received via the channel law <span class="math">\(P_{Y^n|X^n}\)</span> and estimate transmitted message word as <span class="math">\(\hat V^n=g(Y^n)\)</span>.</p>
+<p>An <strong>error</strong> is made: <span class="math">\(V^n\neq \hat V^n\)</span></p>
+<p>Probability of decoding error:</p>
+<div class="last math">
+\[\begin{split}P_e^{(n)}&amp;=P[V^n\neq \hat V^n]\\
+         &amp;=\sum_{v^n\in\mathcal V^n}\sum_{y^n\in\mathcal Y^n: g(y^n)\neq v^n}p_{V^n}(v^n)p_{Y^n|X^n}(y^n|x^n(v^n))\end{split}\]</div>
+</div>
+<div class="admonition-lossless-joint-source-channel-coding-theorem admonition">
+<p class="first admonition-title">Lossless Joint Source-Channel Coding Theorem</p>
+<p>(Shannon&#8217;s Lossless Information Transmission Theorem)</p>
+<p>(Shannon&#8217;s Separation Principle)</p>
+<ol class="lowerroman">
+<li><p class="first">Let <span class="math">\(\{V_n\}_{n=1}^\infty\)</span> be a source with finite alphabet <span class="math">\(\mathcal V\)</span> and entropy rate <span class="math">\(H(\mathcal V)\)</span> such that <span class="math">\(\{V_n\}_{n=1}^\infty\)</span> satisfies the <strong>AEP</strong>.</p>
+<p>Consider a DMC <span class="math">\((\mathcal X,\mathcal Y, p_{Y|X}\)</span> with capacity <span class="math">\(C=max_{p_X} I(X;Y)\)</span>.</p>
+<p>Then if <span class="math">\(H(\mathcal V)&lt;C\)</span>, then there exist a sequence of rate-1 source-channel codes of blocklength <span class="math">\(n\)</span> s.t.</p>
+<div class="math">
+\[\lim_{n\to\infty}p_e^{(n)}=0\]</div>
+<p>Proof:</p>
+<p>Direct application of Lossless Source-Coding Theorem followed by Lossless Channel-Coding Theorem</p>
+</li>
+<li><p class="first">Conversely, for any <strong>stationary</strong> source <span class="math">\(\{V_n\}\)</span>, if</p>
+</li>
+</ol>
+<blockquote class="last">
+<div><div class="math">
+\[\begin{split}H(\mathcal V)&gt;C\end{split}\]</div>
+<p>then the probability of error <span class="math">\(p_e^{(n)}\)</span> of any rate-1 source-channel coding system is <strong>bounded away from zero</strong> and it is <em>not possible</em> to reliably send the source over the channel.</p>
+</div></blockquote>
+</div>
+<div class="section" id="more-generally">
+<h2>More generally<a class="headerlink" href="#more-generally" title="Permalink to this headline">¶</a></h2>
+<p>Source <span class="math">\(\mathcal V\to^{V^k}\)</span> Source Enc. <span class="math">\(f(\cdot)\to^{X^n}\)</span> channel <span class="math">\(p_{Y^n|X^n}\to^{Y^n}\)</span> SC decoder <span class="math">\(g(\cdot)\to \hat V^k\)</span> message word estimate</p>
+<div class="math">
+\[\frac{k}{n}\text{ source symbols / channel symbol}\]</div>
+<p>Then the Theorem becomes:</p>
+<ol class="lowerroman simple">
+<li>If <span class="math">\(\frac{k}{n}H(\mathcal V)&lt;C\)</span> then <em>reliable</em> communication of the source over the channel via a rate <span class="math">\(\frac{k}{n}\)</span> SC code of coding blocklength <span class="math">\(n\)</span> is possible.</li>
+<li>If <span class="math">\(\frac{k}{n}H(\mathcal V)&gt;C\)</span>, then reliable comm. is not possible.</li>
+</ol>
+<div class="admonition-special-case admonition">
+<p class="first admonition-title">Special Case</p>
+<p>If the source outputs 1 source symbol every <span class="math">\(τ_s\)</span> seconds, and the channel transmits 1 channel symbol every <span class="math">\(τ_c\)</span> seconds, then the Theorem becomes:</p>
+<p>system&#8217;s rate:</p>
+<div class="math">
+\[\frac{τ_c}{τ_s}\]</div>
+<ol class="last lowerroman simple">
+<li>If :math:` frac{τ_c}{τ_s}H(mathcal V)&lt;C` then <em>reliable</em> communication of the source over the channel via a rate <span class="math">\(\frac{k}{n}\)</span> SC code of coding blocklength <span class="math">\(n\)</span> is possible.</li>
+<li>If :math:` frac{τ_c}{τ_s}H(mathcal V)&gt;C`, then reliable comm. is not possible.</li>
+</ol>
+</div>
+<div class="admonition-remark admonition">
+<p class="first admonition-title">Remark</p>
+<p class="last">When <span class="math">\(H(\mathcal V)=C\)</span>, this is still an open problem in general.</p>
+</div>
+</div>
+<div class="section" id="proof-of-the-converse">
+<h2>Proof of the Converse<a class="headerlink" href="#proof-of-the-converse" title="Permalink to this headline">¶</a></h2>
+<p>(rate-1 system)</p>
+<p>Need to show that <span class="math">\(\forall\)</span> sequences of SC codes of rate-1 and cod coding blocklength <span class="math">\(n\)</span> <span class="math">\((f,g)\)</span>:</p>
+<div class="math">
+\[\begin{split}f:\mathcal V^n\to\mathcal X^n\\
+g:\mathcal Y^n\to\mathcal V^n\end{split}\]</div>
+<p>with <span class="math">\(P_e^{(n)}\to 0\)</span> as <span class="math">\(n\to\infty\)</span>, we must have that <span class="math">\(H(\mathcal V)\leq C\)</span>.</p>
+<div class="section" id="fano-s-inequality">
+<h3>Fano&#8217;s inequality:<a class="headerlink" href="#fano-s-inequality" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[\begin{split}\hat V=g(Y^n), P_e^{(n)}=P[V^n\neq \hat V^n],\\
+H(V|Y^n)&amp;\leq h_b(P_e^{(n)})+P_e^{(n)}\log(|\mathcal V|^n-1)\\
+        &amp;\leq 1+ P_e^{(n)}\log|\mathcal V|^n\\
+        &amp;=1+P_e^{(n)}n\log|\mathcal V|\end{split}\]</div>
+<p>Now,</p>
+<div class="math">
+\[\begin{split}H(\mathcal V)&amp;\leq \frac{1}{n}H(V^n)=\frac{1}{n}H(V^n|Y^n)+\frac{1}{n}I(V^n;Y^n)\\
+&amp;\leq \frac{1}{n}+P_e^{(n)}\log|\mathcal V|+\frac{1}{n}I(V^n;Y^n)\\
+&amp;\leq \frac{1}{n}+P_e^{(n)}\log|\mathcal V|+\frac{1}{n}I(X^n;Y^n)\\
+&amp;\leq \frac{1}{n}+P_e^{(n)}\log|\mathcal V|+C\end{split}\]</div>
+<p>where the inequalities follow respecitvely from (*), Data processing theorem, <span class="math">\(nC\geq I(X^n;Y^n)\)</span></p>
+<p>Taking the limit <span class="math">\(n\to\infty\)</span>, since <span class="math">\(P_e^{(n)}\to 0\)</span> by assumption, we get that</p>
+<div class="math">
+\[H(\mathcal V)=C\]</div>
+</div>
+</div>
+<div class="section" id="information-theory-for-continuous-valued-systems">
+<h2>Information Theory for Continuous-Valued Systems<a class="headerlink" href="#information-theory-for-continuous-valued-systems" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="differential-entropy">
+<h3>Differential Entropy<a class="headerlink" href="#differential-entropy" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math">\(X\)</span> be a real-valued (&#8220;continuous&#8221;) random variable. <span class="math">\(X\)</span> is usually described by its cumulative distribution function (cdf):</p>
+<div class="math">
+\[F_X(x):=P[X\leq x]\]</div>
+<p>for <span class="math">\(x\in\mathbb R\)</span>.</p>
+<p>The distribution is &#8220;absolutely continuous&#8221; if a probability density function (pdf) <span class="math">\(f_X(\cdot)\)</span> exists:</p>
+<div class="math">
+\[F_X(x)=\int_{-\infty}^x f_X(t)dt\]</div>
+<p>If <span class="math">\(F_X(\cdot)\)</span> is differentiable, then pdf <span class="math">\(f_X(x)=\frac{d}{dx}F_X(x)\)</span>.</p>
+<p>We only deal with random variables that admit a <strong>density</strong>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Joint Source Coding Theorem &amp; Continuous Information Theory</a><ul>
+<li><a class="reference internal" href="#more-generally">More generally</a></li>
+<li><a class="reference internal" href="#proof-of-the-converse">Proof of the Converse</a><ul>
+<li><a class="reference internal" href="#fano-s-inequality">Fano&#8217;s inequality:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#information-theory-for-continuous-valued-systems">Information Theory for Continuous-Valued Systems</a><ul>
+<li><a class="reference internal" href="#differential-entropy">Differential Entropy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-11-11.html" title="previous chapter">Proof of Channel Coding Thm contd, Feedback</a></li>
+      <li>Next: <a href="2013-11-14.html" title="next chapter">Differential Entropy of a Continuous Source</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-11-12.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -27,7 +27,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
-    <link rel="next" title="MTHE 474 - Information Theory" href="../MTHE474/index.html" />
+    <link rel="next" title="Generating Function Example" href="2013-10-02.html" />
     <link rel="prev" title="Recurrence and Transience" href="2013-09-27.html" />
    
   
@@ -45,7 +45,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../MTHE474/index.html" title="MTHE 474 - Information Theory"
+          <a href="2013-10-02.html" title="Generating Function Example"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="2013-09-27.html" title="Recurrence and Transience"
@@ -117,15 +117,21 @@
 \[f_1(n)=P(T_1=n | X_1=-1)q\]\[= f_2(n-1)\]</div>
 <p>by temporal and spatial homogeneity.</p>
 <div class="math">
-\[\begin{split}f_1(n) = \cases \left \{f_2(n-1)q \text{ for }n&gt;1 \\
-p \text{ for }n=1 \\
-0 \text{ for }n=0 \right\end{split}\]</div>
+\[\begin{split}f_1(n) = \begin{cases} f_2(n-1)q &amp;&amp; \text{for }n&gt;1 \\
+p &amp;&amp; \text{for }n=1 \\
+0 &amp;&amp; \text{for }n=0\end{cases}\end{split}\]</div>
 <p>Then</p>
 <div class="math">
-\[G_1(s) = \sum_{n=0}^\infty s^nf_1(n)\]\[= ps + \sum_{n=0}^\infty s^n f_2(n-1)q\]\[= sp + sq\sum_{n=2}^\infty s^{n-1}f_2(n-1)\]\[= sp + sq\sum_{n=1}^\infty s^n f_2(n)\]\[= sp + sqG_2(s)\]</div>
+\[\begin{split}G_1(s) &amp;= \sum_{n=0}^\infty s^nf_1(n)\\
+       &amp;= ps + \sum_{n=0}^\infty s^n f_2(n-1)q\\
+       &amp;= sp + sq\sum_{n=2}^\infty s^{n-1}f_2(n-1)\\
+       &amp;= sp + sq\sum_{n=1}^\infty s^n f_2(n)\\
+       &amp;= sp + sqG_2(s)\end{split}\]</div>
 <p>So,</p>
 <div class="math">
-\[G_1(s) = sp+sqG_2(s) = sp + sqG_1(s)^2\]\[\implies sqG_q(s)^2 - G_1(s) + sp = 0\]\[\implies \frac{q \pm \sqrt{1-4s^2pq}}{2sq}\]</div>
+\[\begin{split}G_1(s) = sp+sqG_2(s) = sp + sqG_1(s)^2\\
+\implies sqG_q(s)^2 - G_1(s) + sp = 0\\
+\implies \frac{q \pm \sqrt{1-4s^2pq}}{2sq}\end{split}\]</div>
 <p>A boundary condition for <span class="math">\(G_1(s)\)</span> is <span class="math">\(G_1(0)=f_1(0)=0\)</span></p>
 <p>The only solution that satisfies the boundary condition is:</p>
 <div class="math">
@@ -133,13 +139,22 @@ p \text{ for }n=1 \\
 <p>(check using l&#8217;Hopital&#8217;s rule that this <span class="math">\(\to 0\)</span> as <span class="math">\(s \to 0\)</span>)</p>
 <p>Now,</p>
 <div class="math">
-\[G_1(1)=\frac{1-\sqrt{1-4pq}}{2q}\]\[=\frac{1-\sqrt{1-4(1-q)q}}{2q}\]\[=\frac{1-\sqrt{1-4q+4q^2}}{2q}\]\[=\frac{1-\sqrt{(1-2q)^2}}{2q}\]\[=\frac{1-|1-2q|}{2q}\]</div>
+\[\begin{split}G_1(1)&amp;=\frac{1-\sqrt{1-4pq}}{2q}\\
+      &amp;=\frac{1-\sqrt{1-4(1-q)q}}{2q}\\
+      &amp;=\frac{1-\sqrt{1-4q+4q^2}}{2q}\\
+      &amp;=\frac{1-\sqrt{(1-2q)^2}}{2q}\\
+      &amp;=\frac{1-|1-2q|}{2q}\end{split}\]</div>
 <p>If <span class="math">\(q&lt;\frac{1}{2}\)</span>, then</p>
 <div class="math">
-\[G_1(1)=\frac{1-(1-2q)}{2q}\]\[= \frac{2q}{2q} = 1\]</div>
+\[\begin{split}G_1(1)&amp;=\frac{1-(1-2q)}{2q}\\
+      &amp;= \frac{2q}{2q} = 1\end{split}\]</div>
 <p>If <span class="math">\(q&lt;\frac{1}{2}\)</span>, then</p>
 <div class="math">
-\[G_1(1)=\frac{1-(2q-1)}{2q}\]\[=\frac{2-2q}{2q}\]\[=\frac{2(1-q)}{2q}\]\[=\frac{2p}{2q}\]\[= \frac{p}{q}\]</div>
+\[\begin{split}G_1(1)&amp;=\frac{1-(2q-1)}{2q}\\
+      &amp;=\frac{2-2q}{2q}\\
+      &amp;=\frac{2(1-q)}{2q}\\
+      &amp;=\frac{2p}{2q}\\
+      &amp;= \frac{p}{q}\end{split}\]</div>
 </div>
 </div>
 
@@ -161,7 +176,7 @@ p \text{ for }n=1 \\
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
       <li>Previous: <a href="2013-09-27.html" title="previous chapter">Recurrence and Transience</a></li>
-      <li>Next: <a href="../MTHE474/index.html" title="next chapter">MTHE 474 - Information Theory</a></li>
+      <li>Next: <a href="2013-10-02.html" title="next chapter">Generating Function Example</a></li>
   </ul></li>
   </ul></li>
 </ul>

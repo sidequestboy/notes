@@ -1,0 +1,225 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Max Modulus Theorem &amp; Harmonic Functions &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Dirichlet Problem and Poisson’s Formula" href="2013-11-05.html" />
+    <link rel="prev" title="Fundamental Theorm of Algebra &amp; Max Modulus Theorems" href="2013-10-31.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-05.html" title="Dirichlet Problem and Poisson’s Formula"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-31.html" title="Fundamental Theorm of Algebra &amp; Max Modulus Theorems"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="max-modulus-theorem-harmonic-functions">
+<h1>Max Modulus Theorem &amp; Harmonic Functions<a class="headerlink" href="#max-modulus-theorem-harmonic-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="proof-of-local-max-modulus">
+<h2>Proof of Local Max Modulus<a class="headerlink" href="#proof-of-local-max-modulus" title="Permalink to this headline">¶</a></h2>
+<p>Idea:</p>
+<p>If <span class="math">\(f:D_ρ(z_0)\to\mathbb C\)</span> is holomorphic and <span class="math">\(|f(z)|\)</span> has a local max at <span class="math">\(z_0\)</span>, then <span class="math">\(|f(z)|\)</span> is constant on <span class="math">\(D_ρ(z_0)\)</span>.</p>
+<p>So suppose <span class="math">\(|f(z_0)|&gt;|f(z)|\)</span> for some <span class="math">\(z\in D_ρ(z_0)\)</span>. Let <span class="math">\(M=|f(z_0)|\)</span> and <span class="math">\(r=|z-z_0|\)</span>. Let <span class="math">\(z=z_0+re^{ia}\)</span>.</p>
+<p>By continuity, <span class="math">\(\exists δ\)</span> s.t. <span class="math">\(\forall ε&gt;0\)</span> small enough,</p>
+<div class="math">
+\[\begin{split}|f(z_0+re^{iθ})|&lt;|f(z_0)|-ε\end{split}\]</div>
+<p>for <span class="math">\(θ\in (a-δ,a+δ)\)</span>.</p>
+<p>But then</p>
+<div class="math">
+\[\begin{split}M&amp;=|f(z_0)|\\
+ &amp;=\left|\frac{1}{2πi}\int_0^{2π}f(z_0+re^{iθ}dθ)\right|\\
+ &amp;=\frac{1}{2π}\left|\int_{a-δ}^{a+δ}f(z_0+re^{iθ})dθ+\int_{\text{rest}}f(z_0+re^{iθ})dθ\right|\\
+ &amp;\leq \frac{1}{2π}((M-ε)(2δ)+M(2π-2δ))\\
+ &amp;=M-\frac{δε}{π}\end{split}\]</div>
+<p>and we have reached our contradiction.</p>
+<p>So strict inequalities don&#8217;t hold with local max.</p>
+<p>So <span class="math">\(|f(z_0)|=|f(z)|\)</span> for all <span class="math">\(z\in D_ρ(z_0)\)</span> and so <span class="math">\(|f(z)|\)</span> is constant. Thus, so is <span class="math">\(f(z)\)</span>.</p>
+<div class="admonition-theorem-max-modulus-theorem-global admonition">
+<p class="first admonition-title">Theorem (Max Modulus Theorem, Global)</p>
+<p>Suppose <span class="math">\(f:\bar D\to\mathbb C\)</span> is holomorphic on the <strong>bounded</strong> domain <span class="math">\(D\subset S\)</span> and continuous on <span class="math">\(\bar D\)</span>, the closure of <span class="math">\(D\)</span>.</p>
+<p>Let <span class="math">\(M=max_{z\inδD}|f(z)|=\)</span> max. modulus on the boundary of <span class="math">\(D\)</span>.</p>
+<p>Then:</p>
+<ol class="loweralpha simple">
+<li><span class="math">\(|f(z)|\leq M\)</span> <span class="math">\(\forall z\in \bar D\)</span></li>
+<li>If <span class="math">\(|f(z)|=M\)</span> for some <span class="math">\(z\in D\)</span>, then <span class="math">\(f(z)\)</span> is constant on <span class="math">\(\bar D\)</span>.</li>
+</ol>
+<p>Proof:</p>
+<p>Let <span class="math">\(M'=max_{z\in \bar D}|f(z)|\)</span>. Suppose <span class="math">\(|f(z_0)|=M'\)</span> for some <span class="math">\(z_0\in D\)</span>.</p>
+<p>Then <span class="math">\(z_0\)</span> is a max and for every <span class="math">\(ρ&gt;0\)</span> s.t. <span class="math">\(D_ρ\subset D\)</span>, <span class="math">\(|f(z)|\)</span> is constant on <span class="math">\(D_ρ(z_0)\)</span> by local Max Modulus Theorem.</p>
+<p>Since <span class="math">\(D\)</span> is path connected, <span class="math">\(\forall z\in D\)</span>, <span class="math">\(\exists γ:[0,1]\to D\)</span> s.t.</p>
+<div class="math">
+\[γ(0)=z_0\]</div>
+<p>and</p>
+<div class="math">
+\[γ(1)=z\]</div>
+<p>where <span class="math">\(γ\subset D\)</span> is compact, and so it has a minimal distance, <span class="math">\(ε&gt;0\)</span>, from the boundary of <span class="math">\(D\)</span>.</p>
+<img alt="../_images/11.04.1.png" src="../_images/11.04.1.png" style="width: 50%;" />
+<p>Since <span class="math">\(γ\)</span> has finite length, we can cover it with disks of radius <span class="math">\(\frac{ε}{2}\)</span> so that the center of each disk is in the previous disk.</p>
+<img alt="../_images/11.04.2.png" src="../_images/11.04.2.png" style="width: 50%;" />
+<p>and we can do this with finitely many disks. By local Max Modulus Thm, <span class="math">\(f(z_0)\)</span> is constant on the first disk and <span class="math">\(|f(z)|=M'\)</span> on first disk. Since <span class="math">\(z_1\)</span> is in the first disk, <span class="math">\(|f(z_1)|=M'\)</span> and local Max Modulus <em>again</em> gives <span class="math">\(f(z)\)</span> is constant on the second disk. Repeating this argument finitely many times gives that <span class="math">\(f(z)\)</span> is constant on <span class="math">\(γ\)</span>.</p>
+<p>So <span class="math">\(f(z_0)=f(z)\)</span> and so <span class="math">\(f(z)\)</span> is constant on <span class="math">\(D\)</span>, and <span class="math">\(|f(z)|=M'\)</span> on <span class="math">\(D\)</span>.</p>
+<p>Now <span class="math">\(f\)</span> is continuous on <span class="math">\(\bar D\)</span> - what does continuity mean on a closed set?</p>
+<p><span class="math">\(\forall ε&gt;0\)</span>, <span class="math">\(\exists d&gt;0\)</span> s.t. if <span class="math">\(|z-w|&lt;δ\)</span> and <span class="math">\(z,w\in\bar D\)</span>, then <span class="math">\(|f(z)-f(w)|&lt;ε\)</span>. So this gives continuity up to boundary.</p>
+<img alt="../_images/11.04.3.png" src="../_images/11.04.3.png" style="width: 50%;" />
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<p class="last">Boundary points are the <span class="math">\(z_0\in\bar D\)</span> such that <span class="math">\(D_ρ(z_0)\cap D\neq \{\}\)</span> and <span class="math">\(D_ρ(z_0)\cap (\mathbb C\backslash D)\neq\{\}\)</span> <span class="math">\(\forall ρ&gt;0\)</span>.</p>
+</div>
+<p>If <span class="math">\(f(z)\)</span> is constant on <span class="math">\(D\)</span> and continuous on <span class="math">\(\bar D\)</span>, then <span class="math">\(f(z)\)</span> is constant on <span class="math">\(\bar D\)</span>, since</p>
+<div class="math">
+\[\begin{split}|f(z)-f(z_0)|&lt;ε\end{split}\]</div>
+<p><span class="math">\(\forall z\in δD\)</span></p>
+<p class="last">So <span class="math">\(|f(z)|=M'\)</span> on <span class="math">\(δD\)</span>, but <span class="math">\(max_{z\in δD}|f(z)|=M\)</span>. So <span class="math">\(M=M'\)</span>. This proves (a), <span class="math">\(|f(z)|\leq M\)</span>, <span class="math">\(\forall z\in \bar D\)</span> and (b) since if that max is achieved <span class="math">\(f(z)\)</span> must be constant on <span class="math">\(\bar D\)</span>.</p>
+</div>
+<p>Now we want to prove all this for Harmonic Functions.</p>
+<div class="admonition-theorem-mean-value-property-for-harmonic-functions admonition">
+<p class="first admonition-title">Theorem (Mean Value Property for Harmonic Functions)</p>
+<p><span class="math">\(D\)</span> containing a closed disk <span class="math">\(D_ρ(x_0,y_0)\)</span>, then</p>
+<div class="math">
+\[u(x_0,y_0)=\frac{1}{2π}\int_0^{2π}u(x_0+r\cos t,y_0+r\sin t)dt\]</div>
+<p>Proof:</p>
+<p>Since <span class="math">\(D_ρ(x_0,y_0)\subset D\)</span>, <span class="math">\(\exists\)</span> a simply connected open set <span class="math">\(\tilde D\)</span> s.t. <span class="math">\(D\supset\tilde D\supset D_ρ(x_0,y_0)\)</span> and by the reconstruction theorem, <span class="math">\(\exists v:\tilde D\to \mathbb R\)</span> s.t. <span class="math">\(f=u+iv\)</span> is analytic on <span class="math">\(\tilde D\)</span>. Thus <span class="math">\(f\)</span> has the mean value property:</p>
+<div class="math">
+\[f(z_0)=\frac{1}{2π}\int_0^{2π}f(z_0+re^{it})dt\]</div>
+<p>where <span class="math">\(z_0=x_0+iy_0\)</span></p>
+<p>So</p>
+<div class="math">
+\[\begin{split}u(x_0,y_0)+iv(x_0,y_0)&amp;=\frac{1}{2π}\int_0^{2π}u(x_0+r\cos t,y_0+r\sin t)+iv(x_0+r\cos t,y_0+r\sin t)dt\\
+                      &amp;=\frac{1}{2π}\int_0^{2π}u(x_0+r\cos t,y_0+r\sin t)dt +i\frac{1}{2π}\int_0^{2π}v(x_0+r\cos t,y_0+r\sin t)dt\end{split}\]</div>
+<p class="last">Comparing real and imaginary parts, we are done.</p>
+</div>
+<div class="admonition-theorem-local-max-min-principle-for-harmonic-functions admonition">
+<p class="first admonition-title">Theorem (Local Max/Min principle for Harmonic Functions)</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There&#8217;s no modulus for harmonic functions, they are real-valued.</p>
+</div>
+<p>If <span class="math">\(U:D\to\mathbb R\)</span> is harmonic and <span class="math">\(\exists\)</span> a local max/min at <span class="math">\((x_0,y_0)\in D\)</span>, i.e.</p>
+<div class="math">
+\[u(x_0,y_0)\geq u(x,y)\]</div>
+<p>or</p>
+<div class="math">
+\[u(x_0,y_0)\leq u(x,y)\]</div>
+<p><span class="math">\(\forall (x,y)\in D_δ(x_0,y_0)\)</span></p>
+<p>then <span class="math">\(U\)</span> is constant on an on an open disk around <span class="math">\((x_0,y_0)\)</span>.</p>
+<p>Proof:</p>
+<p class="last">For local Max, same as for holomorphic functions, just need Max Value Principle and Continuity. For local min, use local Max argument on <span class="math">\(-u(x,y)\)</span>.</p>
+</div>
+<div class="admonition-theorem-global-max-min-principle-for-harmonic-functions admonition">
+<p class="first admonition-title">Theorem (Global Max/Min principle for Harmonic Functions)</p>
+<p><span class="math">\(U: D\to\mathbb R\)</span> is harmonic on <span class="math">\(D\)</span>, continuous on <span class="math">\(\bar D\)</span>.</p>
+<p>Let</p>
+<div class="math">
+\[M=max_{(x,y)\in δD}u(x,y)\]</div>
+<p>and</p>
+<div class="math">
+\[m=min_{(x,y)\in δD}u(x,y)\]</div>
+<p>then</p>
+<ol class="loweralpha simple">
+<li><span class="math">\(m\leq u(x_0,y_0)\leq M\)</span> <span class="math">\(\forall (x_0,y_0)\in\bar D\)</span>.</li>
+<li>If <span class="math">\(u(x,y)=M\)</span> or <span class="math">\(m\)</span> for some <span class="math">\((x,y)\in D\)</span>, then <span class="math">\(u\)</span> is constant on <span class="math">\(D\)</span>.</li>
+</ol>
+<p>Proof:</p>
+<p class="last">Same as for max modulus, just use local Max/Min principle instead of Local Max Mod.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Max Modulus Theorem &amp; Harmonic Functions</a><ul>
+<li><a class="reference internal" href="#proof-of-local-max-modulus">Proof of Local Max Modulus</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-10-31.html" title="previous chapter">Fundamental Theorm of Algebra &amp; Max Modulus Theorems</a></li>
+      <li>Next: <a href="2013-11-05.html" title="next chapter">Dirichlet Problem and Poisson&#8217;s Formula</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-11-04.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

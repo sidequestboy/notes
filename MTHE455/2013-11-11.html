@@ -1,0 +1,204 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>More Poisson &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Review of Order Statistics" href="2013-11-13.html" />
+    <link rel="prev" title="Properties of Poisson Process - Superpositioning &amp; Thinning" href="2013-11-08.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-13.html" title="Review of Order Statistics"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-08.html" title="Properties of Poisson Process - Superpositioning &amp; Thinning"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="more-poisson">
+<h1>More Poisson<a class="headerlink" href="#more-poisson" title="Permalink to this headline">¶</a></h1>
+<p>If <span class="math">\(\{N(t):t\geq 0\}\)</span> is a Poisson process with rate <span class="math">\(λ\)</span> and each event is type 1 with probability <span class="math">\(p\)</span> and type 2 with probability <span class="math">\(1-p\)</span>, then if</p>
+<p><span class="math">\(N_1(t)\)</span> is the number of type 1 events in <span class="math">\([0.t)\)</span>
+<span class="math">\(N_2(t)\)</span> is the number of type 2 events in <span class="math">\([0,t)\)</span></p>
+<p>Then <span class="math">\(\{N_1(t):t\geq 0\}\)</span> and <span class="math">\(\{N_2:t\geq 0\}\)</span> are Poisson processes with rates <span class="math">\(λp\)</span> and <span class="math">\(λ(1-p)\)</span> respectively.</p>
+<p>Let us see that these 2 processes are independent. (i.e. <span class="math">\(P(N_1(t_1)=n_1,N2(t_2)=n_2) = P(N_1(t_1)=n_1)P(N_2(t_2)=n_2)\)</span> for any <span class="math">\(t_1,t_2\)</span> and <span class="math">\(n_1,n_2\)</span>).</p>
+<p>First, suppose <span class="math">\(t_1=t_2=t\)</span></p>
+<p>Compute</p>
+<div class="math">
+\[\begin{split}P(N_1(t),N_2(t)=n_2)\\
+&amp;=P(N_1(t),n_1,N_2(t)=n_2|N(t)=n_1+n_2)P(N(t)=n_1+n_2)\\
+&amp;={n_1+n_2 choose n_1}p^{n_1}(1-p)^{n_2}\frac{(λt)^{n_1+n_2}}{(n_1+n_2)!}e^{-λt}\\
+&amp;=[\frac{(λpt)^{n_1}}{n_1!}e^{-λ[t]}][\frac{[λ(1-p)t]^{n_2}}{n_2!}e^{-λ(1-p)t}]\\
+&amp;=P(N_1(t)=n_1)P(N_2(t)=n_2)\end{split}\]</div>
+<p>Now assume (wlog) <span class="math">\(t_1&lt;t_2\)</span>.</p>
+<div class="math">
+\[\begin{split}P(N_1(t_1)=n_1,N_2(t_2)=n_2)\\
+=\sum_{k=0}^{n_2}P(N_1(t_1)=n_1,N_2(t_2)=k,N(t_2)-N_2(t_1)=n_2-k)\end{split}\]</div>
+<p>All three events in the summand proabbility are independent</p>
+<div class="math">
+\[\begin{split}=P(N_1(t_1)=n_1)\sum_{k=0}^{n_2}P(N_2(t_1)=k,N_2(t_2)-N_2(t_1)=n_2-k)\\
+=P(N_1(t_1)=n_1)P(N_2(t_2)=n)2\end{split}\]</div>
+<div class="section" id="midterm">
+<h2>Midterm<a class="headerlink" href="#midterm" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Same instructions as last year.</li>
+<li>3 questions - 2 for 455, 3 for 855</li>
+<li>8.5by11 sheet of notes, both sides, calculator</li>
+<li>455 students do 2 of 3 questions, default is the first 2 questions, unless specified on answer sheet.</li>
+<li>Each question is worth 15 marks (30 total for 455, 45 total for 855)</li>
+<li>Question 1 will be on conditioning</li>
+<li>Question 2 will be on basic properties of Markov chains and classification of states</li>
+<li>Question 3 - surprise!</li>
+</ul>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Problem 1 will be similar to this</p>
+</div>
+<p>Consider a particle that moves among the vertices of a square. At each step, it chooses one of its neighbouring vertices at random, and moves to that vertex. Find the expected number of steps, starting at a given vertex, for the particle to get to the opposite vertex.</p>
+<p>Square:</p>
+<p>1-2</p>
+<p>3-4</p>
+<p>Matrix:</p>
+<div class="math">
+\[\begin{split}P=\matrix{0 &amp;&amp; 0.5 &amp;&amp; 0.5 &amp;&amp; 0 \\
+          0.5 &amp;&amp; 0 &amp;&amp; 0 &amp;&amp; 0.5 \\
+          0.5 &amp;&amp; 0 &amp;&amp; 0 &amp;&amp; 0.5 \\
+          0 &amp;&amp; 0.5 &amp;&amp; 0.5 &amp;&amp; 0}\end{split}\]</div>
+<p>Let <span class="math">\(M_2\)</span> be the expected number of steps to get to vertex 2 edges away.</p>
+<p>Let <span class="math">\(M_1\)</span> be the expected number of steps to get to a particular vertex that is one edge away</p>
+<p>Condition on first move, we get</p>
+<div class="math">
+\[M_2 = \frac{1}{2}(1+M_1)+\frac{1}{2}(1+M_1)=1+M_1\]</div>
+<p>Now find <span class="math">\(M_1\)</span>. Condition on first move again.</p>
+<div class="math">
+\[M_1 = \frac{1}{2}(1) + \frac{1}{2}(1+M_2)\]</div>
+<p>Solving,</p>
+<div class="last math">
+\[\begin{split}M_2 = 1+1+\frac{1}{2}M_2=1+\frac{1}{2}M_2\\
+M_2 = 4\end{split}\]</div>
+</div>
+<p>For Question 2, review in particular the notion of period and cyclic classes</p>
+</div>
+<div class="section" id="conditional-distribution-of-arrival-times-given">
+<h2>Conditional Distribution of Arrival Times Given <span class="math">\(N(t)=n\)</span><a class="headerlink" href="#conditional-distribution-of-arrival-times-given" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(S_1,...,S_n\)</span> be the event times of the first <span class="math">\(n\)</span> events.</p>
+<p>Let</p>
+<div class="math">
+\[I_k=[t_k,t_k+h)\]</div>
+<p>The joint conditional density of <span class="math">\(S_1,...,S_n\)</span> at <span class="math">\((t_1,...,t_n)\)</span> given <span class="math">\(N(t)=n\)</span> can be written as</p>
+<div class="math">
+\[\lim_{h\to 0}\frac{P(S_k\in I_k,k=1,...,n|N(t)=n)}{h^n}\]</div>
+<p>Consider</p>
+<div class="math">
+\[\begin{split}P&amp;(S_k\in I_k,k=1,...,n | N(t)=n)\\
+&amp;=\frac{P(S_k\in I_k,k=1,...,n, N(t)=n)}{P(N(t)=n)}\\
+&amp;=\frac{P(\text{exactly 1 event in }I_k,k=1,...,n,\text{ 0 events in }J_k,k=1,...,n+1)}{P(N(t)=n)}\\
+&amp;=\frac{(λhe^{-λh})^ne^{-λ(t-nh)}}{\frac{(λt)^n}{n!}e^{-λt}}\\
+&amp;=\frac{h^nn!}{t^n}\end{split}\]</div>
+<p>now divide by <span class="math">\(h^n\)</span> and get</p>
+<div class="math">
+\[g(t_1,...,t_n|N(t)=n)=\frac{n!}{t^n}\]</div>
+<p>for <span class="math">\(t_t&lt;t_2&lt;...&lt;t_n\)</span></p>
+<p>recall: order statistics</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">More Poisson</a><ul>
+<li><a class="reference internal" href="#midterm">Midterm</a></li>
+<li><a class="reference internal" href="#conditional-distribution-of-arrival-times-given">Conditional Distribution of Arrival Times Given <span class="math">\(N(t)=n\)</span></a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-11-08.html" title="previous chapter">Properties of Poisson Process - Superpositioning &amp; Thinning</a></li>
+      <li>Next: <a href="2013-11-13.html" title="next chapter">Review of Order Statistics</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-11-11.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

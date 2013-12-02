@@ -1,0 +1,210 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Analysis of Probability of Error &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="Proof of Channel Coding Thm contd, Feedback" href="2013-11-11.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-11-06.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-11.html" title="Proof of Channel Coding Thm contd, Feedback"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-06.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="analysis-of-probability-of-error">
+<h1>Analysis of Probability of Error<a class="headerlink" href="#analysis-of-probability-of-error" title="Permalink to this headline">¶</a></h1>
+<p>Instead of determining <span class="math">\(p_e^{(n)}(\mathcal C)\)</span> for a single code <span class="math">\(\mathcal C\)</span>, we will analyze <span class="math">\(E_{\mathcal C}[p_e^{(n)}(\mathcal C)]\)</span> over all codes randomly generated via <a href="#equation-α">(?)</a>, from yesterday.</p>
+<p>For a code <span class="math">\(\mathcal C\)</span>:</p>
+<div class="math">
+\[\begin{split}p_e^{(n)}(\mathcal C)&amp;=\frac{1}{2^nR}\sum_{i=1}^{2^{nR}}P[g_{\mathcal C}(Y^n)\neq i|W=i]\\
+&amp;=\frac{1}{2^{nR}}\sum_{i=1}^{2^{nR}}λ_i(\mathcal C)\end{split}\]</div>
+<p>So,</p>
+<div class="math">
+\[\begin{split}E_{\mathcal C}[p_e^{(n)}(\mathcal C)]=\sum){\mathcal C}p(\mathcal C)p_e^{(n)}(\mathcal C)\\
+=\frac{1}{2^{nR}}\sum_{i=1}^{2^{nR}}[\sum_{\mathcal C}P(\mathcal C)λ_i(\mathcal C)]\\
+=\frac{1}{2^{nR}}\sum_{i=1}^{2^{nR}}E_{\mathcal C}[λ_i(\mathcal C)]\end{split}\]</div>
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<div class="last math">
+\[λ_i(\mathcal C)=\sum_{y^n\in\mathcal Y^n:g_{\mathcal C}(y^n)\neq i}p_{Y^n|X^n}(y^n|x^n(i))\]</div>
+</div>
+<p>So,</p>
+<div class="math">
+\[\begin{split}&amp;E_{\mathcal C}[λ_i(\mathcal C)]=\\
+&amp;\sum_{x^n(1),x^n(2),...,x^n(2^{nR})\in \mathcal X^n}p_{X^n}(x^n(1))p_{X^n}(x^n(2))...p_{X^n}(x^n(2^{nR}))\sum_{y^n\in\mathcal Y^n:g_{\mathcal C}(y^n)\neq i}p_{Y^n|X^n}(y^n|x^n(i))\end{split}\]</div>
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<p><span class="math">\(Y^n\)</span> is what we receive at channel output when <span class="math">\(X^n(i)\)</span> is sent over the channel.</p>
+<p>Therefore,</p>
+<div class="math">
+\[X^n(1),X^n(2),...,X^n(i-1),(X^n(i),Y^n),X^n(i+1),...X^n(2^{nR})\]</div>
+<p class="last">are <strong>independent</strong> of each other.</p>
+</div>
+<p>Given that message <span class="math">\(i\)</span> is sent, the correct decoding event is:</p>
+<div class="math">
+\[\{(X^n(i),Y^n)\in A_ε^{(n)}\}\cap \{(X^n(j),Y^n)\notin A_ε^{(n)},\forall j\neq i, j=1,...,2^{nR}\}\]</div>
+<p>So, Decoding error event when message <span class="math">\(i\)</span> is sent:</p>
+<div class="math">
+\[\{y^n: g_{\mathcal C}(y^n)\neq i\}=\{(X^n(i),Y^n)\notin A_ε^{(n)}\}\cup \{\cup_{j=1,j\neq i}^{2^{nR}}\{(X^n(j),Y^n)\in A_ε^{(n)}\}\}\]</div>
+<p>Therefore, by union bound:</p>
+<div class="math">
+\[\begin{split}E_{\mathcal C}[λ_i(\mathcal C)]\leq\sum_{X^n(1),...,X^n(2^{nR})}p_{X^n}(x^n(1))...p_{X^n}(x^n(2^{nR}))\sum_{y^n:(x^n(i),y^n)\notin A_ε^{(n)}}p_{Y^n|X^n}(y^n|x^n(i)) \\\end{split}\]</div>
+<div class="math">
+\[+ \sum_{j=1,j\neq i}^{2^{nR}}\sum_{x^n(1),...,x^n(2^{nR})}p_{X^n}(1)...p_X^n(2^{nR})\sum_{y^n:(x^n(j),y^n)\in A_ε^{(n)}}p_{Y^n|X^n}(y^n|x^n(i))\]</div>
+<p>Call the first term <span class="math">\(S_1\)</span>, and the second term <span class="math">\(S_2\)</span>.</p>
+<p>Now,</p>
+<div class="math">
+\[\begin{split}S_1 = \sum_{x^n(i)\in\mathcal X^n}p_{X^n(x^n(i))}\sum_{y^n\in\mathcal Y^n: (x^n(i),y^n)\notin A_ε^{(n)}}p_{Y^n|X^n}(y^n|x^n(i))\\
+=\sum_{(x^n(i),y^n)\notin A_ε^{(n)}}p_{X^nY^n}(x^n(i),y^n)\\
+=P[(X^n(i),Y^n)\notin A_ε^{(n)}]\\
+&lt; ε\text{ for n suff large.}\end{split}\]</div>
+<p>by result (1) of Joint AEP Theorem.</p>
+<div class="math">
+\[\begin{split}S_2(j) = \sum_{x^n(i),x^n(j)\in\mathcal X^n}p_{X^n}(x^n(i))p_{X^n}(x^n(j))\sum_{y^n:(x^n(j),y^n)\in A_ε^{(n)}}p_{Y^n|X^n}(y^n|x^n(i))\\\end{split}\]</div>
+<p>Therefore,</p>
+<div class="math">
+\[\begin{split}S_2(j)=\sum_{(x^n(j),y^n)\in A_ε^{(n)}}p_{X^n}(x^n(j))\sum_{x^n(i)}p_{X^n}(x^n(i)p_{Y^n|X^n}(y^n|x^n(i)))\\
+=\sum_{(x^n(j),y^n)\in A_ε^{(n)}}p_{X^n}(x^n(j))p_{Y^n}(y^n)\\
+=\sum_{(x^n(j),y^n)\in A_ε^{(n)}}p_{X^n}(x^n(j))p_{Y^n}(y^n)\\
+=P[(X^n(j),Y^n)\in A_ε^{(n)}]\\
+\leq 2^{-n(I(X;Y)-3ε)}\end{split}\]</div>
+<p>by result (3) of Joint AEP Theorem.</p>
+<p>Therefore,</p>
+<div class="math">
+\[\begin{split}E_{\mathcal C}[λ_i(\mathcal C)]&lt;ε+\sum_{j=1,j\neq i}^{2^{nR}}2^{-n(I(X;Y)-3ε)}\\
+=ε+(2^{nR}-1)2^{-n(I(X;Y)-3ε)}\end{split}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="math">
+\[I(X;Y)=C\]</div>
+<p class="last">since X has dist. <span class="math">\(p_X^*\)</span></p>
+</div>
+<div class="math">
+\[\leq ε+2^{-n(C-R-3ε)}\]</div>
+<p>Therefore,</p>
+<div class="math">
+\[\begin{split}E_{\mathcal C}[p_e^{(n)}(\mathcal C)]=\frac{1}{2^{nR}}\sum_{i=1}^{2^{nR}}E_{\mathcal C}[λ_i(\mathcal C)]\\
+&lt;ε+2^{-n(C-R-3ε)}\end{split}\]</div>
+<p>since <span class="math">\(R&lt;C\)</span>, choose <span class="math">\(R\)</span> s.t. <span class="math">\(C-R-3ε&gt;0\)</span> and take <span class="math">\(n\)</span> suff. large s.t. <span class="math">\(E_{\mathcal C}[p_{\mathcal C}^{(n)}(\mathcal C)]&lt;2ε\)</span>.</p>
+<p>Therefore, <span class="math">\(\exists\)</span> at least one good code <span class="math">\(\mathcal C^*\)</span> s.t. <span class="math">\(p_{\mathcal C}^{(n)}(\mathcal C^*)\)</span> can be made arbitrarily small for <span class="math">\(n\)</span> suff. large.</p>
+<p>Before proving the converse part, we recall/adapt <em>Fano&#8217;s inequality</em> in a channel coding context.</p>
+<p>Message <span class="math">\(w\in \mathcal M=\{1m,,,m2^{nR}\}\)</span> is uniformly dist. and is sent over the channel via its codeword, <span class="math">\(X^n(w)\)</span>. <span class="math">\(Y^n\)</span> is received at channel output. Decode</p>
+<div class="math">
+\[\hat w=g(Y^n)\]</div>
+<p>Probability of error:</p>
+<div class="math">
+\[p_e^{(n)}=P[w\neq \hat w]\]</div>
+<p>Fano gives:</p>
+<div class="math">
+\[\begin{split}H(w|\hat w)\leq h_b(p_e^{(n)})+p_e^{(n)}\log(|\mathcal M|=1)\\
+\leq 1+nR\end{split}\]</div>
+<div class="section" id="lemma">
+<h2>Lemma:<a class="headerlink" href="#lemma" title="Permalink to this headline">¶</a></h2>
+<div class="math">
+\[X^n\to DMS\to Y^n\]</div>
+<div class="math">
+\[I(X^n;Y^n\leq nC \forall p_{X^n})\]</div>
+<p>where <span class="math">\(C=max_{p_X}I(X;Y)\)</span></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Analysis of Probability of Error</a><ul>
+<li><a class="reference internal" href="#lemma">Lemma:</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-11-06.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-11-11.html" title="next chapter">Proof of Channel Coding Thm contd, Feedback</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-11-07.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

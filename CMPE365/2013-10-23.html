@@ -1,0 +1,237 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>More Dynamic Programming &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="CMPE 365 - Algorithms I" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-10-25.html" />
+    <link rel="prev" title="Dynamic Programming" href="2013-10-21.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-25.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-21.html" title="Dynamic Programming"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">CMPE 365 - Algorithms I</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <blockquote class="epigraph">
+<div><p>Success in life is beingables to do fo a living that which makes you happy</p>
+<p>Happy birthday to Weird Al Yankovich</p>
+</div></blockquote>
+<div class="section" id="more-dynamic-programming">
+<h1>More Dynamic Programming<a class="headerlink" href="#more-dynamic-programming" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dynamic-programming-for-subset-sum">
+<h2>Dynamic Programming for Subset Sum<a class="headerlink" href="#dynamic-programming-for-subset-sum" title="Permalink to this headline">¶</a></h2>
+<p>Give <span class="math">\(S=`set of integers :math:`=\{s_1,s_2,...,s_n\}\)</span>, target value <span class="math">\(k\)</span>.</p>
+<p><span class="math">\(T(s_i,x):=`True iff there exists a subset of :math:\)</span>{s_1,s_2,...,s_i}` that sums to <span class="math">\(x\)</span>.</p>
+<p>if there is such a subset, it either includes <span class="math">\(s_i\)</span>, or it doesn&#8217;t.</p>
+<p>if it does include <span class="math">\(s_i\)</span>, then <span class="math">\(\{s_1,...,s_{i-1}\}\)</span> has a subset that sums to <span class="math">\(x-s_i\)</span></p>
+<p>if it doesn&#8217;t, then <span class="math">\(\{s_1,...,s_{i-1}\}\)</span> has a subset that sums to <span class="math">\(x\)</span></p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[\begin{split}S=\{1,3,5,8,12\}\\
+k=14\end{split}\]</div>
+<p>So there is a subset that sums to 14: <span class="math">\(\{8,5,1\}\)</span></p>
+<p>Size of input is <span class="math">\(=n+1\)</span></p>
+<p>Size of table is <span class="math">\(n\cdot k\)</span></p>
+<p class="last">So, alg <span class="math">\(\in O(n\cdot k)\)</span></p>
+</div>
+</div>
+<div class="section" id="dynamic-programming-for-longest-common-subsequence">
+<h2>Dynamic Programming for Longest Common Subsequence<a class="headerlink" href="#dynamic-programming-for-longest-common-subsequence" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we have a partial DNA sample e.g.</p>
+<p>...GATT...CA...TAA...</p>
+<p>Catalogue:</p>
+<ol class="arabic simple">
+<li>xxGxxATTCxx</li>
+</ol>
+<p>Given <span class="math">\(S_1,S_2\)</span>, strings of characters, find the longest sequence of characters that is a subsequence of <span class="math">\(S_1\)</span> and <span class="math">\(S_2\)</span>.</p>
+<p><span class="math">\(S_1\)</span>: &#8220;caller&#8221;</p>
+<p><span class="math">\(S_2\)</span>: &#8220;clearer&#8221;</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="25%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">.</th>
+<th class="head">c</th>
+<th class="head">l</th>
+<th class="head">e</th>
+<th class="head">a</th>
+<th class="head">r</th>
+<th class="head">e</th>
+<th class="head">r</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>c</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>a</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td>l</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr class="row-odd"><td>l</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td>e</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td>r</td>
+<td>1</td>
+<td>2</td>
+<td><strong>3</strong></td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>Cell :math:<a href="#id1"><span class="problematic" id="id2">`</span></a>(l_2,r_1)`contains the length of the longest common subsequence of &#8220;call&#8221; and &#8220;clear&#8221;</p>
+<div class="math">
+\[T(i,j)=|l.c.s.|\text{ of }S_1[1...i]\text{ and }S_2[1...j]\]</div>
+<p>if <span class="math">\(S_1[i]==S_2[j]\)</span>, <span class="math">\(T(i,j)=1+T(i-1,j-1)\)</span></p>
+<p>else <span class="math">\(T(i,j)=max\{T(i,j-1),T(i-1,j),T(i-1,j-1)\}\)</span></p>
+<p>&#8220;cler&#8221; or &#8220;caer&#8221;</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">More Dynamic Programming</a><ul>
+<li><a class="reference internal" href="#dynamic-programming-for-subset-sum">Dynamic Programming for Subset Sum</a></li>
+<li><a class="reference internal" href="#dynamic-programming-for-longest-common-subsequence">Dynamic Programming for Longest Common Subsequence</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">CMPE 365 - Algorithms I</a><ul>
+      <li>Previous: <a href="2013-10-21.html" title="previous chapter">Dynamic Programming</a></li>
+      <li>Next: <a href="2013-10-25.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/CMPE365/2013-10-23.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

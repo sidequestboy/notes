@@ -1,0 +1,125 @@
+********************************************************************************
+Huffman Codes for Non-Binary Code Alphabets (:math:`D\geq 3`) and Channel Coding
+********************************************************************************
+
+Huffman Codes for :math:`D\geq 3`
+=================================
+
+If :math:`D\geq 3`, we might not have a sufficient number of source symbols so that when we combine :math:`D` of them at a time in the Huffman algorithm, we are ultimately left with :math:`D` symbols. That is, we need that at the end stage of the algorithm, as we reduce iteratively the source size by :math:`D-1` symbols, we are ultimately left with :math:`D` symbols.
+
+So, we need that the initial number of symbols in the source alphabet is equal to :math:`D+s(D-1)` for some integer :math:`s`.
+
+Hence, "dummy" symbols (with zero probabilities) must be added to the initial source alphabet :math:`\mathcal X` to bring the size of the expanded source alphabet :math:`\mathcal X'` to:
+
+.. math::
+    |\mathcal X'|=D+s(D-1)\\
+    \text{s.t. }|\mathcal X'|\geq|\mathcal X|
+
+(i.e. :math:`|\mathcal X'|` is the smallest integer :math:`\geq |\mathcal X|` s.t. :math:`|\mathcal X'|\equiv 1 (mod. D-1)`)
+
+.. admonition:: Example
+
+    Ternary (First Order) Huffman Code
+    ----------------------------------
+    .. math::
+        f:\mathcal X\to \{0,1,2\}^* & (D=3)
+
+    (:math:`m=1`)
+
+    .. math::
+        \mathcal C=\{a_1,...,a_6\}
+
+    with
+
+    .. math::
+        (p_1,...,p_6)=(\frac{1}{4},\frac{1}{4},\frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8})
+
+    .. note:: This is a 2-adic distribution - thus it has an absolutely optimal code in base 2.
+
+    The wrong way
+
+    .. image::
+
+    need to add dummy symbols s.t.
+
+    .. math::
+        |\mathcal X'|\geq |\mathcal X|=6
+
+    with
+
+    .. math::
+        |\mathcal X'|=3+2s
+
+    Add *one* dummy symbol:
+
+    .. math::
+        a_7^* & (p_7=0)
+
+    .. image::
+
+    Ternary code:
+
+    .. math::
+        a_1&\to 0\\
+        a_2&\to 1\\
+        a_3&\to 20\\
+        a_4&\to 21\\
+        a_5&\to 220\\
+        a_6&\to 221\\
+        a_7^*&\to 222
+
+    .. math::
+        \bar R=\frac{\bar l}{1}=\sum_{i=1}^6 p_il_i=\frac{7}{4}=1.75\frac{\text{ternary code symbols}}{\text{source symbol}}
+
+    while
+
+    .. math::
+        H_3(X)=-\sum_{i=1}^6p_i\log_3 p_i=1.577\frac{\text{ternary code symbols}}{\text{source symbol}}
+
+    .. math::
+        H_3(X)\leq \bar R<H_3(X)+1
+
+Universal Lossless Source Coding
+================================
+(ch. 13 text | online notes (end of ch. 4))
+
+Up to now, we assumed that the source distribution (for now assuming the source is DMS) is known *a priori*
+
+**Q:** what if ditribution is not known?
+
+Basic Approach
+--------------
+Observe a large block of source data and estimate the source distribution. Using the estimated distribution, design Huffman code.
+
+.. admonition:: Drawback
+
+    Large delay (might have to wait a while to get a good estimate)
+
+Adaptive Huffman Code (Gallager)
+--------------------------------
+Start with an initial guess of the source distribution (assuming the source is DMS) and as new data arrives, update the estimate and the Huffman tree.
+
+Fundamentals of Channel Coding
+==============================
+Capacity
+--------
+A communication system (with *no feedback*) is depicted as follows:
+
+.. image::
+
+.. admonition:: Definition
+
+    A discrete channel is characterized by:
+
+    * A finite input alphabet :math:`\mathcal X`
+    * A finite output alphabet :math:`\mathcal Y`
+    * :math:`\{p_{Y^n|X^n}(y^n|x^n)\}^\infty_{n=1}` sequence of conditional distribution
+
+        .. math::
+            x^n=(x_1,...,x_n)\in\mathcal X^n\\
+            y^n=(y_1,...,y_n)\in\mathcal Y^n\\
+            (\sum_{y^n\in\mathcal Y^n}p_{Y^n|X^n}(y^n|x^n)=1 && \forall x^n)
+
+
+
+side note: glasses pointer input device - blink to click or something

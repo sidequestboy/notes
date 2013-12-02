@@ -1,0 +1,160 @@
+********************
+Kolmogorov Equations
+********************
+
+.. math::
+           P(0\text{ transitions by time }h | X(0)=i)&=1-&v_ih+&o(h)\\
+    P(\text{exactly 1 transition by time }h | X(0)=i)&=  &v_ih+&o(h)\\
+     P(2\text{ or more transitions by time }h|X(0)=i)&=  &     &o(h)
+
+From these we can get
+
+.. math::
+    :label: 1
+
+    P(X(h)=i|X(0)=i) = 1-v_ih+o(h)+o(h)
+
+because we exclusively either made 0 transitions, or 2 or more transitions.
+
+For :math:`j\neq i`, 
+
+.. math::
+    P&(X(h)=j|X(0)=i)\\
+    &=P(X(h)=k|\text{1 transition},X(0)=i)P(\text{1 transition}|X(0)=i) + P(X(h)=k|\text{2 or more transitions})P(\text{2 or more transitions}|X(0)=i)\\
+    &=p_{ij}(v_ih+o(h))+o(h)
+
+So,
+
+.. math::
+    :label: 2
+
+    P(X(h)=j|X(0)=i)=p_{ij}v_ih+o(h)
+
+Let :math:`p_{ij}(t)=P(X(t)=j|X(0)=i)`. This is analogous to the n-step transition probability in discrete-time Markov chains. But in continuous-time, it is a function of the continuous index :math:`t`.
+
+:math:`p_{ij}(t)` is called the transition probability function from :math:`i` to :math:`j`.
+
+Let :math:`P(t)=(p_{ij}(t))_{i,j\in S}` (i.e. :math:`P(t)_{ij}=p_{ij}(t)`) be the (matrix-valued) transition probability function.
+
+.. note::
+    :math:`P(0)` is the :math:`S\times S` identity matrix.
+
+Kolmogorov's Backward Equations
+===============================
+Consider :math:`p_{ij}(t+h)`. We have:
+
+.. math::
+    p_{ij}(t+h)&=P(X(t+h)=j|X(0)=i)\\
+        &=\sum_{k\in S}P(X(t+h)=j|X(h)=k, X(0)=i)P(X(h)=k|X(0)=i)\\
+        &=\sum_{k\in S}P(X(t)=j|X(0)=k)P(X(h)=k|X(0)=i)\\
+        &=\sum_{k\in S}p_{kj}(t)P(X(h)=k|X(0)=i)
+
+Now use :eq:`1` and :eq:`2`, separate out case :math:`k=i`:
+
+We get:
+
+.. math::
+    p_{ij}(t+h)=p_{ij}(t)(1-v_ih+o(h))+\sum_{k\neq i}p_{kj}(t)(p_{ik}v_ih+o(h))
+
+or
+
+.. math::
+    \frac{p_{ij}(t+h)-p_{ij}(t)}{h}=-v_ip_{ij}(t)+\sum_{k\neq i}p_{kj}(t)p_{ik}v_i+\frac{o(h)}{h}
+
+Letting :math:`h\to 0`, we get
+
+.. math::
+    p'_{ij}(t)&=-v_ip_{ij}(t)+\sum_{k\neq i}q_{ik}p_{kj}(t)\\
+    p'_{ij}(t)&=\sum_{k\in S}g_{ik}p_{kj}(t)
+
+where
+
+.. math::
+    g_{ik}=\begin{cases}
+        q_ik & k\neq i\\
+        -v_i & k=i
+    \end{cases}
+
+is the :math:`(i,j)` entry of the generator matrix :math:`G`.
+
+If we let :math:`P'(t)=((p_{ij}'(t)))_{i,j\in S}`, then
+
+.. math::
+    P'(t)_{ij}=(GP(t))_{ij}
+
+or in matrix form,
+
+.. math::
+    :label: 3
+
+    P'(t)=GP(t)
+
+:eq:`3` with initial condition :math:`P(0)=I_{S\times S}` are *Kolmogorov's Backward Differential Equations*
+
+The solution is
+
+.. math::
+    P(t)&=I+tG+\frac{(tG)^2}{2}+\frac{(tG)^3}{3!}+...+\frac{(tG)^n}{n!}+...\\
+        &=e^{tG}
+
+Verify:
+
+.. math::
+    P'(t)&=G+tG^2+\frac{t^2}{2}G^3+...+\frac{t^{n-1}}{(n-1)!}G^n+...\\
+        &=G(I+tG+\frac{(tG)^2}{2}+\frac{(tG)^3}{3!}+...+\frac{(tG)^{n-1}}{(n-1)!}+...)\\
+        &=GP(t)
+
+It is also clear that you get :math:`I` when :math:`t=0`.
+
+.. admonition:: Important Remark
+
+    Note that :math:`G` determines :math:`P(t)` for all :math:`t`.
+
+    :math:`G` is the counterpart of :math:`P` in discrete-time.
+
+Stationary Distributions
+========================
+
+.. admonition:: Definition
+
+    An :math:`|S|` dimensional row vector :math:`Π` with :math:`Π_i\geq 0` for all :math:`i` and :math:`\sum_{i\in S}Π_i=1` is a *stationary distribution* if
+
+    .. math::
+        Π=ΠP(t)
+
+    for any :math:`t\geq 0`.
+
+    If :math:`X(0)` has distribution :math:`Π`, then
+
+    .. math::
+        P(X(t)=j)&=\sum_{i\in S}P(X(t)=j|X(0)=i)Πi\\
+            &=\sum_{i\in S}p_{ij}(t)Π_i\\
+            &=(ΠP(t))_j\\
+            &=Π_j
+
+Now we can see that :math:`Π` is a stationary distribution **iff**
+
+.. math::
+    Π&=ΠP(t)&\text{ for all }t\geq 0\\
+    \iff Π&=Π\sum_{n=0}^\infty \frac{(tG)^n}{n!}&\text{ for all }t\geq 0\\
+    \iff 0&=Π\sum_{n=1}^\infty \frac{(tG)^n}{n!}&\text{ for all }t\geq 0\\
+    \iff 0&=ΠG^n&\text{ for all }n\geq 0\\
+    \iff 0&=ΠG
+
+This is the continuous-time counterpart of the discrete-time global balance equations.
+
+.. math::
+    0=ΠG
+
+are called the global balance equations. The :math:`j` th equation is:
+
+.. math::
+    0=\sum_{i\in S}Π_ig_{ij}
+
+or
+
+.. math::
+    Π_jv_j = \sum_{i\neq j}Π_iq_{ij}
+
+"flow out of :math:`j`" = "flow into :math:`j`".
+

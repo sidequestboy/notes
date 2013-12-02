@@ -1,0 +1,296 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Classification of Singularities and Cauchy’s Residue Theorem &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-11-18.html" />
+    <link rel="prev" title="Laurent Series" href="2013-11-14.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-18.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-14.html" title="Laurent Series"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="classification-of-singularities-and-cauchy-s-residue-theorem">
+<h1>Classification of Singularities and Cauchy&#8217;s Residue Theorem<a class="headerlink" href="#classification-of-singularities-and-cauchy-s-residue-theorem" title="Permalink to this headline">¶</a></h1>
+<p>What&#8217;s the Laurent series for</p>
+<div class="math">
+\[\frac{1}{z-α}\]</div>
+<p>at <span class="math">\(z=α\)</span>, <span class="math">\(r=0\)</span>, <span class="math">\(R=\infty\)</span>?</p>
+<p>It&#8217;s</p>
+<div class="math">
+\[\frac{1}{z-α}\]</div>
+<p><span class="math">\(a_{-1}=1\)</span>, all other <span class="math">\(a_n=0\)</span>.</p>
+<div class="section" id="singularities-and-poles">
+<h2>Singularities (and Poles)<a class="headerlink" href="#singularities-and-poles" title="Permalink to this headline">¶</a></h2>
+<p>A point <span class="math">\(z_0\in\mathbb C\)</span> where <span class="math">\(f\)</span> is undefined at <span class="math">\(z_0\)</span> but is holomorphic on some deleted disk around <span class="math">\(z_0\)</span> (<span class="math">\(D^*_r(z_0)=\{z\in\mathbb C | 0&lt;|z-z_0|&lt;r\}\)</span>) is called an <em>isolated singularity</em>.</p>
+<p>If <span class="math">\(z_0\)</span> is an isolated singularity, it has a Laurent series</p>
+<div class="math">
+\[f(z) = \sum_{-\infty}^\infty a_n(z-z_0)^n\]</div>
+<p>on <span class="math">\(D^*_r(z_0)\)</span>.</p>
+<p>We say that <span class="math">\(z_0\)</span> is</p>
+<ol class="loweralpha">
+<li><p class="first">A <em>removable singularity</em> of <span class="math">\(f\)</span> if <span class="math">\(a_m=0\)</span> <span class="math">\(\forall m&lt;0\)</span></p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[\begin{split}f(z)&amp;=\frac{\sin(z)}{z}\\
+    &amp;=\frac{1}{z}(z-\frac{z^3}{3!}+\frac{z^5}{5!}-...)\\
+    &amp;=1-\frac{z^2}{3!}+\frac{z^4}{5!}-...\end{split}\]</div>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">no negative powers</p>
+</div>
+</div>
+<p><span class="math">\(f(z)\)</span> is undefined at 0, but the power series is entire. So we can <em>extend</em> <span class="math">\(f(z)\)</span> to a function holomorphic at zero by letting <span class="math">\(f(0)=1\)</span>.</p>
+<p>Thus the singularity is removed.</p>
+</li>
+<li><p class="first">We say <span class="math">\(z_0\)</span> is a <em>pole of order</em> <span class="math">\(k\)</span> if <span class="math">\(a_{-k}\neq 0\)</span> and <span class="math">\(a_m=0\)</span> <span class="math">\(\forall m&lt;-k\)</span>.</p>
+<p>So</p>
+<div class="math">
+\[f(z)=\frac{a_{-k}}{(z-z_0)^k}+\frac{a_{1-k}}{(z-z_0)^{k-1}}+...+\frac{a_{-1}}{(z-z_0)}+a_0+a_1(z-z_0)+...\]</div>
+<p>Equivalently (proof below), if <span class="math">\(k\in\mathbb N\)</span> is the smallest natural number such that <span class="math">\(z_0\)</span> is a removable singularity for <span class="math">\((z-z_0)^kf(z)\)</span>, i.e. <span class="math">\((z-z_0)^kf(z)\)</span> extends to a holomorphic function at and around <span class="math">\(z_0\)</span>, then the pole has order <span class="math">\(k\)</span>.</p>
+</li>
+<li><p class="first"><span class="math">\(f\)</span> has an <em>essential singularity</em> at <span class="math">\(z_0\)</span> if <span class="math">\(a_m\neq 0\)</span> for infinitely many negative <span class="math">\(m\)</span>. Thus, not a pole, not removable.</p>
+</li>
+</ol>
+<div class="admonition-lemma-1 admonition">
+<p class="first admonition-title">Lemma 1</p>
+<p><span class="math">\(F\)</span> has a pole of order <span class="math">\(k\)</span> at <span class="math">\(z_0\)</span> <strong>iff</strong></p>
+<div class="math">
+\[F(z)=\frac{g(z)}{(z-z_0)^n}\]</div>
+<p>where <span class="math">\(g(z)\)</span> is holomorphic &#8220;at&#8221; <span class="math">\(z_0\)</span> and <span class="math">\(g(z_0\neq 0\)</span>.</p>
+<p>Proof:</p>
+<div class="math">
+\[f(z)=\frac{a_{-k}}{(z-z_0)^k}+\frac{z_{-k+1}}{(z-z_0)^{k-1}}+...+\frac{a_{-1}}{(z-z_0)}+a_0+a_1(z-z_0)+...\]</div>
+<p><span class="math">\(a_{-k}\neq 0\)</span>, Then:</p>
+<div class="math">
+\[\begin{split}g(z)&amp;=a_{-k}+a_{-k+1}(z-z_0)+...+a_{-1}(z-z_0)^{k-1}+a_0(z-z_0)^k+...\\
+g(z_0)&amp;=a_{-k}\neq 0\end{split}\]</div>
+<p>and is holomorphic &#8220;at&#8221; <span class="math">\(z_0\)</span>.</p>
+<p>conversely, if</p>
+<div class="math">
+\[f(z)=\frac{g(z)}{(z-z_0)^k}\]</div>
+<p>then</p>
+<div class="math">
+\[g(z)=b_0+b_1(z-z_0)+b_2(z-z_0)^2+...\]</div>
+<div class="math">
+\[g(z_0)=b_0\neq 0\]</div>
+<p>So</p>
+<div class="math">
+\[f(z)=\frac{b_0}{(z-z_0)^k}+\frac{b_1}{(z-z_0)^{k-1}}+...\]</div>
+<p class="last">has a pole of order <span class="math">\(k\)</span> at <span class="math">\(z_0\)</span>.</p>
+</div>
+<div class="admonition-lemma-2 admonition">
+<p class="first admonition-title">Lemma 2</p>
+<p>If <span class="math">\(f\)</span> has a pole of order <span class="math">\(k\)</span> at <span class="math">\(z_0\)</span>, then for all <span class="math">\(m&lt;k\)</span>,</p>
+<div class="math">
+\[\begin{split}\lim_{z\to z_0}|(z-z_0)^mf(z)|=
+    \begin{cases}
+        \infty&amp;\text{ for all }m&lt;k\\
+        \text{something finite}&amp;\text{ if }m=k\\
+        0&amp;\text{ for all }m&gt;k
+    \end{cases}\end{split}\]</div>
+<p>Proof:</p>
+<p>by previous Lemma,</p>
+<div class="math">
+\[\begin{split}\lim_{z\to z_0}|(z-z_0)^mf(z)|\\
+=\lim_{z\to z_0}\left|\frac{g(z)}{(z-z_0)^{k-m}}\right|\end{split}\]</div>
+<p class="last">where <span class="math">\(g(z_0)\neq 0\)</span>, <span class="math">\(g(z)\)</span> is holomorphic in a nbd around <span class="math">\(z_0\)</span>.</p>
+</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>If <span class="math">\(z_0\)</span> is an essential singularity of <span class="math">\(f\)</span> and <span class="math">\(D_r^*(z_0)\)</span> is a punctured disk at <span class="math">\(z_0\)</span>, then for all <span class="math">\(w\in\mathbb C\)</span> (except maybe one <span class="math">\(w_0\in \mathbb C\)</span>),</p>
+<p>there exists <span class="math">\(z\in D_r^*(z_0)\)</span> such that <span class="math">\(f(z)=w\)</span></p>
+<p>Proof: Beyond scope of this class</p>
+<div class="admonition-example last admonition">
+<p class="first admonition-title">Example</p>
+<p>for all <span class="math">\(ε&gt;0\)</span>, for all <span class="math">\(q\in\mathbb C\)</span>, <span class="math">\(w\neq 0\)</span>, there exists <span class="math">\(z\in D_ε^*(0)\)</span> such that</p>
+<div class="last math">
+\[e^{\frac{1}{z}}=w\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="zeros-of-f">
+<h2>Zeros of f<a class="headerlink" href="#zeros-of-f" title="Permalink to this headline">¶</a></h2>
+<p>If <span class="math">\(f\)</span> is holomorphic at and around <span class="math">\(z_0\)</span>, we say <span class="math">\(f\)</span> has a zero of order <span class="math">\(k&gt;0\)</span> if the following equivalent things hold:</p>
+<ol class="loweralpha">
+<li><p class="first"><span class="math">\(f(z)=a_k(z-z_0)^k+a_{k+1}(z-z_0)^{k+1}+...\)</span>, <span class="math">\(a_k\neq 0\)</span> and <span class="math">\(a_m=0\)</span> for all <span class="math">\(m&lt;k\)</span></p>
+</li>
+<li><p class="first"><span class="math">\(f(z_0)=a_0=0\)</span>, <span class="math">\(f'(z_0)=a_1=0\)</span>, ..., <span class="math">\(f^{(k-1)}(z-z_0)=(k-1)!a_{k-1}=0\)</span></p>
+</li>
+<li><p class="first">We can write</p>
+<div class="math">
+\[f(z)=(z-z_0)^kg(z)\]</div>
+<p>where <span class="math">\(g\)</span> is holomorphic at <span class="math">\(z_0\)</span> and <span class="math">\(g(z_0)\neq 0\)</span>.</p>
+</li>
+</ol>
+<p>Proof: See Lemma 1</p>
+<p>We can say <span class="math">\(z_0\)</span> is &#8220;an order zero zero&#8221; if <span class="math">\(f(z_0)\neq 0\)</span>.</p>
+<p>Why? So we can generalize the concept of &#8220;zeros&#8221; to include poles.</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>We say <span class="math">\(z_0\)</span> is a &#8220;zero&#8221; of order <span class="math">\(k\in\mathbb Z\)</span> if</p>
+<div class="math">
+\[f(z)=(z-z_0)^kg(z)\]</div>
+<p class="last">where <span class="math">\(g\)</span> is holomorphic at <span class="math">\(z_0\)</span> and <span class="math">\(g(z_0)\neq 0\)</span>.</p>
+</div>
+<div class="admonition-definition-residue admonition">
+<p class="first admonition-title">Definition (Residue)</p>
+<p>If <span class="math">\(f\)</span> has an isolated singularity at <span class="math">\(z_0\)</span>, its <em>residue</em> is the <span class="math">\(a_{-1}\)</span> coefficient. We write:</p>
+<div class="last math">
+\[Res(f,z_0)=a_{-1}\]</div>
+</div>
+<div class="admonition-lemma-3 admonition">
+<p class="first admonition-title">Lemma 3</p>
+<p>If <span class="math">\(z_0\)</span> is an isolated singularity of <span class="math">\(f\)</span> which is holomorphic on <span class="math">\(D_ε^*(z_0)\)</span>, then for <span class="math">\(γ\)</span> a counterclockwise circle around <span class="math">\(z_0\)</span> in <span class="math">\(D_ε^*(z_0)\)</span>, then</p>
+<div class="math">
+\[\int_γ f(w)dw=2πi Res(f,z_0)\]</div>
+<p>Proof:</p>
+<div class="last math">
+\[\begin{split}\int_γ f(w)dw&amp;=\int_γ\sum_{n=-k}^\infty a_n(w-z_0)^ndw\\
+             &amp;=\sum_{n=-k}^\infty a_n\int_γ(w-z_0)^ndw\\
+             &amp;=2πia_{-1}\\
+             &amp;=2πiRes(f,z_0)\end{split}\]</div>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last"><span class="math">\(f\)</span> is <em>meromorphic</em> on <span class="math">\(D\)</span> if for all <span class="math">\(z_0\in D\)</span>, <span class="math">\(f\)</span> is analytic on an open neighbourhood of <span class="math">\(z_0\)</span> or <span class="math">\(f\)</span> has a pole at <span class="math">\(z_0\)</span>.</p>
+</div>
+<div class="admonition-theorem-cauchy-s-residue-theorem admonition">
+<p class="first admonition-title">Theorem (Cauchy&#8217;s Residue Theorem)</p>
+<p>if <span class="math">\(f\)</span> is meromorphic on <span class="math">\(D\)</span> and <span class="math">\(γ\)</span> is a simple closed counterclockwise curve in <span class="math">\(D\)</span> with interior in <span class="math">\(D\)</span> and finitely many poles <span class="math">\(\{z_1,...,z_n\}\)</span> in the interior of <span class="math">\(γ\)</span>, then</p>
+<div class="math">
+\[\int_γf(w)dw=\sum_{j=1}^n2πiRes(f,z)\]</div>
+<p>Proof:</p>
+<p>By Cauchy&#8217;s Theorem:</p>
+<img alt="../_images/11.16.1.png" src="../_images/11.16.1.png" style="width: 50%;" />
+<p class="last">Use Lemma 3.</p>
+</div>
+<div class="admonition-residue-lemma admonition">
+<p class="first admonition-title">Residue Lemma</p>
+<p>Assume all functions are holomorphic around <span class="math">\(z_0\)</span></p>
+<ol class="arabic">
+<li><p class="first"><span class="math">\(f(z)=\frac{g(z)}{h(z)}\)</span> where <span class="math">\(g\)</span> and <span class="math">\(h\)</span> have zero of same order at <span class="math">\(z_0\)</span>, then <span class="math">\(Res(f,z_0)=0\)</span></p>
+</li>
+<li><p class="first">If <span class="math">\(\lim_{z\to z_0}(z-z_0)f(z)\)</span> exists, <span class="math">\(f(z)\)</span> has at most a simple pole at <span class="math">\(z_0\)</span> and</p>
+<div class="math">
+\[\lim_{z\to z_0}(z-z_0)f(z)=Res(f,z_0)\]</div>
+</li>
+<li><p class="first"><span class="math">\(f(z)=\frac{g(z)}{h(z)}\)</span>, <span class="math">\(g(z_0)\neq 0\)</span>, <span class="math">\(h(z_0)=0\)</span>, and <span class="math">\(h'(z_0)\neq 0\)</span>, then <span class="math">\(Res(f,z_0)=\frac{g(z_0)}{h'(z_0)}\)</span></p>
+</li>
+<li><p class="first"><span class="math">\(f(z)=\frac{g(z)}{(z-z_0)^2}\)</span>, <span class="math">\(g(z_0)\neq 0\)</span> then <span class="math">\(Res(f,z_0)=g'(z_0)\)</span>.</p>
+</li>
+<li><p class="first"><span class="math">\(f(z)=\frac{g(z)}{h(z)}\)</span> where <span class="math">\(g\)</span> has a zero of order <span class="math">\(l\)</span> at <span class="math">\(z_0\)</span> and <span class="math">\(h\)</span> has a zero of order <span class="math">\(k+l&gt;0\)</span> at <span class="math">\(z_0\)</span></p>
+<p>Then <span class="math">\(f\)</span> has a pole of order <span class="math">\(k\)</span> at <span class="math">\(z_0\)</span> and</p>
+<div class="math">
+\[Res(f,z_0)=\frac{1}{(k-1)!}\lim{z\to z_0}φ^{(k-1)}(z)\]</div>
+<p>where <span class="math">\(φ(z)=(z-z_0)^kf(z)\)</span></p>
+</li>
+</ol>
+<p class="last">Proof: Follows from Laurent Expansion (see next lecture)</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Classification of Singularities and Cauchy&#8217;s Residue Theorem</a><ul>
+<li><a class="reference internal" href="#singularities-and-poles">Singularities (and Poles)</a></li>
+<li><a class="reference internal" href="#zeros-of-f">Zeros of f</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-11-14.html" title="previous chapter">Laurent Series</a></li>
+      <li>Next: <a href="2013-11-18.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-11-16.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

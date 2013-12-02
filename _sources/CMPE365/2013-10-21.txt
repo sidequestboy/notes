@@ -1,0 +1,80 @@
+.. epigraph::
+    Martin turns children into mathematicians & mathematicians into children
+    
+    Happy Birthday to Martin Gardner
+
+*******************
+Dynamic Programming
+*******************
+
+.. image::
+    :width: 50%
+
+Choose a node in an optimal path from S to F, call it F'. Then the path segment from S to F' must be optimal.
+
+.. image::
+    :width: 50%
+
+Principle of Optimality
+=======================
+A problem satisfies the *principle of optimality* if any optimal solution contains *only* optimal solutions to subproblems defined by the solution.
+
+We've discussed a hypothetical solution to the optimal path problem above. This path contains optimal paths to all of the nodes along the way. Thus, this problem satisfies the P of O.
+
+Problems that are amenable to dynamic programming should satisfy this principle.
+
+Dynamic Programming Requirements
+================================
+* Solution consists of a *sequence* of choices from a set.
+* Optimal solutions satisfy the principle of optimality.
+* Limited number of options for each choice
+* Recurrence relation that defines the optimal solution in terms of the optimal solution to a limited number of subproblems where the subproblems are solved *independently*
+
+Recurrence Relations
+====================
+For the Grid problem:
+
+.. math::
+    M_c(i,j) = min\{M_c(i, j-1)+weight of edge, M_c(i-1, j)+weight of edge\}
+
+where :math:`M_c(i,j)` is the minimum cost of path on the :math:`(i+j)^{th}` step.
+
+For the Bar problem:
+
+.. math::
+    M_P(n) = max\{V(n), M_P(1)+M_P(n-1), M_P(2)+M_P(n-2), ...\}
+
+where :math:`M_P(n)` is the maximum profit after the :math:`n^{th}` slice.
+
+A problem that does *not* satisfy the P of O
+============================================
+Graph colouring:
+
+.. image::
+    :width: 50%
+
+For the graph here of size 5, the optimal solution contains a subproblem (encircled) that contains a non-optimal solution on nodes :math:`\{1, 4, 5\}`. There are other examples contrived from changing practically every problem we have looked at.
+
+Another problem with a Dynamic Programming Solution
+===================================================
+Subset Sum
+----------
+Let :math:`S=\{S_1,S_2,...,S_n\}`. :math:`k=` target integer
+
+Let :math:`S(i,x)=True` iff :math:`\exists` a subset of :math:`\{S_1,...,S_i\}` that sums to :math:`x`.
+
+This represents the Subet-Sum problem: :math:`\{S_1,...,S_i\}`, :math:`x`.
+
+:math:`S(i,x)=` True if :math:`S(i-1,x)=` True *or* :math:`S(i-1,x-S_i)=` True.
+
+These two cases are the cases where we don't need :math:`S_i` and we do need :math:`S_i`, respectively.
+
+.. admonition:: Example
+
+    .. math::
+        S=\{1,3,5,8,12\}\\
+        k=14
+
+    .. image::
+        :width: 50%
+

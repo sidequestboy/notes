@@ -1,0 +1,205 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>More Continuous-Time Markov Chains &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Kolmogorov Equations" href="2013-11-22.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-11-18.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-22.html" title="Kolmogorov Equations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-18.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="more-continuous-time-markov-chains">
+<h1>More Continuous-Time Markov Chains<a class="headerlink" href="#more-continuous-time-markov-chains" title="Permalink to this headline">¶</a></h1>
+<p>Last time we described a class of continuous-time processes.</p>
+<div class="admonition-further-remarks admonition">
+<p class="first admonition-title">Further Remarks</p>
+<ol class="arabic">
+<li><p class="first">By memorylessness of the exponential distribution, if we observe <span class="math">\(X(t)=i\)</span> for an arbitrary time <span class="math">\(t\)</span>, the remaining times until alarm of the timers that started when the process entered state <span class="math">\(i\)</span> are still independent <span class="math">\(Exponential(q_{ij}),j\in S_i\)</span></p>
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<p class="last"><span class="math">\(S_i\)</span> is the set of states <span class="math">\(j\)</span> that we can get to from <span class="math">\(i\)</span>.</p>
+</div>
+<p>And the remaining holding time in state <span class="math">\(i\)</span> is still <span class="math">\(Exponential(v_i)\)</span>. Where</p>
+<div class="math">
+\[v_i = \sum_{j\in S_i}q_{ij}\]</div>
+</li>
+<li><p class="first">These processes have the Markov property:</p>
+<div class="math">
+\[\begin{split}P(X(t)=j|X(s)=i,X(t_{n-1})=i_{n-1},...,X(t_1)=i_1)\\
+=P(X(t)=j|X(s)=i)\end{split}\]</div>
+<p>for <span class="math">\(0\leq t_1\leq t_2\leq ...\leq t_{n-1}\leq s\leq t\)</span></p>
+<p>because in both the LHS and RHS, the probability of the event <span class="math">\(\{X(t)=j\}\)</span> depends only on the evolution of the process from time <span class="math">\(s\)</span>, and given <span class="math">\(X(s)=i\)</span>, any information about the process before time <span class="math">\(s\)</span> does not change the probabilistic properties of that evolution (because of the memorylessness)</p>
+</li>
+<li><p class="first">These processes are time-homogeneous:</p>
+<div class="math">
+\[P(X(t)=j|X(s)=i)=P(X(t-s)=j|X(0)=i)\]</div>
+<p>because for any time <span class="math">\(u\)</span>, given <span class="math">\(X(u)=i\)</span>, the probabilistic evolution from time <span class="math">\(u\)</span> is the same for any <span class="math">\(u\)</span>.</p>
+</li>
+<li><p class="first">By (2) and (3), these processes are time-homogeneous, continuous-time Markov chains. In this course, any reference to a &#8220;continuous-time Markov chain&#8221; will mean a process of this class.</p>
+</li>
+<li><p class="first">To specify this process, it&#8217;s not necessary to first specify the <span class="math">\(p_{ij}\)</span> and <span class="math">\(v_i\)</span> then define</p>
+<div class="math">
+\[q_{ij}=v_ip_{ij}\]</div>
+</li>
+</ol>
+<p>One can simply specify the <span class="math">\(q_{ij}\)</span> (with <span class="math">\(q_{ii}=0\)</span>) from the start.</p>
+<p>We also assume that <span class="math">\(q_{ij}&gt;0\)</span> for only finitely-many <span class="math">\(j\)</span>, for each <span class="math">\(i\)</span>.</p>
+<p>Then</p>
+<div class="math">
+\[\begin{split}v_i = \sum_{j: q_{ij}&gt;0}q_{ij}\end{split}\]</div>
+<p>is the parameter of the exponential holding time in state <span class="math">\(i\)</span>.</p>
+<p>As well,</p>
+<div class="math">
+\[\begin{split}p_{ij}=\frac{q_{ij}}{\sum_{k:q_{ik}&gt;0}q_{ik}}\end{split}\]</div>
+<p>is the probability of going to state <span class="math">\(j\)</span> when the process leaves state <span class="math">\(i\)</span>, and <span class="math">\(p_{ij}&gt;0\)</span> if <span class="math">\(q_{ij}&gt;0\)</span> and <span class="math">\(p_{ij}=0\)</span> if <span class="math">\(q_{ij}=0\)</span>.</p>
+<p>So <span class="math">\(S_i\)</span> is the set of states <span class="math">\(j\)</span> that the process can jump to upon leaving state <span class="math">\(i\)</span> is:</p>
+<div class="math">
+\[\begin{split}\{j: q_{ij}&gt;0\}\end{split}\]</div>
+<p><span class="math">\(q_{ij}\)</span> is called the rate of going from <span class="math">\(i\)</span> to <span class="math">\(j\)</span>.</p>
+<p>These parameters are usually put into a matrix called the <em>generator matrix</em>, denoted by <span class="math">\(G\)</span>, where</p>
+<div class="last math">
+\[\begin{split}g_{ij}=
+\begin{cases}
+    q_{ij} &amp;\text{ if }i\neq j\\
+    -v_i&amp;\text{ if }i=j
+\end{cases}\end{split}\]</div>
+</div>
+<p>Let us now consider what such a process does in an interval of length <span class="math">\(h\)</span>.</p>
+<ol class="arabic">
+<li><p class="first">First,</p>
+<div class="math">
+\[\begin{split}P(0\text{ transitions by time }h|X(0)=i)\\
+=P(T_i&gt;h)\end{split}\]</div>
+<p>where <span class="math">\(T_i\)</span> is the holding time in state <span class="math">\(i\)</span>.</p>
+<div class="math">
+\[\begin{split}=e^{-v_ih}\\
+=1-{v_ih}+\frac{(v_ih)^2}{2}-\frac{(v_ih)^3}{6}+...\\
+=1-v_ih+o(h)\end{split}\]</div>
+</li>
+<li><p class="first">Next, consider</p>
+<div class="math">
+\[\begin{split}P(\text{2 or more transitions by time }h|X(0)=i)\\
+\sum_{j\neq i}P(\text{2 or more transitions by time }h|X(0)=i,\text{1st transition is to }j)P(\text{1st transition is to }j|X(0)=i)\\
+=\sum_{j\neq i}P(T_i+T_j)p_{ij}\end{split}\]</div>
+<p>where <span class="math">\(T_j\)</span> is the holding time in state <span class="math">\(j\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="math">
+\[\{T_i+T_j\leq h}\subset\{T_i\leq h,T_j\leq h\}\]</div>
+<p>So,</p>
+<div class="last math">
+\[\begin{split}P(T_i+T_j\leq h)&amp;\leq P(T_i\leq h,T_j\leq h)\\
+                &amp;= P(T_i\leq h)P(T_j\leq h)\\
+                &amp;= (1-e^{-v_ih})(1-e^{-v_jh})\\
+                &amp;= (v_ih+o(h))(v_jh+o(h))\\
+                &amp;= v_iv_jh^2 + o(h)\\
+                &amp;= o(h)\end{split}\]</div>
+</div>
+<p>So</p>
+<div class="math">
+\[P(\text{2 or more transitions by time }h|X(0)=i)=o(h)\]</div>
+<p>By subtraction,</p>
+<div class="math">
+\[\begin{split}P(\text{exactly 1 transition by time }h|X(0)=i)\\
+=1-(o(h)+1-v_ih+o(h))\\
+=v_ih+o(h)\end{split}\]</div>
+</li>
+</ol>
+<p>Next: Kolmogorov equations</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-11-18.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-11-22.html" title="next chapter">Kolmogorov Equations</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-11-20.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

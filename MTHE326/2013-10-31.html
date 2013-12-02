@@ -1,0 +1,200 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Fundamental Theorm of Algebra &amp; Max Modulus Theorems &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Max Modulus Theorem &amp; Harmonic Functions" href="2013-11-04.html" />
+    <link rel="prev" title="Liouville Theorem, Cauchy Differentiation Formula" href="2013-10-29.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-04.html" title="Max Modulus Theorem &amp; Harmonic Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-29.html" title="Liouville Theorem, Cauchy Differentiation Formula"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="fundamental-theorm-of-algebra-max-modulus-theorems">
+<h1>Fundamental Theorm of Algebra &amp; Max Modulus Theorems<a class="headerlink" href="#fundamental-theorm-of-algebra-max-modulus-theorems" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<p>Liouville&#8217;s Theorem</p>
+<p class="last">If <span class="math">\(f\)</span> is entire <em>and</em> bounded (<span class="math">\(|f(z))|\leq M, \forall x\in\mathbb C\)</span>), then <span class="math">\(f\)</span> is constant.</p>
+</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Fundamental Theorem of Algebra</p>
+<p>If <span class="math">\(P(z)\)</span> is a polynomial of degree <span class="math">\(n\geq 2\)</span> over <span class="math">\(\mathbb C\)</span>, then <span class="math">\(P(z)\)</span> factors completely as a product of linear factors.</p>
+<p>Proof:</p>
+<p>It is enough to show</p>
+<div class="math">
+\[P(α)=0\]</div>
+<p>for some <span class="math">\(α\in \mathbb C\)</span> because if <span class="math">\(P(α)=0\)</span>, polynomial long division can show</p>
+<div class="math">
+\[P(z)=q(z)(z-α)\]</div>
+<p>where <span class="math">\(q(z)\)</span> is degree <span class="math">\(n-1\)</span> polynomial.</p>
+<p>Proof that root exists by contradiction:</p>
+<p>Suppose <span class="math">\(P(z)\)</span> has not roots. Then <span class="math">\(f(z)=\frac{1}{P(z)}\)</span> is holomorphic everywhere.</p>
+<p>Since</p>
+<div class="math">
+\[|P(z)|\geq |a_n||z|^n-|a_{n-1}||z|^{n-1}-...-|a_1||z|-|a_0|\]</div>
+<p>Thus, <span class="math">\(\exists ρ&gt;0\)</span> such that</p>
+<div class="math">
+\[|P(z)|\geq \frac{|a_n|}{2}|z|^n\]</div>
+<p>for <span class="math">\(|z|&gt;0\)</span></p>
+<p>So</p>
+<div class="math">
+\[\begin{split}|f(z)|&amp;=\frac{1}{|P(z)|}\\
+      &amp;\leq \frac{2}{|a_n||z|^n}\\
+      &amp;\leq \frac{2}{|a_n|ρ^n}\end{split}\]</div>
+<p>for <span class="math">\(|z|\geq ρ\)</span></p>
+<p>Let</p>
+<div class="math">
+\[M=max_{z\in \bar D_ρ(0)}|f(z)|\]</div>
+<p>Then we have:</p>
+<div class="last math">
+\[|f(z)|\leq Max(M, \frac{2}{|a_n|ρ^n})\]</div>
+</div>
+<div class="section" id="max-modulus-theorems-for-holomorphic-and-harmonic-functions">
+<h2>Max Modulus Theorems for Holomorphic and Harmonic Functions<a class="headerlink" href="#max-modulus-theorems-for-holomorphic-and-harmonic-functions" title="Permalink to this headline">¶</a></h2>
+<p>Suppose <span class="math">\(f:D\to \mathbb C\)</span> is holomorphic and <span class="math">\(D\)</span> contains a closed disk centered at <span class="math">\(z_0\)</span> of radius <span class="math">\(r\)</span>.</p>
+<p>Then</p>
+<div class="math">
+\[f(z_0)=\frac{1}{2π}\int_0^{2π}f(z_0+re^{iθ})dθ\]</div>
+<div class="section" id="proof">
+<h3>Proof:<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math">\(γ:[0,2π]\to D\)</span> by CIF</p>
+<div class="math">
+\[\begin{split}f(z_0)&amp;=\frac{1}{2πi}\int_γ\frac{f(w)}{w-z_0}dw\\
+      &amp;=\frac{1}{2πi}\int_0^{2π}\frac{f(γ(t))}{γ(t)-z_0}γ'(t)dt\\
+      &amp;=\frac{1}{2π}\int_0^{2π}f(z_0+re^{it})dt\end{split}\]</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Max Modulus (Local Version)</p>
+<p class="last">If <span class="math">\(f:D\to \mathbb C\)</span> is holomorphic and <span class="math">\(\exists\)</span> a <span class="math">\(z_0\in D\)</span> that is a <em>local max</em>: <span class="math">\(\exists ρ&gt;0\)</span> such that if <span class="math">\(z\in D_ρ(z_0)\)</span>, <span class="math">\(|f(z)|\leq |f(z_0)|\)</span>, then <span class="math">\(f\)</span> is constant on <span class="math">\(D_ρ(z_0)\)</span>.</p>
+</div>
+<div class="admonition-lemma admonition">
+<p class="first admonition-title">Lemma</p>
+<p>Suppose <span class="math">\(f:D\to\mathbb C\)</span> is holomorphic and <span class="math">\(|f(z)|\)</span> is constant, then <span class="math">\(f(z)\)</span> is constant.</p>
+<p>Proof:</p>
+<p>First suppose <span class="math">\(|f(z)|=0\)</span> for some <span class="math">\(z\in D\)</span>, so <span class="math">\(|f(z)|=0\)</span> on all <span class="math">\(D\)</span>, so is <span class="math">\(f(z)\)</span>.</p>
+<p>So consider</p>
+<div class="math">
+\[C=|f(z)|^2=f(z)\bar f(z)\]</div>
+<p>So</p>
+<div class="math">
+\[\bar f(z)=\frac{C}{f(z)}\]</div>
+<p class="last">is holomorphic on <span class="math">\(D\)</span>. (look at CREs)</p>
+</div>
+</div>
+<div class="section" id="proof-of-local-max-modulus">
+<h3>Proof of Local Max Modulus<a class="headerlink" href="#proof-of-local-max-modulus" title="Permalink to this headline">¶</a></h3>
+<p>If <span class="math">\(f(z_0)\)</span> is a local max on <span class="math">\(D_ρ(z_0)\)</span> and <span class="math">\(f\)</span> is not constant on <span class="math">\(D_ρ(z_0)\)</span>, <span class="math">\(\exists\)</span> a <span class="math">\(z\in D_ρ(z_0)\)</span> such that</p>
+<div class="math">
+\[\begin{split}M:=|f(z)|&gt;|f(z)|\end{split}\]</div>
+<p>...</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Fundamental Theorm of Algebra &amp; Max Modulus Theorems</a><ul>
+<li><a class="reference internal" href="#max-modulus-theorems-for-holomorphic-and-harmonic-functions">Max Modulus Theorems for Holomorphic and Harmonic Functions</a><ul>
+<li><a class="reference internal" href="#proof">Proof:</a></li>
+<li><a class="reference internal" href="#proof-of-local-max-modulus">Proof of Local Max Modulus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-10-29.html" title="previous chapter">Liouville Theorem, Cauchy Differentiation Formula</a></li>
+      <li>Next: <a href="2013-11-04.html" title="next chapter">Max Modulus Theorem &amp; Harmonic Functions</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-10-31.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -1,0 +1,263 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Laurent Series &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Classification of Singularities and Cauchy’s Residue Theorem" href="2013-11-16.html" />
+    <link rel="prev" title="Taylor Series" href="2013-11-12.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-16.html" title="Classification of Singularities and Cauchy’s Residue Theorem"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-12.html" title="Taylor Series"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="laurent-series">
+<h1>Laurent Series<a class="headerlink" href="#laurent-series" title="Permalink to this headline">¶</a></h1>
+<p>We can generalize the Taylor series to functions that have poles. This will be useful when we get to the residue theorem.</p>
+<div class="admonition-theorem-laurent-series admonition">
+<p class="first admonition-title">Theorem (Laurent Series)</p>
+<p>Suppose that <span class="math">\(f\)</span> is holomorphic on the annulus <span class="math">\(D=\{z\in\mathbb C | r&lt;|z-z_0|&lt;R\}\)</span> for some <span class="math">\(r&lt;R\)</span> (<span class="math">\(r\)</span> can be 0, <span class="math">\(R\)</span> can be <span class="math">\(\infty\)</span>).</p>
+<p>Then we can write</p>
+<div class="math">
+\[\begin{split}f(z)&amp;=\sum_{n=0}^\infty a_n(z-z_0)^n+\sum_{n=1}^\infty\frac{b_n}{(z-z_n)^n}\\
+    &amp;=\sum_{n=-\infty}^\infty c_n(z-z_0)^n\end{split}\]</div>
+<p>The sum converges L.U. on the annulus.</p>
+<div class="math">
+\[c_n=\frac{1}{2πi}\int_γ\frac{f(w)}{(w-z)^{n+1}}dw\]</div>
+<p>where <span class="math">\(γ\)</span> is a CCW circle with radius between <span class="math">\(r\)</span> and <span class="math">\(R\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>unlike for Taylor series,</p>
+<div class="math">
+\[a_n\neq \frac{f^{(n)}(z_0)}{n!}\]</div>
+<p class="last"><span class="math">\(f\)</span> isn&#8217;t defined at <span class="math">\(z_0\)</span>, but the integrals are!</p>
+</div>
+<p>Proof:</p>
+<p>Let <span class="math">\(γ_1,γ_2\)</span> be circles of radii <span class="math">\(ρ_1,ρ_2\)</span> respectively, and <span class="math">\(r&lt;ρ_1&lt;ρ_2&lt;R\)</span>. Then for every <span class="math">\(z\)</span> between <span class="math">\(γ_1\)</span> and <span class="math">\(γ_2\)</span>,</p>
+<img alt="../_images/11.14.1.png" src="../_images/11.14.1.png" style="width: 50%;" />
+<div class="math">
+\[f(z)=\frac{1}{2πi}\int_{γ_2}\frac{f(w)}{w-z}dw - \frac{1}{2πi}\int_{γ_1}\frac{f(w)}{w-z}dw\]</div>
+<p>by the Cauchy Integral Formula.</p>
+<p>On <span class="math">\(γ_2\)</span>, we use the identity:</p>
+<div class="math">
+\[\frac{1}{w-z}=\sum_{n=0}^\infty \frac{(z-z_0)^n}{(w-z_0)^{n+1}}\]</div>
+<p>(LU Convergent) since</p>
+<div class="math">
+\[\begin{split}\left|\frac{z-z_0}{w-z_0}\right|&lt;1\end{split}\]</div>
+<p>on <span class="math">\(γ_2\)</span>.</p>
+<p>So</p>
+<div class="math">
+\[\begin{split}\frac{1}{2πi}\int_{γ_2}\frac{f(w)}{w-z}dw&amp;=\sum_{n=0}^\infty (z-z_0)^n\frac{1}{2πi}\int_{γ_2}\frac{f(w)}{(w-z)^{n+1}}dw\\
+&amp;=\sum_{n=0}^\infty (z-z_0)^na_n\end{split}\]</div>
+<p>For <span class="math">\(γ_1\)</span>, we use the series</p>
+<div class="math">
+\[\begin{split}-\frac{1}{w-z}&amp;=\frac{1}{z-w}\\
+&amp;=\sum_{n=0}^\infty\frac{(w-z_0)^n}{(z-z_0)^{n+1}}\end{split}\]</div>
+<p>(LU Convergent) since</p>
+<div class="math">
+\[\begin{split}\left|\frac{w-z_0}{z-z_0}\right|&lt;1\end{split}\]</div>
+<p>on <span class="math">\(γ_1\)</span></p>
+<p>So:</p>
+<div class="last math">
+\[\begin{split}-\frac{1}{2πi}\int_{γ_1}\frac{f(w)}{w-z}dw&amp;=\sum_{n=1}^\infty\frac{1}{(z-z_0)^n}\frac{1}{2πi}\int_{γ_1}\frac{f(w)}{(w-z)^{1-n}}dw\\
+&amp;=\sum_{n=1}^\infty\frac{1}{(z-z_0)^n}b_n\end{split}\]</div>
+</div>
+<p>The expansion depends on <span class="math">\(R\)</span> and <span class="math">\(r\)</span>.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[f(z) = \frac{1}{z(z-1)}\]</div>
+<p>Consider <span class="math">\(r=1\)</span>, <span class="math">\(R=\infty\)</span> (<span class="math">\(|z|&gt;1\)</span>)</p>
+<p>Then</p>
+<div class="math">
+\[\begin{split}\frac{1}{z(z-1)}&amp;=\frac{1}{z^2(1-\frac{1}{z})}\\
+                &amp;=\frac{1}{z^2}(1+\frac{1}{z}+\frac{1}{z^2}+\frac{1}{z^3}+...)\\
+                &amp;=\frac{1}{z^2}+\frac{1}{z^3}+\frac{1}{z^4}+...\end{split}\]</div>
+<p>On <span class="math">\(|z|&lt;1\)</span>, so this is a Laurent series around zero for this radius.</p>
+<p>If <span class="math">\(r=0\)</span> and <span class="math">\(R=1\)</span> (so <span class="math">\(0&lt;|z|&lt;1\)</span>)</p>
+<p>Then</p>
+<div class="math">
+\[\begin{split}\frac{1}{z(z-1)}&amp;=\frac{1}{z}(\frac{1}{1-z})\\
+                &amp;=-\frac{1}{z}(1+z+z^2+...)\\
+                &amp;=-\frac{1}{z}-1-z-z^2-...\end{split}\]</div>
+<p class="last">This is because the pole at <span class="math">\(z=1\)</span> gets in our way.</p>
+</div>
+<div class="admonition-theorem-uniqueness-of-laurent-expansion admonition">
+<p class="first admonition-title">Theorem (Uniqueness of Laurent Expansion)</p>
+<p>For fixed <span class="math">\(r,R\)</span>, the Laurent expansion of <span class="math">\(f\)</span> is unique on the annulus <span class="math">\(A\)</span>.</p>
+<p>Proof:</p>
+<p>Suppose</p>
+<div class="math">
+\[f(z)=\sum_{-\infty}^\infty a_n(z-z_0)^n\]</div>
+<p>on <span class="math">\(A=\{z\in\mathbb C | r&lt;|z-z_0|&lt;R\}\)</span>.</p>
+<p>Let <span class="math">\(γ\)</span> be a loop in <span class="math">\(A\)</span> around <span class="math">\(z_0\)</span>, <span class="math">\(I(γ,z_0)=1\)</span>.</p>
+<div class="math">
+\[\begin{split}\frac{1}{2πi}\int_{γ}\frac{f(w)}{(w-z_0)^{k+1}}&amp;=\frac{1}{2πi}\sum_{n=-\infty}^\infty a_n(z-z_0)^{(n-k)-1}dw\\
+&amp;=\frac{1}{2πi}\int_γ\sum_{n=-\infty}^\infty a_n\int_γ(z-z_0)^{(n-k)-1}dw\\
+&amp;=\frac{1}{2πi}(a_00+a_10+...+a_k2πi+a_{k+1}0+...)\\
+&amp;=a_k\end{split}\]</div>
+<p>So</p>
+<div class="last math">
+\[a_k=\frac{1}{2πi}\int_γ\frac{f(w)}{(w-z_0)^{k+1}}dw\]</div>
+</div>
+<div class="section" id="finding-laurent-series">
+<h2>Finding Laurent Series<a class="headerlink" href="#finding-laurent-series" title="Permalink to this headline">¶</a></h2>
+<p>We don&#8217;t usually compute</p>
+<div class="math">
+\[\frac{1}{2πi}\int_γ\frac{f(w)}{(w-z_0)^{k+1}}dw\]</div>
+<p>explicitly. That&#8217;s a bit inefficient. We tend to manipulate known series.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[\begin{split}&amp;e^{\frac{1}{z}}\\
+&amp;r=0\\
+&amp;R=\infty\end{split}\]</div>
+<p>Take</p>
+<div class="math">
+\[e^w=\sum_{n=0}^\infty\frac{w^n}{n!}\]</div>
+<p>Then:</p>
+<div class="last math">
+\[e^{\frac{1}{z}}=\sum_{n=0}^\infty\frac{1}{n!z^n}\]</div>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="last math">
+\[\begin{split}e^z+e^{\frac{1}{z}}&amp;=\sum_{n=0}^\infty \frac{1}{n!z^n}+\sum_{n=0}^\infty \frac{z^n}{n!}\\
+&amp;=1+\sum_{n=-\infty}^\infty \frac{z^n}{|n|!}\end{split}\]</div>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[e^{z+\frac{1}{z}}\]</div>
+<p>One way: Let <span class="math">\(w=z+\frac{1}{z}\)</span>, and expand the series expansion for <span class="math">\(e^w\)</span>. See Assignment 10</p>
+<p>Another way:</p>
+<div class="math">
+\[\begin{split}e^{z+\frac{1}{z}}&amp;=e^ze^{\frac{1}{z}}\\
+&amp;=(\sum_{n=0}^\infty\frac{z^n}{n!})(\sum_{n=0}^\infty\frac{1}{n!z^n})\end{split}\]</div>
+<p>So</p>
+<div class="math">
+\[e^{z+\frac{1}{z}}=\sum_{n=0}^\infty\sum_{m=0}^\infty\frac{z^{n-m}}{n!m!}\]</div>
+<p>on <span class="math">\(|z|&gt;0\)</span>.</p>
+<p>So suppose we want the constant term. Then <span class="math">\(n=m\)</span> so</p>
+<div class="math">
+\[\begin{split}a_n&amp;=\sum_{m=0}^\infty\frac{1}{m!m!}
+&amp;=\sum_{m=0}^\infty(\frac{1}{m!})^2\end{split}\]</div>
+<p>All other <span class="math">\(a_n\)</span> are a little more complicated, depend on whether <span class="math">\(n&gt;0\)</span> or <span class="math">\(n&lt;0\)</span>.</p>
+<p>Geometric series is also often useful for computations:</p>
+<p>Laurent series at <span class="math">\(z=0\)</span> on <span class="math">\(r=|α|\)</span>, <span class="math">\(R=\infty\)</span></p>
+<div class="math">
+\[\begin{split}\frac{1}{z-α}&amp;=\frac{1}{z}\frac{1}{1-\frac{α}{z}}\\
+&amp;=\frac{1}{z}\sum_{n=0}^\infty(\frac{α}{z})^n\\
+&amp;=\sum_{n=0}^\infty\frac{α^n}{z^{n+1}}\\
+&amp;=\frac{1}{z}+\frac{α}{z^2}+\frac{α^2}{z^3}+...\end{split}\]</div>
+<p>Whice is a Laurent series</p>
+<p>For <span class="math">\(r=0\)</span>, <span class="math">\(R=|α|\)</span>,</p>
+<div class="math">
+\[\begin{split}\frac{1}{z-α}&amp;=-\frac{1}{α}\frac{1}{1-\frac{z}{α}}\\
+             &amp;=-\frac{1}{α}\sum_{n=0}^\infty (\frac{z}{α})^n\\
+             &amp;=\sum_{n=0}^\infty -\frac{z^n}{α^{n+1}}\end{split}\]</div>
+<p class="last">Which is a Taylor series.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Laurent Series</a><ul>
+<li><a class="reference internal" href="#finding-laurent-series">Finding Laurent Series</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-11-12.html" title="previous chapter">Taylor Series</a></li>
+      <li>Next: <a href="2013-11-16.html" title="next chapter">Classification of Singularities and Cauchy&#8217;s Residue Theorem</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-11-14.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

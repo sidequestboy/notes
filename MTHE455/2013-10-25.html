@@ -1,0 +1,183 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>An Example of solving a Stationary Distribution &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Markov Chain Monte Carlo" href="2013-10-28.html" />
+    <link rel="prev" title="Flow" href="2013-10-23.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-28.html" title="Markov Chain Monte Carlo"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-23.html" title="Flow"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="an-example-of-solving-a-stationary-distribution">
+<h1>An Example of solving a Stationary Distribution<a class="headerlink" href="#an-example-of-solving-a-stationary-distribution" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>We have <span class="math">\(n\)</span> processors. Processor <span class="math">\(i\)</span> will successfully complete a job with probability <span class="math">\(p_i\)</span>, and fail with probability <span class="math">\(1-p_i\)</span>, <span class="math">\(i=1,...,n\)</span>.</p>
+<p>The processors are placed in some order. When a job arrives to the system, it tries the processors in order until it is successfully completed, or until all processors fail.</p>
+<p>If the <span class="math">\(k^{th}\)</span> processor is the first to be successful, it exchanges its place with the processor ahead of it. The ordering does not change if the first processor is successful or if all processors are unsuccessful.</p>
+<p>Let <span class="math">\(X_n=\)</span> ordering of the processors after the <span class="math">\(n^{th}\)</span> job. <span class="math">\(\{X_n, n\geq 0\}\)</span> is a Markov chain with state space being the set of all orderings (permutations) of <span class="math">\(\{1,...,n\}\)</span>. Let us compute the transition probabilities.</p>
+<p>Let <span class="math">\(i=(i_1,i_2,...,i_n)\)</span> be an arbitrary ordering in the state space.</p>
+<p>Let <span class="math">\(j_k\)</span> denote state <span class="math">\(i\)</span> but with components <span class="math">\(k\)</span> and <span class="math">\(k+1\)</span> interchanged, <span class="math">\(k=1,...,n-1\)</span></p>
+<p>Then</p>
+<div class="math">
+\[p_{i,j_k}=(1-p_{i_1})(1-p_{i_2})...(1-p_{i_k})p_{k+1}\]</div>
+<p>for <span class="math">\(k=1,...,n-1\)</span></p>
+<div class="math">
+\[p_{i,i}=p_{i_1}+(1-p_{i_1})...(1-p_{i_n})\]</div>
+<p>We need <span class="math">\(p_{j_k,i}\)</span>:</p>
+<div class="math">
+\[\begin{split}p_{j_k,i}=\begin{cases}
+    (1-p_{i_k})...(1-p_{i_{k-1}})(1-p_{i_{k+1}})p_{i_k} &amp; k=2,...,n-1\\
+    (1-p_{i_2}p_{i_1}) &amp; k=1
+    \end{cases}\end{split}\]</div>
+<p>The local balance equations are:</p>
+<div class="math">
+\[Π_ip_{i,j_1}=Π_{j_1}p_{j_1,i}\]</div>
+<p>is</p>
+<div class="math">
+\[Π_i(1-p_{i_1})p_{i_2}=Π_{j_1}(1-p_{i_2})p_{i_1}\]</div>
+<p>and</p>
+<div class="math">
+\[Π_ip_{i,j_k}=Π_{j_k}p_{j_k,i}\]</div>
+<p>is</p>
+<div class="math">
+\[Π_i(1-p_{i_1})...(1-p_{i_k})p_{i_{k+1}}=Π_{j_k}(1-p_{i_1})...(1-p_{i_{k-1}})(1-p_{i_{k+1}})p_{i_k}\]</div>
+<p>or</p>
+<div class="math">
+\[Π_i(1-p_{i_k})p_{i_{k+1}}=Π_{j_k}(1-p_{i_{k+1}})p_{i_k}\]</div>
+<p>which holds for <span class="math">\(k=1\)</span> as well.</p>
+<p>These are all the local balance equations that <span class="math">\(Π\)</span> needs to sastisfy.</p>
+<p>If we assume that <span class="math">\(Π_i\)</span> is of product form, meaning:</p>
+<div class="math">
+\[Π_i=f_1(p_{i_1})f_2(p_{i_2})...f_n(p_{i_n})\]</div>
+<p>where <span class="math">\(f_j\)</span> is a function for each position in the vector <span class="math">\(i=(i_1,...,i_n)\)</span></p>
+<p>For the state <span class="math">\(j_k\)</span> then the value of <span class="math">\(Π_{j_k}\)</span> would be:</p>
+<div class="math">
+\[f_1(p_{i_1})...f_{k-1}(p_{i_{k-1}})f_{k}(p_{i_{k+1}})f_{k+1}(p_{i_k})f_{k+2}(p_{i_{k+2}})...f_n(p_{i_n})\]</div>
+<p>Assuming this, we get:</p>
+<div class="math" id="equation-1">
+<span class="eqno">(1)</span>\[f_k(p_{i_k})f_{k+1}(p_{i_{k+1}})(1-p_{i_k})p_{i_{k+1}}=f_k(p_{i_{k+1}})f_{k+1}(p_{i_k})(1-p_{i_{k+1}})p_{i_k}\]</div>
+<p>Or try:</p>
+<div class="math" id="equation-2">
+<span class="eqno">(2)</span>\[f_k(p_{i_k})f_{k+1}(p_{i_{k+1}})(1-p_{i_k})=f_k(p_{i_{k+1}})f_{k+1}(p_{i_k})(1-p_{i_{k+1}})\]</div>
+<p>After some trial and error, letting <span class="math">\(f_k(p_{i_k})=(1-p_{i_k})^k\)</span>, equation <a href="#equation-2">(2)</a> is solved. Now, putting back <span class="math">\(p_{i_k}\)</span> and <span class="math">\(p_{i_{k+1}}\)</span> and remove <span class="math">\((1-p_{i_k})\)</span> and <span class="math">\((1-p_{i_{k+1}})\)</span> to get:</p>
+<div class="math" id="equation-3">
+<span class="eqno">(3)</span>\[f_k(p_{i_k})f_{k+1}(p_{i_{k+1}})p_{i_{k+1}}=f_k(p_{i_{k+1}})f_{k+1}(p_{i_k})p_{i_k}\]</div>
+<p>And see that <span class="math">\(f_k=(\frac{1}{p_{i_k}})^k\)</span> works for <a href="#equation-3">(3)</a>, and finally that we can put these two solutions together, giving:</p>
+<div class="math">
+\[f_k(p_{i_k})=(\frac{1-p_{i_k}}{p_{i_k}})^k\]</div>
+<p>Which satisfies <a href="#equation-1">(1)</a></p>
+<p>Thus,</p>
+<div class="math">
+\[Π_i=C\prod_{j=1}^n(\frac{1-p_{i_j}}{p_j})^j\]</div>
+<p class="last">where <span class="math">\(C=(\sum_{i\in S}\prod_{j=1}^n(\frac{1-p_{i_j}}{p_j})^j)^{-1}\)</span></p>
+</div>
+<div class="section" id="next-topic">
+<h2>Next Topic:<a class="headerlink" href="#next-topic" title="Permalink to this headline">¶</a></h2>
+<p>Markov Chain Monte-Carlo</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">An Example of solving a Stationary Distribution</a><ul>
+<li><a class="reference internal" href="#next-topic">Next Topic:</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-10-23.html" title="previous chapter">Flow</a></li>
+      <li>Next: <a href="2013-10-28.html" title="next chapter">Markov Chain Monte Carlo</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-10-25.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

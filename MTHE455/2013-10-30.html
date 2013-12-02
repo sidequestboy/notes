@@ -1,0 +1,167 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Example of Markov chain Monte Carlo and Time Reversibility &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Poisson Process" href="2013-11-01.html" />
+    <link rel="prev" title="Markov Chain Monte Carlo" href="2013-10-28.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-01.html" title="Poisson Process"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-28.html" title="Markov Chain Monte Carlo"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="example-of-markov-chain-monte-carlo-and-time-reversibility">
+<h1>Example of Markov chain Monte Carlo and Time Reversibility<a class="headerlink" href="#example-of-markov-chain-monte-carlo-and-time-reversibility" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="example-using-markov-chain-monte-carlo">
+<h2>Example using Markov chain Monte Carlo<a class="headerlink" href="#example-using-markov-chain-monte-carlo" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bayesian-statistical-inference">
+<h3>Bayesian Statistical Inference<a class="headerlink" href="#bayesian-statistical-inference" title="Permalink to this headline">¶</a></h3>
+<p>In statistics, we observe data <span class="math">\(x_1, ... ,x_n\)</span> and a common statistical model for the data is that realizations of the variables <span class="math">\(X_1, ... ,X_n\)</span>, where it is often assumed that the <span class="math">\(X_i\)</span> are independent and identically distributed each with an unknown pdf/pmf <span class="math">\(f(x|θ)\)</span>, where <span class="math">\(θ\)</span> is an unknown parameter which indexes a family of possible distributions for the <span class="math">\(X_i\)</span>.</p>
+<p>The problem is to infer the value of <span class="math">\(θ\)</span> that corresponds to the observed data.</p>
+<p>Suppose that <span class="math">\(θ\in Θ\)</span>, where <span class="math">\(Θ\)</span> is the parameter space. In general, <span class="math">\(Θ\)</span> is a continuous space, but let us assume <span class="math">\(Θ\)</span> is discrete here, but <span class="math">\(Θ\)</span> could be multidimensional.</p>
+<p>In the Bayesian approach, a distribution <span class="math">\(Π(θ)\)</span> is placed on <span class="math">\(Θ\)</span>, which is called prior distribution on <span class="math">\(Θ\)</span>.</p>
+<p>With the two ingredients <span class="math">\(f(x|θ)\)</span> and <span class="math">\(Π(θ)\)</span>, we can compute (in principle) the conditional distributions of <span class="math">\(θ\)</span> given the data <span class="math">\(x\)</span>, using Baye&#8217;s theorem:</p>
+<div class="math">
+\[Π(θ|x)=\frac{Π(θ)f(x|θ)}{\sum_{θ'\in Θ}Π(θ')f(x|θ')}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The denominator (normalization constant) can often be not feasible to compute. But for Markov chain Monte Carlo, the denominator need not be computed (it cancels in the ratio <span class="math">\(Π(θ_1|x)/Π(θ_2|x)\)</span>)</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Markov chain Monte Carlo material will not be on homeworks or exams</p>
+</div>
+</div>
+</div>
+<div class="section" id="time-reversibility">
+<h2>Time Reversibility<a class="headerlink" href="#time-reversibility" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(\{X_n: n\geq 0\}\)</span> be a Markov chain. Suppose it is stationary with stationary distribution <span class="math">\(Π\)</span></p>
+<p>Extend the time index to negative values, so we have <span class="math">\(\{X_n: -\infty&lt;n&lt;\infty\}\)</span></p>
+<p>Let <span class="math">\(Y_n=X_{-n}\)</span>, for <span class="math">\(n\in \mathbb Z\)</span>/</p>
+<p>The process <span class="math">\(\{Y_n; n\in \mathbb Z\}\)</span> is called the <em>reversed process</em>.</p>
+<p>The <span class="math">\(Y\)</span> process is again a Markov chain.</p>
+<p>We have that given <span class="math">\(X_n=i\)</span>, <span class="math">\(X_m\)</span> is independent of <span class="math">\(X_k\)</span> for any <span class="math">\(m&gt;n\)</span> and any <span class="math">\(k&lt;n\)</span>.</p>
+<p><span class="math">\((X_k)\)</span> ... <span class="math">\((X_n=i)\)</span> ... <span class="math">\((X_m)\)</span> tells us that <span class="math">\(X_m\)</span> is independent of <span class="math">\(X_k\)</span>, and, reversing time:</p>
+<p><span class="math">\((X_{-m})\)</span> ... <span class="math">\((X_n={-i})\)</span> ... <span class="math">\((X_{-k})\)</span> we have (by symmetry of independence) that <span class="math">\(X_k\)</span> is still independent of <span class="math">\(X_m\)</span>, for any <span class="math">\(-k&gt;-n\)</span> and any <span class="math">\(-m&lt;-n\)</span>.</p>
+<p>Moreover, the reversed chain has the same stationary distribution, since the long run proportion of time the process spends in state <span class="math">\(i\)</span> is the same whether going forwards or backwards in time.</p>
+<p>For local flow between a pair of states <span class="math">\(i\)</span> and <span class="math">\(j\)</span>, however, the flow going forwards in time need not be the same as the flow going backwards in time.</p>
+<p>Let us compute the transition probabilities of the reversed chain.</p>
+<div class="math">
+\[\begin{split}P(Y_n=j|Y_{n-1}=i)&amp;=P(X_{-n}=j|X_{-(n-1)}=i)\\
+                  &amp;=\frac{P(X_{-n}=j, X_{-(n-1)}=i)}{P(X_{-(n-1)}=i)}\\
+                  &amp;=\frac{P(X_{-(n-1)}|X_{-n}=j)P(X_{-n}=j)}{P({X_{-(n-1)}=i})}\\
+                  &amp;=\frac{p_{ji}Π_j}{Π_i}\end{split}\]</div>
+<p>The reversed chain will have the same transition probabilities, <span class="math">\(\{p_{ij}\}\)</span>, as the forward chain if and only if</p>
+<div class="math">
+\[\begin{split}p_{ij}=\frac{p_{ji}Π_j}{Π_i}\\
+\iff Π_ip_{ij}=Π_jp_{ji}\end{split}\]</div>
+<p>if and only if local balance is satisfied.</p>
+<p>In this case, we say that the <span class="math">\(X\)</span> Markov chain is <em>time-reversible</em>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Example of Markov chain Monte Carlo and Time Reversibility</a><ul>
+<li><a class="reference internal" href="#example-using-markov-chain-monte-carlo">Example using Markov chain Monte Carlo</a><ul>
+<li><a class="reference internal" href="#bayesian-statistical-inference">Bayesian Statistical Inference</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#time-reversibility">Time Reversibility</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-10-28.html" title="previous chapter">Markov Chain Monte Carlo</a></li>
+      <li>Next: <a href="2013-11-01.html" title="next chapter">Poisson Process</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-10-30.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -5,6 +5,8 @@ MTHE 326 - Functions of a Complex Variable
 :Textbook: Fundamentals of Complex Analysis with Applications to Engineering and
 		   Science, 3rd Edition by E. B. Saff and A. D. Snider
 
+.. image:: .static/calvin-hobbes.jpg
+
 Notes
 -----
 .. toctree::

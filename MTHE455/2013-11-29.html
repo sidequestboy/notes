@@ -1,0 +1,187 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Final Exam Information &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="MTHE 474 - Information Theory" href="../MTHE474/index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-11-27.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MTHE474/index.html" title="MTHE 474 - Information Theory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-27.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="final-exam-information">
+<h1>Final Exam Information<a class="headerlink" href="#final-exam-information" title="Permalink to this headline">¶</a></h1>
+<p>Dec. 4, Wednesday, 7PM-10PM, Dunning Hall, Ground Floor</p>
+<ul class="simple">
+<li>8.5&#8221;x11&#8221; sheet of notes, both sides</li>
+<li>calculator, non-programmable</li>
+<li>5 questions for 855, 4 for 455<ul>
+<li>455 can do any 4 of the 5, but question 5 is written for the 855 students.</li>
+</ul>
+</li>
+<li>Question 1 on Branching Processes<ul>
+<li>Concerns probability of ultimate extinction</li>
+</ul>
+</li>
+<li>Question 2 on Discrete-Time Markov Chains</li>
+<li>Question 3 on the Poisson Process</li>
+<li>Question 4 on Continuous-Time Markov Chains<ul>
+<li>Will require calculation of stationary distribution for the process and for the embedded jump chain.</li>
+</ul>
+</li>
+<li>Question 5 related to the Poisson process...</li>
+</ul>
+<div class="admonition-example-q1-branching-process admonition">
+<p class="first admonition-title">Example (Q1: Branching Process)</p>
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<p class="last">The extinction probability is the smallest solution to <span class="math">\(η=G(η)\)</span>, where <span class="math">\(G\)</span> is the family size generating function.</p>
+</div>
+<p>Suppose family size is <span class="math">\(Geometric(p)\)</span> on <span class="math">\(\{0,1,2,...\}\)</span>:</p>
+<div class="math">
+\[P(\text{family size is }k)=pq^k\]</div>
+<p>where <span class="math">\(q=1-p\)</span>, for <span class="math">\(k=0,1,2,...\)</span></p>
+<p>Suppose each child born survives with probability <span class="math">\(r\)</span>, and does not survive to the next generation with probability <span class="math">\(1-r\)</span></p>
+<p>Let <span class="math">\(X\)</span> be the number of offspring of any given individual that make it to next generation.</p>
+<div class="math">
+\[P(X=k)=\sum_{n=k}^\infty P(X=k|Y=n)pq^n\]</div>
+<p>where <span class="math">\(Y\sim Geometric(p)\)</span></p>
+<div class="math">
+\[P(X=k)=\sum_{n=k}^\infty {n choose k}r^k(1-r)^{n-k}pq^n\]</div>
+<p>For the extinction probability, we want the generating function of <span class="math">\(X\)</span>:</p>
+<div class="math">
+\[\begin{split}G_X(s)&amp;=\sum_{k=0}^\infty s^kP(X=k)\\
+    &amp;=\sum_{k=0}^\infty s^k\sum_{n=k}^\infty {n choose k}r^k(1-r)^{n-k}pq^n\\
+    &amp;=\sum_{n=0}^\infty pq^n \sum_{k=0}^n {n choose k}(sr)^k(1-r)^{n-k}\\
+    &amp;=\sum_{n=0}^\infty pq^n (sr+1-r)^n\\
+    &amp;=p\sum_{n=0}^\infty (q(sr+1-r))^n\\
+    &amp;=\frac{p}{1-q(sr+1-r)}\end{split}\]</div>
+<p>Extinction probability satisfies:</p>
+<div class="math">
+\[η=\frac{p}{1-q(ηr+1-r)}\]</div>
+<p>or</p>
+<div class="last math">
+\[\begin{split}η(1-q(ηr+1-r))=p\\
+qrη^2 -(1-q(1-r))η+p=0\end{split}\]</div>
+</div>
+<div class="admonition-example-2012-final-4-a admonition">
+<p class="first admonition-title">Example (2012 Final #4(a))</p>
+<p>Firefly alternates between illuminated and not illuminated. At time <span class="math">\(t\)</span>, the firefly is illuminated if and only if the most recent event before time <span class="math">\(t\)</span> in a Poisson process with rate <span class="math">\(λ\)</span> occured in <span class="math">\([t-1,t]\)</span>.</p>
+<p>At time <span class="math">\(t\)</span>, what is the probability that the firefly is illuminated?</p>
+<p>Given <span class="math">\(N(t)=n\)</span>, the most recent event time is distributed as <span class="math">\(max(U_1,...,U_n)\)</span>, where the <span class="math">\(U_i\)</span> are independent <span class="math">\(Unif(0,t)\)</span> random variables.</p>
+<p>So if <span class="math">\(A_t\)</span> is the event that the firefly is illuminated at time <span class="math">\(t\)</span> and <span class="math">\(L(t)\)</span> is the time of the most recent event before time <span class="math">\(t\)</span>, then</p>
+<div class="math">
+\[\begin{split}P(A_t)&amp;=\sum_{n=1}^\infty P(A_t | N(t)=n)P(N(t)=n)\\
+    &amp;=\sum_{n=1}^\infty P(L(t)\in [t-1,t]|N(t)=n)P(N(t)=n)\end{split}\]</div>
+<div class="math">
+\[\begin{split}P(L(t)in [t-1,t]|N(t)=n) &amp;= P(max(U_1,...,U_n)\geq t-1)\\
+    &amp;=1-P(max(U_1,...,U_n) &lt; t-1)\\
+    &amp;= 1-P(U_1&lt;t-1,...,U_n&lt;t-1)\\
+    &amp;=1-\left(\frac{t-1}{t}\right)^n\end{split}\]</div>
+<p>So now,</p>
+<div class="math">
+\[P(A_t)=\sum_{n=1}^\infty \left(1-\left(\frac{t-1}{t}\right)^n\right)\frac{(λt)^n}{n!}e^{-λt}\]</div>
+<p class="last">... Taylor series expansion.</p>
+</div>
+<div class="admonition-example-final-exam-2012-problem-5-a admonition">
+<p class="first admonition-title">Example (Final Exam 2012 Problem 5(a))</p>
+<p>If a discrete-time Markov chain is time-reversible, then show that the period of any state cannot be greater than 2.</p>
+<p>Suppose <span class="math">\(p_{ij}&gt;0\)</span> for some <span class="math">\(j\)</span>. Then <span class="math">\(p_{ji}&gt;0\)</span> by time reversibility.</p>
+<p class="last">Then <span class="math">\(p_{ii}(2)\geq p_{ij}p{ji}&gt;0\)</span>. Thus, the period must divide 2. QED</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-11-27.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="../MTHE474/index.html" title="next chapter">MTHE 474 - Information Theory</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-11-29.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

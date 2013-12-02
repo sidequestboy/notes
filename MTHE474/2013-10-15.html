@@ -1,0 +1,233 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Proof of Lossless Variable-Length Source-Coding Theorem for DMS &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-10-17.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-10-14.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-17.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-14.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="proof-of-lossless-variable-length-source-coding-theorem-for-dms">
+<h1>Proof of Lossless Variable-Length Source-Coding Theorem for DMS<a class="headerlink" href="#proof-of-lossless-variable-length-source-coding-theorem-for-dms" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="proof">
+<h2>Proof<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h2>
+<ol class="lowerroman simple">
+<li>Forward Part: For each source n-tuple <span class="math">\(x^n\in\mathcal X^n\)</span>, choose the length <span class="math">\(l_{X^n}\)</span> of its associated codeword according to:</li>
+</ol>
+<div class="math">
+\[l_{X^n}=\lceil -\log_D p_{X^n}(x^n)\rceil\]</div>
+<p>where <span class="math">\(\lceil x\rceil\)</span> is the <em>smallest</em> integer <span class="math">\(\geq x\)</span></p>
+<p>Now:</p>
+<div class="math">
+\[l_{X^n}=\lceil -\log_Dp_{X^n}(x^n)\rceil\implies l_{X^n}\geq-\log_D p_{X^n}(x^n)\]\[\implies D^{-lx^n}\leq p_{X^n}(x^n)\]\[\implies \sum_{x^n\in\mathcal X^n}D^{-lx^n}\leq\sum_{x^n\in\mathcal X^n}p_{X^n}(x^n)=1\]</div>
+<p>Therefore,</p>
+<div class="math">
+\[\sum_{x^n\in\mathcal X^n}D^{l_{x^n}}\leq 1\]</div>
+<p>and Kraft&#8217;s inequality is satisfied for these lengths.</p>
+<p>Therefore, there exists a D-ary prefix code for the source with the above codeword lengths (by previous theorem)</p>
+<p>Furthermore, for this prefix code,</p>
+<div class="math">
+\[\begin{split}l_{X^n}=\lceil -\log_D p_{X^n}(x^n)\rceil\implies l_{X^n}&lt;-\log_D p_{X^n}(x^n)+1\end{split}\]\[\begin{split}\implies \sum_{x^n\in\mathcal X^n}p_{X^n}(x^n)l_{X^n}&lt;-\sum_{x^n\in\mathcal X^n}p_{X^n}(x^n)\log_D P_{X^n}(x^n)+\sum_{X^n}p_{X^n}(x^n)\end{split}\]\[=H_D(X^n)+1\]</div>
+<p>Therefore,</p>
+<div class="math">
+\[\begin{split}\bar l&lt;H_D(X^n)+1\end{split}\]</div>
+<p>Therefore,</p>
+<div class="math">
+\[\begin{split}\bar R=\frac{\bar l}{n}&lt;\frac{H_D(X^n)}{n}+\frac{1}{n}\end{split}\]</div>
+<p>Since the source is a DMS, we have that</p>
+<div class="math">
+\[H_D*X^n)=nH_D(X)\]</div>
+<p>Therefore, for a DMS,</p>
+<div class="math">
+\[\begin{split}\bar R&lt;H_D(x)+\frac{1}{n}\end{split}\]</div>
+<p>choosing <span class="math">\(n\)</span> large enough (s.t. <span class="math">\(\frac{1}{n}&lt;\epsilon\)</span>) completes the proof.</p>
+<ol class="lowerroman simple" start="2">
+<li>Converse Part:</li>
+</ol>
+<p>Consider a UD code <span class="math">\(f:\mathcal X^n\to\{0,...,D-1\}^*\)</span></p>
+<p>and let <span class="math">\(l_{X^n}\)</span> be the length of codeword <span class="math">\(f(x^n)\)</span> associated to <span class="math">\(x^n\)</span>. Then:</p>
+<div class="math">
+\[H_D(X)-\bar R=\frac{1}{n}\left[\frac{nH(X)}{\log_2 D}-\bar l\right]\]</div>
+<p>where <span class="math">\(H_D(X)\)</span> is in base <span class="math">\(D\)</span> and <span class="math">\(H(X)\)</span> is in base 2.</p>
+<div class="math">
+\[=\frac{1}{n\log_2 D}\left[nH(X)-\bar l \log_2 D\right]\]\[=\frac{1}{n\log_2 D}\left[H(X^n)-\bar l \log_2 D\right]\]</div>
+<p>Since source is DMS</p>
+<div class="math">
+\[=\frac{1}{n\log_2 D}\left[-\sum_{X^n}p_{X^n}p_{X^n}(x^n)\log_2 p_{X^n}(x^n)-\sum_{X^n}p_{X^n}(x^n)l_{x^n} \log_2 D\right]\]\[=\frac{1}{n\log_2 D}\left[-\sum_{X^n}p_{X^n}p_{X^n}(x^n)\log_2 p_{X^n}(x^n)+\sum_{X^n}p_{X^n}(x^n) \log_2 D^{-l_{x^n}}\right]\]\[=\frac{1}{n\log_2 D}\left[\sum_{X^n}p_{X^n}(x^n)\log_2\frac{D^{-l_{x^n}}}{p_{X^n}(x^n)}\right]\]\[\leq \frac{1}{\ln 2}\frac{1}{n\log_2 D}\left[\sum_{X^n}p_{X^n}(x^n)(\frac{D^{-l_{x^n}}}{p_{X^n}(x^n)}-1)\right]\]\[=\frac{1}{\ln 2}\frac{1}{n\log_2 D}\left[\sum_{X^n}D^{-l_{x^n}}-1\right]\]</div>
+<p>But since the code is UD, it must satisfy Kraft&#8217;s inequality:</p>
+<div class="math">
+\[\sum_{X^n}D^{-l_{x^n}}\leq 1\]</div>
+<p>Therefore, for any <span class="math">\(n\)</span>, every UD code <span class="math">\(f:\mathcal X^n\to\{0,1,...D-1\}^*\)</span> satisfies:</p>
+<div class="math">
+\[H_D(X)-\bar R\leq 0\]\[\iff \bar R\geq H_D(X)\]</div>
+<div class="admonition-note admonition">
+<p class="first admonition-title">note</p>
+<p class="last">Note that <span class="math">\(\bar R=H_D(X)\)</span> iff <span class="math">\(p_{X^n}(x^n)=D^{-l_{X^n}}\)</span> for all <span class="math">\(x^n\in\mathcal X^n\)</span> (D-adic distribution)</p>
+</div>
+<p>Conclusion:</p>
+<p>For DMS, the source entropy <span class="math">\(H_D(X)\)</span> measured in D-ary code symbols/source symbol, is the <em>smallest</em> variable length lossless compression rate (for <span class="math">\(n\)</span> sufficiently large).</p>
+<div class="admonition-corollary admonition">
+<p class="first admonition-title">Corollary</p>
+<p>For any <span class="math">\(n\)</span>, there exists a <em>prefix</em> (hence UD) VLC code</p>
+<div class="math">
+\[f: \mathcal X^n\to\{0,1,...D-1\}^*\]</div>
+<p>for a DMS <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> s.t.</p>
+<div class="last math">
+\[\begin{split}H_D(X)\leq \bar R&lt;H_D(X)+\frac{1}{n} (*)\end{split}\]</div>
+</div>
+<p>For a general source, the above statement holds with (*) replaced by:</p>
+<div class="math">
+\[\begin{split}\frac{H_D(X^n)}{n}\leq \bar R&lt;\frac{H_D(X^n)}{n}+\frac{1}{n}\end{split}\]</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Lossless Variable-Length Source Coding Theorem for Sources with Memory: stationary sources</p>
+<p>Consider a <em>stationary</em> source <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with finite alphabet <span class="math">\(\mathcal X\)</span>, and entrpy rate <span class="math">\(H_D(\mathcal X)\)</span>. Then:</p>
+<ol class="lowerroman simple">
+<li>For any <span class="math">\(\epsilon&gt;0\)</span>, there exists prefix (hence UD) code <span class="math">\(f:\mathcal X^n\to\{0,1,....,D-1\}^*\)</span> satisfying:</li>
+</ol>
+<div class="math">
+\[\begin{split}\bar R&lt;H_D(\mathcal X)+\epsilon\text{ for n suff. large}\end{split}\]</div>
+<ol class="lowerroman simple" start="2">
+<li>Conversely, every UD code <span class="math">\(f:\mathcal X^n\to\{0,1,....,D-1\}^*\)</span> for the source satisfies:</li>
+</ol>
+<div class="math">
+\[\bar R\geq H_D(\mathcal X)\]</div>
+<p>Conclusion:</p>
+<p class="last">The entropy rate <span class="math">\(H_D(\mathcal X)\)</span> for a stationary source is the smallest CL compression rate for which there exists D-ary prefix codes (for <span class="math">\(n\)</span> suff. large).</p>
+</div>
+<div class="section" id="construction-of-optimal-vlc-huffman-codes">
+<h3>Construction of Optimal VLC: Huffman Codes<a class="headerlink" href="#construction-of-optimal-vlc-huffman-codes" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="goal">
+<h2>Goal:<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+<p>Given a DMS with alphabet <span class="math">\(\mathcal X=\{a_1,a_2,...a_M\}\)</span> and dist. vector (pmf) <span class="math">\((p_1,p_2,...p_M)\)</span> where <span class="math">\(p_i=p_X(a_i)\)</span>, <span class="math">\(i=1,...M\)</span> where <span class="math">\(\sum_{i=1}^M p_i=1\)</span>, <span class="math">\(M=|\mathcal X|\)</span></p>
+<p>Construct a binary UD VLC</p>
+<div class="math">
+\[f:\mathcal X^n\to\{0,1\}^*\]</div>
+<p>such that the codes average codeword length <span class="math">\(\bar l\)</span> (or equivalently the average code rate <span class="math">\(\bar R=\frac{\bar l}{n}\)</span>) is <em>minimized</em>.</p>
+<p>Such a code is called <em>optimal</em>.</p>
+<div class="admonition-notes admonition">
+<p class="first admonition-title">Notes</p>
+<ul class="last">
+<li><p class="first">we will first construct optimal codes for <span class="math">\(n=1\)</span> (<span class="math">\(f:\mathcal X\to\{0,1\}\)</span>). Finding codes for <span class="math">\(n&gt;1\)</span> follows directly by considering <span class="math">\(\mathcal X^n\)</span> as a &#8220;super-alphabet&#8221;.</p>
+</li>
+<li><p class="first">for <span class="math">\(n=1\)</span>, we know already that <span class="math">\(\exists\)</span> a binary prefix code for the source with</p>
+<div class="math">
+\[\begin{split}H(X)\leq \bar l&lt;H(X)+1\end{split}\]</div>
+<p>We want to find an <a href="#id1"><span class="problematic" id="id2">*</span></a>optimal such code (i.e. with <span class="math">\(\bar l\)</span> minimal)</p>
+<p>A code with <span class="math">\(\bar R=H(X)\)</span> is called <em>absolutely optimal</em></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Proof of Lossless Variable-Length Source-Coding Theorem for DMS</a><ul>
+<li><a class="reference internal" href="#proof">Proof</a><ul>
+<li><a class="reference internal" href="#construction-of-optimal-vlc-huffman-codes">Construction of Optimal VLC: Huffman Codes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#goal">Goal:</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-10-14.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-10-17.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-10-15.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

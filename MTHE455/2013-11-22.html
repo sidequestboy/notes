@@ -1,0 +1,223 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Kolmogorov Equations &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-11-25.html" />
+    <link rel="prev" title="More Continuous-Time Markov Chains" href="2013-11-20.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-25.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-20.html" title="More Continuous-Time Markov Chains"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="kolmogorov-equations">
+<h1>Kolmogorov Equations<a class="headerlink" href="#kolmogorov-equations" title="Permalink to this headline">¶</a></h1>
+<div class="math">
+\[\begin{split}P(0\text{ transitions by time }h | X(0)=i)&amp;=1-&amp;v_ih+&amp;o(h)\\
+P(\text{exactly 1 transition by time }h | X(0)=i)&amp;=  &amp;v_ih+&amp;o(h)\\
+ P(2\text{ or more transitions by time }h|X(0)=i)&amp;=  &amp;     &amp;o(h)\end{split}\]</div>
+<p>From these we can get</p>
+<div class="math" id="equation-1">
+<span class="eqno">(1)</span>\[P(X(h)=i|X(0)=i) = 1-v_ih+o(h)+o(h)\]</div>
+<p>because we exclusively either made 0 transitions, or 2 or more transitions.</p>
+<p>For <span class="math">\(j\neq i\)</span>,</p>
+<div class="math">
+\[\begin{split}P&amp;(X(h)=j|X(0)=i)\\
+&amp;=P(X(h)=k|\text{1 transition},X(0)=i)P(\text{1 transition}|X(0)=i) + P(X(h)=k|\text{2 or more transitions})P(\text{2 or more transitions}|X(0)=i)\\
+&amp;=p_{ij}(v_ih+o(h))+o(h)\end{split}\]</div>
+<p>So,</p>
+<div class="math" id="equation-2">
+<span class="eqno">(2)</span>\[P(X(h)=j|X(0)=i)=p_{ij}v_ih+o(h)\]</div>
+<p>Let <span class="math">\(p_{ij}(t)=P(X(t)=j|X(0)=i)\)</span>. This is analogous to the n-step transition probability in discrete-time Markov chains. But in continuous-time, it is a function of the continuous index <span class="math">\(t\)</span>.</p>
+<p><span class="math">\(p_{ij}(t)\)</span> is called the transition probability function from <span class="math">\(i\)</span> to <span class="math">\(j\)</span>.</p>
+<p>Let <span class="math">\(P(t)=(p_{ij}(t))_{i,j\in S}\)</span> (i.e. <span class="math">\(P(t)_{ij}=p_{ij}(t)\)</span>) be the (matrix-valued) transition probability function.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><span class="math">\(P(0)\)</span> is the <span class="math">\(S\times S\)</span> identity matrix.</p>
+</div>
+<div class="section" id="kolmogorov-s-backward-equations">
+<h2>Kolmogorov&#8217;s Backward Equations<a class="headerlink" href="#kolmogorov-s-backward-equations" title="Permalink to this headline">¶</a></h2>
+<p>Consider <span class="math">\(p_{ij}(t+h)\)</span>. We have:</p>
+<div class="math">
+\[\begin{split}p_{ij}(t+h)&amp;=P(X(t+h)=j|X(0)=i)\\
+    &amp;=\sum_{k\in S}P(X(t+h)=j|X(h)=k, X(0)=i)P(X(h)=k|X(0)=i)\\
+    &amp;=\sum_{k\in S}P(X(t)=j|X(0)=k)P(X(h)=k|X(0)=i)\\
+    &amp;=\sum_{k\in S}p_{kj}(t)P(X(h)=k|X(0)=i)\end{split}\]</div>
+<p>Now use <a href="#equation-1">(1)</a> and <a href="#equation-2">(2)</a>, separate out case <span class="math">\(k=i\)</span>:</p>
+<p>We get:</p>
+<div class="math">
+\[p_{ij}(t+h)=p_{ij}(t)(1-v_ih+o(h))+\sum_{k\neq i}p_{kj}(t)(p_{ik}v_ih+o(h))\]</div>
+<p>or</p>
+<div class="math">
+\[\frac{p_{ij}(t+h)-p_{ij}(t)}{h}=-v_ip_{ij}(t)+\sum_{k\neq i}p_{kj}(t)p_{ik}v_i+\frac{o(h)}{h}\]</div>
+<p>Letting <span class="math">\(h\to 0\)</span>, we get</p>
+<div class="math">
+\[\begin{split}p'_{ij}(t)&amp;=-v_ip_{ij}(t)+\sum_{k\neq i}q_{ik}p_{kj}(t)\\
+p'_{ij}(t)&amp;=\sum_{k\in S}g_{ik}p_{kj}(t)\end{split}\]</div>
+<p>where</p>
+<div class="math">
+\[\begin{split}g_{ik}=\begin{cases}
+    q_ik &amp; k\neq i\\
+    -v_i &amp; k=i
+\end{cases}\end{split}\]</div>
+<p>is the <span class="math">\((i,j)\)</span> entry of the generator matrix <span class="math">\(G\)</span>.</p>
+<p>If we let <span class="math">\(P'(t)=((p_{ij}'(t)))_{i,j\in S}\)</span>, then</p>
+<div class="math">
+\[P'(t)_{ij}=(GP(t))_{ij}\]</div>
+<p>or in matrix form,</p>
+<div class="math" id="equation-3">
+<span class="eqno">(3)</span>\[P'(t)=GP(t)\]</div>
+<p><a href="#equation-3">(3)</a> with initial condition <span class="math">\(P(0)=I_{S\times S}\)</span> are <em>Kolmogorov&#8217;s Backward Differential Equations</em></p>
+<p>The solution is</p>
+<div class="math">
+\[\begin{split}P(t)&amp;=I+tG+\frac{(tG)^2}{2}+\frac{(tG)^3}{3!}+...+\frac{(tG)^n}{n!}+...\\
+    &amp;=e^{tG}\end{split}\]</div>
+<p>Verify:</p>
+<div class="math">
+\[\begin{split}P'(t)&amp;=G+tG^2+\frac{t^2}{2}G^3+...+\frac{t^{n-1}}{(n-1)!}G^n+...\\
+    &amp;=G(I+tG+\frac{(tG)^2}{2}+\frac{(tG)^3}{3!}+...+\frac{(tG)^{n-1}}{(n-1)!}+...)\\
+    &amp;=GP(t)\end{split}\]</div>
+<p>It is also clear that you get <span class="math">\(I\)</span> when <span class="math">\(t=0\)</span>.</p>
+<div class="admonition-important-remark admonition">
+<p class="first admonition-title">Important Remark</p>
+<p>Note that <span class="math">\(G\)</span> determines <span class="math">\(P(t)\)</span> for all <span class="math">\(t\)</span>.</p>
+<p class="last"><span class="math">\(G\)</span> is the counterpart of <span class="math">\(P\)</span> in discrete-time.</p>
+</div>
+</div>
+<div class="section" id="stationary-distributions">
+<h2>Stationary Distributions<a class="headerlink" href="#stationary-distributions" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>An <span class="math">\(|S|\)</span> dimensional row vector <span class="math">\(Π\)</span> with <span class="math">\(Π_i\geq 0\)</span> for all <span class="math">\(i\)</span> and <span class="math">\(\sum_{i\in S}Π_i=1\)</span> is a <em>stationary distribution</em> if</p>
+<div class="math">
+\[Π=ΠP(t)\]</div>
+<p>for any <span class="math">\(t\geq 0\)</span>.</p>
+<p>If <span class="math">\(X(0)\)</span> has distribution <span class="math">\(Π\)</span>, then</p>
+<div class="last math">
+\[\begin{split}P(X(t)=j)&amp;=\sum_{i\in S}P(X(t)=j|X(0)=i)Πi\\
+    &amp;=\sum_{i\in S}p_{ij}(t)Π_i\\
+    &amp;=(ΠP(t))_j\\
+    &amp;=Π_j\end{split}\]</div>
+</div>
+<p>Now we can see that <span class="math">\(Π\)</span> is a stationary distribution <strong>iff</strong></p>
+<div class="math">
+\[\begin{split}Π&amp;=ΠP(t)&amp;\text{ for all }t\geq 0\\
+\iff Π&amp;=Π\sum_{n=0}^\infty \frac{(tG)^n}{n!}&amp;\text{ for all }t\geq 0\\
+\iff 0&amp;=Π\sum_{n=1}^\infty \frac{(tG)^n}{n!}&amp;\text{ for all }t\geq 0\\
+\iff 0&amp;=ΠG^n&amp;\text{ for all }n\geq 0\\
+\iff 0&amp;=ΠG\end{split}\]</div>
+<p>This is the continuous-time counterpart of the discrete-time global balance equations.</p>
+<div class="math">
+\[0=ΠG\]</div>
+<p>are called the global balance equations. The <span class="math">\(j\)</span> th equation is:</p>
+<div class="math">
+\[0=\sum_{i\in S}Π_ig_{ij}\]</div>
+<p>or</p>
+<div class="math">
+\[Π_jv_j = \sum_{i\neq j}Π_iq_{ij}\]</div>
+<p>&#8220;flow out of <span class="math">\(j\)</span>&#8221; = &#8220;flow into <span class="math">\(j\)</span>&#8221;.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Kolmogorov Equations</a><ul>
+<li><a class="reference internal" href="#kolmogorov-s-backward-equations">Kolmogorov&#8217;s Backward Equations</a></li>
+<li><a class="reference internal" href="#stationary-distributions">Stationary Distributions</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-11-20.html" title="previous chapter">More Continuous-Time Markov Chains</a></li>
+      <li>Next: <a href="2013-11-25.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-11-22.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

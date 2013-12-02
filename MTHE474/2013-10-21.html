@@ -1,0 +1,237 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Huffman Optimal Coding Algorithm for DMS &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="Huffman Codes for Non-Binary Code Alphabets (\(D\geq 3\)) and Channel Coding" href="2013-10-22.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-10-17.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-22.html" title="Huffman Codes for Non-Binary Code Alphabets (\(D\geq 3\)) and Channel Coding"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-17.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="huffman-optimal-coding-algorithm-for-dms">
+<h1>Huffman Optimal Coding Algorithm for DMS<a class="headerlink" href="#huffman-optimal-coding-algorithm-for-dms" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-corollary admonition">
+<p class="first admonition-title">Corollary</p>
+<p>Huffman - mid-1950s as a Masters Student 3-4 page paper</p>
+<p>Consider a DMS <span class="math">\(\mathcal X=\{a_1,...,a_M\}\)</span> with source symbol probabilities <span class="math">\(p_1\leq p_2\leq ... p_M\)</span></p>
+<p>Consider a <em>reduced source</em> <span class="math">\(\mathcal Y\)</span> obtained from <span class="math">\(\mathcal X\)</span> by combining the two <em>least likely symbols</em> <span class="math">\(a_{M-1},a_{M}\)</span> into an <em>equivalent</em> symbol <span class="math">\(a_{M-1,M}\)</span> (with probability <span class="math">\(p_{M-1}+p_M\)</span>)</p>
+<div class="math">
+\[\mathcal Y = \{a_1,...,a_{M-1,M}\}\]</div>
+<p>with probabilities <span class="math">\(p_1\leq p_2\leq ... (p_{M-1}+p_M)\)</span></p>
+<p>Suppose we have an <em>optimal</em> (binary prefix) code <span class="math">\(\mathcal C_2\)</span> for the reduces source <span class="math">\(\mathcal Y\)</span>. We now construct a code <span class="math">\(\mathcal C_1\)</span> for the original source <span class="math">\(\mathcal X\)</span> as follows:</p>
+<ul>
+<li><p class="first">The codewords for symbols <span class="math">\(a_1,a_2,...,a_{M-2}\)</span> are exactly the same as those in <span class="math">\(\mathcal C_2\)</span></p>
+<blockquote>
+<div><div class="math">
+\[\begin{split}f_1(a_i)=f_2(a_i) &amp; i=1,...,M-2\end{split}\]</div>
+</div></blockquote>
+</li>
+<li><p class="first">The codewords for symbols <span class="math">\(a_{M-1}, a_M\)</span> are formed by appending a 0 and a 1, respectively to the codeword for symbol <span class="math">\(a_{M-1,M}\)</span> in <span class="math">\(\mathcal C_2\)</span>:</p>
+<blockquote>
+<div><div class="math">
+\[\begin{split}f_1(a_{M-1})=f_2(a_{M-1,M})0\\
+f_1(a_M) = f_2(a_{M-1,M})1\end{split}\]</div>
+</div></blockquote>
+</li>
+</ul>
+<p><span class="math">\(\mathcal C_1\)</span> is an optimal code for the original source <span class="math">\(\mathcal X\)</span>.</p>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p>There is a recursive algorithm underlying here for the construction of optimal binary prefix codes:</p>
+<p>&#8220;Repeatedly apply the Huffman result to the source until you are left with a reduced source of size 2 - that is, <span class="math">\(M-2\)</span> times.</p>
+<p class="last">An optimal binary code for this reduced source must consist of two codewords: &#8216;0&#8217;, and &#8216;1&#8217;. Then proceed backwards constructing optimal codes for each reduced source until you reach the original source.&#8221;</p>
+</div>
+</div>
+<div class="admonition-examples admonition">
+<p class="first admonition-title">Examples</p>
+<ol class="last arabic">
+<li><div class="first math">
+\[\begin{split}\mathcal X = \{a_1,a_2,a_3,a_4\}, &amp; p_1=\frac{1}{2},p_2=\frac{1}{4},p_3=p_4=\frac{1}{8}\end{split}\]</div>
+<p>we have <span class="math">\(p_1\geq p_2 \geq p_3 \geq p_4\)</span></p>
+<p>Thus, the Huffman Code maps:</p>
+<div class="math">
+\[\begin{split}f:\mathcal X &amp; \to \{0,1\}^*\\
+a_1 &amp;\to 0\\
+a_2 &amp;\to 10\\
+a_3 &amp;\to 110\\
+a_4 &amp;\to 111\end{split}\]</div>
+<p>This Huffman code is <em>absolutely optimal</em>, since it achieves the entropy</p>
+</li>
+<li><div class="first math">
+\[\begin{split}\mathcal X = \{a_1,...,a_6\}, &amp; p_i=(\frac{3}{8},\frac{1}{4},\frac{1}{8},\frac{1}{8},\frac{1}{16},\frac{1}{16})\end{split}\]</div>
+<div class="math">
+\[\begin{split}f:\mathcal X &amp; \to \{0,1\}^*\\
+a_1 &amp;\to 1\\
+a_2 &amp;\to 011\\
+a_3 &amp;\to 010\\
+a_4 &amp;\to 001\\
+a_5 &amp;\to 0000\\
+a_6 &amp;\to 0001\end{split}\]</div>
+<div class="math">
+\[\begin{split}\bar R=\frac{\bar l}{1}=\frac{19}{8}=2.375 \frac{\text{code bit}}{\text{source symbol}}\\
+H(X)=2.28\text{ bits}\end{split}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="last math">
+\[H(X)\leq \bar l\leq H(X)+1\]</div>
+</div>
+</li>
+<li><p class="first">nth-order Huffman codes:</p>
+<p>By encoding larger blocks of source symbols, we can improve Huffman code efficiency.</p>
+<div class="math">
+\[f:\mathcal X^n\to \{0,1\}^*\]</div>
+<p><span class="math">\(n=2\)</span> Now source <span class="math">\(\mathcal X^2=\{a_1a_1,a_1a_2,a_1,a_3,...,a_4a_4\}\)</span></p>
+<div class="admonition-exercise admonition">
+<p class="first admonition-title">Exercise</p>
+<p>Construct 2nd order Huffman Code</p>
+<div class="math">
+\[\begin{split}f: \mathcal X^2\to \{0,1\}^*\\
+\bar R=\frac{\bar l}{n}=\frac{\bar l}{2}=\frac{3.859}{2}=1.9297\frac{\text{code bit}}{\text{source symbol}}\end{split}\]</div>
+<div class="math">
+\[\begin{split}H(X)\leq\bar R&lt; H(X)+\frac{1}{2}\end{split}\]</div>
+<p class="last">Thus, an nth order Huffman code gets within <span class="math">\(\frac{1}{n}\)</span> of the entropy of the source. However,</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonition-observations admonition">
+<p class="first admonition-title">Observations</p>
+<ul class="last">
+<li><p class="first">Huffman Codes are not unique - i.e there is more than one possible Huffman code (ex. by inverting all the code bits of a Huffman code, you get another Huffman code, or by resolving probability ties in different ways in the Huffman algorithm, you get different Huffman codes.) But, the <em>all</em> have identical, minimal, <span class="math">\(\bar l\)</span> (and <span class="math">\(\bar R\)</span>).</p>
+</li>
+<li><p class="first">One can also obtain optimal codes which are not Huffman (e.g. by interchanging two codewords of the same length in a Huff. code, you get another non-Huffman, but <em>optimal</em> code.)</p>
+</li>
+<li><p class="first">We can also get an <em>optimal suffix code</em> from a Huffman code (which is prefix) by reversing codewords:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Huffman</th>
+<th class="head">Suffix</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><span class="math">\(a_1\to 0\)</span></td>
+<td><span class="math">\(a_1\to 0\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_2\to 10\)</span></td>
+<td><span class="math">\(a_2\to 01\)</span></td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_3\to 110\)</span></td>
+<td><span class="math">\(a_3\to 011\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_4\to 111\)</span></td>
+<td><span class="math">\(a_4\to 111\)</span></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">For an nth order Huffman code:</p>
+<div class="math">
+\[\begin{split}f:\mathcal X^n\to\{0,1\}^*\\
+H(\mathcal X)\leq \frac{H(X^n)}{n}\leq \bar R=\frac{\bar l}{n}&lt;H(X^n)+\frac{1}{n}\end{split}\]</div>
+<p>for a stationary source.</p>
+<p>As <span class="math">\(n\)</span> increases, <span class="math">\(\bar R\to H(\mathcal X)\)</span></p>
+<p>but, complexity grows <em>exponentially</em> with <span class="math">\(n\)</span> (<span class="math">\(\sim |\mathcal X|^n\)</span>) and encoding delay (<span class="math">\(n\)</span>).</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-10-17.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-10-22.html" title="next chapter">Huffman Codes for Non-Binary Code Alphabets (<span class="math">\(D\geq 3\)</span>) and Channel Coding</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-10-21.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -1,0 +1,245 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Differential Entropy of a Continuous Source &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-11-16.html" />
+    <link rel="prev" title="Joint Source Coding Theorem &amp; Continuous Information Theory" href="2013-11-12.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-16.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-12.html" title="Joint Source Coding Theorem &amp; Continuous Information Theory"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="differential-entropy-of-a-continuous-source">
+<h1>Differential Entropy of a Continuous Source<a class="headerlink" href="#differential-entropy-of-a-continuous-source" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-to-define-the-notion-of-entropy-for-a-real-valued-rv">
+<h2>How to define the notion of entropy for a real-valued RV<a class="headerlink" href="#how-to-define-the-notion-of-entropy-for-a-real-valued-rv" title="Permalink to this headline">¶</a></h2>
+<p>The usual (intuitive) concept of entropy does <em>not</em> apply for real-valued random variables. The <strong>operational</strong> meaning of entropy is that it is the minimum number of bits required to losslessly describe a random variable <span class="math">\(X\)</span>.</p>
+<p>If <span class="math">\(X\)</span> takes on values in a continuum, then the number of bits needed to describe it reliably is clearly infinite.</p>
+<p>The natural way to examine entropy in the continuous case would be to take a discrete approximation (quantization) of the real-valued random varible <span class="math">\(X\)</span>, and make the approximation finer, and study its limit.</p>
+<p>Let <span class="math">\([X]_n\)</span> denote the discretized approximation of <span class="math">\(X\)</span> up to <span class="math">\(n\)</span> (fractional) <strong>binary digits</strong> (uniform quantization of <span class="math">\(X\)</span> up to n-bit resolution). Describe the support of RV <span class="math">\(X\)</span> (<span class="math">\(X\sim_{pdf} f_X\)</span> support of <span class="math">\(X\)</span> is <span class="math">\(S_X=\{x\in \mathbb R: f_X(x)&gt;0\}\)</span>) into intervales of length <span class="math">\(\frac{1}{2^n}\)</span> and quantize:</p>
+<div class="math">
+\[[X]_n=\frac{k}{2^n}\]</div>
+<p>if <span class="math">\(\frac{k}{2^n}\leq X&lt;\frac{k+1}{2^n}\)</span>, <span class="math">\(k=1,\pm 1, \pm 2,...\)</span></p>
+<p>So <span class="math">\([X]_n\)</span> is a <em>discrete</em> RV (with finite or countable alphabet)</p>
+<p>Let</p>
+<div class="math">
+\[\begin{split}p_{k,n}&amp;=P[[X]_n=\frac{k}{2^n}]=\int_{\frac{k}{2^n}}^{\frac{k+1}{2^n}}f_X(t)dt\\
+       &amp;\approxf_X(\frac{k}{2^n})\frac{1}{2^n}\end{split}\]</div>
+<p>Now</p>
+<div class="math">
+\[\begin{split}H([X]_n)=-\sum_K p_{k,n}\log_2 p_{k,n}\\
+        \approx -\sum_K f_X(\frac{k}{2^n})\frac{1}{2^n}\log_2[f_X(\frac{k}{2^n})\frac{1}{2^n}]\\
+        =-\sum_K f_X(\frac{k}{2^n})\log_2[f_X(\frac{k}{2^n})]\frac{1}{2^n}+n\sum_K f_X(\frac{k}{2^n})\frac{1}{2^n}\end{split}\]</div>
+<p>where the first term is a Riemann approximation sum, and the second term sums over the pmf of RV <span class="math">\([X]_n\)</span> is thus <span class="math">\(n\cdot 1\)</span></p>
+<p>and thus for <span class="math">\(n\)</span> large,</p>
+<div class="math">
+\[\approx -\int f_X(t)\log f_X(t)dt+n\]</div>
+<p>whose first term we define as the <em>differential entropy</em> of <span class="math">\(X\)</span>:</p>
+<div class="admonition-definition-differential-entropy admonition">
+<p class="first admonition-title">Definition (Differential Entropy)</p>
+<p>For <span class="math">\(X\sim_{pdf} f_X\)</span>, the differential entropy of <span class="math">\(X\)</span>:</p>
+<div class="last math">
+\[h(x) := -\int f_X(t)\log_2 f_X(t)dt\]</div>
+</div>
+<p>A continuous RV contains an infinite amount of information, but we can measure the information contained in its n-bit quantized version:</p>
+<div class="math">
+\[H([X]_n)\approx h(X)+n\]</div>
+<p>(for <span class="math">\(n\)</span> large)</p>
+<div class="math">
+\[\lim_{n\to\infty}(H([X]_n)-n)=h(X)\]</div>
+<div class="section" id="usual-vector-generalization">
+<h3>Usual vector generalization<a class="headerlink" href="#usual-vector-generalization" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[\begin{split}X^n=(X_1,...,X_n)\sim_{pdf} f_{X^n}\\
+h(X_1,...,X_n):=-\int_{\mathbb R^n}f_{X^n}(x_1,...,x_n)\log_2 f_{X^n}(x_1,...,x_n)dx_1...dx_n\end{split}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><span class="math">\(X,Y\sim f_{XY}\)</span>,</p>
+<div class="math">
+\[H([X]_n,[Y]_n)\approx h(X,Y)+m+n\]</div>
+<p>(<span class="math">\(m,n\)</span> large)</p>
+<p>where:</p>
+<div class="last math">
+\[\begin{split}[X]_n=\text{ discretized version of }X\text{ up to }n\text{ bits}\\
+[Y]_m=\text{ discretized version of }Y\text{ up to }m\text{ bits}\end{split}\]</div>
+</div>
+<div class="admonition-example-uniform admonition">
+<p class="first admonition-title">Example (Uniform)</p>
+<p><span class="math">\(X\)</span> <em>uniformly</em> distributed over <span class="math">\((a,b)\)</span></p>
+<div class="math">
+\[\begin{split}f_X(x) = \begin{cases}
+    \frac{1}{b-a} &amp;&amp; \text{ if }a&lt;x&lt;b\\
+    0 &amp;&amp; \text{ otherwise}
+    \end{cases}\end{split}\]</div>
+<div class="math">
+\[h(X) = -\int_a^b f_X(t)\log f_X(t)dt=-\int_a^b \frac{1}{b-a}\log_2 \frac{1}{b-a}dt\]</div>
+<div class="math">
+\[\implies h(X)=\log_2(b-a)\]</div>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p>if <span class="math">\(b-a&lt;1\)</span>, <span class="math">\(h(X)&lt;0\)</span></p>
+<p>if <span class="math">\(b-a=1\)</span>, <span class="math">\(h(X)=0\)</span></p>
+<p class="last">if <span class="math">\(b-a&gt;1\)</span>, <span class="math">\(h(X)&gt;0\)</span></p>
+</div>
+</div>
+<div class="admonition-example-gaussian admonition">
+<p class="first admonition-title">Example (Gaussian)</p>
+<p><span class="math">\(X\)</span> is a Gaussian RV:</p>
+<div class="math">
+\[X\sim N(μ,σ^2)\]</div>
+<p>where <span class="math">\(μ\)</span> is the mean, <span class="math">\(E[X]\)</span>, and <span class="math">\(σ^2=Var(X)=E[X^2]-μ^2\)</span></p>
+<div class="math">
+\[f_X(x)=\frac{1}{\sqrt{2πσ^2}}e^{\frac{-(x-μ)^2}{2σ^2}}\]</div>
+<p>for <span class="math">\(x\in \mathbb R\)</span></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="math">
+\[h(X)=h(X+c)\]</div>
+<p class="last">for all constants <span class="math">\(c\)</span>.</p>
+</div>
+<p>So <strong>wlog</strong>, assume that <span class="math">\(μ=0\)</span>. (<span class="math">\(h(X-μ)=h(X)\)</span>)</p>
+<div class="math">
+\[h(X)=-\int_{-\infty}^{+\infty}f_X(x)\log_2[\frac{1}{\sqrt{2πσ^2}}e^{\frac{-x^2}{2σ^2}}]dx\]</div>
+<p>Therefore,</p>
+<div class="math">
+\[\begin{split}h(X) &amp;= -\int_{-\infty}^{+\infty}f_X(x)[-\frac{1}{2}\log_2(2πσ^2)-\frac{x^2}{2σ^2}\log_2 e]dx\\
+     &amp;= \frac{1}{2}\log_2(2πσ^2)+\frac{\log_2 e}{2σ^2}\int x^2 f_X(x)dx\\
+     &amp;= \frac{1}{2}\log_2(2πeσ^2)\end{split}\]</div>
+<p>Thus,</p>
+<div class="last math">
+\[\begin{split}X\sim N(μ,σ^2)\\
+h(X)=\frac{1}{2}\log_2(2πeσ^2)\text{ (bits)}\end{split}\]</div>
+</div>
+<div class="admonition-definition-conditional-differential-entropy admonition">
+<p class="first admonition-title">Definition (Conditional Differential Entropy)</p>
+<div class="math">
+\[\begin{split}(X,Y)\sim f_{XY}\\
+h(Y|X):=&amp;E_{XY}[-\log_2 f_{Y|X}(Y|X)]\\
+      =&amp;-\int_{X,Y} f_{XY}(x,y)\log_2(f_{Y|X}(y|x))dxdy\end{split}\]</div>
+<p class="last">where <span class="math">\(f_{Y|X}(y|x)=\frac{f_{XY}(x,y)}{f_X(x)}\)</span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Chain Rule:</p>
+<div class="last math">
+\[\begin{split}h(X,Y)&amp;=h(X)+h(Y|X)=E_{XY}[-\log f_{XY}(X,Y)]\\
+      &amp;=h(Y)+h(X|Y)\end{split}\]</div>
+</div>
+<div class="admonition-definition-mutual-information admonition">
+<p class="first admonition-title">Definition (Mutual Information)</p>
+<p><span class="math">\((X,Y)\sim f_{XY}\)</span></p>
+<div class="last math">
+\[\begin{split}I(X;Y)&amp;=h(X)+h(Y)-h(X,Y)\\
+      &amp;=h(Y)+h(Y|X)\\
+      &amp;=h(X)+h(X|Y)\\
+      &amp;=\int\int f_{XY}(x,y)\log{\frac{f_{XY}(x,y)}{f_X(x)f_Y(y)}}dxdy\end{split}\]</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Differential Entropy of a Continuous Source</a><ul>
+<li><a class="reference internal" href="#how-to-define-the-notion-of-entropy-for-a-real-valued-rv">How to define the notion of entropy for a real-valued RV</a><ul>
+<li><a class="reference internal" href="#usual-vector-generalization">Usual vector generalization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-11-12.html" title="previous chapter">Joint Source Coding Theorem &amp; Continuous Information Theory</a></li>
+      <li>Next: <a href="2013-11-16.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-11-14.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

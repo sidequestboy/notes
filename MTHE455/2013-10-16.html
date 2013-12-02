@@ -1,0 +1,177 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Some Number Theory Results &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Results from Number Theory (contd)" href="2013-10-18.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-10-15.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-18.html" title="Results from Number Theory (contd)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-15.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p class="last">For an irruducible recurrent Markov chain, a stationary distribution <span class="math">\(\Pi\)</span> exists if and only if all states are positive recurrent. In this case, <span class="math">\(\Pi\)</span> is unique and given by <span class="math">\(\Pi_i=\frac{1}{\mu_i}\)</span> where <span class="math">\(\mu_i\)</span> is the mean return time to state <span class="math">\(i\)</span>.</p>
+</div>
+<p>Positive recurrence is a class property:</p>
+<div class="admonition-lemma admonition">
+<p class="first admonition-title">Lemma</p>
+<p>If <span class="math">\(i\leftrightarrow j\)</span> and <span class="math">\(i\)</span> is positive recurrent, then <span class="math">\(j\)</span> is positive recurrent.</p>
+<p>Consider the Markov chain whose state space are the states in the recurrent class containing <span class="math">\(i\)</span> and <span class="math">\(j\)</span>. This is a proper Markov chain since a recurrent class is closed.</p>
+<p class="last">Since <span class="math">\(i\)</span> is positive recurrent, there exists a stationary distribution <span class="math">\(\Pi\)</span> (we showed how to construct it). Thus, all states are positive recurrent - in particular state <span class="math">\(j\)</span>.</p>
+</div>
+<p>Consider a transient state <span class="math">\(j\)</span>. This means that <span class="math">\(f_j&lt;1\)</span> where <span class="math">\(f_j\)</span> is the probability of ever returning to <span class="math">\(j\)</span>, starting in <span class="math">\(j\)</span>. Let <span class="math">\(i\)</span> be any other state. Then, given that the chain starts in <span class="math">\(i\)</span>, the number of times state <span class="math">\(j\)</span> is visited is no more than</p>
+<div class="math">
+\[1+X\]</div>
+<p>where <span class="math">\(X\)</span> is the number of times the chain returns to <span class="math">\(j\)</span> after the first visit. Where <span class="math">\(X\)</span> has a Geometric distribution with parameter <span class="math">\(1-f_j\)</span>.</p>
+<p>So the expected number of times <span class="math">\(j\)</span> is visited, starting in <span class="math">\(i\)</span>, is upper bounded by:</p>
+<div class="math">
+\[\begin{split}1+E[x]=1+\frac{1}{1-f_j}&lt;\infty\end{split}\]</div>
+<p>Let</p>
+<div class="math">
+\[T_j=\text{ number of times }j\text{ is visited starting at time 1}\]</div>
+<p>and</p>
+<div class="math">
+\[\begin{split}I_j(n) = \begin{cases} 1 &amp;\text{ if }X_n=j \\2 &amp;\text{ if }X_n\neq j \end{cases}\end{split}\]</div>
+<p>So,</p>
+<div class="math">
+\[T_j=\sum_{n=1}^\infty I_j(n)\]</div>
+<p>Then</p>
+<div class="math">
+\[E[T_j|X_0=i]\]\[=E[\sum_{n=1}^\infty I_j(n)|X_0=i]\]\[=\sum_{n=1}^\infty P(X_n=j|X_0=i)\]\[\begin{split}=\sum_{n=1}^\infty p_{ij}(n)&lt;\infty\end{split}\]</div>
+<p>by previous argument.</p>
+<p>Therefore, <span class="math">\(p_{ij}(n)\to 0\)</span> as <span class="math">\(n\to\infty\)</span></p>
+<p>Note also that <span class="math">\(p_{jj}(n)\to 0\)</span> as <span class="math">\(n\to\infty\)</span>.</p>
+<p>Now suppose we have an irreducible, transient Markov chain. Suppose a stationary distribution <span class="math">\(\Pi\)</span> did exist. Then</p>
+<div class="math">
+\[\Pi_j=P(X_n=j)=\sum_{i\in S}P(X_n=j|X_0=i)P(X_0=i)\]\[=\sum_{i\in S}p_{ij}(n)\Pi_i\]\[=\sum_{i\in F}p_{ij}(n)\Pi_i+\sum_{i\in F^c}p_{ij}(n)\Pi_i\]</div>
+<p>where <span class="math">\(F\)</span> is any <em>finite</em> subset of the state-space <span class="math">\(S\)</span>.</p>
+<div class="math">
+\[\leq \sum_{i\in F}p_{ij}(n)\Pi_i+\sum_{i\in F^c}1\cdot \Pi_i\]</div>
+<p>Now let <span class="math">\(n\to \infty\)</span>. The limit can be taken inside the finite sum, and the limit is 0.</p>
+<p>So we get</p>
+<div class="math">
+\[\Pi_j\leq \sum_{i\in F^c}\Pi_i\]</div>
+<p>Let <span class="math">\(\epsilon&lt;0\)</span> be given.</p>
+<p>Now choose <span class="math">\(F\)</span> so that <span class="math">\(\sum_{i\in F^c}\Pi_i&lt;\epsilon\)</span></p>
+<p>So <span class="math">\(\Pi_j\leq \epsilon\)</span>. Therefore, <span class="math">\(\Pi_j=0\)</span>.</p>
+<p>But <span class="math">\(j\)</span> was arbitrary, so <span class="math">\(\Pi_j=0\)</span> for all <span class="math">\(j\in S\)</span></p>
+<p>This contradicts that <span class="math">\(\sum_{i\in S}\Pi_i=1\)</span></p>
+<p>So we can restate the theorem to remove the recurrent condition:</p>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p class="last">For an irruducible Markov chain, a stationary distribution <span class="math">\(\Pi\)</span> exists if and only if all states are positive recurrent. In this case, <span class="math">\(\Pi\)</span> is unique and given by <span class="math">\(\Pi_i=\frac{1}{\mu_i}\)</span> where <span class="math">\(\mu_i\)</span> is the mean return time to state <span class="math">\(i\)</span>.</p>
+</div>
+<div class="section" id="some-number-theory-results">
+<h1>Some Number Theory Results<a class="headerlink" href="#some-number-theory-results" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li>Let <span class="math">\(n_1,n_2,...\)</span> be a sequence of positive integers with gcd 1. Then there exists a finite subset of the sequence, say <span class="math">\(b_1,b_2,...,b_r\)</span> with gcd 1.</li>
+</ol>
+<blockquote>
+<div><p>Let <span class="math">\(b_1=n_1\)</span>, and <span class="math">\(b_2=n_2\)</span> Let <span class="math">\(g=gcd(b_1,b_2)\)</span>.</p>
+<p>If <span class="math">\(g=1\)</span>, we are done.</p>
+<p>If <span class="math">\(g&gt;1\)</span>, let <span class="math">\(p_1,...,p_d\)</span> be the distinct prime factors of <span class="math">\(g\)</span> that are larger than 1. For each <span class="math">\(p_k\)</span>, there is at least one integer from <span class="math">\(\{n_3,n_4,...\}\)</span> that <span class="math">\(p_k\)</span> does not divide (Otherwise, <span class="math">\(p_k\)</span> would divide all the <span class="math">\(n_1,n_2,...\)</span>, and <span class="math">\(p_k&gt;1\)</span>, contradicting the gcd being 1).</p>
+<p>Choose <span class="math">\(b_3'\)</span> from <span class="math">\(\{n_3,...\}\)</span> such that <span class="math">\(p_1\)</span> does not divide <span class="math">\(b_3'\)</span>.</p>
+<p>...</p>
+<p>Choose <span class="math">\(b_{d+2}'\)</span> from <span class="math">\(\{n_3,...\}\)</span> such that <span class="math">\(p_1\)</span> does not divide <span class="math">\(b_{d+2}'\)</span>.</p>
+<p>Let <span class="math">\(b_3,...,b_r\)</span> be the distinct integers among <span class="math">\(b_3',...,b_{d+2}'\)</span>.</p>
+<p>Then <span class="math">\(\{b_1,...,b_r\}\)</span> has gcd 1</p>
+<p><span class="math">\(p_k\)</span> does not divide at least one of <span class="math">\(b_3,...,b_r\)</span>.</p>
+<p>But <span class="math">\(p_1,...,p_d\)</span> are the <em>only</em> divisors of <span class="math">\(b_1, b_2\)</span>.</p>
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-10-15.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-10-18.html" title="next chapter">Results from Number Theory (contd)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-10-16.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

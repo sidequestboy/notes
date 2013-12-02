@@ -1,0 +1,270 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cool capacity stuff &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="The Channel Coding Theory" href="2013-10-31.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-10-28.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-31.html" title="The Channel Coding Theory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-28.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cool-capacity-stuff">
+<h1>Cool capacity stuff<a class="headerlink" href="#cool-capacity-stuff" title="Permalink to this headline">¶</a></h1>
+<p>For a weakly-symmetric DMC <span class="math">\((\mathcal X,\mathcal Y,Q)\)</span></p>
+<div class="math">
+\[\begin{split}C:=&amp;max_{p_X}I(X;Y)\\
+  =&amp;log_2 |\mathcal Y| - H(q_1,q_2,...,q_{|\mathcal Y|})\\
+  =&amp;log_2 |\mathcal Y| - \sum_{i=1}^{|\mathcal Y|}q_ilog_2q_i\end{split}\]</div>
+<p>where <span class="math">\((q_1,...,q_{|\mathcal Y|})\)</span> is <em>any row</em> in <span class="math">\(Q\)</span>.</p>
+<div class="section" id="proof">
+<h2>Proof<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h2>
+<div class="math">
+\[\begin{split}I(X;Y)=H(Y)-H(Y|X)\\
+H(Y|X)=\sum_{x\in\mathcal X}p_X(x)H(Y|X=x)\\\end{split}\]</div>
+<p>where</p>
+<div class="math">
+\[H(Y|X=x)=-\sum_{y\in\mathcal Y}p_{Y|X}(y|x)log_2 p_{Y|X}(y|x)\]</div>
+<p>Since every row of <span class="math">\(Q\)</span> is a permutation of every other row, <span class="math">\(H(Y|X=x)\)</span> is independent of <span class="math">\(x\)</span>:</p>
+<div class="math">
+\[H(Y|X=x)=H(q_1,...,q_{|\mathcal Y|})\]</div>
+<p>Therefore,</p>
+<div class="math">
+\[H(Y|X)=H(q_1,...,q_{|\mathcal Y|})\]</div>
+<p>Hence,</p>
+<div class="math">
+\[\begin{split}I(X;Y)&amp;=H(Y)-H(q_1,...,q_{|\mathcal Y|})\\
+      &amp;\leq log_2 |\mathcal Y|-H(q_1,...,q_{|\mathcal Y|})\end{split}\]</div>
+<p>with equality iff <span class="math">\(Y\)</span> is uniform.</p>
+<p>But choosing <span class="math">\(p_X(x)=\frac{1}{|\mathcal X|}\)</span> for all <span class="math">\(x\in \mathcal X\)</span> (uniform) yields a uniformly distributed output Y since:</p>
+<p>For <span class="math">\(y\in \mathcal Y\)</span>,</p>
+<div class="math">
+\[\begin{split}p_Y(y)&amp;=\sum_{x\in\mathcal X}p_X(x)p_{Y|X}(y|x)\\
+      &amp;=\frac{1}{|\mathcal X|}\sum_{x\in\mathcal X}p_{Y|X}(y|x)\\
+      &amp;=c\text{ (constant)}\\
+      &amp;=\text{sum of entries in column in }Q\text{ for value y}\end{split}\]</div>
+<p>since:</p>
+<div class="math">
+\[\sum_{y\in\mathcal Y}p_Y(y)=1\iff c\frac{|\mathcal Y|}{|\mathcal X|}=1\iff c=\frac{|\mathcal Y|}{|\mathcal X|}\]</div>
+<p>therefore,</p>
+<div class="math">
+\[\begin{split}p_Y(y)&amp;=\frac{|\mathcal X|}{|\mathcal Y|}\cdot\frac{1}{|\mathcal X|}\\
+      &amp;=\frac{1}{|\mathcal Y|} &amp;&amp; \forall y\in \mathcal Y\end{split}\]</div>
+<p>therefore, <span class="math">\(Y\)</span> is uniform.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<ol class="last loweralpha">
+<li><p class="first">BSC(<span class="math">\(ε\)</span>): Applying (*),</p>
+<div class="math">
+\[log_2|\mathcal Y|=H(1-ε,ε)
+=1-h_b(ε)\]</div>
+</li>
+<li><p class="first">q-ary symmetric channel:</p>
+<div class="math">
+\[C=log_2 q - H(1-ε, \frac{ε}{q-1},...,\frac{ε}{q-1})\]</div>
+</li>
+</ol>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Quasi-symmetric DMC</p>
+<p>A DMC <span class="math">\((\mathcal X,\mathcal Y,Q_{|\mathcal X|\times|\mathcal Y|}=[p_{Y|X}])\)</span> is said to be <em>Quasi-symmetric</em> if <span class="math">\(Q\)</span> can be partitioned along its columns into <span class="math">\(m\)</span> <strong>weakly-symmetric</strong> sub-matrices <span class="math">\(Q_1,Q_2,...,Q_m\)</span> (for some integer <span class="math">\(m\geq 1\)</span>), where each sub-matrix <span class="math">\(Q_i\)</span> has size <span class="math">\(|\mathcal X| \times |\mathcal Y_i|\)</span>, <span class="math">\(i=1,...,m\)</span> with</p>
+<div class="last math">
+\[\begin{split}\mathcal Y_1\cup \mathcal Y_2\cup ...\cup \mathcal Y_m=\mathcal Y\\
+\mathcal Y_i\cap Y_j=\{\} &amp;&amp; \forall i\neq j\end{split}\]</div>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>BEC(<span class="math">\(α\)</span>):</p>
+<div class="math">
+\[\begin{split}Q=\left[\matrix{1-α &amp;&amp; α &amp;&amp; 0 \\
+                0 &amp;&amp; α &amp;&amp; 1-α
+}\right]\end{split}\]</div>
+<div class="last math">
+\[\begin{split}Q_1&amp;=\left[\matrix{1-α &amp;&amp; 0 \\
+                  0 &amp;&amp; 1-α}\right]\\
+Q_2&amp;=\left[\matrix{α\\α}\right]\end{split}\]</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">symmetry <span class="math">\(\implies\)</span> weak symmetry <span class="math">\(\implies\)</span> quasi-symmetry</p>
+</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Capacity of quasi-symmetric DMC:</p>
+<p>The capacity of a <em>quasi-symmetric</em> DMC <span class="math">\((\mathcal X, \mathcal Y, Q)\)</span> is given by:</p>
+<div class="math">
+\[C=\sum_{i=1}^m a_iC_i\]</div>
+<p>where</p>
+<div class="math">
+\[\begin{split}a_i=\sum_{y\in\mathcal Y_i}p_{Y|X}(y|x)=\text{sum of any row in sub-matrix }Q_i\\
+C_i=log_2|\mathcal Y_i|-H(\text{any row in matrix }\frac{1}{a_i}Q_i)\end{split}\]</div>
+<p><span class="math">\(i=1,...,m\)</span></p>
+<p class="last">see online notes Lemma 4.17</p>
+</div>
+<div class="math">
+\[\begin{split}C=a_1C_1+a_2C_2\\
+a_1=1-α\\
+a_2=α\\
+C_1&amp;=log_2 2- H(\frac{1-α}{1-α}\frac{0}{1-α})\\
+   &amp;=1-H(1,0)=1\\
+C_2=log_2|1| - H(\frac{α}{α})=0\\
+C=(1-α)(1)+(α)(0)\\
+\implies C=1-α\end{split}\]</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>BEC</p>
+<div class="math">
+\[\begin{split}Q=\left[\matrix{1-α-ε &amp;&amp; α &amp;&amp; ε\\
+                ε &amp;&amp; α &amp;&amp; 1-α-ε}\right]\end{split}\]</div>
+<p>is quasi-symmetric:</p>
+<div class="math">
+\[\begin{split}Q_1=\left[\matrix{1-α-ε &amp;&amp; ε\\
+                  ε &amp;&amp; 1-α-ε}\right]\\
+Q_2=\left[\matrix{α\\α}\right]\end{split}\]</div>
+<p>Apply previous theorem to get:</p>
+<div class="math">
+\[C=(1-α)[1-h_b((1-ε-α)/(1-α))]\]</div>
+<p>special case:</p>
+<div class="last math">
+\[\begin{split}α&amp;=0\implies BSC(ε)\\
+ε&amp;=0\implies BEC(α)\end{split}\]</div>
+</div>
+<div class="section" id="capacity-of-sum-channel">
+<h3>Capacity of sum channel<a class="headerlink" href="#capacity-of-sum-channel" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[\begin{split}Q=\left[\matrix{Q_{1_{|\mathcal X_1|\times |\mathcal Y_1|}} &amp;&amp; 0\\
+                0 &amp;&amp; Q_{2_{|\mathcal X_2|\times |\mathcal Y_2|}}
+                }
+  \right]\end{split}\]</div>
+<div class="math">
+\[\begin{split}\mathcal X=\mathcal X_1\cup \mathcal X_2\\
+\mathcal Y=\mathcal Y_1\cup \mathcal Y_2\end{split}\]</div>
+<p>with</p>
+<div class="math">
+\[\begin{split}\mathcal X_1\cap \mathcal X_2=\{\}\\
+\mathcal Y_1\cap \mathcal Y_2=\{\}\end{split}\]</div>
+<div class="math">
+\[C=log_2(2^{C_1}+1^{C_2})\]</div>
+<p>where <span class="math">\(C_1\)</span> is the capacity of <span class="math">\(Q_1\)</span> and <span class="math">\(C_2\)</span> is the capacity of <span class="math">\(Q_2\)</span>.</p>
+</div>
+<div class="section" id="midterm">
+<h3>Midterm:<a class="headerlink" href="#midterm" title="Permalink to this headline">¶</a></h3>
+<p>Wed. Nov. 6 &#64; 5:30pm</p>
+<p>Duration: 100 minutes for undergrads</p>
+<p>Jeffery Hall, Room 101</p>
+<p>Closed notes - 1 8.5x11 double-sided formula sheet allowed.</p>
+<p>Chapters 1-5 in (text)</p>
+<p>Ch 1-3 (notes)</p>
+<p>Homeworks 1,2,3</p>
+<p><span class="math">\(\exists\)</span></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cool capacity stuff</a><ul>
+<li><a class="reference internal" href="#proof">Proof</a><ul>
+<li><a class="reference internal" href="#capacity-of-sum-channel">Capacity of sum channel</a></li>
+<li><a class="reference internal" href="#midterm">Midterm:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-10-28.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-10-31.html" title="next chapter">The Channel Coding Theory</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-10-29.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -1,0 +1,141 @@
+***************************
+Memoryless Gaussian Channel
+***************************
+Discrete Additive White Gaussian noise (AWGN) channel
+=====================================================
+
+Channel output:
+
+.. math::
+    Y_i=X_i+Z_i
+
+for :math:`i=1,2,...`, :math:`X_i` is the input, :math:`Z_i` is the noise
+
+:math:`X_i` is independent of :math:`Z_j` for all :math:`i,j`
+
+:math:`\{Z_i\}_{i=1}^\infty` are iid Gaussian with :math:`Z_i\sim N(0,N)`
+
+.. math::
+    f_{Y^n|X_n}(y^n|x^n)&=f_{Z^n}(y^n,x^n)\\
+        &=\prod_{i=1}^n f_Z(y_i,x_i)\\
+        &=\prod_{i=1}^n f_{Y|X}(y_i|x_i)
+
+.. math::
+    f_{Y|X}(y_i,x_i)=\frac{1}{\sqrt{2πN}}e^{\frac{-(y_i-x_i)^2}{2N}}
+
+In practice, input is a current or voltage signal. So we need to impose a cost constraint, usually in the form of a *power constraint*.
+
+Average power input constraint
+------------------------------
+For any input sequence :math:`x^n=(x_1,...,x_n)` sent over the channel, require:
+
+.. math::
+    \frac{1}{n}\sum_{i=1}^n x_i^2\leq P
+
+for some given :math:`P`.
+
+.. note:: 
+    The AWGN model is widely used for modelling many practical channels, like radio channels, satellite links, telephone channels, etc.
+
+    The additive noise is usually due to a variety of causes, whose commutative effect is *approximately Gaussian*. This is justified by the Central Limit Theorem which states that if :math:`X_i` are iid, with mean :math:`μ` and variance :math:`σ^2`, then
+
+    .. math::
+        \frac{1}{\sqrt{n}}\sum_{i=1}^n(x_i-μ)\to_{\text{in dist. as }n\to\infty}\to N(0,σ^2)
+
+.. admonition:: Definition (The Information Capacity)
+
+    The *information capacity* of the memoryless Gaussian channel with input power :math:`P` is:
+
+    .. math::
+        C=C(P)=max_{p_X:E[X^2]\leq P} I(X;Y)
+
+    .. note::
+        We will see via the Channel Coding Theorem for the memoryless Gaussian channel that the above :math:`C` is the channel's *operational capacity*.
+
+Compute :math:`C` is closed form:
+
+.. math::
+    Y=X+Z\text{ where }X\text{ is independent of }Z\text{ and }X\sim N(0,N)
+
+.. math::
+    I(X;Y)&=h(Y)-h(Y|X)\\
+        &=h(Y)-h(X+Z|X)\\
+        &=h(Y)-h(Z|X)
+
+The last step follows because :math:`h(\cdot)` is *invariant* under translations.
+
+.. math::
+    I(X;Y)&=h(Y)-h(Z)\text{ since }X\text{ is independent of }Z\\
+        &=h(Y)-\frac{1}{2}\log(2πeΝ))\text{ since }Z\sim N(0,N)
+
+.. math::
+    Y=X+Z\\
+    E[Y^2]=E[X^2]+E[Z^2]\leq P+N\\
+    \implies Var(Y)\leq P+N
+
+Therefore
+
+.. math::
+    h(Y)&\leq \frac{1}{2}\log[2πeVar(Y)]\\
+        &\leq \frac{1}{2}\log[2πe(P+N)]
+
+with equality **iff** :math:`Y\sim N(0,P+N)`.
+
+Choosing :math:`X\sim N(0,P)` yields :math:`Y\sim N(0,P_N)` and maximizes :math:`I(X;Y)`.
+
+Therefore,
+
+.. math::
+    C&=\frac{1}{2}\log[2πe(P+N)]-\frac{1}{2}\log(2πeN)\\
+    \implies C&=\frac{1}{2}\log_2(\frac{P+N}{N})=\frac{1}{2}\log_2(1+\frac{P}{N})\text{ bits/channel use}
+
+discrete-time AWGN channel with input power :math:`P` and noise power :math:`N`.
+
+.. note::
+
+    .. math::
+        \frac{P}{N}
+
+    is the *signal-to-noise ratio* of the channel (SNR)
+
+Block diagram of BSC equivalent channel of AWGN with BPSK Modulation and Hard decision demodulation:
+
+.. image:: .static/11-21-1.jpg
+    :width: 50%
+
+.. admonition:: Definition
+
+    A :math:`(M,n)` code for the Gaussian channel with power constraint :math:`P` is:
+
+    * Set of messages :math:`\mathcal M=\{1,2,...,M\}`
+    * Encoder: :math:`x:\mathcal M\to \mathcal X^n`
+      
+      yielding codewords :math:`x^n(1),...,x^n(M)` satisfying power constraint :math:`P`:
+
+      .. math::
+          \frac{1}{n}\sum_{i=1}^n z_i^2(w)\leq P
+
+      for all :math:`w=1,...,M`
+
+    Rate:
+
+    .. math::
+        R=\frac{1}{n}\log_2 M\text{message bits/channel use}
+
+    conditional error probability given message :math:`i` is sent:
+
+    .. math::
+        λ_i=P[g(Y^n)\neq i|X^n=x^n(i)]\\
+            =\int_{\{y^n:g(y^n)\neq i\}}f_{Y^n|X^n}(y^n|x^n(i))dy^n
+
+    Max: :math:`λ^{(n)}=max_{i\in\mathcal M}λ_i`
+
+    Average: :math:`P_e^{(n)}=\frac{1}{M}\sum_{i=1}^Mλ_i`.
+
+
+
+
+
+
+
+

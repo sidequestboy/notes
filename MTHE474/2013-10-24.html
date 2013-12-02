@@ -1,0 +1,234 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>General channel with Memory &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-10-28.html" />
+    <link rel="prev" title="Huffman Codes for Non-Binary Code Alphabets (\(D\geq 3\)) and Channel Coding" href="2013-10-22.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-28.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-22.html" title="Huffman Codes for Non-Binary Code Alphabets (\(D\geq 3\)) and Channel Coding"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="general-channel-with-memory">
+<h1>General channel with Memory<a class="headerlink" href="#general-channel-with-memory" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Finite input alphabet <span class="math">\(\mathcal X\)</span></li>
+<li>Finite output alphabet <span class="math">\(\mathcal Y\)</span></li>
+<li><span class="math">\(p_{Y^n|X^n}(y^n|x^n)\)</span>, <span class="math">\(n=1,2,...\)</span>, <span class="math">\(x^n\in \mathcal X^n\)</span>, <span class="math">\(y^n\in \mathcal Y^n\)</span></li>
+</ul>
+<div class="admonition-definition-dmc admonition">
+<p class="first admonition-title">Definition (DMC)</p>
+<p>A <em>discrete memoryless channel</em> (DMC) is a discrete channel for which the conditional (transition) distribution of output given input satisfies:</p>
+<div class="math" id="equation-α">
+<span class="eqno">(1)</span>\[\begin{split}p_{Y^n|X^n}(y^n|x^n)=\prod_{i=1}^n p_{Y|X}(y|x) &amp;&amp; i=1,2...\\
+(x^n,y^n)\in \mathcal X \times \mathcal Y\end{split}\]</div>
+<p class="last">where <span class="math">\(p_{Y|X}(y|x)\)</span>, <span class="math">\((x^n,y^n)\in \mathcal X \times \mathcal Y\)</span> is a <em>one-dimensional</em> transition distribution</p>
+</div>
+<div class="admonition-remark admonition">
+<p class="first admonition-title">Remark</p>
+<p>The following equivalences can be shown:</p>
+<p>(Observation 4.3 online notes)</p>
+<p>The above condition for a DMC, <a href="#equation-α">(1)</a>, is equivalent to (a) and (b) together, while (b) <span class="math">\(\iff\)</span> (c):</p>
+<ol class="last loweralpha simple">
+<li><span class="math">\(P_{Y_n|X^n,Y^{n-1}}(y_n|y^{n-1},x^{n})=P_{Y|X}(y_n|x_n)\)</span> (memoryless property)</li>
+<li><span class="math">\(P_{X_n|X^{n-1},Y^{n-1}}(x_n|x^{n-1},y^{n-1})=P_{X_n|X^{n-1}}(x_n|x^{n-1})\)</span> (non-anticipatory property)</li>
+<li><span class="math">\(P_{Y^{n-1}|X^n}(y^{n-1}|x^n)=P_{Y^{n-1}|X^{n-1}}(y^{n-1}|x^{n-1})\)</span></li>
+</ol>
+</div>
+<div class="admonition-examples-of-dmc admonition">
+<p class="first admonition-title">Examples of DMC</p>
+<ol class="last arabic">
+<li><p class="first">Binary Symmetric Channel (BSC)</p>
+<div class="math">
+\[\mathcal X=\mathcal Y=\{0,1\}\]</div>
+<div class="math">
+\[\begin{split}Q_{|\mathcal X|\times |\mathcal Y|}&amp;=[p_{Y|X}(y|x)]\\
+&amp;=\left[\matrix{p_{Y|X}(0|0) &amp;&amp; p_{Y|X}(1|0)\\
+        p_{Y|X}(0|1) &amp;&amp; p_{Y|X}(1|1)}\right]\\
+&amp;=\left[\matrix{1-ε &amp;&amp; ε\\
+        ε &amp;&amp; 1-ε}\right]\end{split}\]</div>
+<p>where <span class="math">\(ε\)</span> is the crossover probability</p>
+<div class="admonition-remark admonition">
+<p class="first admonition-title">Remark</p>
+<p>BSC can be described as a modulo-2 additive noise channel via:</p>
+<div class="math">
+\[\begin{split}Y_n=X_n\oplus Z_n &amp;&amp;, m=1,2,...\end{split}\]</div>
+<ul class="last">
+<li><p class="first"><span class="math">\(\oplus\)</span> modulo-2 addition</p>
+</li>
+<li><p class="first"><span class="math">\(\{Z_n\}^\infty_{n=1}\)</span> iid noise process, binary-valued</p>
+<blockquote>
+<div><p>with distribution <span class="math">\(P[Z_n=1]=ε\)</span>, <span class="math">\(\forall n=1,2,...\)</span></p>
+</div></blockquote>
+</li>
+<li><p class="first">Input and noise processes are <em>independent</em> of each other.</p>
+</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <span class="math">\(ε=0\)</span>, the channel is noiseless.</p>
+</div>
+</li>
+<li><p class="first">Binary Erasure Channel (BEC)</p>
+<div class="math">
+\[\begin{split}\mathcal X=\{0,1\} &amp;&amp; \mathcal Y=\{0,E,1\}\end{split}\]</div>
+<div class="math">
+\[\begin{split}Q_{|\mathcal X|\times |\mathcal Y|}&amp;=[p_{Y|X}(y|x)]\\
+&amp;=\left[\matrix{p_{Y|X}(0|0) &amp;&amp; p_{Y|X}(1|0)\\
+        p_{Y|X}(0|1) &amp;&amp; p_{Y|X}(1|1)}\right]\\
+&amp;=\left[\matrix{1-α &amp;&amp; α\\
+        α &amp;&amp; 1-α}\right]\end{split}\]</div>
+<p>Where <span class="math">\(α\)</span> is the <em>erasure probability</em></p>
+</li>
+<li><p class="first">A more general channel BSEC</p>
+<div class="math">
+\[\begin{split}\mathcal X=\{0,1\} &amp;&amp; \mathcal Y=\{0,E,1\}\end{split}\]</div>
+<div class="math">
+\[\begin{split}Q_{|\mathcal X|\times |\mathcal Y|}&amp;=[p_{Y|X}(y|x)]\\
+&amp;=\left[\matrix{p_{Y|X}(0|0) &amp;&amp; p_{Y|X}(1|0)\\
+        p_{Y|X}(0|1) &amp;&amp; p_{Y|X}(1|1)}\right]\\
+&amp;=\left[\matrix{1-α-β &amp;&amp; α &amp;&amp; β\\
+        β &amp;&amp; 1-α-β &amp;&amp; α}\right]\end{split}\]</div>
+</li>
+</ol>
+</div>
+<div class="section" id="fundamental-problem">
+<h2>Fundamental Problem<a class="headerlink" href="#fundamental-problem" title="Permalink to this headline">¶</a></h2>
+<p>Need to transmit over the channel information at a high rate such that decodability at the receiver is possible with arbitrary low probability of error</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Given a DMC <span class="math">\((\mathcal X,\mathcal Y,p_{Y|X})\)</span>, its &#8220;information&#8221; capacity denoted by <span class="math">\(C\)</span> is defined as:</p>
+<div class="math">
+\[C:=max_{p_X}I(X;Y)\]</div>
+<p>where <span class="math">\(X\)</span> is the input of the channel</p>
+<p>and <span class="math">\(Y\)</span> is the output of the channel</p>
+<p class="last">maximization is taken over all input distributions <span class="math">\(p_X\)</span></p>
+</div>
+<div class="admonition-remark admonition">
+<p class="first admonition-title">Remark</p>
+<ol class="last arabic">
+<li><ul class="first simple">
+<li><span class="math">\(C\geq 0\)</span>, since <span class="math">\(I(X;Y)\geq0\)</span></li>
+<li><span class="math">\(C\leq min(log_2|\mathcal X|, log_2|\mathcal Y|)\)</span> bounded</li>
+<li><span class="math">\(I(X;Y)\)</span> is concave (and continuous in the <em>variational distance</em> <a class="footnote-reference" href="#id2" id="id1">[1]</a>) in <span class="math">\(p_X\)</span> (for a fixed <span class="math">\(p_{Y|X}\)</span>)</li>
+<li><span class="math">\(C\)</span> is <em>well-defined</em>: there exists at least one input distribution <span class="math">\(p_X^*\)</span> that maximizes <span class="math">\(I(X;Y)\)</span></li>
+</ul>
+</li>
+<li><p class="first">For a channel, its &#8220;operational&#8221; capacity will be defined as the highest rate in bits/channel symbol at which information can be transmitted over the channel via block code and recovered at the receiver with arbitrarily low error probability.</p>
+<p>We will see via Shannon&#8217;s channel coding Theorem, that for a DMC,</p>
+<p>operational capacity = &#8220;info capacity&#8221;= <span class="math">\(C=max_{p_X}I(X;Y)\)</span></p>
+</li>
+</ol>
+</div>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><span class="math">\(d_{var}(p_X,p_{X'})=\sum_{\mathcal X}|p_{X'}(x)-p_X(x)|\)</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">General channel with Memory</a><ul>
+<li><a class="reference internal" href="#fundamental-problem">Fundamental Problem</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-10-22.html" title="previous chapter">Huffman Codes for Non-Binary Code Alphabets (<span class="math">\(D\geq 3\)</span>) and Channel Coding</a></li>
+      <li>Next: <a href="2013-10-28.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-10-24.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

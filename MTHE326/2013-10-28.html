@@ -1,0 +1,228 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Winding Numbers &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Liouville Theorem, Cauchy Differentiation Formula" href="2013-10-29.html" />
+    <link rel="prev" title="Proof of Cauchy’s Theorem (version 3), Consequences, Cauchy Integral Formula" href="2013-10-24.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-29.html" title="Liouville Theorem, Cauchy Differentiation Formula"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-24.html" title="Proof of Cauchy’s Theorem (version 3), Consequences, Cauchy Integral Formula"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="winding-numbers">
+<h1>Winding Numbers<a class="headerlink" href="#winding-numbers" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A <em>winding number</em> (or index) counts the number of times a closed loop goes around a point.</p>
+<p>If <span class="math">\(γ\)</span> is a closed curve around <span class="math">\(z_0\in\mathbb C\)</span>, <span class="math">\(z_0\notin γ\)</span>, then we define the index by</p>
+<div class="last math">
+\[I(γ,z_0)=\frac{1}{2πi}\int_γ\frac{1}{z-z_0}dz\]</div>
+</div>
+<div class="admonition-proposition admonition">
+<p class="first admonition-title">Proposition</p>
+<p>The index is always an integer.</p>
+<p>Let <span class="math">\(γ=γ(s)\)</span> for <span class="math">\(s\in [0,1]\)</span> and let</p>
+<div class="math">
+\[g(t)=\int_0^t\frac{γ'(s)}{γ(s)-z_0}ds\]</div>
+<p>By FTC (for real functions),</p>
+<div class="math">
+\[g'(t)=\frac{γ'(s)}{γ(s)-z_0}\]</div>
+<p>so,</p>
+<div class="math">
+\[\frac{d}{dt}e^{-g(t)}(γ(t)-z_0)=0\]</div>
+<p>(which we verify by taking real and imaginary parts) so,</p>
+<div class="math">
+\[e^{-g(0)}(γ(0)-z_0)=e^{-g(1)}(γ(1)-z_0)\]</div>
+<p>but <span class="math">\(γ(0)=γ(1)\neq z_0\)</span></p>
+<p>So <span class="math">\(e^{-g(0)}=e^{-g(1)}\)</span>. But <span class="math">\(g(0)=0\)</span> so <span class="math">\(e^{-g(1)}=1\)</span></p>
+<p>Thus, <span class="math">\(g(1)=2πik\)</span> for <span class="math">\(k\in\mathbb Z\)</span>.</p>
+<p>So,</p>
+<div class="last math">
+\[\frac{1}{2πi}g(1)=\frac{1}{2πi}\int_γ\frac{1}{z-z_0}dz=k\in\mathbb Z\]</div>
+</div>
+<p>Neat, not very surprising. More surprising:</p>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Cauchy&#8217;s Integral Formula (Part 1)</p>
+<p>Suppose that <span class="math">\(D\)</span> is simply connected and <span class="math">\(f:D\to\mathbb C\)</span> is holomorphic. If <span class="math">\(γ\)</span> is a closed curve winding once around <span class="math">\(z_0\in D\)</span>, <span class="math">\(z_0\notin γ\)</span>, then</p>
+<div class="math">
+\[f(z_0)=\frac{1}{2πi}\int_γ\frac{f(z)}{z-z_0}dz\]</div>
+<p>why is this special?</p>
+<ol class="loweralpha simple">
+<li><span class="math">\(f(z)\)</span> is completely determined by its behaviour on <span class="math">\(γ\)</span> (not that surprising if you know Green&#8217;s Theorem)</li>
+<li>The value of <span class="math">\(f\)</span> is obtained by <em>integrating</em> <span class="math">\(f\)</span>.</li>
+</ol>
+<p>Proof:</p>
+<p>It is not hard to see that <span class="math">\(γ\)</span> is homotopic to <span class="math">\(γ_r\)</span> in <span class="math">\(\mathbb C\backslash \{z_0\}\)</span>, a counter-clockwise circle of radius <span class="math">\(r\)</span> centered at <span class="math">\(z_0\)</span> (for <span class="math">\(r\)</span> small enough)</p>
+<p>So,</p>
+<div class="math">
+\[\frac{1}{2πi}\int_γ\frac{f(w)}{w-z_0}dw=\frac{1}{2πi}\int_{γ_r}\frac{f(w)}{w-z_0}dw\]</div>
+<p>by Cauchy&#8217;s Theorem.</p>
+<p>We already know:</p>
+<div class="math">
+\[\frac{1}{2πi}\int_{γ_r}\frac{1}{w-z_0}dw=\frac{1}{2πi}\cdot 2πi=1\]</div>
+<p>So,</p>
+<div class="math">
+\[\frac{1}{2πi}\int_{γ_r}\frac{f(z_0)}{w-z_0}dw=f(z_0)\]</div>
+<p>So we need to show</p>
+<div class="math">
+\[\frac{1}{2πi}\int_{γ_r}\frac{f(w)}{w-z_0}dw=\frac{1}{2πi}\int_{γ_r}\frac{f(z_0)}{w-z_0}dw\]</div>
+<p>Or, equivalently:</p>
+<div class="math">
+\[\frac{1}{2πi}\int_{γ_r}\frac{f(w)-f(z_0)}{w-z_0}dw=0\]</div>
+<p>We know</p>
+<div class="math">
+\[|\frac{1}{2πi}\int_{γ_r}\frac{f(w)-f(z_0)}{w-z_0}dw|\leq |\frac{1}{2πi}|\cdot max_{w\in γ_r}|\frac{f(w)-f(z_0)}{w-z_o}|\cdot 2πr\]</div>
+<p>Also, <span class="math">\(|w-z_0|=r\)</span> for <span class="math">\(w\in γ_r\)</span>.</p>
+<p>Thus,</p>
+<div class="math">
+\[|\frac{1}{2πi}\int_{γ_r}\frac{f(w)-f(z_0)}{w-z_0}dw|=M_r:=max_{w\in γ_r}|f(w)-f(z_0)|\]</div>
+<p>But <span class="math">\(f\)</span> is continuous, so for all <span class="math">\(ε&gt;0\)</span>, <span class="math">\(\exists δ&gt;0\)</span> s.t. <span class="math">\(|f(w)-f(z_0)|&lt;ε\)</span> if <span class="math">\(|w-z_0|&lt;δ\)</span>. If we make <span class="math">\(r\)</span> small enough that <span class="math">\(γ_r\subset D_δ(z_0)\)</span> then <span class="math">\(M_r&lt;ε\)</span>, so</p>
+<div class="math">
+\[\begin{split}|\frac{1}{2πi}\int_γ\frac{f(w)-f(z_0)}{w-z_0}dw|&lt;ε\end{split}\]</div>
+<p class="last">for all <span class="math">\(ε&gt;0\)</span>, thus 0. Giving proof.</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p><span class="math">\(γ\)</span> winds around 3 once counterclockwise, then:</p>
+<div class="last math">
+\[\frac{1}{2πi}\int_γ\frac{z^3+z-2}{z-3}dz=28\]</div>
+</div>
+<div class="section" id="integrals-of-cauchy-type">
+<h2>Integrals of &#8220;Cauchy type&#8221;<a class="headerlink" href="#integrals-of-cauchy-type" title="Permalink to this headline">¶</a></h2>
+<p>If <span class="math">\(g:γ\to\mathbb C\)</span> is continuous and <span class="math">\(γ\subset \mathbb C\)</span> is a curve, then we define</p>
+<div class="math">
+\[G(z_0)=\frac{1}{2πi}\int_γ\frac{g(w)}{w-z_0}dw\]</div>
+<p>for <span class="math">\(z_0\notin γ\)</span></p>
+<p>Claim: <span class="math">\(G: \mathbb C\backslash γ\to \mathbb C\)</span> is holomorphic.</p>
+<div class="admonition-theorem-1-cauchy-type-integrals-are-analytic admonition">
+<p class="first admonition-title">Theorem 1 (Cauchy-Type Integrals are analytic)</p>
+<p>If <span class="math">\(γ\)</span> is a curve (not necessarily a loop) and <span class="math">\(g:γ\to\mathbb C\)</span> is continuous then:</p>
+<div class="math">
+\[G(z)=\frac{1}{2πi}\int_γ\frac{g(w)}{w-z}dw\]</div>
+<p>is analytic on <span class="math">\(\mathbb C\backslash γ\)</span> and the kth derivative is given by:</p>
+<div class="math">
+\[g^{(k)}(z)=\frac{k!}{2πi}\int_γ\frac{g(w)}{(w-z)^{k+1}}dw\]</div>
+<p>Heuristic idea: See Homework Problem 1</p>
+<p class="last">Proof: Later.</p>
+</div>
+<div class="admonition-theorem-cauchy-s-differentiation-formula-cdf admonition">
+<p class="first admonition-title">Theorem (Cauchy&#8217;s Differentiation Formula) (CDF)</p>
+<p>If <span class="math">\(f:D\to\mathbb C\)</span> is analytic on simply connected <span class="math">\(D\)</span>, then <span class="math">\(f\)</span> is <em>infinitely differentiable</em> on <span class="math">\(D\)</span> and for each <span class="math">\(z_0\in D\)</span>,</p>
+<div class="math">
+\[f^{(k)}(z)=\frac{k!}{2πi}\int_γ\frac{f(w)}{(w-z^{k+1})}dw\]</div>
+<p>for any closed loop <span class="math">\(g\subset D\)</span> with <span class="math">\(I(γ,z_0)=1\)</span></p>
+<p>Proof: follows from part 1 and analyticity of Cauchy Type Integrals.</p>
+<div class="admonition-example last admonition">
+<p class="first admonition-title">Example</p>
+<div class="last math">
+\[\begin{split}\int_{|z|=1}\frac{e^z}{z^3}dz&amp;=\frac{2πi}{2!}(\frac{2!}{2πi}\int_{|z|=1}\frac{e^z}{(z-0)^3}dz)\\
+&amp;=πi(\frac{d^2}{dz^2}|_0)\\
+&amp;=πi(e^0)=πi\end{split}\]</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Winding Numbers</a><ul>
+<li><a class="reference internal" href="#integrals-of-cauchy-type">Integrals of &#8220;Cauchy type&#8221;</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-10-24.html" title="previous chapter">Proof of Cauchy&#8217;s Theorem (version 3), Consequences, Cauchy Integral Formula</a></li>
+      <li>Next: <a href="2013-10-29.html" title="next chapter">Liouville Theorem, Cauchy Differentiation Formula</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-10-28.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

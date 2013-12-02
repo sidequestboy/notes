@@ -1,0 +1,190 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Markov Chain Monte Carlo &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Example of Markov chain Monte Carlo and Time Reversibility" href="2013-10-30.html" />
+    <link rel="prev" title="An Example of solving a Stationary Distribution" href="2013-10-25.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-30.html" title="Example of Markov chain Monte Carlo and Time Reversibility"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-25.html" title="An Example of solving a Stationary Distribution"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="markov-chain-monte-carlo">
+<h1>Markov Chain Monte Carlo<a class="headerlink" href="#markov-chain-monte-carlo" title="Permalink to this headline">¶</a></h1>
+<p>Let <span class="math">\(S\)</span> be a discrete state space</p>
+<p>Let <span class="math">\(Π=(Π_i)_{i\in S}\)</span> be a vector indexed by states (i.e. <span class="math">\(Π\)</span> is a function on <span class="math">\(S\)</span>) such that <span class="math">\(Π_i&gt;0\)</span> for all <span class="math">\(i\in S\)</span> and <span class="math">\(\sum_{i\in S}Π_i&lt;\infty\)</span></p>
+<p>Then we can assume (by dividing by <span class="math">\(\sum_{i\in S}Π_i\)</span>) that <span class="math">\(Π\)</span> is a pmg over <span class="math">\(S\)</span>.</p>
+<div class="section" id="goal">
+<h2>Goal:<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+<p>Draw samples from this distribution</p>
+<p>Method is to construct a Markov chain that has, as its stationary distribution, <span class="math">\(Π\)</span>.</p>
+</div>
+<div class="section" id="metropolis-hastings-algorithm">
+<h2>Metropolis-Hastings Algorithm<a class="headerlink" href="#metropolis-hastings-algorithm" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Let <span class="math">\(Q=(q_{ij})_{i,j\in S}\)</span> be the transition matrix of an irreducible Markov chain over <span class="math">\(S\)</span>.</p>
+<blockquote>
+<div><p>In practice, one should choose <span class="math">\(Q\)</span> so that the Markov chain specified by <span class="math">\(Q\)</span> is not difficult to simulate.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Define the <em>acceptance probabilities</em> <span class="math">\(a_{ij}\)</span></p>
+<blockquote>
+<div><div class="math" id="equation-1">
+<span class="eqno">(1)</span>\[a_{ij}=min\{1, \frac{Π_jq_{ji}}{Π_iq_{ij}}\}\]</div>
+</div></blockquote>
+</li>
+<li><p class="first">Now let <span class="math">\(p_{ij}=q_{ij}a_{ij}\)</span> for all <span class="math">\(i,j\in S\)</span> (<span class="math">\(i\neq j\)</span>) and <span class="math">\(p_{ii}=1-\sum_{j\neq i}p_{ij}\)</span></p>
+<blockquote>
+<div><p>Then <span class="math">\(P=(p_{ij})_{i,j\in S}\)</span> is the transition matrix of a Markov chain with stationary distribution <span class="math">\(Π\)</span>. To see this, we will check that <span class="math">\(Π\)</span> satisfies the local balance equations for this Markov chain.</p>
+<p>Let us adopt the convention that</p>
+<div class="math">
+\[0\cdot\text{ anything}=0\]</div>
+<p>Fix <span class="math">\(i\neq j\)</span>.</p>
+<p>The local balance equation is:</p>
+<div class="math">
+\[Π_ip_{ij}=Π_jp_{ji}\]</div>
+<p>or</p>
+<div class="math" id="equation-2">
+<span class="eqno">(2)</span>\[Π_iq_{ij}a_{ij}=Π_jq_{ji}a_{ji}\]</div>
+<p>If <span class="math">\(q_{ij}=q_{ji}=0\)</span>, then both sides are 0.</p>
+<p>If <span class="math">\(q_{ij}=0\)</span> and <span class="math">\(q_{ji}&gt;0\)</span>, then the LHS of <a href="#equation-2">(2)</a> is 0, and <span class="math">\(a_ji=0\)</span> by <a href="#equation-1">(1)</a></p>
+<p>If <span class="math">\(q_{ij}&gt;0\)</span> and <span class="math">\(q_{ji}=0\)</span>, then it&#8217;s the same as previous case.</p>
+<p>If <span class="math">\(q_{ij}&gt;0\)</span> and <span class="math">\(q_{ji}&gt;0\)</span> then consider 2 cases:</p>
+<ol class="lowerroman">
+<li><p class="first"><span class="math">\(Π_jq_{ji}&gt;Π_iq_{ij}\)</span>. Then <span class="math">\(a_{ij}=1\)</span> and <span class="math">\(a_{ji}=\frac{Π_iq_{ij}}{Π_jq_{ji}}\)</span></p>
+<blockquote>
+<div><p>Then LHS <span class="math">\(=Π_iq_{ij}\)</span> and RHS is also <span class="math">\(Π_iq_{ij}\)</span></p>
+</div></blockquote>
+</li>
+<li><p class="first"><span class="math">\(Π_jq_{ji}&lt;Π_iq_{ij}\)</span>, same as above.</p>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<p>To implement this, we simulate the Markov chain with transition matrix <span class="math">\(P\)</span>. When in state <span class="math">\(i\)</span>, choose the next state according to <span class="math">\(Q\)</span>.</p>
+<p>If state <span class="math">\(j\)</span> is selected, then move to state <span class="math">\(j\)</span> with probability <span class="math">\(a_{ij}\)</span>; otherwise state in state <span class="math">\(i\)</span>.</p>
+<div class="admonition-application admonition">
+<p class="first admonition-title">Application</p>
+<p>Simulated Annealing</p>
+<p>Let <span class="math">\(b=(b_i)_{i\in S}\)</span> be a function over <span class="math">\(S\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><span class="math">\(b_i\)</span> is allowed to be negative</p>
+</div>
+<p>Find the state <span class="math">\(i\in S\)</span> that minimizes <span class="math">\(b_i\)</span>.</p>
+<p>Form <span class="math">\(Π_i=e^{\frac{-b_i}{T}}\)</span>, where <span class="math">\(T&gt;0\)</span> is a parameter called the &#8220;temperature&#8221;. If <span class="math">\(T\)</span> is large, then <span class="math">\(Π\)</span> will be relatively flat over <span class="math">\(S\)</span>. As <span class="math">\(T\)</span> decreases, the value of <span class="math">\(Π_i\)</span>, where <span class="math">\(b\)</span> is minimized, gets large relative to other values of <span class="math">\(Π_j\)</span>.</p>
+<div class="admonition-idea last admonition">
+<p class="first admonition-title">Idea</p>
+<p>Run Markov chain with stationary distribution (normalized) <span class="math">\(Π\)</span>.</p>
+<p>Run for a while - keep track of maximum so far</p>
+<p>Lower the temerature - run for a while.</p>
+<p class="last">Keep repeating until good solution is found.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Markov Chain Monte Carlo</a><ul>
+<li><a class="reference internal" href="#goal">Goal:</a></li>
+<li><a class="reference internal" href="#metropolis-hastings-algorithm">Metropolis-Hastings Algorithm</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-10-25.html" title="previous chapter">An Example of solving a Stationary Distribution</a></li>
+      <li>Next: <a href="2013-10-30.html" title="next chapter">Example of Markov chain Monte Carlo and Time Reversibility</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-10-28.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

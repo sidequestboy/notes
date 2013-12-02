@@ -1,0 +1,140 @@
+****************************************
+Huffman Optimal Coding Algorithm for DMS
+****************************************
+
+.. admonition:: Corollary
+
+    Huffman - mid-1950s as a Masters Student 3-4 page paper
+
+    Consider a DMS :math:`\mathcal X=\{a_1,...,a_M\}` with source symbol probabilities :math:`p_1\leq p_2\leq ... p_M`
+
+    Consider a *reduced source* :math:`\mathcal Y` obtained from :math:`\mathcal X` by combining the two *least likely symbols* :math:`a_{M-1},a_{M}` into an *equivalent* symbol :math:`a_{M-1,M}` (with probability :math:`p_{M-1}+p_M`)
+
+    .. math::
+        \mathcal Y = \{a_1,...,a_{M-1,M}\}
+
+    with probabilities :math:`p_1\leq p_2\leq ... (p_{M-1}+p_M)`
+
+    Suppose we have an *optimal* (binary prefix) code :math:`\mathcal C_2` for the reduces source :math:`\mathcal Y`. We now construct a code :math:`\mathcal C_1` for the original source :math:`\mathcal X` as follows:
+
+    * The codewords for symbols :math:`a_1,a_2,...,a_{M-2}` are exactly the same as those in :math:`\mathcal C_2`
+    
+        .. math::
+            f_1(a_i)=f_2(a_i) & i=1,...,M-2
+    * The codewords for symbols :math:`a_{M-1}, a_M` are formed by appending a 0 and a 1, respectively to the codeword for symbol :math:`a_{M-1,M}` in :math:`\mathcal C_2`:
+        
+        .. math::
+            f_1(a_{M-1})=f_2(a_{M-1,M})0\\
+            f_1(a_M) = f_2(a_{M-1,M})1
+
+    Conclusion:
+    -----------
+
+    :math:`\mathcal C_1` is an optimal code for the original source :math:`\mathcal X`.
+
+    .. note::
+        There is a recursive algorithm underlying here for the construction of optimal binary prefix codes:
+
+        "Repeatedly apply the Huffman result to the source until you are left with a reduced source of size 2 - that is, :math:`M-2` times.
+
+        An optimal binary code for this reduced source must consist of two codewords: '0', and '1'. Then proceed backwards constructing optimal codes for each reduced source until you reach the original source."
+
+.. admonition:: Examples
+    
+    1.
+
+        .. math::
+            \mathcal X = \{a_1,a_2,a_3,a_4\}, & p_1=\frac{1}{2},p_2=\frac{1}{4},p_3=p_4=\frac{1}{8}
+
+        we have :math:`p_1\geq p_2 \geq p_3 \geq p_4`
+
+        .. image::
+            :width: 50%
+
+        Thus, the Huffman Code maps:
+
+        .. math::
+            f:\mathcal X & \to \{0,1\}^*\\
+            a_1 &\to 0\\
+            a_2 &\to 10\\
+            a_3 &\to 110\\
+            a_4 &\to 111
+
+        This Huffman code is *absolutely optimal*, since it achieves the entropy
+
+    2.
+
+        .. math::
+            \mathcal X = \{a_1,...,a_6\}, & p_i=(\frac{3}{8},\frac{1}{4},\frac{1}{8},\frac{1}{8},\frac{1}{16},\frac{1}{16})
+
+        .. image::
+
+        .. math::
+            f:\mathcal X & \to \{0,1\}^*\\
+            a_1 &\to 1\\
+            a_2 &\to 011\\
+            a_3 &\to 010\\
+            a_4 &\to 001\\
+            a_5 &\to 0000\\
+            a_6 &\to 0001
+
+        .. math::
+            \bar R=\frac{\bar l}{1}=\frac{19}{8}=2.375 \frac{\text{code bit}}{\text{source symbol}}\\
+            H(X)=2.28\text{ bits}
+
+        .. note::
+            .. math::
+                H(X)\leq \bar l\leq H(X)+1
+
+    3.  nth-order Huffman codes:
+
+        By encoding larger blocks of source symbols, we can improve Huffman code efficiency.
+
+        .. math::
+            f:\mathcal X^n\to \{0,1\}^*
+
+        :math:`n=2` Now source :math:`\mathcal X^2=\{a_1a_1,a_1a_2,a_1,a_3,...,a_4a_4\}`
+
+        .. admonition:: Exercise
+
+            Construct 2nd order Huffman Code
+
+            .. math::
+                f: \mathcal X^2\to \{0,1\}^*\\
+                \bar R=\frac{\bar l}{n}=\frac{\bar l}{2}=\frac{3.859}{2}=1.9297\frac{\text{code bit}}{\text{source symbol}}
+
+            .. math::
+                H(X)\leq\bar R< H(X)+\frac{1}{2}
+
+            Thus, an nth order Huffman code gets within :math:`\frac{1}{n}` of the entropy of the source. However,
+
+.. admonition:: Observations
+
+    * Huffman Codes are not unique - i.e there is more than one possible Huffman code (ex. by inverting all the code bits of a Huffman code, you get another Huffman code, or by resolving probability ties in different ways in the Huffman algorithm, you get different Huffman codes.) But, the *all* have identical, minimal, :math:`\bar l` (and :math:`\bar R`).
+    * One can also obtain optimal codes which are not Huffman (e.g. by interchanging two codewords of the same length in a Huff. code, you get another non-Huffman, but *optimal* code.)
+    * We can also get an *optimal suffix code* from a Huffman code (which is prefix) by reversing codewords:
+      
+      +--------------------+--------------------+
+      | Huffman            | Suffix             |
+      +====================+====================+
+      | :math:`a_1\to 0`   | :math:`a_1\to 0`   |
+      +--------------------+--------------------+
+      | :math:`a_2\to 10`  | :math:`a_2\to 01`  |
+      +--------------------+--------------------+
+      | :math:`a_3\to 110` | :math:`a_3\to 011` |
+      +--------------------+--------------------+
+      | :math:`a_4\to 111` | :math:`a_4\to 111` |
+      +--------------------+--------------------+
+    
+    * For an nth order Huffman code:
+    
+      .. math::
+          f:\mathcal X^n\to\{0,1\}^*\\
+          H(\mathcal X)\leq \frac{H(X^n)}{n}\leq \bar R=\frac{\bar l}{n}<H(X^n)+\frac{1}{n}
+
+      for a stationary source.
+
+      As :math:`n` increases, :math:`\bar R\to H(\mathcal X)`
+
+      but, complexity grows *exponentially* with :math:`n` (:math:`\sim |\mathcal X|^n`) and encoding delay (:math:`n`).
+

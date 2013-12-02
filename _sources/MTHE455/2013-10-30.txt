@@ -1,0 +1,64 @@
+**********************************************************
+Example of Markov chain Monte Carlo and Time Reversibility
+**********************************************************
+
+Example using Markov chain Monte Carlo
+======================================
+Bayesian Statistical Inference
+------------------------------
+In statistics, we observe data :math:`x_1, ... ,x_n` and a common statistical model for the data is that realizations of the variables :math:`X_1, ... ,X_n`, where it is often assumed that the :math:`X_i` are independent and identically distributed each with an unknown pdf/pmf :math:`f(x|θ)`, where :math:`θ` is an unknown parameter which indexes a family of possible distributions for the :math:`X_i`.
+
+The problem is to infer the value of :math:`θ` that corresponds to the observed data.
+
+Suppose that :math:`θ\in Θ`, where :math:`Θ` is the parameter space. In general, :math:`Θ` is a continuous space, but let us assume :math:`Θ` is discrete here, but :math:`Θ` could be multidimensional.
+
+In the Bayesian approach, a distribution :math:`Π(θ)` is placed on :math:`Θ`, which is called prior distribution on :math:`Θ`.
+
+With the two ingredients :math:`f(x|θ)` and :math:`Π(θ)`, we can compute (in principle) the conditional distributions of :math:`θ` given the data :math:`x`, using Baye's theorem:
+
+.. math::
+    Π(θ|x)=\frac{Π(θ)f(x|θ)}{\sum_{θ'\in Θ}Π(θ')f(x|θ')}
+
+.. note::
+    The denominator (normalization constant) can often be not feasible to compute. But for Markov chain Monte Carlo, the denominator need not be computed (it cancels in the ratio :math:`Π(θ_1|x)/Π(θ_2|x)`)
+
+.. note:: The Markov chain Monte Carlo material will not be on homeworks or exams
+
+Time Reversibility
+==================
+Let :math:`\{X_n: n\geq 0\}` be a Markov chain. Suppose it is stationary with stationary distribution :math:`Π`
+
+Extend the time index to negative values, so we have :math:`\{X_n: -\infty<n<\infty\}`
+
+Let :math:`Y_n=X_{-n}`, for :math:`n\in \mathbb Z`/
+
+The process :math:`\{Y_n; n\in \mathbb Z\}` is called the *reversed process*.
+
+The :math:`Y` process is again a Markov chain.
+
+We have that given :math:`X_n=i`, :math:`X_m` is independent of :math:`X_k` for any :math:`m>n` and any :math:`k<n`.
+
+:math:`(X_k)` ... :math:`(X_n=i)` ... :math:`(X_m)` tells us that :math:`X_m` is independent of :math:`X_k`, and, reversing time:
+
+:math:`(X_{-m})` ... :math:`(X_n={-i})` ... :math:`(X_{-k})` we have (by symmetry of independence) that :math:`X_k` is still independent of :math:`X_m`, for any :math:`-k>-n` and any :math:`-m<-n`.
+
+Moreover, the reversed chain has the same stationary distribution, since the long run proportion of time the process spends in state :math:`i` is the same whether going forwards or backwards in time.
+
+For local flow between a pair of states :math:`i` and :math:`j`, however, the flow going forwards in time need not be the same as the flow going backwards in time.
+
+Let us compute the transition probabilities of the reversed chain.
+
+.. math::
+    P(Y_n=j|Y_{n-1}=i)&=P(X_{-n}=j|X_{-(n-1)}=i)\\
+                      &=\frac{P(X_{-n}=j, X_{-(n-1)}=i)}{P(X_{-(n-1)}=i)}\\
+                      &=\frac{P(X_{-(n-1)}|X_{-n}=j)P(X_{-n}=j)}{P({X_{-(n-1)}=i})}\\
+                      &=\frac{p_{ji}Π_j}{Π_i}
+The reversed chain will have the same transition probabilities, :math:`\{p_{ij}\}`, as the forward chain if and only if
+
+.. math::
+    p_{ij}=\frac{p_{ji}Π_j}{Π_i}\\
+    \iff Π_ip_{ij}=Π_jp_{ji}
+
+if and only if local balance is satisfied.
+
+In this case, we say that the :math:`X` Markov chain is *time-reversible*.

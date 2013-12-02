@@ -1,0 +1,221 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Huffman Codes for Non-Binary Code Alphabets (\(D\geq 3\)) and Channel Coding &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="General channel with Memory" href="2013-10-24.html" />
+    <link rel="prev" title="Huffman Optimal Coding Algorithm for DMS" href="2013-10-21.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-24.html" title="General channel with Memory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-21.html" title="Huffman Optimal Coding Algorithm for DMS"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="huffman-codes-for-non-binary-code-alphabets-and-channel-coding">
+<h1>Huffman Codes for Non-Binary Code Alphabets (<span class="math">\(D\geq 3\)</span>) and Channel Coding<a class="headerlink" href="#huffman-codes-for-non-binary-code-alphabets-and-channel-coding" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="huffman-codes-for">
+<h2>Huffman Codes for <span class="math">\(D\geq 3\)</span><a class="headerlink" href="#huffman-codes-for" title="Permalink to this headline">¶</a></h2>
+<p>If <span class="math">\(D\geq 3\)</span>, we might not have a sufficient number of source symbols so that when we combine <span class="math">\(D\)</span> of them at a time in the Huffman algorithm, we are ultimately left with <span class="math">\(D\)</span> symbols. That is, we need that at the end stage of the algorithm, as we reduce iteratively the source size by <span class="math">\(D-1\)</span> symbols, we are ultimately left with <span class="math">\(D\)</span> symbols.</p>
+<p>So, we need that the initial number of symbols in the source alphabet is equal to <span class="math">\(D+s(D-1)\)</span> for some integer <span class="math">\(s\)</span>.</p>
+<p>Hence, &#8220;dummy&#8221; symbols (with zero probabilities) must be added to the initial source alphabet <span class="math">\(\mathcal X\)</span> to bring the size of the expanded source alphabet <span class="math">\(\mathcal X'\)</span> to:</p>
+<div class="math">
+\[\begin{split}|\mathcal X'|=D+s(D-1)\\
+\text{s.t. }|\mathcal X'|\geq|\mathcal X|\end{split}\]</div>
+<p>(i.e. <span class="math">\(|\mathcal X'|\)</span> is the smallest integer <span class="math">\(\geq |\mathcal X|\)</span> s.t. <span class="math">\(|\mathcal X'|\equiv 1 (mod. D-1)\)</span>)</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[\begin{split}f:\mathcal X\to \{0,1,2\}^* &amp; (D=3)\end{split}\]</div>
+<p>(<span class="math">\(m=1\)</span>)</p>
+<div class="math">
+\[\mathcal C=\{a_1,...,a_6\}\]</div>
+<p>with</p>
+<div class="math">
+\[(p_1,...,p_6)=(\frac{1}{4},\frac{1}{4},\frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8})\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is a 2-adic distribution - thus it has an absolutely optimal code in base 2.</p>
+</div>
+<p>The wrong way</p>
+<p>need to add dummy symbols s.t.</p>
+<div class="math">
+\[|\mathcal X'|\geq |\mathcal X|=6\]</div>
+<p>with</p>
+<div class="math">
+\[|\mathcal X'|=3+2s\]</div>
+<p>Add <em>one</em> dummy symbol:</p>
+<div class="math">
+\[\begin{split}a_7^* &amp; (p_7=0)\end{split}\]</div>
+<p>Ternary code:</p>
+<div class="math">
+\[\begin{split}a_1&amp;\to 0\\
+a_2&amp;\to 1\\
+a_3&amp;\to 20\\
+a_4&amp;\to 21\\
+a_5&amp;\to 220\\
+a_6&amp;\to 221\\
+a_7^*&amp;\to 222\end{split}\]</div>
+<div class="math">
+\[\bar R=\frac{\bar l}{1}=\sum_{i=1}^6 p_il_i=\frac{7}{4}=1.75\frac{\text{ternary code symbols}}{\text{source symbol}}\]</div>
+<p>while</p>
+<div class="math">
+\[H_3(X)=-\sum_{i=1}^6p_i\log_3 p_i=1.577\frac{\text{ternary code symbols}}{\text{source symbol}}\]</div>
+<div class="last math">
+\[\begin{split}H_3(X)\leq \bar R&lt;H_3(X)+1\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="universal-lossless-source-coding">
+<h2>Universal Lossless Source Coding<a class="headerlink" href="#universal-lossless-source-coding" title="Permalink to this headline">¶</a></h2>
+<p>(ch. 13 text | online notes (end of ch. 4))</p>
+<p>Up to now, we assumed that the source distribution (for now assuming the source is DMS) is known <em>a priori</em></p>
+<p><strong>Q:</strong> what if ditribution is not known?</p>
+<div class="section" id="basic-approach">
+<h3>Basic Approach<a class="headerlink" href="#basic-approach" title="Permalink to this headline">¶</a></h3>
+<p>Observe a large block of source data and estimate the source distribution. Using the estimated distribution, design Huffman code.</p>
+<div class="admonition-drawback admonition">
+<p class="first admonition-title">Drawback</p>
+<p class="last">Large delay (might have to wait a while to get a good estimate)</p>
+</div>
+</div>
+<div class="section" id="adaptive-huffman-code-gallager">
+<h3>Adaptive Huffman Code (Gallager)<a class="headerlink" href="#adaptive-huffman-code-gallager" title="Permalink to this headline">¶</a></h3>
+<p>Start with an initial guess of the source distribution (assuming the source is DMS) and as new data arrives, update the estimate and the Huffman tree.</p>
+</div>
+</div>
+<div class="section" id="fundamentals-of-channel-coding">
+<h2>Fundamentals of Channel Coding<a class="headerlink" href="#fundamentals-of-channel-coding" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="capacity">
+<h3>Capacity<a class="headerlink" href="#capacity" title="Permalink to this headline">¶</a></h3>
+<p>A communication system (with <em>no feedback</em>) is depicted as follows:</p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A discrete channel is characterized by:</p>
+<ul class="last">
+<li><p class="first">A finite input alphabet <span class="math">\(\mathcal X\)</span></p>
+</li>
+<li><p class="first">A finite output alphabet <span class="math">\(\mathcal Y\)</span></p>
+</li>
+<li><p class="first"><span class="math">\(\{p_{Y^n|X^n}(y^n|x^n)\}^\infty_{n=1}\)</span> sequence of conditional distribution</p>
+<blockquote>
+<div><div class="math">
+\[\begin{split}x^n=(x_1,...,x_n)\in\mathcal X^n\\
+y^n=(y_1,...,y_n)\in\mathcal Y^n\\
+(\sum_{y^n\in\mathcal Y^n}p_{Y^n|X^n}(y^n|x^n)=1 &amp;&amp; \forall x^n)\end{split}\]</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<p>side note: glasses pointer input device - blink to click or something</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Huffman Codes for Non-Binary Code Alphabets (<span class="math">\(D\geq 3\)</span>) and Channel Coding</a><ul>
+<li><a class="reference internal" href="#huffman-codes-for">Huffman Codes for <span class="math">\(D\geq 3\)</span></a></li>
+<li><a class="reference internal" href="#universal-lossless-source-coding">Universal Lossless Source Coding</a><ul>
+<li><a class="reference internal" href="#basic-approach">Basic Approach</a></li>
+<li><a class="reference internal" href="#adaptive-huffman-code-gallager">Adaptive Huffman Code (Gallager)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fundamentals-of-channel-coding">Fundamentals of Channel Coding</a><ul>
+<li><a class="reference internal" href="#capacity">Capacity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-10-21.html" title="previous chapter">Huffman Optimal Coding Algorithm for DMS</a></li>
+      <li>Next: <a href="2013-10-24.html" title="next chapter">General channel with Memory</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-10-22.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

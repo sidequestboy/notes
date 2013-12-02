@@ -1,0 +1,263 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Maximal differential entropy for real-valued random vectors &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="Memoryless Gaussian Channel" href="2013-11-21.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-11-18.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-21.html" title="Memoryless Gaussian Channel"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-18.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <p>if</p>
+<div class="math">
+\[\underscore Y=A\underscore X\]</div>
+<p>then</p>
+<div class="math" id="equation-*">
+<span class="eqno">(1)</span>\[h(\underscore Y)=h(\underscore X)+log|\Det A|\]</div>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>If</p>
+<div class="math">
+\[\underscore X_{n\times 1}\sim N(\underscore μ,k\underscore x_{n\times n})\]</div>
+<p>Then</p>
+<div class="math">
+\[h(\underscore X)=\frac{1}{2}\log_2[(2πe)^n(\det K\underscore x)]\]</div>
+<p>without loss of generality, <span class="math">\(\underscore μ=0\)</span></p>
+<p>Proof:</p>
+<p>Since covariance matrix <span class="math">\(K_{\underscore x}\)</span> is real-valued symmetric, then it is orthogonally diagonalizable:</p>
+<p><span class="math">\(\exists\)</span> <span class="math">\(n\times n\)</span> matrix orthogonal matrix <span class="math">\(A\)</span></p>
+<div class="math">
+\[(A=A^T)\]</div>
+<p>s.t. <span class="math">\(AK_{\underscore x}A^T\)</span> is a <em>diagonal matrix</em>. (with diagonal elements given by the eigenvalues of <span class="math">\(K\underscore x\)</span>)</p>
+<p>Therefore, for <span class="math">\(\underscore Y=A\underscore X\sim N(\underscore 0, AK_{\underscore x}A^T)\)</span></p>
+<p>where <span class="math">\(AK_{\underscore x}A^T\)</span> is diagonal &amp; Gaussian (<span class="math">\(Y_1,...,Y_n\)</span> are <em>independent</em> Gaussian)</p>
+<p>Therefore,</p>
+<div class="math">
+\[\begin{split}h(Y_1,...,Y_n)=h(\underscore Y)\\
+=h(Y_1)+h(Y_2)+...+h(Y_n)\text{ since }Y_i\text{ independent}\\
+=\sum_{i=1}^n \frac{1}{2}\log_2(2πeVar(Y_i))\text{ }Y_i\text{ is Gaussian}\\
+=\frac{n}{2}\log(2πe)+\frac{1}{2}\log[\prod_{i=1}^n Var(Y_i)]\\
+=\frac{1}{2}\log(2πe)^n + \frac{1}{2}\log[det K_{\underscore Y}]\\
+=\frac{1}{2}\log(2πe)^n + \frac{1}{2}\log[det K_{\underscore X}]\\
+=\frac{1}{2}\log_2[(2πe)^n det(K_{\underscore X})]\end{split}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="last math">
+\[\begin{split}K_{\underscore Y}=AK_{\underscore X}A^T\\
+det(K_{\underscore Y})=det^2 (A)det(K_{\underscore X})=det(K_{\underscore X})\\
+|det(A)|=1\end{split}\]</div>
+</div>
+<p class="last">By <a href="#equation-*">(1)</a>, <span class="math">\(h(\underscore X)=h(\underscore Y)\)</span></p>
+</div>
+<div class="section" id="maximal-differential-entropy-for-real-valued-random-vectors">
+<h1>Maximal differential entropy for real-valued random vectors<a class="headerlink" href="#maximal-differential-entropy-for-real-valued-random-vectors" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p>Let <span class="math">\(\underscore X_{n\times 1}=(X_1,...,X_n)\)</span> be a <em>real-valued</em> random vector with support <span class="math">\(\mathbb R^n\)</span>, mean vector <span class="math">\(\underscore μ\)</span> and covariance matrix <span class="math">\(k_{\underscore X}\)</span> (nxn)</p>
+<p>Then</p>
+<div class="math">
+\[\begin{split}h(\underscore X)=h(X_1,...,X_n)\\
+                \leq \frac{1}{2}\log_2[(2πe)^ndet(K_{\underscore X})]\end{split}\]</div>
+<p>with equality iff <span class="math">\(\underscore X\sim N(\underscore μ, K_{\underscore X})\)</span></p>
+<p>Proof:</p>
+<ol class="last arabic">
+<li><p class="first">Scalar case (n=1)</p>
+<p>let <span class="math">\(X\)</span> be real-valued with support <span class="math">\(R\)</span>, mean <span class="math">\(μ\)</span>, variance <span class="math">\(σ^2\)</span></p>
+<p>show <span class="math">\(h(X)\leq \frac{1}{2}\log_2(2πeσ^2)\)</span> with equality iff <span class="math">\(X\sim N(μ,σ^2)\)</span></p>
+<p>Proof:</p>
+<p>Let <span class="math">\(Y\sim N(μ,σ^2)\)</span>. Then</p>
+<div class="math">
+\[\begin{split}0\leq D(X||Y)\\
+ = \int f_X(t) \log_2\frac{f_X(t)}{\frac{1}{\sqrt{2πσ^2}e^{\frac{a(t-μ)^2}{2σ^2}}}}dt\\
+ =-h(X)+\int f_X(t)[\log_2(\sqrt{2πσ^2})+\frac{(t-μ)^2}{2σ^2}\log_2 e]dt\\
+ =-h(X)+ \frac{1}{2}\log(2πσ^2)+\frac{\log_2 e}{2σ^2}\int (t-μ)^2 f_X(t)dt\\
+ =-h(X)+\frac{1}{2}\log(2πeσ^2)\end{split}\]</div>
+<p>Therefore</p>
+<div class="math" id="equation-**">
+<span class="eqno">(2)</span>\[h(X)\leq \frac{1}{2}\log(2πeσ^2)\]</div>
+<p>with equality iff <span class="math">\(X\sim N(μ,σ^2)\)</span></p>
+</li>
+<li><p class="first">Multivariate case (n&gt;1)</p>
+<p>As in the Pf of the previous theorem, we can use an othogonal matrix <span class="math">\(A_{m\times n}\)</span> (<span class="math">\(A^T=A^{-1}\implies |det(A)|=1\)</span>):</p>
+<p>such that <span class="math">\(AK_{\underscore X}A^T\)</span> is diagonal</p>
+<p>So: for</p>
+<div class="math">
+\[\underscore Z_{n\times 1}=A\underscore X_{n\times 1}\]</div>
+<p>its covariance matrix <span class="math">\(K_{\underscore Z}=AK_{\underscore X}A^T\)</span> is diagonal.</p>
+<p>Thus, by <a href="#equation-*">(1)</a></p>
+<div class="math">
+\[\begin{split}h(\underscore X)=h(\underscore Z)-\log|Det A|\\
+=h(\underscore Z)\\
+=h(Z_1,...,Z_n)\\
+\leq \sum_{i=1}^n h(Z_i)\\
+\leq \sum_{i=1}^n \frac{1}{2}[2πeVar(Z_i)]\end{split}\]</div>
+<p>Where the last inequality follows from the n=1 case, <a href="#equation-**">(2)</a></p>
+<div class="math">
+\[= \frac{n}{2}\log_2(2πe)+\frac{1}{2}\log_2[\prod_{i=1}^n Var(Z_i)]\]</div>
+<p>And since <span class="math">\(K_{\underscore Z}\)</span> is diagonal,</p>
+<div class="math">
+\[\begin{split}= \frac{1}{2}\log_2(2πe)+\frac{1}{2}\log_2(det K_{\underscore Z})\\
+= \frac{1}{2}\log[(2πe)^ndet(K_{\underscore X})]\end{split}\]</div>
+<p>since <span class="math">\(|det(A)|=1\)</span></p>
+</li>
+</ol>
+</div>
+<div class="admonition-theorem-aep admonition">
+<p class="first admonition-title">Theorem (AEP)</p>
+<p>If <span class="math">\(X_1,...\)</span> are i.i.d. real-valued random variables with common pdf <span class="math">\(f_X\)</span>, then</p>
+<div class="math">
+\[-\frac{1}{n}\log_2 f_{X^n}(X_1,...,X_n)\rightarrow_{n\to\infty}h(X)\]</div>
+<p>in probability</p>
+<p class="last">Proof: by WLLN</p>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>For <span class="math">\(ε&gt;0\)</span>, and any <span class="math">\(n\)</span>, define <em>typical set</em> <span class="math">\(A_ε^{(n)}\)</span> with respect to <span class="math">\(f_X\)</span></p>
+<div class="math">
+\[A_ε^{(n)}=\{x^n\in S_X^n: |-\frac{1}{n}f_X^n(x_1,...,x_n)-h(X)|\leq ε\}\]</div>
+<p>where</p>
+<div class="math">
+\[f_{X^n}(x^n)=\prod_{i=1}^n f_X(x_i)\]</div>
+<p class="last"><span class="math">\(S_X=\)</span> support of <span class="math">\(X\)</span> = <span class="math">\(\{x\in\mathbb R: f_X(x)&gt;0\}\)</span></p>
+</div>
+<div class="admonition-theorem-consequence-of-aep admonition">
+<p class="first admonition-title">Theorem (Consequence of AEP)</p>
+<p>For iid real-valued RVs with pdf <span class="math">\(f_X\)</span>, the typical set satisfies:</p>
+<ol class="last arabic">
+<li><div class="first math">
+\[\begin{split}P[A_ε^{(n)}]&gt;1-ε\end{split}\]</div>
+<p>for <span class="math">\(n\)</span> suff. large</p>
+</li>
+<li><div class="first math">
+\[Vol(A_ε^{(n)})\leq 2^{n(h(X)+ε)}\]</div>
+</li>
+<li><div class="first math">
+\[\begin{split}Vol(A_ε^{(n)})&gt;(1-ε)2^{n(h(X)-ε)}\end{split}\]</div>
+<p>for <span class="math">\(n\)</span> suff. large.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="the-gaussian-channel">
+<h1>The Gaussian Channel<a class="headerlink" href="#the-gaussian-channel" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Consider a discrete-time channel with continuous input and output alphabets <span class="math">\(\mathcal X\subseteq \mathbb R\)</span>, <span class="math">\(\mathcal Y\subseteq \mathbb R\)</span>, and a conditional pdf <span class="math">\(f_{Y|X}\)</span>. The channel is <em>memoryless</em> if for sending <span class="math">\((x_1,...,x_n)\)</span> over the channel, the output <span class="math">\(y^n=(y_1,...,y_n)\)</span> is governed by</p>
+<div class="last math">
+\[f_{Y^n|X^n}(y^n|x^n)=\prod_{i=1}^nf_{Y|X}(y_i|x_i)\]</div>
+</div>
+<div class="section" id="additive-noise-gaussian-channel">
+<h2>Additive-noise Gaussian Channel<a class="headerlink" href="#additive-noise-gaussian-channel" title="Permalink to this headline">¶</a></h2>
+<div class="math">
+\[Y_i=X_i+Z_i\]</div>
+<p>for <span class="math">\(i=1,2,...\)</span></p>
+<p><span class="math">\(\{Z_i\}\)</span> are iid Gaussian (<span class="math">\(Z_i\sim N(0,N)\)</span>) white Gaussian noise Channel</p>
+<div class="math">
+\[f_{Y|X}=f_Z(y-x)=\frac{1}{\sqrt{2πN}}e^{\frac{-(y-x)^2}{2N}}\]</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Maximal differential entropy for real-valued random vectors</a></li>
+<li><a class="reference internal" href="#the-gaussian-channel">The Gaussian Channel</a><ul>
+<li><a class="reference internal" href="#additive-noise-gaussian-channel">Additive-noise Gaussian Channel</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-11-18.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-11-21.html" title="next chapter">Memoryless Gaussian Channel</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-11-19.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

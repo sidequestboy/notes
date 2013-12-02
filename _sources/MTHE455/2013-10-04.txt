@@ -1,0 +1,164 @@
+****************************************
+Introduction to Stationary Distributions
+****************************************
+
+.. note:: these notes were taken practically verbatim from Section 13 of `Prof. Takahara's online notes`_
+
+We briefly review the classification of states in a Markov chain with a quick example and then begin the discussion of the important notion of *stationary distributions*.
+
+First, let's review a little bit with the following:
+
+.. admonition:: Example
+
+    Suppose we have the following transition matrix:
+
+    .. math::
+        P=\begin{array}{l|ccccccccccc}
+           & 1 &  2 &  3 &  4 &  5 &  6 &  7 &  8 &  9 & 10 \\
+        \hline
+        1  &   &    &    &    &    &    & 1  &    &    &    \\
+        2  &   & .3 & .3 & .1 & .3 &    &    &    &    &    \\
+        3  &   &    & .6 &    &    &    &    & .4 &    &    \\
+        4  &   &    &    &  1 &    &    &    &    &    &    \\
+        5  &   & .4 &    &    &    & .3 &    & .3 &    &    \\
+        6  &   &    &    & .9 &    &    & .1 &    &    &    \\
+        7  &   &    &    &    &    &    &    &    &    &  1 \\
+        8  &   & .8 &    &    &    &    &    & .2 &    &    \\
+        9  &   &    &    &    &    &    &    &    &  1 &    \\
+        10 & 1 &    &    &    &    &    &    &    &    &    
+        \end{array}
+
+    Determine the equivalence classes, the period of each equivalence class, and whether each equivalence class is transient or recurrent.
+
+    Sometimes a useful technique for determining the equivalence classes in a Markov chain is to draw what is called a *state transition diagram*, which is a graph with one node for each state and with a (directed) edge between nodes :math:`i` and :math:`j` if :math:`p_{ij}>0`. We also usually write the transition probability :math:`p_{ij}` beside the directed edge between nodes :math:`i` and :math:`j` if :math:`p_{ij}>0`
+
+    .. image:: .static/10.04.1.png
+
+    Since the diagram displays all one-step transitions pictorially, it is usually easier to see the equivalence classes with the diagram than just by looking at the transition matrix. It helps if the diagram can be drawn neatly, with, for example, no edges crossing each other.
+
+    Usually when we construct a Markoc model for some system, the equivalence classes, if there are more than one, are apparent or obvious because we *designed* the model so that certain states go together and we designed them to be transient or recurrent.
+
+    Other times we may be trying to verify, modify, improve, or just understand someone else's (complicated) model and one of the first things we may want to know is how to classify the states, and it may not be obvious or even easy to determine the equivalence classes if the state space is large and there are many transitions that don't follow a regular pattern. For :math:`S` finite, the following algorithm determines :math:`T(i)`, the set of states accessible from :math:`i`, :math:`F(i)`, the set of states from which :math:`i` is accessible, and :math:`C(i)=F(i)\cap T(i)`, the equivalence class of state :math:`i`:
+
+    1. For each state :math:`i\in S`, let :math:`T(i)=\{i\}` and :math:`F(i)=\{\}`, the empty set.
+    2. For each state :math:`i\in S`, do the following: For each state :math:`k\in T(i)`, add to :math:`T(i)` all states :math:`j` such that :math:`p_{kj}>0` (if :math:`k` is not already in :math:`T(i)`). Repeat this step until no further addition is possible.
+    3. For each state :math:`i\in S`, do the following: For each state :math:`j\in S`, add state :math:`j` to :math:`F(i)` if state :math:`i` is in :math:`T(j)`.
+    4. For each state :math:`i\in S`, let :math:`C(i)=F(i)\cap T(i)`.
+    
+    Note that if :math:`C(i)=T(i)` (the equivalence class containing :math:`i` equals the set of states that are accessible from :math:`i`), then :math:`C(i)` is *closed* (hence recurrent since we are assuming :math:`S` is finite for this algorithm). This algorithm is taken from *An Introduction to Stochastic Processes*, by Edward P. C. Kao, Duxbury Press, 1997. Also in this reference is the listing of a ``MATLAB`` implementation of this algorithm.
+
+Stationary Markov Chains
+========================
+Now that we know the general architecture of a Markov chain, it's time to look at how we might analyze a Markov chain to make predictions about system behaviour. For this we'll first consider the concept of a *stationary distribution*. This is distinct from the notion of limiting probabilities, which we'll consider a bit later. First, let's define what we mean when we say that a process is *stationary*.
+
+.. admonition:: Definition
+
+    A (discrete-time) stochastic process :math:`\{X_n: n\geq 0\}` is *stationary* if for any time points :math:`i_1,...,i_n` and any :math:`m\geq 0`, the joint distribution of :math:`(X_{i_1},...,X_{i_n})` is the same as the joint distribution of :math:`(X_{i_1+m},...,X_{i_n+m})`.
+
+So "stationary" refers to "stationary in time". In particular, for a stationary process, the distribution of :math:`X_n` is the same for all :math:`n`.
+
+So why do we care if our Markov chain is stationary? Well, if it were stationary *and* we knew what the distribution of each :math:`X_n` was then we would know a lot because we would know the long run proportion of time that the Markov chain was in any state. For example, suppose that the process was stationary and we knew that :math:`P(X_n=2)=\frac{1}{10}` for every :math:`n`. Then over 1000 time periods we should expect that roughly 100 of those time periods was spent in state 2, and over :math:`N` time periods roughly :math:`\frac{N}{10}` of those time periods was spent in state 2. As :math:`N` went to infinity, the *proportion* of time spent in state 2 will converge to :math:`\frac{1}{10}` (this can be proved rigorously bby some form of the Strong Law of Large Numbers). One of the attractive features of Markov chains is that we can often make them stationary *and* there is a nice and neat chacterization of the distribution of :math:`X_n` when it is stationary. We discuss this next.
+
+Stationary Distributions
+========================
+So how do we make a Markov chain stationary? If it can be made stationary (and not all of them can; for example, the simple random walk cannot be made stationary and, more generally, a Markov chain where all states were transient or null recurrent cannot be made stationary), then making it stationary is simply a matter of choosing the right initial distribution for :math:`X_0`. If the Markov chain is stationary, then we call the common distribution of all the :math:`X_n` the *stationary distribution* of the Markov chain.
+
+here's how we find a stationary distribution for a Markov chain.
+
+.. admonition:: Proposition
+
+    Suppose :math:`X` is a Markov chain with state space :math:`S` and transition probability matrix :math:`P`. If :math:`Π=(Π_j,j\in S)` is a distribution over :math:`S` (that is, :math:`Π` is a (row) vector with :math:`|S|` components such that :math:`\sum_jΠ_j=1` and :math:`Π_j\geq 0` for all :math:`j\in S`), then setting the initial distribution of :math:`X_0` equal to :math:`Π` will make the Markov chain stationary with stationary distribution :math:`Π` if
+
+    .. math::
+        Π=ΠP
+
+    That is,
+
+    .. math::
+        Π_j=\sum_{i\in S}Π_ip_{ij}
+
+    for all :math:`j\in S`.
+
+    In words, :math:`Π_j` is the dot product between :math:`Π` and the jth *column* of :math:`P`.
+
+    Proof:
+
+    Suppose :math:`Π` satisfies the above equations and we set the distribution of :math:`X_0` to be :math:`Π`. Let's set :math:`μ(n)` to be the distribution of :math:`X_n` (that is, :math:`μ_j(n)=P(X_n=j)`). Then
+
+    .. math::
+        μ_j(n)=P(X_n=j)&=\sum_{i\in S}P(X_n=j|X_0=i)P(X_0=i)\\
+                       &=\sum_{i\in S}p_{ij}(n)Π_i
+
+    or, in matrix notation,
+
+    .. math::
+        μ(n) = ΠP(n)
+
+    But, by the Chapman-Kolmogorov equations, we get
+
+    .. math::
+        μ(n) &= ΠP^n\\
+             &= (ΠP)P^{n-1}\\
+             &= ΠP^{n-1}\\
+             &...
+             &= ΠP\\
+             &= Π
+
+    We'll stop the proof here.
+
+Note we haven't fully shown that the Markov chain :math:`X` is stationary with this choice of initial distribution :math:`Π` (though it is and not too difficult to show). But we have shown that by setting the distribution of :math:`X_0` to be :math:`Π`, the distribution of :math:`X_n` is also :math:`Π` for all :math:`n\geq 0`, and this is enough to say that :math:`Π_j` can be interpreted as the long run proportion of time the Markov chain spends in state :math:`j` (if such a :math:`Π` exists). We also haven't answered any questions about the existence or uniqueness of a stationary distribution. But let's finish off today with some examples.
+
+.. admonition:: Example
+
+    Consider just the recurrent class :math:`\{1,7,10\}` in our first example today. The transition matrix for this class is:
+
+    .. math::
+        P=\begin{array}{l|ccc}
+          & 1 & 7 & 10\\
+        \hline
+        1 & 0 & 1 & 0 \\
+        7 & 0 & 0 & 1 \\
+        10 & 1 & 0 & 0
+        \end{array}
+
+    Intuitively, the chain spends one third of its time in state 1, one third of its time in state 7, and one third of its time in state 10. One can easily verify that the distribution :math:`Π=(\frac{1}{3},\frac{1}{3},\frac{1}{3})` satisfies :math:`Π=ΠP`, and so :math:`(\frac{1}{3},\frac{1}{3},\frac{1}{3})` is a stationary distribution.
+
+.. admonition:: Remark
+
+    Note that in the above example, :math:`p_{ii}(n)=0` if :math:`n` is not a multiple of 3 and :math:`p_{ii}=1` if :math:`n` is a multiple of 3, for all :math:`i`. Thus, clearly :math:`\lim_{n\to\infty p_{ii}(n)` does not exist because these numbers keep jumping back and forth between 0 and 1. This illustrates that limiting probabilities are not exactly the same thing as stationary probabilities. We want them to be! Later we'll give just the right conditions for these two quantities to be equal.
+
+.. admonition:: Example (Ross, p.257 #30)
+
+    Three out of every four trucks on the road are followed by a car, while only one out of every five cars is followed by a truck. What fraction of vehicles on the road are trucks?
+
+    Solution:
+
+    Image sitting on the side of the road watching vehicles go by. If a truck goes by, the next vehicle will be a car with probability :math:`\frac{3}{4}` and will be a truck wwith probability :math:`\frac{1}{4}`. If a car goes by, the next vehicle will be a car with probability :math:`\frac{4}{5}`, and will be a truck with probability :math:`\frac{1}{5}`. We may set this up as a Markov chain with two states; 0=truck and 1=car, and transition probability matrix
+
+    .. math::
+        P=\begin{array}{l|cc}
+          & 0 & 1 \\
+        \hline
+        0 & \frac{1}{4} & \frac{3}{4} \\
+        1 & \frac{1}{5} & \frac{4}{5}
+        \end{array}
+
+    The equations :math:`Π=ΠP` are
+
+    .. math::
+        Π_0=\frac{1}{4}Π_0+\frac{1}{5}Π_1\\
+        Π_1=\frac{3}{4}Π_0+\frac{4}{5}Π_1
+
+    Solving, we have from the first equation that :math:`\frac{3}{4}Π_0=\frac{1}{5}Π_1` or :math:`Π_0=\frac{4}{15}Π_1`. Plugging this into the constraint that :math:`Π_0+Π_1=1`, gives us that :math:`\frac{4}{15}Π_1+Π_1=1`, or :math:`Π_1=\frac{15}{19}`. Therefore, :math:`Π_0=\frac{4}{19}`. That is, as we sit by the side of the road, the long run proportion of vehicles that will be trucks is :math:`\frac{4}{19}`
+
+.. admonition:: Remark
+
+    Note that we need the constraint that :math:`Π_0+Π_1=1` in order to determine a solution. In general, we need the constraint that :math:`\sum_{j\in S}Π_j=1` in order to determine a solution. This is because the system of equations :math:`Π=ΠP` has just in itself infinitely many solutions (if :math:`Π` is a solution then so is :math:`cΠ` for any constant :math:`c`). We need the normalization constraint basically to determine :math:`c` to make :math:`Π` a proper distribution over :math:`S`.
+
+
+
+
+
+
+
+.. _`Prof. Takahara's online notes`: http://www.mast.queensu.ca/~stat455/lecturenotes/set3.pdf

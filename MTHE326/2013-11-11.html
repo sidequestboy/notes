@@ -1,0 +1,167 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Uniform Convergence and Analytic Functions, Power Series &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Taylor Series" href="2013-11-12.html" />
+    <link rel="prev" title="Convergent Series of Analytic Functions" href="2013-11-07.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-12.html" title="Taylor Series"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-07.html" title="Convergent Series of Analytic Functions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="uniform-convergence-and-analytic-functions-power-series">
+<h1>Uniform Convergence and Analytic Functions, Power Series<a class="headerlink" href="#uniform-convergence-and-analytic-functions-power-series" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-theorem-weirstrass admonition">
+<p class="first admonition-title">Theorem (Weirstrass)</p>
+<div class="math">
+\[f_n\to f\text{ L.U. on }D\]</div>
+<p>and <span class="math">\(f_n\)</span> are holomorphic on <span class="math">\(D\)</span>, then so is <span class="math">\(f\)</span> and</p>
+<div class="math">
+\[f_n^{(K)}\to f_n^{(K)}\text{ L.U. on }D\]</div>
+<p>Proof:</p>
+<p>Fix <span class="math">\(z_0\in D\)</span>, <span class="math">\(\overline{D_ε(z_0)}\)</span> a small disk around <span class="math">\(z_0\)</span> contained in <span class="math">\(D\)</span>.</p>
+<p>Let <span class="math">\(γ=δD_ε(z_0)\)</span></p>
+<p>By Cauchy&#8217;s Integral Formula:</p>
+<div class="math">
+\[\begin{split}f_n(z_0)&amp;=\frac{1}{2πi}\int_γ\frac{f_n(w)}{w-z_0}dw\\
+f(z_0)&amp;=\frac{1}{2πi}\int_γ\frac{f(w)}{w-z_0}dw\end{split}\]</div>
+<p>since if <span class="math">\(f_n(w)\to f(w)\)</span> uniformly on <span class="math">\(\overline{D_ε(z_0)}\)</span> then</p>
+<div class="math">
+\[\frac{f_n(w)}{w-z_0}\to\frac{f(w)}{w-z_0}\]</div>
+<p>uniformly on <span class="math">\(γ\)</span>.</p>
+<p>So for all <span class="math">\(z_0\in D\)</span>, <span class="math">\(f(z_0)\)</span> is given by an integral of Cauchy type, thus analytic.</p>
+<p>Since</p>
+<div class="math">
+\[\frac{k!}{2πi}\int_γ\frac{f_n(z)}{(w-z)^{k+1}}dz\to \frac{k!}{2πi}\int_γ\frac{f(z)}{(w-z)^{k+1}}dz\]</div>
+<p class="last">it is easy to show uniform convergence for the derivative.</p>
+</div>
+<div class="section" id="distinction-between-uniformly-convergent-and-uniformly-convergent-on-compact-sets">
+<h2>Distinction Between Uniformly Convergent and Uniformly Convergent on Compact Sets<a class="headerlink" href="#distinction-between-uniformly-convergent-and-uniformly-convergent-on-compact-sets" title="Permalink to this headline">¶</a></h2>
+<p>For <span class="math">\(z\in D_1(0)\)</span>, <span class="math">\(f_n(z)=z^n\to 0\)</span> uniformly on compact sets, but not uniformly</p>
+<p>because <span class="math">\(\forall 1&gt;ε&gt;0\)</span>, <span class="math">\(\forall n\in\mathbb N\)</span> we can find a <span class="math">\(z\in D_1(0)\)</span> s.t. <span class="math">\(|z^n=0|&gt;ε\)</span>. Just look near the boundary.</p>
+<p>But if <span class="math">\(k\subset D_1(0)\)</span> is compact, then it is contained in some <span class="math">\(\overline D_δ(1)\)</span> where <span class="math">\(δ&lt;1\)</span> so <span class="math">\(\forall z\in K\)</span>,</p>
+<div class="math">
+\[\begin{split}|z^n-0|&lt;|z|^n\leq δ^n\to 0\text{ as }n\to\infty\end{split}\]</div>
+<div class="admonition-definition-power-series admonition">
+<p class="first admonition-title">Definition (Power Series)</p>
+<p>A <em>power series</em> centered at <span class="math">\(z_0\)</span> is an expression of the form:</p>
+<div class="math">
+\[\sum_{n=0}^\infty a_n(z-z_0)^n\]</div>
+<p class="last"><span class="math">\(a_n\in\mathbb C\)</span></p>
+</div>
+<div class="admonition-theorem-radius-of-convergencec admonition">
+<p class="first admonition-title">Theorem (Radius of Convergencec)</p>
+<p>Given a power series, there exists an <span class="math">\(R\)</span> s.t.</p>
+<ol class="lowerroman simple">
+<li>if <span class="math">\(|z-z_0|&lt;R\)</span>, the series converges.</li>
+<li>if <span class="math">\(|z-z_0|&gt;R\)</span>, the series diverges.</li>
+</ol>
+<p>Furthermore, convergence is locally uniform on <span class="math">\(D_R(z_0)\)</span>.</p>
+<p>Proof:</p>
+<p class="last">Same proofs as real analysis, the modulus just means more now. See Section 5.4 of Textbook if curious.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Uniform Convergence and Analytic Functions, Power Series</a><ul>
+<li><a class="reference internal" href="#distinction-between-uniformly-convergent-and-uniformly-convergent-on-compact-sets">Distinction Between Uniformly Convergent and Uniformly Convergent on Compact Sets</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-11-07.html" title="previous chapter">Convergent Series of Analytic Functions</a></li>
+      <li>Next: <a href="2013-11-12.html" title="next chapter">Taylor Series</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-11-11.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

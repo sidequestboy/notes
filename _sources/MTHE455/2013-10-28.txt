@@ -1,0 +1,91 @@
+************************
+Markov Chain Monte Carlo
+************************
+Let :math:`S` be a discrete state space
+
+Let :math:`Π=(Π_i)_{i\in S}` be a vector indexed by states (i.e. :math:`Π` is a function on :math:`S`) such that :math:`Π_i>0` for all :math:`i\in S` and :math:`\sum_{i\in S}Π_i<\infty`
+
+Then we can assume (by dividing by :math:`\sum_{i\in S}Π_i`) that :math:`Π` is a pmg over :math:`S`.
+
+Goal:
+-----
+Draw samples from this distribution
+
+Method is to construct a Markov chain that has, as its stationary distribution, :math:`Π`.
+
+Metropolis-Hastings Algorithm
+-----------------------------
+1. Let :math:`Q=(q_{ij})_{i,j\in S}` be the transition matrix of an irreducible Markov chain over :math:`S`.
+
+    In practice, one should choose :math:`Q` so that the Markov chain specified by :math:`Q` is not difficult to simulate.
+2. Define the *acceptance probabilities* :math:`a_{ij}`
+    
+    .. math::
+        :label: 1
+
+        a_{ij}=min\{1, \frac{Π_jq_{ji}}{Π_iq_{ij}}\}
+
+3. Now let :math:`p_{ij}=q_{ij}a_{ij}` for all :math:`i,j\in S` (:math:`i\neq j`) and :math:`p_{ii}=1-\sum_{j\neq i}p_{ij}`
+
+    Then :math:`P=(p_{ij})_{i,j\in S}` is the transition matrix of a Markov chain with stationary distribution :math:`Π`. To see this, we will check that :math:`Π` satisfies the local balance equations for this Markov chain.
+
+    Let us adopt the convention that
+
+    .. math::
+        0\cdot\text{ anything}=0
+
+    Fix :math:`i\neq j`.
+
+    The local balance equation is:
+
+    .. math::
+        Π_ip_{ij}=Π_jp_{ji}
+
+    or
+
+    .. math::
+        :label: 2
+
+        Π_iq_{ij}a_{ij}=Π_jq_{ji}a_{ji}
+
+    If :math:`q_{ij}=q_{ji}=0`, then both sides are 0.
+
+    If :math:`q_{ij}=0` and :math:`q_{ji}>0`, then the LHS of :eq:`2` is 0, and :math:`a_ji=0` by :eq:`1`
+
+    If :math:`q_{ij}>0` and :math:`q_{ji}=0`, then it's the same as previous case.
+
+    If :math:`q_{ij}>0` and :math:`q_{ji}>0` then consider 2 cases:
+
+    i. :math:`Π_jq_{ji}>Π_iq_{ij}`. Then :math:`a_{ij}=1` and :math:`a_{ji}=\frac{Π_iq_{ij}}{Π_jq_{ji}}`
+    
+        Then LHS :math:`=Π_iq_{ij}` and RHS is also :math:`Π_iq_{ij}`
+
+    ii. :math:`Π_jq_{ji}<Π_iq_{ij}`, same as above.
+
+To implement this, we simulate the Markov chain with transition matrix :math:`P`. When in state :math:`i`, choose the next state according to :math:`Q`.
+
+If state :math:`j` is selected, then move to state :math:`j` with probability :math:`a_{ij}`; otherwise state in state :math:`i`.
+
+.. admonition:: Application
+
+    Simulated Annealing
+
+    Let :math:`b=(b_i)_{i\in S}` be a function over :math:`S`.
+
+    .. note:: :math:`b_i` is allowed to be negative
+
+    Goal:
+    -----
+    Find the state :math:`i\in S` that minimizes :math:`b_i`.
+
+    Form :math:`Π_i=e^{\frac{-b_i}{T}}`, where :math:`T>0` is a parameter called the "temperature". If :math:`T` is large, then :math:`Π` will be relatively flat over :math:`S`. As :math:`T` decreases, the value of :math:`Π_i`, where :math:`b` is minimized, gets large relative to other values of :math:`Π_j`.
+
+    .. admonition:: Idea
+
+        Run Markov chain with stationary distribution (normalized) :math:`Π`.
+
+        Run for a while - keep track of maximum so far
+
+        Lower the temerature - run for a while.
+
+        Keep repeating until good solution is found.

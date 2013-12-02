@@ -27,7 +27,8 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
-    <link rel="prev" title="Proof of (i) (Forward Achievability):" href="2013-09-30.html" />
+    <link rel="next" title="Entropy Rate for Stationary Source" href="2013-10-03.html" />
+    <link rel="prev" title="Proof of Shannon-McMillan AEP Theorem" href="2013-09-30.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -44,7 +45,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="2013-09-30.html" title="Proof of (i) (Forward Achievability):"
+          <a href="2013-10-03.html" title="Entropy Rate for Stationary Source"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-09-30.html" title="Proof of Shannon-McMillan AEP Theorem"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
@@ -58,7 +62,7 @@
             
   <div class="section" id="entropy-rate-for-sources-with-memory">
 <h1>Entropy Rate for Sources with Memory<a class="headerlink" href="#entropy-rate-for-sources-with-memory" title="Permalink to this headline">¶</a></h1>
-<p>A general discrete source <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with memory, and of alphabet <span class="math">\(\mathcal X\)</span>, is described by the sequence of <span class="math">\(n\)</span> - fold joint pmgs:</p>
+<p>A general discrete source <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with memory, and of alphabet <span class="math">\(\mathcal X\)</span>, is described by the sequence of <span class="math">\(n\)</span> - fold joint pmfs:</p>
 <div class="math">
 \[p_{X^m}(x_1,x_2,...,x_n)=P[X_1=x_1,X_2=x_2,...,X_n=x_n]\]\[n = 1,2,...\]\[x^n = (x_1,...,x_n) \in \mathcal X^n\]</div>
 <div class="admonition note">
@@ -68,9 +72,9 @@
 </div>
 <div class="admonition-definition admonition">
 <p class="first admonition-title">Definition</p>
-<p>A stochastic process (or source) <span class="math">\(\{X_i\}{i=1}^\infty\)</span> is called <strong>stationary</strong> (or <strong>strictly stationary</strong>) if:</p>
-<div class="last math">
-\[P[X_1=x_1,X_2=x_2,...,X_n=x_n]=P[X_{1+\tau}=x_1,X_{2+\tau}=x_2,...,X_{n+\tau}=x_n] (*)\]</div>
+<p>A stochastic process (or source) <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> is called <strong>stationary</strong> (or <strong>strictly stationary</strong>) if:</p>
+<div class="last math" id="equation-*">
+<span class="eqno">(1)</span>\[P[X_1=x_1,...,X_n=x_n]=P[X_{1+\tau}=x_1,...,X_{n+\tau}=x_n]\]</div>
 </div>
 <p>The idea: joint <span class="math">\(n\)</span> - fold dist. of the source is <strong>invariant</strong> under time shifts:</p>
 <p>i.e. <span class="math">\(X_1,X_2,...X_n\)</span> has the same distribution as <span class="math">\(X_{1+\tau},X_{2+\tau},...,X_{n+\tau}\)</span>.</p>
@@ -83,7 +87,7 @@
 <blockquote>
 <div><div class="math">
 \[P[X_1=a] = P[X_{1+\tau}=a]\]\[\forall \tau, \forall a \in \mathcal X\]</div>
-<p>This follows by using (*) with <span class="math">\(n=1\)</span>.</p>
+<p>This follows by using <a href="#equation-*">(1)</a> with <span class="math">\(n=1\)</span>.</p>
 </div></blockquote>
 <ol class="loweralpha simple" start="2">
 <li>A DMS (which consists of <strong>iid</strong> RVs) is stationary.</li>
@@ -109,19 +113,18 @@
 \[P[X_n=x_n|X_{n-1}=x_{n-1},...,X_1=x_1]=P[X_n=x_n|X_{n-1}=x_{n-1}]\]</div>
 <p>for all <span class="math">\(x^n=(x_1,...,x_n) \in \mathcal X^n\)</span></p>
 <p>In this case:</p>
-<div class="math">
+<div class="last math">
+\[p_{X^n}(x^n)=p_{X_1}(x_1)\prod_{i=2}^n p_{X_i|X_{i-1}}(x_i|x_{i-1})\]</div>
 </div>
-<p class="last">p_{X^n}(x^n)=p_{X^n}(x^n)=p_{X_1}(x_1)prod_{i=2}^n p_{X_i|X_{i-1}}(x_i|x_{i-1})</p>
-</div>
-<p>Also, <span class="math">\(\{X_i\}\)</span> is called a <em>Markov source of order :math:`M`</em> (or <em>memory</em> <span class="math">\(M\)</span>), where <span class="math">\(M&gt;0\)</span> an integer - if:</p>
+<p>Also, <span class="math">\(\{X_i\}\)</span> is called a <em>Markov source of order</em> <span class="math">\(M\)</span> (or <em>memory</em> <span class="math">\(M\)</span>), where <span class="math">\(M&gt;0\)</span> an integer - if:</p>
 <div class="math">
 \[P[X_n=x_n|X_{n-1}=x_{n-1},...X_1=x_1]=P[X_n=x_n|X_{n-1}=x_{n-1},...,X_{n-m}=x_{n-m}]\]</div>
 <p>for all <span class="math">\(n&gt;M\)</span> and <span class="math">\(x^n \in \mathcal X^n\)</span></p>
 <div class="admonition-definition admonition">
 <p class="first admonition-title">Definition</p>
 <p>A MC <span class="math">\(\{X_i\}\)</span> is <em>homogeneous</em> or <em>time-invariant</em> if <span class="math">\(p_{X_n|X_{n-1}}\)</span> does not depend on <span class="math">\(n\)</span> for all <span class="math">\(n\)</span> - i.e.</p>
-<div class="last math">
-\[p_{X_n|X_{n-1}}(a|b):=P[X_n=1|X_n-1=b]=P[X_2=a|X_1=b]=p_{X_2|X_1}(a|b)\]</div>
+<div class="last math" id="equation-**">
+<span class="eqno">(2)</span>\[p_{X_n|X_{n-1}}(a|b):=P[X_n=a|X_{n-1}=b]=P[X_2=a|X_1=b]=p_{X_2|X_1}(a|b)\]</div>
 </div>
 <div class="admonition-definition admonition">
 <p class="first admonition-title">Definition</p>
@@ -129,7 +132,7 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Using (1) and (2), we remark that a homogeneous MC is fully described by its initial state distribution</p>
+<p>Using <a href="#equation-*">(1)</a> and <a href="#equation-**">(2)</a>, we remark that a homogeneous MC is fully described by its initial state distribution</p>
 <div class="math">
 \[p_{X_1}(x)=P[X_1=x], x \in \mathcal X\]</div>
 <p>and its conditional distribution <span class="math">\(p_{X_2|X_1}\)</span> which can be expressed via a so-called <em>transition probability matrix</em> <span class="math">\(|\mathcal X|\)</span> by <span class="math">\(|\mathcal X|\)</span>:</p>
@@ -213,7 +216,8 @@
 <ul>
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
-      <li>Previous: <a href="2013-09-30.html" title="previous chapter">Proof of (i) (Forward Achievability):</a></li>
+      <li>Previous: <a href="2013-09-30.html" title="previous chapter">Proof of Shannon-McMillan AEP Theorem</a></li>
+      <li>Next: <a href="2013-10-03.html" title="next chapter">Entropy Rate for Stationary Source</a></li>
   </ul></li>
   </ul></li>
 </ul>

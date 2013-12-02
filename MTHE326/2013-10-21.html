@@ -1,0 +1,222 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cauchy’s Theorem (version 2) &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Proof of Cauchy’s Theorem (version 2, 3) and Homotopy" href="2013-10-22.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-10-17.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-22.html" title="Proof of Cauchy’s Theorem (version 2, 3) and Homotopy"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-17.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cauchy-s-theorem-version-2">
+<h1>Cauchy&#8217;s Theorem (version 2)<a class="headerlink" href="#cauchy-s-theorem-version-2" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="last-time">
+<h2>Last time:<a class="headerlink" href="#last-time" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cauchy-s-theorem-version-1">
+<h3>Cauchy&#8217;s Theorem (Version 1)<a class="headerlink" href="#cauchy-s-theorem-version-1" title="Permalink to this headline">¶</a></h3>
+<p>Suppose <span class="math">\(D\)</span> is a domain and</p>
+<div class="math">
+\[f: D\to \mathbb C\]</div>
+<p>is holomorphic on <span class="math">\(D\)</span>. If <span class="math">\(\gamma\subset D\)</span> is a simple closed curve and its whole interior is in <span class="math">\(D\)</span>, then:</p>
+<div class="math">
+\[\int_\gamma f(z)dz=0\]</div>
+<div class="admonition-non-example admonition">
+<p class="first admonition-title">Non-Example</p>
+<div class="math">
+\[\begin{split}γ: |z|=1\\
+f(z)=\frac{1}{z}\\
+\int_γ f(z)dz \neq 0\end{split}\]</div>
+<p class="last">since the domain of analyticity does not contain <span class="math">\(z=0\)</span> which is an interior point of the curve <span class="math">\(γ\)</span>.</p>
+</div>
+<div class="admonition-corollary-1 admonition">
+<p class="first admonition-title">Corollary 1</p>
+<p>If <span class="math">\(f\)</span> is holomorphic on the disk <span class="math">\(D_p(z_0)\)</span>, <span class="math">\(z_0\in\mathbb C\)</span>, <span class="math">\(ρ&gt;0\)</span>, then <span class="math">\(f\)</span> has an anti-derivative on <span class="math">\(D_ρ(z_0)\)</span>.</p>
+<p>In the proof of the equivalence theorm, we defined:</p>
+<div class="math">
+\[F(z+h)-F(z)=\int_{γ_h} F(w)dw\]</div>
+<p><span class="math">\(F\)</span> was anti-derivative</p>
+<p>Let <span class="math">\(γ_z\)</span> be a <em>straight</em> path from <span class="math">\(z_0\)</span> to <span class="math">\(z\)</span> and let</p>
+<div class="math">
+\[F(z)=\int_{γ_z}f(w)dw\]</div>
+<p>where <span class="math">\(γ_z\)</span> is a fixed path.</p>
+<p>For <span class="math">\(h\in \mathbb C\)</span> s.t. <span class="math">\(|h|\)</span> is &#8220;small&#8221;,</p>
+<p>Let <span class="math">\(\tilde γ_h\)</span> be the straight path from <span class="math">\(z\)</span> to <span class="math">\(z+h\)</span></p>
+<div class="math">
+\[γ_z+\tilde γ_h-γ_{z+h}\]</div>
+<p>So,</p>
+<div class="math">
+\[\int_{γ_z+\tilde γ_h-γ_{z+h}} f(w)dw=0\]</div>
+<p>by Cauchy&#8217;s Theorem.</p>
+<p>So,</p>
+<div class="math">
+\[\begin{split}\int_{γ_z} f(w)dw+\int_{\tilde γ_h} f(w)dw-\int_{-γ_{z+h}} f(w)dw=0\\
+\int_{\tilde γ_h}&amp;=\int_{-γ_{z+h}} f(w)dw-\int_{γ_z} f(w)dw\\
+&amp;=F(z+h)-F(z)\end{split}\]</div>
+<p class="last">From here, repeat Proof of Equivalence Theorem.</p>
+</div>
+<div class="admonition-corollary-2 admonition">
+<p class="first admonition-title">Corollary 2</p>
+<p>If <span class="math">\(f\)</span> is an analytic function on <span class="math">\(D_ρ(z_0)\)</span>, <span class="math">\(z_0\in\mathbb C\)</span>, <span class="math">\(ρ&gt;0\)</span>, and <span class="math">\(γ:[a,b]\to D_ρ(z_0)\)</span>, <span class="math">\(γ(a)=γ(b)\)</span> (not necessarily simple), then:</p>
+<div class="math">
+\[\int_γ f(w)dw=0\]</div>
+<p>There exists an antiderivative of <span class="math">\(f\)</span> on the disk, by previous Corollary, and:</p>
+<div class="math">
+\[\int_γ f(w)dw=F(γ(b))-F(γ(a))=0\]</div>
+<p class="last">by FTCC</p>
+</div>
+<div class="section" id="id1">
+<h4>Cauchy&#8217;s Theorem (version 2)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Suppose <span class="math">\(γ_1, γ_2\)</span> are simple closed curves in the domain <span class="math">\(D\)</span> and <span class="math">\(γ_1\)</span> can be continuously deformed - this term to be later defined - to <span class="math">\(γ_2\)</span> (see shitty picture)</p>
+<p><em>and</em> <span class="math">\(γ_1,γ_2\)</span> are oriented the same way, then:</p>
+<div class="math">
+\[\int_{γ_1}f(w)dw=\int_{γ_2}f(w)dw\]</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Let <span class="math">\(f(z)=\frac{1}{z}+\frac{1}{z-1}\)</span></p>
+<p>Find <span class="math">\(\int_γ f(w)dw\)</span> where:</p>
+<p>Firstly,</p>
+<div class="math">
+\[\int_γ f(w)dw=\int_γ \frac{1}{w}dw+\int_γ \frac{1}{w-1}dw\]</div>
+<div class="math">
+\[\int_γ \frac{1}{w}dw=0\]</div>
+<p>by Cauchy&#8217;s Theorem (version 1)</p>
+<div class="math">
+\[\int_γ \frac{1}{w-1}dw=\int_{\tilde γ} \frac{1}{w-1}dw=2πi\]</div>
+<p class="last">where <span class="math">\(\tilde γ\)</span> is a circle around <span class="math">\(z=1\)</span> oriented counter-clockwise</p>
+</div>
+<div class="admonition-aside admonition">
+<p class="first admonition-title">Aside</p>
+<p>Partial Fractions</p>
+<p>How to integrate something like:</p>
+<div class="math">
+\[\int_γ \frac{1}{z^2+5z+6}dz\]</div>
+<p>by the fundamental theorem of Algebra, any polynomial of the form:</p>
+<div class="math">
+\[a_nz^n+...+a_1z+a_0\]</div>
+<p>factors in <span class="math">\(\mathbb C\)</span></p>
+<div class="math">
+\[=a_n(z-α_1)^{m_1}\cdot ...\cdot (z-α_k)^{m_k}\]</div>
+<p>Using partial fractions is just the technique of letting</p>
+<div class="math">
+\[\frac{1}{a_n(z-α_1)^{m_1} ...  (z-α_k)^{m_k}}=\sum_{l=1}^{k}\sum_{m=0}^{m_1} \frac{A_{1,m}}{(z-α_l)^m}\]</div>
+<div class="admonition-example last admonition">
+<p class="first admonition-title">Example</p>
+<div class="last math">
+\[\begin{split}\frac{1}{z^2+36}&amp;=\frac{1}{(z+6i)(z-6i)}\\
+&amp;=\frac{A}{(z+6i)}+\frac{B}{(z-6i)}\end{split}\]</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cauchy&#8217;s Theorem (version 2)</a><ul>
+<li><a class="reference internal" href="#last-time">Last time:</a><ul>
+<li><a class="reference internal" href="#cauchy-s-theorem-version-1">Cauchy&#8217;s Theorem (Version 1)</a><ul>
+<li><a class="reference internal" href="#id1">Cauchy&#8217;s Theorem (version 2)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-10-17.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-10-22.html" title="next chapter">Proof of Cauchy&#8217;s Theorem (version 2, 3) and Homotopy</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-10-21.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

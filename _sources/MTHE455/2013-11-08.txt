@@ -1,0 +1,92 @@
+***********************************************************
+Properties of Poisson Process - Superpositioning & Thinning
+***********************************************************
+Superposition of Poisson Process
+================================
+Let :math:`\{N_1(t): t\geq 0\}` and :math:`\{N_1(t): t\geq 0\}` be independent Poisson processes with rates :math:`λ_1,λ_2` resp. Let :math:`N(t)=N_1(t)+N_2(t)`, :math:`t\geq 0`.
+
+Then :math:`\{N(t): t\geq 0\}` is a Poisson process with rate :math:`λ_1+λ_2`.
+
+(i) :math:`N(0)=N_1(0)+N_2(0)=0+0=0`
+(ii) We have that 
+    
+    .. math::
+        N(t_2)-N(t_1)&=N_1(t_2)+N_2(t_2)-N_1(t_1)-N_2(t_2)\\
+        &=(N_1(t_2)-N_1(t_2))+(N_2(t_2)-N_2(t_2))\\
+        &\sim Poisson(λ_1(t_2-t_1)) + Poisson(λ_2(t_2-t_1))\\
+        &= Poisson((λ_1+λ_2)(t_2-t_1))
+
+    This distribution depends on :math:`t_1` and :math:`t_2` only through :math:`t_2-t_1`, so :math:`N` has stationary increments.
+
+    Let :math:`t_1<t_2<t_3<t_4`.
+
+    Then 
+
+    .. math::
+        N(t_2)-N(t_1)=(N_1(t_2)-N_1(t_1))+(N_2(t_2)-N_2(t_1))\\
+        N(t_4)-N(t_3)=(N_1(t_4)-N_1(t_3))+(N_2(t_4)-N_2(t_3))
+
+    Everything in first line is independent of everything in second line, so :math:`N` has stationary and independent increments.
+(iii) :math:`N(t)=N_1(t)+N_2(t)\sim Poisson(λ_1t)+Poisson(λ_2t)=Poisson((λ_1+λ_2)t)`
+
+Thinning a Poisson Process
+==========================
+Let :math:`\{N(t): t\geq 0\}` be a Poisson process with rate :math:`λ`. Suppose, independently from event to event, that each event is a type "1" event with probability :math:`p` and a type "2" event with probability :math:`1-p`, with :math:`0<p<1` fixed.
+
+Let
+
+.. math::
+    N_1(t)=\text{# of type 1 events in }[0,t]\\
+    N_2(t)=\text{# of type 2 events in }[0,t]
+
+Then :math:`\{N_1(t):t\geq 0\}` and :math:`\{N_2(t):t\geq 0\}` are Poisson processes, with rates :math:`λp` and :math:`λ(1-p)` respectively, and these "thinned" processes are independent.
+
+Consider :math:`\{N_1(t):t\geq 0\}`,
+
+.. math::
+    P(N_1(h)=1)&=(λh+o(h))p+o(h)\\
+               &=λph+o(h)\\
+    P(N_1(h)=0)&=1-λh+o(h)+(λh+o(h))(1-p)\\
+               &=1 - λph + o(h)
+
+So :math:`N_1` satisfies condition (iii) of definition 2.
+
+Also clearly :math:`N_1(0)=0`
+
+It remains to show stationary and independent increments.
+
+Stationary Increments
+---------------------
+Let :math:`t_1<t_2`.
+
+.. math::
+    &P(N_1(t_2)-N_1(t_1)=k)\\
+    &=\sum_{n=k}^\infty P(N_1(t_2)-N_1(t_1)=k|N(t_2)-N(t_1)=n)\times P(N(t_2)-N(t_1)=n)\\
+    &=\sum_{n=k}^\infty {n \choose k} p^k(1-p)^{n-k}\frac{(λ(t_2-t_1))^n}{n!}e^{-λ(t_2-t_1)}\\
+    &=\frac{[λp(t_2-t_1)]^k}{k!}e^{-λp(t_2-t_1)}\sum_{n=k}^\infty \frac{[(1-p)λ(t_2-t_1)]^{n-k}}{(n-k)!}e^{-λ(1-p)(t_2-t_1)}\\
+    &=\frac{[λp(t_2-t_1)]^k}{k!}e^{-λp(t_2-t_1)}e^{(1-p)λ(t_2-t_1)}e^{-λ(1-p)(t_2-t_1)}\\
+    &=\frac{[λp(t_2-t_1)]^k}{k!}e^{-λp(t_2-t_1)}
+
+So :math:`N_1(t_2)-N_1(t_1)\sim Poisson(λp(t_2-t_1))`, which depends on :math:`t_1` and :math:`t_2` only though :math:`t_2-t_1`, so :math:`N_1` has stationary increments.
+
+Independent Increments
+----------------------
+Let :math:`t_1<t_2<t_3<t_4`
+
+.. math::
+    P(N_1(t_2)-N_1(t_1)=n_1,N_1(t_4)-N_1(t_3)=n_2)
+
+Condition on :math:`N(t_2)-N(t_1)` and :math:`N(t_4)-N(t_3)`.
+
+Then, the conditional probability will factor, and the :math:`P(N(t_2)-N(t_1)=k_1,N(t_4)-N(t_3)=k_2)` will also factor, then summing over all :math:`k_1` and :math:`k_2` factors the above joint probability.
+
+So conditions (i),(ii),(iii) are satisfied to show :math:`N_1` is a Poisson process with rate :math:`λp`. Similar arguments show :math:`N_2` is a Poisson process with rate :math:`λ(1-p)`.
+
+This generalizes to more than 2 types. If you have :math:`n` types with probabilities
+
+.. math::
+    p_1,p_2,...,p_n
+
+with :math:`p_1+...+p_n=1`, we can break this down iteratively one by one
+
+Similarly, summing :math:`n` independent Poisson processes with rates :math:`λ_1,...,λ_n` yields a Poisson process with rate :math:`λ_1+...+λ_n`.

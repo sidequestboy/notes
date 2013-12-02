@@ -1,0 +1,167 @@
+****************************************
+Max Modulus Theorem & Harmonic Functions
+****************************************
+Proof of Local Max Modulus
+--------------------------
+Idea:
+
+If :math:`f:D_ρ(z_0)\to\mathbb C` is holomorphic and :math:`|f(z)|` has a local max at :math:`z_0`, then :math:`|f(z)|` is constant on :math:`D_ρ(z_0)`.
+
+So suppose :math:`|f(z_0)|>|f(z)|` for some :math:`z\in D_ρ(z_0)`. Let :math:`M=|f(z_0)|` and :math:`r=|z-z_0|`. Let :math:`z=z_0+re^{ia}`.
+
+By continuity, :math:`\exists δ` s.t. :math:`\forall ε>0` small enough,
+
+.. math::
+    |f(z_0+re^{iθ})|<|f(z_0)|-ε
+
+for :math:`θ\in (a-δ,a+δ)`.
+
+But then
+
+.. math::
+    M&=|f(z_0)|\\
+     &=\left|\frac{1}{2πi}\int_0^{2π}f(z_0+re^{iθ}dθ)\right|\\
+     &=\frac{1}{2π}\left|\int_{a-δ}^{a+δ}f(z_0+re^{iθ})dθ+\int_{\text{rest}}f(z_0+re^{iθ})dθ\right|\\
+     &\leq \frac{1}{2π}((M-ε)(2δ)+M(2π-2δ))\\
+     &=M-\frac{δε}{π}
+
+and we have reached our contradiction.
+
+So strict inequalities don't hold with local max.
+
+So :math:`|f(z_0)|=|f(z)|` for all :math:`z\in D_ρ(z_0)` and so :math:`|f(z)|` is constant. Thus, so is :math:`f(z)`.
+
+
+.. admonition:: Theorem (Max Modulus Theorem, Global)
+
+    Suppose :math:`f:\bar D\to\mathbb C` is holomorphic on the **bounded** domain :math:`D\subset S` and continuous on :math:`\bar D`, the closure of :math:`D`.
+
+    Let :math:`M=max_{z\inδD}|f(z)|=` max. modulus on the boundary of :math:`D`.
+
+    Then:
+
+    (a) :math:`|f(z)|\leq M` :math:`\forall z\in \bar D`
+    (b) If :math:`|f(z)|=M` for some :math:`z\in D`, then :math:`f(z)` is constant on :math:`\bar D`.
+        
+    Proof:
+
+    Let :math:`M'=max_{z\in \bar D}|f(z)|`. Suppose :math:`|f(z_0)|=M'` for some :math:`z_0\in D`.
+
+    Then :math:`z_0` is a max and for every :math:`ρ>0` s.t. :math:`D_ρ\subset D`, :math:`|f(z)|` is constant on :math:`D_ρ(z_0)` by local Max Modulus Theorem.
+
+    Since :math:`D` is path connected, :math:`\forall z\in D`, :math:`\exists γ:[0,1]\to D` s.t. 
+
+    .. math::
+        γ(0)=z_0
+
+    and
+
+    .. math::
+        γ(1)=z
+
+    where :math:`γ\subset D` is compact, and so it has a minimal distance, :math:`ε>0`, from the boundary of :math:`D`.
+
+    .. image:: .static/11.04.1.png
+        :width: 50%
+
+    Since :math:`γ` has finite length, we can cover it with disks of radius :math:`\frac{ε}{2}` so that the center of each disk is in the previous disk.
+
+    .. image:: .static/11.04.2.png
+        :width: 50%
+
+    and we can do this with finitely many disks. By local Max Modulus Thm, :math:`f(z_0)` is constant on the first disk and :math:`|f(z)|=M'` on first disk. Since :math:`z_1` is in the first disk, :math:`|f(z_1)|=M'` and local Max Modulus *again* gives :math:`f(z)` is constant on the second disk. Repeating this argument finitely many times gives that :math:`f(z)` is constant on :math:`γ`.
+
+    So :math:`f(z_0)=f(z)` and so :math:`f(z)` is constant on :math:`D`, and :math:`|f(z)|=M'` on :math:`D`.
+
+    Now :math:`f` is continuous on :math:`\bar D` - what does continuity mean on a closed set?
+
+    :math:`\forall ε>0`, :math:`\exists d>0` s.t. if :math:`|z-w|<δ` and :math:`z,w\in\bar D`, then :math:`|f(z)-f(w)|<ε`. So this gives continuity up to boundary.
+
+    .. image:: .static/11.04.3.png
+        :width: 50%
+
+    .. admonition:: Recall
+
+        Boundary points are the :math:`z_0\in\bar D` such that :math:`D_ρ(z_0)\cap D\neq \{\}` and :math:`D_ρ(z_0)\cap (\mathbb C\backslash D)\neq\{\}` :math:`\forall ρ>0`.
+
+    If :math:`f(z)` is constant on :math:`D` and continuous on :math:`\bar D`, then :math:`f(z)` is constant on :math:`\bar D`, since
+
+    .. math::
+        |f(z)-f(z_0)|<ε
+
+    :math:`\forall z\in δD`
+
+    So :math:`|f(z)|=M'` on :math:`δD`, but :math:`max_{z\in δD}|f(z)|=M`. So :math:`M=M'`. This proves (a), :math:`|f(z)|\leq M`, :math:`\forall z\in \bar D` and (b) since if that max is achieved :math:`f(z)` must be constant on :math:`\bar D`.
+
+Now we want to prove all this for Harmonic Functions.
+
+.. admonition:: Theorem (Mean Value Property for Harmonic Functions)
+
+    :math:`D` containing a closed disk :math:`D_ρ(x_0,y_0)`, then
+
+    .. math::
+        u(x_0,y_0)=\frac{1}{2π}\int_0^{2π}u(x_0+r\cos t,y_0+r\sin t)dt
+
+    Proof:
+
+    Since :math:`D_ρ(x_0,y_0)\subset D`, :math:`\exists` a simply connected open set :math:`\tilde D` s.t. :math:`D\supset\tilde D\supset D_ρ(x_0,y_0)` and by the reconstruction theorem, :math:`\exists v:\tilde D\to \mathbb R` s.t. :math:`f=u+iv` is analytic on :math:`\tilde D`. Thus :math:`f` has the mean value property:
+
+    .. math::
+        f(z_0)=\frac{1}{2π}\int_0^{2π}f(z_0+re^{it})dt
+
+    where :math:`z_0=x_0+iy_0`
+
+    So
+
+    .. math::
+        u(x_0,y_0)+iv(x_0,y_0)&=\frac{1}{2π}\int_0^{2π}u(x_0+r\cos t,y_0+r\sin t)+iv(x_0+r\cos t,y_0+r\sin t)dt\\
+                              &=\frac{1}{2π}\int_0^{2π}u(x_0+r\cos t,y_0+r\sin t)dt +i\frac{1}{2π}\int_0^{2π}v(x_0+r\cos t,y_0+r\sin t)dt
+
+    Comparing real and imaginary parts, we are done.
+
+.. admonition:: Theorem (Local Max/Min principle for Harmonic Functions)
+
+    .. note::
+        There's no modulus for harmonic functions, they are real-valued.
+
+    If :math:`U:D\to\mathbb R` is harmonic and :math:`\exists` a local max/min at :math:`(x_0,y_0)\in D`, i.e.
+
+    .. math::
+        u(x_0,y_0)\geq u(x,y)
+
+    or
+
+    .. math::
+        u(x_0,y_0)\leq u(x,y)
+
+    :math:`\forall (x,y)\in D_δ(x_0,y_0)`
+
+    then :math:`U` is constant on an on an open disk around :math:`(x_0,y_0)`.
+
+    Proof:
+
+    For local Max, same as for holomorphic functions, just need Max Value Principle and Continuity. For local min, use local Max argument on :math:`-u(x,y)`.
+
+.. admonition:: Theorem (Global Max/Min principle for Harmonic Functions)
+
+    :math:`U: D\to\mathbb R` is harmonic on :math:`D`, continuous on :math:`\bar D`.
+
+    Let
+
+    .. math::
+        M=max_{(x,y)\in δD}u(x,y)
+
+    and
+
+    .. math::
+        m=min_{(x,y)\in δD}u(x,y)
+
+    then
+
+    (a) :math:`m\leq u(x_0,y_0)\leq M` :math:`\forall (x_0,y_0)\in\bar D`.
+    (b) If :math:`u(x,y)=M` or :math:`m` for some :math:`(x,y)\in D`, then :math:`u` is constant on :math:`D`.
+        
+    Proof:
+
+    Same as for max modulus, just use local Max/Min principle instead of Local Max Mod.
+

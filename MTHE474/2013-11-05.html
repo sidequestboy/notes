@@ -1,0 +1,223 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Proof of Shannon’s Channel Coding Theorem for DMCs &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-11-06.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-11-04.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-06.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-04.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="proof-of-shannon-s-channel-coding-theorem-for-dmcs">
+<h1>Proof of Shannon&#8217;s Channel Coding Theorem for DMCs<a class="headerlink" href="#proof-of-shannon-s-channel-coding-theorem-for-dmcs" title="Permalink to this headline">¶</a></h1>
+<p>Consider a DMC <span class="math">\((\mathcal X, \mathcal Y, p_{Y|X}\)</span> with info capacity <span class="math">\(C=max_{p_X}I(X;Y)&gt;0\)</span>.</p>
+<ol class="loweralpha">
+<li><p class="first">Forward (Achievability) part</p>
+<p>All code rates below <span class="math">\(C\)</span> are <em>achievable</em> - i.e., <span class="math">\(\forall  ε&gt;0\)</span> and <span class="math">\(0&lt;R&lt;C\)</span>, <span class="math">\(\exists\)</span> a sequence of <span class="math">\((2^{nR},n)\)</span> block codes for the channel such that their <span class="math">\(p_e^{(n)}&lt;ε\)</span> for <span class="math">\(n\)</span> sufficiently large.</p>
+</li>
+<li><p class="first">Converse part:</p>
+<p>Conversely, if <span class="math">\(R&gt;C\)</span>, then it is <em>not</em> an achievable rate (i.e. cannot make <span class="math">\(p_e^{(n)}\)</span> arbitrarily small).</p>
+</li>
+</ol>
+<p>Conclusion:</p>
+<p>For a DMC,</p>
+<div class="math">
+\[\text{operational capacity} = C:=max_{p_X}I(X;Y)\]</div>
+<div class="admonition-remark admonition">
+<p class="first admonition-title">Remark</p>
+<p>A similar theorem can be proced for a large class of &#8220;info-stable&#8221; channels with memory (i.e. channels for which the input process that maximizes <span class="math">\(\frac{1}{n}I(X^n;Y^n)\)</span> and its corresponding output form a stationary ergodic input-output process)</p>
+<div class="last math">
+\[\text{operational capacity}=C=\lim_{n\to\infty}max_{p_{X^n}}\frac{1}{n}I(X^n;Y^n)\]</div>
+</div>
+<div class="section" id="proof">
+<h2>Proof:<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h2>
+<ol class="loweralpha">
+<li><p class="first">Forward Part</p>
+<div class="admonition-goal admonition">
+<p class="first admonition-title">Goal</p>
+<p class="last">Want to prove the existence of a code with block length <span class="math">\(n\)</span>, and <span class="math">\(2^{nR}\)</span> codewords, where <span class="math">\(R&lt;C\)</span> such that <span class="math">\(p_e^{(n)}\to 0\)</span> as <span class="math">\(n\to \infty\)</span>.</p>
+</div>
+<div class="admonition-technique-random-coding admonition">
+<p class="first admonition-title">Technique: Random Coding</p>
+<p>Describe a process of <em>randomly</em> generating a code <span class="math">\(\mathcal C\)</span> with <span class="math">\(2^{nR}\)</span> codewords. Then show that the mean of <span class="math">\(p_e^{(n)}(\mathcal C)\)</span> over all randomly generated codes satisfies:</p>
+<div class="math">
+\[E_{\mathcal C}[p_e^{(n)}(\mathcal C)]\to 0\text{ as }n\to \infty\]</div>
+<p class="last">This will imply the existence of <em>at least one</em> &#8220;good&#8221; code, <span class="math">\(\mathcal C^*\)</span> such that <span class="math">\(p_e^{(n)}(\mathcal C^*)\to 0\)</span> as <span class="math">\(n\to\infty\)</span></p>
+</div>
+<p>Fix <span class="math">\(R&lt;C\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">R can be very close to <span class="math">\(C\)</span>, but below it.</p>
+</div>
+<p>and fix <span class="math">\(n\)</span>. (&#8220;think of <span class="math">\(n\)</span> as sufficiently large&#8221;).</p>
+<p>Let <span class="math">\(p^*_X\)</span> be the input distribution that maximizes the channel&#8217;s <span class="math">\(I(X;Y)\)</span>, i.e.</p>
+<div class="math">
+\[I(X;Y)|_{p_X=p_X^*}=C\]</div>
+<p><em>Generate</em> a <span class="math">\((2^{nR},n)\)</span> code at <em>random</em> according to <span class="math">\(p_X^*\)</span> - i.e. generate each of the <span class="math">\(2^{nR}\)</span> codewords (which a n-tuples over <span class="math">\(\mathcal X\)</span>) by <strong>independently</strong> drawing n symbols from <span class="math">\(\mathcal X\)</span> according to <span class="math">\(p_X^*\)</span>.</p>
+<p>So if <span class="math">\(x^n\in \mathcal X^n\)</span>, then the probability that <span class="math">\(x^n\)</span> is chosen as a codeword is:</p>
+<div class="math">
+\[p^*_X(x^n)=\prod_{i=1}^n p_X^*(x_i)\]</div>
+<p>and let</p>
+<div class="math">
+\[\mathcal C = \{x^n(1), x^n(2), ..., x^n(2^{nR})\}\]</div>
+<p>be a possible <strong>codebook</strong> (code), where</p>
+<div class="math">
+\[x^n(w)=(x_1(w),...,x_n(w))\]</div>
+<p>for <span class="math">\(w=1,2,...,2^{nR}\)</span> is a codeword for message <span class="math">\(w\in \mathcal M=\{1,2,...,2^{nR}\}\)</span></p>
+<p>Then the probability that <span class="math">\(\mathcal C\)</span> is chosen as our codebook is:</p>
+<div class="math" id="equation-α">
+<span class="eqno">(1)</span>\[P(\mathcal C)=\prod_{w=1}^{2^{nR}}p_{X^n}^*(x^n(w))=\prod_{w=1}^{2^{nR}}\prod_{i=1}^np_X^*(x_i(w))\]</div>
+<p>How many possible codebooks do we have?</p>
+<div class="math">
+\[|\mathcal X|^{n2^{nR}}\]</div>
+<p>Consider the following:</p>
+<ol class="arabic">
+<li><p class="first">A codebook <span class="math">\(\mathcal C\)</span> is generated at random as described via <a href="#equation-α">(1)</a> according to <span class="math">\(p_X^*\)</span></p>
+</li>
+<li><p class="first">Codebook <span class="math">\(C\)</span> is recealed to both the transmitter and receiver. We also assume that the channel law <span class="math">\(p_{Y|X}\)</span> is known by transmitter/receiver.</p>
+</li>
+<li><p class="first">A message <span class="math">\(w\)</span> is chosen uniformly from set of messages <span class="math">\(\mathcal M=\{1,2,...,2^{nR}\}\)</span></p>
+<div class="math">
+\[\begin{split}P[W=w]=\frac{1}{2^{nR}} &amp;&amp; \forall w\in \mathcal M\end{split}\]</div>
+</li>
+<li><p class="first">Transmit message <span class="math">\(w\)</span> by sending its corresponding codeword <span class="math">\(x^n(w)\)</span> in <span class="math">\(\mathcal C\)</span> over the channel.</p>
+</li>
+<li><p class="first">At receiver, receive <span class="math">\(y^n\in\mathcal Y^n\)</span> according to:</p>
+<div class="math">
+\[P[Y^n=y^n|X^n=x^n(w)]=\prod_{i=1}^np_{Y|X}(y_i|x_i(w))\]</div>
+<p>since channel is <strong>DMC</strong></p>
+</li>
+<li><p class="first">Decoding:</p>
+<p>Reciever guesses which message was sent.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The optimal decoding rule (<span class="math">\(\forall n\)</span>) is maximum likelihood (ML) decoding</p>
+<div class="last math">
+\[\hat w_{ML}=argmax_{w\in\mathcal M}p(y^n|w)\]</div>
+</div>
+<p>We use a sub-optimal rule: <strong>typical set decoding</strong></p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Typical Set Decoding</p>
+<p>Decoder rule:</p>
+<div class="math">
+\[g_{\mathcal C}: \mathcal Y^n\to\{0,1,2,...,2^{nR}\}\]</div>
+<p>Decoder decodes <span class="math">\(g_{\mathcal C}(y^n)=\hat w\)</span> was sent if:</p>
+<ol class="lowerroman simple">
+<li><span class="math">\((x^n(\hat w), y^n)\in A_ε^{(n)}\)</span> jointly typical set <span class="math">\(A_ε^{(n)}\)</span> with <span class="math">\(p_X^*p_{Y|X}\)</span> <strong>and</strong></li>
+<li>there is no other index <span class="math">\(j\in\mathcal M\)</span> s.t. <span class="math">\((x^n(j),y^n)\in A_ε^{(n)}\)</span>, <span class="math">\(\forall j\in\mathcal M,j\neq \hat w\)</span>.</li>
+</ol>
+<p class="last">If no such <span class="math">\(\hat w\)</span> exists, declare an error and output 0</p>
+</div>
+</li>
+<li><p class="first">Decoding error: <span class="math">\(\hat w\neq w\)</span></p>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Proof of Shannon&#8217;s Channel Coding Theorem for DMCs</a><ul>
+<li><a class="reference internal" href="#proof">Proof:</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-11-04.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-11-06.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-11-05.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

@@ -1,0 +1,77 @@
+********************************************************
+Uniform Convergence and Analytic Functions, Power Series
+********************************************************
+.. admonition:: Theorem (Weirstrass)
+
+    .. math::
+        f_n\to f\text{ L.U. on }D
+
+    and :math:`f_n` are holomorphic on :math:`D`, then so is :math:`f` and
+
+    .. math::
+        f_n^{(K)}\to f_n^{(K)}\text{ L.U. on }D
+
+    Proof:
+
+    Fix :math:`z_0\in D`, :math:`\overline{D_ε(z_0)}` a small disk around :math:`z_0` contained in :math:`D`.
+
+    Let :math:`γ=δD_ε(z_0)`
+
+    By Cauchy's Integral Formula:
+
+    .. math::
+        f_n(z_0)&=\frac{1}{2πi}\int_γ\frac{f_n(w)}{w-z_0}dw\\
+        f(z_0)&=\frac{1}{2πi}\int_γ\frac{f(w)}{w-z_0}dw
+
+    since if :math:`f_n(w)\to f(w)` uniformly on :math:`\overline{D_ε(z_0)}` then
+
+    .. math::
+        \frac{f_n(w)}{w-z_0}\to\frac{f(w)}{w-z_0}
+
+    uniformly on :math:`γ`.
+
+    So for all :math:`z_0\in D`, :math:`f(z_0)` is given by an integral of Cauchy type, thus analytic.
+
+    Since
+
+    .. math::
+        \frac{k!}{2πi}\int_γ\frac{f_n(z)}{(w-z)^{k+1}}dz\to \frac{k!}{2πi}\int_γ\frac{f(z)}{(w-z)^{k+1}}dz
+
+    it is easy to show uniform convergence for the derivative.
+
+Distinction Between Uniformly Convergent and Uniformly Convergent on Compact Sets
+=================================================================================
+For :math:`z\in D_1(0)`, :math:`f_n(z)=z^n\to 0` uniformly on compact sets, but not uniformly
+
+because :math:`\forall 1>ε>0`, :math:`\forall n\in\mathbb N` we can find a :math:`z\in D_1(0)` s.t. :math:`|z^n=0|>ε`. Just look near the boundary.
+
+But if :math:`k\subset D_1(0)` is compact, then it is contained in some :math:`\overline D_δ(1)` where :math:`δ<1` so :math:`\forall z\in K`, 
+
+.. math::
+    |z^n-0|<|z|^n\leq δ^n\to 0\text{ as }n\to\infty
+
+.. admonition:: Definition (Power Series)
+
+    A *power series* centered at :math:`z_0` is an expression of the form:
+
+    .. math::
+        \sum_{n=0}^\infty a_n(z-z_0)^n
+
+    :math:`a_n\in\mathbb C`
+
+.. admonition:: Theorem (Radius of Convergencec)
+
+    Given a power series, there exists an :math:`R` s.t.
+
+    (i) if :math:`|z-z_0|<R`, the series converges.
+    (ii) if :math:`|z-z_0|>R`, the series diverges.
+    
+    Furthermore, convergence is locally uniform on :math:`D_R(z_0)`.
+
+    Proof:
+
+    Same proofs as real analysis, the modulus just means more now. See Section 5.4 of Textbook if curious.
+
+
+
+

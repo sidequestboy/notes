@@ -1,0 +1,123 @@
+.. admonition:: Theorem
+
+    For an irruducible recurrent Markov chain, a stationary distribution :math:`\Pi` exists if and only if all states are positive recurrent. In this case, :math:`\Pi` is unique and given by :math:`\Pi_i=\frac{1}{\mu_i}` where :math:`\mu_i` is the mean return time to state :math:`i`.
+
+Positive recurrence is a class property:
+
+.. admonition:: Lemma
+
+    If :math:`i\leftrightarrow j` and :math:`i` is positive recurrent, then :math:`j` is positive recurrent.
+
+    Proof
+    -----
+    Consider the Markov chain whose state space are the states in the recurrent class containing :math:`i` and :math:`j`. This is a proper Markov chain since a recurrent class is closed.
+
+    Since :math:`i` is positive recurrent, there exists a stationary distribution :math:`\Pi` (we showed how to construct it). Thus, all states are positive recurrent - in particular state :math:`j`.
+
+Consider a transient state :math:`j`. This means that :math:`f_j<1` where :math:`f_j` is the probability of ever returning to :math:`j`, starting in :math:`j`. Let :math:`i` be any other state. Then, given that the chain starts in :math:`i`, the number of times state :math:`j` is visited is no more than
+
+.. math::
+    1+X
+
+where :math:`X` is the number of times the chain returns to :math:`j` after the first visit. Where :math:`X` has a Geometric distribution with parameter :math:`1-f_j`.
+
+So the expected number of times :math:`j` is visited, starting in :math:`i`, is upper bounded by:
+
+.. math::
+    1+E[x]=1+\frac{1}{1-f_j}<\infty
+
+Let 
+
+.. math::
+    T_j=\text{ number of times }j\text{ is visited starting at time 1}
+
+and
+
+.. math::
+    I_j(n) = \begin{cases} 1 &\text{ if }X_n=j \\2 &\text{ if }X_n\neq j \end{cases}
+
+So,
+
+.. math::
+    T_j=\sum_{n=1}^\infty I_j(n)
+
+Then
+
+.. math::
+    E[T_j|X_0=i]
+
+    =E[\sum_{n=1}^\infty I_j(n)|X_0=i]
+
+    =\sum_{n=1}^\infty P(X_n=j|X_0=i)
+
+    =\sum_{n=1}^\infty p_{ij}(n)<\infty
+
+by previous argument.
+
+Therefore, :math:`p_{ij}(n)\to 0` as :math:`n\to\infty`
+
+Note also that :math:`p_{jj}(n)\to 0` as :math:`n\to\infty`.
+
+Now suppose we have an irreducible, transient Markov chain. Suppose a stationary distribution :math:`\Pi` did exist. Then
+
+.. math::
+    \Pi_j=P(X_n=j)=\sum_{i\in S}P(X_n=j|X_0=i)P(X_0=i)
+
+    =\sum_{i\in S}p_{ij}(n)\Pi_i
+
+    =\sum_{i\in F}p_{ij}(n)\Pi_i+\sum_{i\in F^c}p_{ij}(n)\Pi_i
+
+where :math:`F` is any *finite* subset of the state-space :math:`S`.
+
+.. math::
+    \leq \sum_{i\in F}p_{ij}(n)\Pi_i+\sum_{i\in F^c}1\cdot \Pi_i
+
+Now let :math:`n\to \infty`. The limit can be taken inside the finite sum, and the limit is 0.
+
+So we get
+
+.. math::
+    \Pi_j\leq \sum_{i\in F^c}\Pi_i
+
+Let :math:`\epsilon<0` be given.
+
+Now choose :math:`F` so that :math:`\sum_{i\in F^c}\Pi_i<\epsilon`
+
+So :math:`\Pi_j\leq \epsilon`. Therefore, :math:`\Pi_j=0`.
+
+But :math:`j` was arbitrary, so :math:`\Pi_j=0` for all :math:`j\in S`
+
+This contradicts that :math:`\sum_{i\in S}\Pi_i=1`
+
+So we can restate the theorem to remove the recurrent condition:
+
+.. admonition:: Theorem
+
+    For an irruducible Markov chain, a stationary distribution :math:`\Pi` exists if and only if all states are positive recurrent. In this case, :math:`\Pi` is unique and given by :math:`\Pi_i=\frac{1}{\mu_i}` where :math:`\mu_i` is the mean return time to state :math:`i`.
+
+Some Number Theory Results
+==========================
+1. Let :math:`n_1,n_2,...` be a sequence of positive integers with gcd 1. Then there exists a finite subset of the sequence, say :math:`b_1,b_2,...,b_r` with gcd 1.
+
+  Proof
+  -----
+  Let :math:`b_1=n_1`, and :math:`b_2=n_2` Let :math:`g=gcd(b_1,b_2)`. 
+
+  If :math:`g=1`, we are done.
+
+  If :math:`g>1`, let :math:`p_1,...,p_d` be the distinct prime factors of :math:`g` that are larger than 1. For each :math:`p_k`, there is at least one integer from :math:`\{n_3,n_4,...\}` that :math:`p_k` does not divide (Otherwise, :math:`p_k` would divide all the :math:`n_1,n_2,...`, and :math:`p_k>1`, contradicting the gcd being 1).
+
+  Choose :math:`b_3'` from :math:`\{n_3,...\}` such that :math:`p_1` does not divide :math:`b_3'`.
+
+  ...
+
+  Choose :math:`b_{d+2}'` from :math:`\{n_3,...\}` such that :math:`p_1` does not divide :math:`b_{d+2}'`.
+
+  Let :math:`b_3,...,b_r` be the distinct integers among :math:`b_3',...,b_{d+2}'`.
+
+  Then :math:`\{b_1,...,b_r\}` has gcd 1
+
+  :math:`p_k` does not divide at least one of :math:`b_3,...,b_r`.
+
+  But :math:`p_1,...,p_d` are the *only* divisors of :math:`b_1, b_2`.
+

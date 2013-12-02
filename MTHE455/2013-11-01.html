@@ -1,0 +1,222 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Poisson Process &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-11-04.html" />
+    <link rel="prev" title="Example of Markov chain Monte Carlo and Time Reversibility" href="2013-10-30.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-04.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-30.html" title="Example of Markov chain Monte Carlo and Time Reversibility"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="poisson-process">
+<h1>Poisson Process<a class="headerlink" href="#poisson-process" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">See <a class="reference external" href="http://www.mast.queensu.ca/~stat455/lecturenotes/set4.pdf">Takahara&#8217;s online notes</a> Lecture 21 for info on the Exponential Distribution</p>
+</div>
+<p>Let <span class="math">\(\{X_t: t\geq 0\}\)</span> be a stochastic process with index set <span class="math">\([0,\infty)\)</span></p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>An <em>increment</em> is of the form</p>
+<div class="last math">
+\[X(t)-X(s), s\geq t\]</div>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">The process <span class="math">\(\{X_t: t\geq 0\}\)</span> is said to have <em>stationary increments</em> if the distribution of <span class="math">\(X_t-X_s\)</span> depends only on the difference <span class="math">\(t-s\)</span>.</p>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p class="last">The process <span class="math">\(\{X(t): t\geq 0\}\)</span> is said to have independent increments if any two increments  involving disjoint intervals are independent.</p>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p class="last">If <span class="math">\(Z_i\)</span>, <span class="math">\(i=1,2,...\)</span> are independent and identically distributed, and <span class="math">\(X_n=\sum_{i=1}^nZ_i\)</span>, then <span class="math">\(\{X_n:n\geq 0\}\)</span> has both stationary and independent increments.</p>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p><strong>Poisson Process</strong></p>
+<p>A continuous-time stochastic process</p>
+<div class="math">
+\[\{N(t): t\geq 0\}\]</div>
+<p>is a Poisson process with rate <span class="math">\(λ\)</span> if</p>
+<ol class="lowerroman simple">
+<li><span class="math">\(N(0)=0\)</span></li>
+<li>It has stationary and independent increments</li>
+<li>The distribution of <span class="math">\(N(t)\)</span> is Poisson with mean <span class="math">\(λt\)</span></li>
+</ol>
+<blockquote class="last">
+<div><div class="math">
+\[\begin{split}P(N(t)=k)=\frac{(λt)^k}{k!}e^{-λt}, &amp;&amp; k=0,1,2\end{split}\]</div>
+</div></blockquote>
+</div>
+<p>From this definition</p>
+<ul>
+<li><p class="first">For <span class="math">\(s&lt;t\)</span>, the distribution of <span class="math">\(N(t)-N(s)\)</span> is the same as the distribution of <span class="math">\(N(t-s)-N(0)\)</span>, by stationary increments, and since <span class="math">\(N(0)=0\)</span>, we have</p>
+<div class="math">
+\[N(t)-N(s)\sim Poisson(λ(t-s))\]</div>
+</li>
+<li><p class="first">The process is non-decreasing since</p>
+<div class="math">
+\[N(t)-N(s)\sim Poisson(λ(t-s))\geq 0\]</div>
+<p>with probability 1</p>
+</li>
+<li><p class="first">The sample space of the Poisson process is <span class="math">\(S=\{0,1,2,...\}\)</span></p>
+</li>
+</ul>
+<div class="section" id="landau-s-little-oh-notation">
+<h2>Landau&#8217;s &#8220;Little oh&#8221; Notation<a class="headerlink" href="#landau-s-little-oh-notation" title="Permalink to this headline">¶</a></h2>
+<p>The notation <span class="math">\(o(h)\)</span> is called &#8220;little oh of h&#8221;, and does not refer to any specific function</p>
+<p>It specifies any function of <span class="math">\(h\)</span> that goes to 0 at a faster rate than <span class="math">\(h\)</span>, as <span class="math">\(h\to 0\)</span>.</p>
+<p>In other words, <span class="math">\(\frac{o(h)}{h}\to 0\)</span> as <span class="math">\(h\to 0\)</span>.</p>
+<p>We get things like</p>
+<div class="math">
+\[\begin{split}o(h)+o(h)&amp;=o(h)\\
+   o(h)o(h)&amp;=o(h)\\
+c\cdot o(h)&amp;=o(h)\end{split}\]</div>
+<p>where <span class="math">\(c\)</span> is any constant</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p><span class="math">\(h^k\)</span> is <span class="math">\(o(h)\)</span> for any <span class="math">\(k&gt;1\)</span></p>
+<div class="math">
+\[\begin{split}\sum_{k=2}^\infty c_k h^k\text{ with }|c_k|&lt;1 &amp;&amp; \forall k\end{split}\]</div>
+<p class="last">is <span class="math">\(o(h)\)</span></p>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Poisson Process (def 2)</p>
+<p>A continuous time process <span class="math">\(\{N(t):t\geq 0\}\)</span> is a Poisson process with rate <span class="math">\(λ&gt;0\)</span> if</p>
+<ol class="lowerroman simple">
+<li><span class="math">\(N(0)=0\)</span></li>
+<li>It has stationary and independent increments</li>
+<li>The probabilities:</li>
+</ol>
+<blockquote class="last">
+<div><div class="math">
+\[\begin{split}P(N(h)=1)&amp;=λh+o(h)\\
+P(N(h)\geq 2)&amp;=o(h)\\
+    P(N(h)=0)&amp;=1-λh+o(h)\end{split}\]</div>
+</div></blockquote>
+</div>
+<p>Let us show that the first definition implies this definition.</p>
+<p>First, note that <span class="math">\(N(h)\sim Poisson(λh)\)</span></p>
+<p>So</p>
+<div class="math">
+\[\begin{split}P(N(h)=0)&amp;=e^{-λh}\\
+         &amp;=1-λh+\frac{(λh)^2}{2}-\frac{(λh)^3}{3!}+...\\
+         &amp;=1-λh+o(h)\end{split}\]</div>
+<p>Also,</p>
+<div class="math">
+\[\begin{split}P(N(h)=1)&amp;=λhe^{-λh}\\
+         &amp;=λh-λ^2h^2+\frac{(λh)^3}{2}-\frac{(λh)^3}{3!}+...\\
+         &amp;=λh+o(h)\end{split}\]</div>
+<p>By subtraction,</p>
+<div class="math">
+\[\begin{split}P(N\geq 2)&amp;=1-(λh+o(h))-(1-λh+o(h))\\
+          &amp;=o(h)\end{split}\]</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Poisson Process</a><ul>
+<li><a class="reference internal" href="#landau-s-little-oh-notation">Landau&#8217;s &#8220;Little oh&#8221; Notation</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-10-30.html" title="previous chapter">Example of Markov chain Monte Carlo and Time Reversibility</a></li>
+      <li>Next: <a href="2013-11-04.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-11-01.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

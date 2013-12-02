@@ -1,0 +1,195 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Convergent Series of Analytic Functions &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Uniform Convergence and Analytic Functions, Power Series" href="2013-11-11.html" />
+    <link rel="prev" title="Dirichlet Problem and Poisson’s Formula" href="2013-11-05.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-11.html" title="Uniform Convergence and Analytic Functions, Power Series"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-05.html" title="Dirichlet Problem and Poisson’s Formula"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="convergent-series-of-analytic-functions">
+<h1>Convergent Series of Analytic Functions<a class="headerlink" href="#convergent-series-of-analytic-functions" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-definition-pointwise-convergence-of-complex-functions admonition">
+<p class="first admonition-title">Definition (Pointwise convergence of complex functions)</p>
+<p>Given a sequence of functions</p>
+<div class="math">
+\[f_n:S\to\mathbb C\]</div>
+<p><span class="math">\(n=1,2,3,...\)</span>, we say <span class="math">\(f_n\)</span> <em>converges to</em> <span class="math">\(f\)</span> <em>pointwise</em> if <span class="math">\(\forall z\in S\)</span>,</p>
+<div class="math">
+\[\lim_{n\to\infty}f_n(z)=f(z)\]</div>
+<p class="last">i.e. <span class="math">\(\forall z\in S\)</span>, <span class="math">\(ε&gt;0\)</span>, <span class="math">\(\exists N\)</span> s.t. <span class="math">\(|f_n(z)-f(z)|&lt;ε\)</span> <span class="math">\(\forall n\geq N\)</span>.</p>
+</div>
+<p>We can also consider pointwise convergence of a sum of functions</p>
+<div class="math">
+\[f(z)=\sum_{k=1}^\infty g_k(z)\]</div>
+<p>if</p>
+<div class="math">
+\[f_n(z)=\sum_{k=1}^n g_k(z)\]</div>
+<p>If <span class="math">\(f_n\to f\)</span> pointwise, we say <span class="math">\(\{f_n\}\)</span> is the sequence of partial sums.</p>
+<p>We want to know:</p>
+<p>If <span class="math">\(f_n\)</span> are continuous (or holomorphic), is <span class="math">\(f\)</span>?</p>
+<p>Does</p>
+<div class="math">
+\[\int_γ f_n(z)dz\to\int_γ f(z)dz\]</div>
+<p>Without more restrictions, the answer is <strong>no</strong>.</p>
+<p>Consider the real-valued functions</p>
+<div class="math">
+\[\begin{split}f_n=\begin{cases}
+    -1 &amp;&amp; x&lt;-\frac{1}{n}\\
+    nx &amp;&amp; -\frac{1}{n}\leq x\leq \frac{1}{n}\\
+    1  &amp;&amp; x &gt; \frac{1}{n}
+    \end{cases}\end{split}\]</div>
+<img alt="../_images/11.07.1.png" src="../_images/11.07.1.png" style="width: 50%;" />
+<p>Then</p>
+<div class="math">
+\[\begin{split}\lim_{n\to\infty}f_n(z)=\begin{cases}
+    -1 &amp;&amp; x&lt;0\\
+    0  &amp;&amp; x=0\\
+    1  &amp;&amp; x&gt;0
+    \end{cases}\end{split}\]</div>
+<p><span class="math">\(f_n\)</span> defined by the picture:</p>
+<img alt="../_images/11.07.2.png" src="../_images/11.07.2.png" style="width: 50%;" />
+<p>where we have <span class="math">\(\lim_{n\to\infty}f_n=0\)</span> <em>but</em> <span class="math">\(\lim_{n\to\infty}\int_0^1 f_n(x)dx=\lim_{n\to\infty} 1=1\)</span>.</p>
+<p>So pointwise convergence doesn&#8217;t always preserve continuity or integrals.</p>
+<p>The following convergence definition does.</p>
+<div class="admonition-definition-uniform-convergence admonition">
+<p class="first admonition-title">Definition (Uniform Convergence)</p>
+<div class="math">
+\[f_n:S\to\mathbb C\text{ (or }\mathbb R\text{)}\]</div>
+<p>converges <em>uniformly</em> on <span class="math">\(S\)</span> if <span class="math">\(\forall ε&gt;0\)</span>, <span class="math">\(\exists N\)</span> s.t. if <span class="math">\(n\geq N\)</span>, <span class="math">\(|f_n(z)-f(z)|&lt;ε\)</span> <span class="math">\(\forall z\in S\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The subtle difference between this definition and the definition of pointwise convergence is that, in the uniform case, there must exist an <span class="math">\(N\)</span> for the given <span class="math">\(ε&gt;0\)</span> that holds <em>for all</em> <span class="math">\(z\in S\)</span> at once.</p>
+</div>
+<p>We say that <span class="math">\(f_n\to f\)</span> <em>uniformly on compact sets</em> (also called Locally Uniformly (LU) Convergent) in <span class="math">\(S\)</span> if for any compact subset <span class="math">\(K\subset S\)</span>, <span class="math">\(f_n\to f\)</span> uniformly on <span class="math">\(K\)</span>.</p>
+<p class="last">Often, uniformly on compact subsets is enough to get what we need.</p>
+</div>
+<div class="admonition-lemma admonition">
+<p class="first admonition-title">Lemma</p>
+<p>If <span class="math">\(f_n\to f\)</span> uniformly on compact sets in <span class="math">\(S\)</span> and <span class="math">\(γ\subset S\)</span> is a bounded curve, then</p>
+<div class="math">
+\[\lim_{n\to\infty}\int_γf_n(z)dz=\int_γ\lim_{n\to\infty} f_n(z)dz=\int_γf(z)dz\]</div>
+<p>Proof:</p>
+<div class="math">
+\[\begin{split}|\int_γ f_n(z)dz-\int_γf(z)dz|=|\int_γf_n(z)-f(z)dz|\\
+\leq length(γ)max_{z\in γ}|f_n(z)-f(z)|\end{split}\]</div>
+<p>But, <span class="math">\(\forall ε&gt;0\)</span>, <span class="math">\(\exists N\)</span> s.t. <span class="math">\(|f_n(z)-f(z)|&lt;ε\)</span> on <span class="math">\(γ\)</span> (compact) for <span class="math">\(n\geq N\)</span>. So</p>
+<div class="math">
+\[\begin{split}\lim_{n\to \infty}|\int_γ f_n(z)dz-\int_γ f(z)dz|\\
+&lt;length(γ)ε\end{split}\]</div>
+<p>(for all <span class="math">\(ε&gt;0\)</span>)</p>
+<div class="math">
+\[=0\]</div>
+<div class="admonition-corollary last admonition">
+<p class="first admonition-title">Corollary</p>
+<p>If</p>
+<div class="math">
+\[f_n(z)=\sum_{k=1}^n g_n(z)\to f(z)=\sum_{k=1}^\infty g_n(z)\]</div>
+<p>uniformly on compact sets on <span class="math">\(z\in S\)</span> and <span class="math">\(γ\subset S\)</span> (bounded curve), then</p>
+<div class="math">
+\[\begin{split}\lim_{n\to\infty}\sum_{k=1}^n\int_γ g_n(z)dz&amp;=\lim_{n\to\infty}\int_γ f_n(z)dz\\
+&amp;=\int_γ f(z)dz\\
+&amp;=\int_γ \sum_{k=1}^\infty g_n(z)\end{split}\]</div>
+<p>So</p>
+<div class="last math">
+\[\sum_{k=1}^\infty\int_γ g_n(z)dz=\int_γ\sum_{k=1}^\infty g_n(z)dz\]</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-11-05.html" title="previous chapter">Dirichlet Problem and Poisson&#8217;s Formula</a></li>
+      <li>Next: <a href="2013-11-11.html" title="next chapter">Uniform Convergence and Analytic Functions, Power Series</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-11-07.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

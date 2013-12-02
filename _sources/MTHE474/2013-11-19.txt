@@ -1,0 +1,211 @@
+
+
+if
+
+.. math::
+    \underscore Y=A\underscore X
+
+then
+
+.. math::
+    :label: *
+
+    h(\underscore Y)=h(\underscore X)+log|\Det A|
+
+.. admonition:: Theorem
+
+    If
+
+    .. math::
+        \underscore X_{n\times 1}\sim N(\underscore μ,k\underscore x_{n\times n})
+
+    Then
+
+    .. math::
+        h(\underscore X)=\frac{1}{2}\log_2[(2πe)^n(\det K\underscore x)]
+
+    without loss of generality, :math:`\underscore μ=0`
+
+    Proof:
+
+    Since covariance matrix :math:`K_{\underscore x}` is real-valued symmetric, then it is orthogonally diagonalizable:
+
+    :math:`\exists` :math:`n\times n` matrix orthogonal matrix :math:`A`
+
+    .. math::
+        (A=A^T)
+
+    s.t. :math:`AK_{\underscore x}A^T` is a *diagonal matrix*. (with diagonal elements given by the eigenvalues of :math:`K\underscore x`)
+
+    Therefore, for :math:`\underscore Y=A\underscore X\sim N(\underscore 0, AK_{\underscore x}A^T)`
+
+    where :math:`AK_{\underscore x}A^T` is diagonal & Gaussian (:math:`Y_1,...,Y_n` are *independent* Gaussian)
+
+    Therefore,
+
+    .. math::
+        h(Y_1,...,Y_n)=h(\underscore Y)\\
+        =h(Y_1)+h(Y_2)+...+h(Y_n)\text{ since }Y_i\text{ independent}\\
+        =\sum_{i=1}^n \frac{1}{2}\log_2(2πeVar(Y_i))\text{ }Y_i\text{ is Gaussian}\\
+        =\frac{n}{2}\log(2πe)+\frac{1}{2}\log[\prod_{i=1}^n Var(Y_i)]\\
+        =\frac{1}{2}\log(2πe)^n + \frac{1}{2}\log[det K_{\underscore Y}]\\
+        =\frac{1}{2}\log(2πe)^n + \frac{1}{2}\log[det K_{\underscore X}]\\
+        =\frac{1}{2}\log_2[(2πe)^n det(K_{\underscore X})]
+
+    .. note::
+
+        .. math::
+            K_{\underscore Y}=AK_{\underscore X}A^T\\
+            det(K_{\underscore Y})=det^2 (A)det(K_{\underscore X})=det(K_{\underscore X})\\
+            |det(A)|=1
+
+    By :eq:`*`, :math:`h(\underscore X)=h(\underscore Y)`
+
+Maximal differential entropy for real-valued random vectors
+===========================================================
+
+.. admonition:: Theorem
+
+    Let :math:`\underscore X_{n\times 1}=(X_1,...,X_n)` be a *real-valued* random vector with support :math:`\mathbb R^n`, mean vector :math:`\underscore μ` and covariance matrix :math:`k_{\underscore X}` (nxn)
+
+    Then
+
+    .. math::
+        h(\underscore X)=h(X_1,...,X_n)\\
+                        \leq \frac{1}{2}\log_2[(2πe)^ndet(K_{\underscore X})]
+
+    with equality iff :math:`\underscore X\sim N(\underscore μ, K_{\underscore X})`
+
+    Proof:
+
+    (1) Scalar case (n=1)
+    
+        let :math:`X` be real-valued with support :math:`R`, mean :math:`μ`, variance :math:`σ^2`
+
+        show :math:`h(X)\leq \frac{1}{2}\log_2(2πeσ^2)` with equality iff :math:`X\sim N(μ,σ^2)`
+
+        Proof:
+
+        Let :math:`Y\sim N(μ,σ^2)`. Then 
+
+        .. math::
+            0\leq D(X||Y)\\
+             = \int f_X(t) \log_2\frac{f_X(t)}{\frac{1}{\sqrt{2πσ^2}e^{\frac{a(t-μ)^2}{2σ^2}}}}dt\\
+             =-h(X)+\int f_X(t)[\log_2(\sqrt{2πσ^2})+\frac{(t-μ)^2}{2σ^2}\log_2 e]dt\\
+             =-h(X)+ \frac{1}{2}\log(2πσ^2)+\frac{\log_2 e}{2σ^2}\int (t-μ)^2 f_X(t)dt\\
+             =-h(X)+\frac{1}{2}\log(2πeσ^2)
+
+        Therefore
+
+        .. math::
+            :label: **
+
+            h(X)\leq \frac{1}{2}\log(2πeσ^2)
+
+        with equality iff :math:`X\sim N(μ,σ^2)`
+
+    (2) Multivariate case (n>1)
+    
+        As in the Pf of the previous theorem, we can use an othogonal matrix :math:`A_{m\times n}` (:math:`A^T=A^{-1}\implies |det(A)|=1`):
+
+        such that :math:`AK_{\underscore X}A^T` is diagonal
+
+        So: for
+
+        .. math::
+            \underscore Z_{n\times 1}=A\underscore X_{n\times 1}
+
+        its covariance matrix :math:`K_{\underscore Z}=AK_{\underscore X}A^T` is diagonal.
+
+        Thus, by :eq:`*`
+
+        .. math::
+            h(\underscore X)=h(\underscore Z)-\log|Det A|\\
+            =h(\underscore Z)\\
+            =h(Z_1,...,Z_n)\\
+            \leq \sum_{i=1}^n h(Z_i)\\
+            \leq \sum_{i=1}^n \frac{1}{2}[2πeVar(Z_i)]
+
+        Where the last inequality follows from the n=1 case, :eq:`**`
+
+        .. math::
+            = \frac{n}{2}\log_2(2πe)+\frac{1}{2}\log_2[\prod_{i=1}^n Var(Z_i)]
+
+        And since :math:`K_{\underscore Z}` is diagonal,
+
+        .. math::
+            = \frac{1}{2}\log_2(2πe)+\frac{1}{2}\log_2(det K_{\underscore Z})\\
+            = \frac{1}{2}\log[(2πe)^ndet(K_{\underscore X})]
+
+        since :math:`|det(A)|=1`
+
+.. admonition:: Theorem (AEP)
+
+    If :math:`X_1,...` are i.i.d. real-valued random variables with common pdf :math:`f_X`, then
+
+    .. math::
+        -\frac{1}{n}\log_2 f_{X^n}(X_1,...,X_n)\rightarrow_{n\to\infty}h(X)
+
+    in probability
+
+    Proof: by WLLN
+
+.. admonition:: Definition
+
+    For :math:`ε>0`, and any :math:`n`, define *typical set* :math:`A_ε^{(n)}` with respect to :math:`f_X`
+
+    .. math::
+        A_ε^{(n)}=\{x^n\in S_X^n: |-\frac{1}{n}f_X^n(x_1,...,x_n)-h(X)|\leq ε\}
+
+    where
+
+    .. math::
+        f_{X^n}(x^n)=\prod_{i=1}^n f_X(x_i)
+
+    :math:`S_X=` support of :math:`X` = :math:`\{x\in\mathbb R: f_X(x)>0\}`
+
+.. admonition:: Theorem (Consequence of AEP)
+
+    For iid real-valued RVs with pdf :math:`f_X`, the typical set satisfies:
+
+    (1)
+
+        .. math::
+            P[A_ε^{(n)}]>1-ε
+
+        for :math:`n` suff. large
+    (2)
+
+        .. math::
+            Vol(A_ε^{(n)})\leq 2^{n(h(X)+ε)}
+    (3)
+
+        .. math::
+            Vol(A_ε^{(n)})>(1-ε)2^{n(h(X)-ε)}
+
+        for :math:`n` suff. large.
+
+The Gaussian Channel
+====================
+
+.. admonition:: Definition
+
+    Consider a discrete-time channel with continuous input and output alphabets :math:`\mathcal X\subseteq \mathbb R`, :math:`\mathcal Y\subseteq \mathbb R`, and a conditional pdf :math:`f_{Y|X}`. The channel is *memoryless* if for sending :math:`(x_1,...,x_n)` over the channel, the output :math:`y^n=(y_1,...,y_n)` is governed by
+
+    .. math::
+        f_{Y^n|X^n}(y^n|x^n)=\prod_{i=1}^nf_{Y|X}(y_i|x_i)
+
+
+Additive-noise Gaussian Channel
+-------------------------------
+
+.. math::
+    Y_i=X_i+Z_i
+
+for :math:`i=1,2,...`
+
+:math:`\{Z_i\}` are iid Gaussian (:math:`Z_i\sim N(0,N)`) white Gaussian noise Channel
+
+.. math::
+    f_{Y|X}=f_Z(y-x)=\frac{1}{\sqrt{2πN}}e^{\frac{-(y-x)^2}{2N}}
+

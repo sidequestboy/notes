@@ -27,7 +27,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
-    <link rel="next" title="MTHE 474 - Information Theory" href="../MTHE474/index.html" />
+    <link rel="next" title="Generating Functions" href="2013-09-30.html" />
     <link rel="prev" title="Notes on problems" href="2013-09-25.html" />
    
   
@@ -45,7 +45,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../MTHE474/index.html" title="MTHE 474 - Information Theory"
+          <a href="2013-09-30.html" title="Generating Functions"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="2013-09-25.html" title="Notes on problems"
@@ -67,7 +67,7 @@
 <p>In any Markov chain, define:</p>
 <div class="math">
 \[f_i=P(\text{eventually return to state }i | X_0=i)\]\[= P(X_n=i\text{ for some }n\geq 1 | X_0=i)\]</div>
-<p>We say sa state <span class="math">\(i\)</span> is &#8220;recurrent&#8221; if <span class="math">\(f_i=1\)</span></p>
+<p>We say a state <span class="math">\(i\)</span> is &#8220;recurrent&#8221; if <span class="math">\(f_i=1\)</span></p>
 <p class="last">We say a state <span class="math">\(i\)</span> is &#8220;transient&#8221; if <span class="math">\(f_i&lt;1\)</span></p>
 </div>
 <div class="admonition-proposition admonition">
@@ -83,7 +83,7 @@
 <div class="math">
 \[P(A_n|X_o=i)=1\]\[\implies P(A_n+1|X_0=i)=1\]</div>
 <p>Now assume state <span class="math">\(i\)</span> is not recurrent. Then we will show the expected number of times we return to state <span class="math">\(i\)</span> given we start in state <span class="math">\(i\)</span> is finite.</p>
-<p>If state <span class="math">\(i is transient, then every time the process returns to state :math:`i\)</span>, it is faced with the probability of returning again, with probability or never returning again, with probability <span class="math">\(i-f_i\)</span></p>
+<p>If state <span class="math">\(i\)</span> is transient, then every time the process returns to state <span class="math">\(i\)</span>, it is faced with the probability of returning again, with probability or never returning again, with probability <span class="math">\(i-f_i\)</span></p>
 <p>The return process is equivalent to a sequence of independent Bernoulli trials, where a &#8220;success&#8221; is the event we never return to state <span class="math">\(i\)</span> again, and the probability of success is <span class="math">\(1-f_i\)</span>.</p>
 <p class="last">The expected number of returns to state <span class="math">\(i\)</span> given we start in state <span class="math">\(i\)</span>, is then the mean of a geometric distribution, interpreted as the number of failures before the first success. The mean of this distribution is <span class="math">\(\frac{f_i}{1-f_i}\)</span>. Therefore, the expected number of returns to state <span class="math">\(i\)</span> given we start in state <span class="math">\(i\)</span> is <span class="math">\(\frac{f_i}{1-f_i}&lt;\infty\)</span>.</p>
 </div>
@@ -106,7 +106,7 @@
 <div class="admonition-corollary-2 admonition">
 <p class="first admonition-title">Corollary 2</p>
 <p>if state <span class="math">\(i\)</span> is recurrent and state <span class="math">\(i\)</span> communicates with state <span class="math">\(j\)</span>, then state <span class="math">\(j\)</span> is recurrent.</p>
-<p>state <span class="math">\(i\)</span> communicates with state <span class="math">\(j\)</span> <span class="math">\(\implies\)</span> that there exists <span class="math">\(m,n\)</span> so that <span class="math">\(p_{i,j}(n)&gt;0\)</span> &amp; <span class="math">\(p_{j,i}(n)&gt;0\)</span></p>
+<p>state <span class="math">\(i\)</span> communicates with state <span class="math">\(j\)</span> <span class="math">\(\implies\)</span> that there exists <span class="math">\(m,n\)</span> so that <span class="math">\(p_{i,j}(n)&gt;0\)</span> &amp; <span class="math">\(p_{j,i}(m)&gt;0\)</span></p>
 <p>Also, state <span class="math">\(i\)</span> is recurrent <span class="math">\(\implies\)</span> <span class="math">\(\sum_{n=0}^\infty p_{i,j}(n)=\infty\)</span></p>
 <p>For any positive integer <span class="math">\(r\)</span>, we have:</p>
 <div class="math">
@@ -116,7 +116,7 @@
 \[p_{ij}(m+r+n)=\sum_{k \in S}p_{j,k}(m)p_{k,j}(r_n)\]\[= \sum{k\in S} p_{j,k}(m)\sum_{j \in S} p_{r,l}(r)p_{r,j}(n)\]\[= \sum_{k \in S}\sum_{n \in S} p_{j,k}(m)p_{k,l}(r)p_{n,j}(n)\]\[\geq p_{j,i}(m)p_{i,i}(r)p_{i,j}(n)\]</div>
 <p>Summing over <span class="math">\(r\)</span>:</p>
 <div class="last math">
-\[\sum_{r=1}^\infty p_{j,j}(m+r+n) \geq \sum_{r=0}^\infty p_{j,i}(m)p_{i,j}(n)p_{i,i}(r)\]\[\implies \sum_{r=0}^\infty p_{j,j}(m+r+n) \geq p_{i,j}(m)\sum_{r=0}^\infty p_{i,i}(r)\]\[= \infty\]\[\implies \sum_{n=0}^\infty p_{j,j}(m+r+n)=\infty\]\[\implies \sum_{r=0}^\infty p_{j,j}(r)=\infty\]\[\implies state :math:`j` is recurrent\]</div>
+\[\sum_{r=1}^\infty p_{j,j}(m+r+n) \geq \sum_{r=0}^\infty p_{j,i}(m)p_{i,j}(n)p_{i,i}(r)\]\[\implies \sum_{r=0}^\infty p_{j,j}(m+r+n) \geq p_{i,j}(m)\sum_{r=0}^\infty p_{i,i}(r)\]\[= \infty\]\[\implies \sum_{n=0}^\infty p_{j,j}(m+r+n)=\infty\]\[\implies \sum_{r=0}^\infty p_{j,j}(r)=\infty\]\[\implies\text{state }j\text{ is recurrent.}\]</div>
 </div>
 <div class="admonition-remark admonition">
 <p class="first admonition-title">Remark</p>
@@ -176,7 +176,7 @@
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
       <li>Previous: <a href="2013-09-25.html" title="previous chapter">Notes on problems</a></li>
-      <li>Next: <a href="../MTHE474/index.html" title="next chapter">MTHE 474 - Information Theory</a></li>
+      <li>Next: <a href="2013-09-30.html" title="next chapter">Generating Functions</a></li>
   </ul></li>
   </ul></li>
 </ul>

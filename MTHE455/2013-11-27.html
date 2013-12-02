@@ -1,0 +1,200 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Final Exam Information" href="2013-11-29.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-11-25.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-29.html" title="Final Exam Information"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-25.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <p>Recall the global balance equations</p>
+<div class="math">
+\[ΠG=0\]</div>
+<div class="math">
+\[v_jΠ_j=\sum_{i\in S}Π_iq_{ij}\]</div>
+<p>&#8220;flow out&#8221;=&#8221;flow in&#8221;</p>
+<p><em>Local balance</em> would say that flow from <span class="math">\(i\)</span> to <span class="math">\(j\)</span> equals flow from <span class="math">\(j\)</span> to <span class="math">\(i\)</span>, for any pair of states <span class="math">\(i\neq j\)</span>, i.e.</p>
+<div class="math">
+\[Π_iq_{ij}=Π_jq_{ji}\]</div>
+<p>There are <span class="math">\({|S| choose 2}\)</span> equations (if <span class="math">\(|S|\)</span> is finite).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">These equations will not be satisfied if <span class="math">\(q_{ij}&gt;0\)</span> and <span class="math">\(q_{ji}=0\)</span> (or <span class="math">\(q_{ij}=0\)</span> and <span class="math">\(q_{ji}&gt;0\)</span>) for some <span class="math">\(i\)</span> and <span class="math">\(j\)</span></p>
+</div>
+<p>If <span class="math">\(Π\)</span> satisfies the local balance equations, then</p>
+<div class="math">
+\[\begin{split}\sum_{i\in S}Π_iq_{ij}&amp;=\sum_{i\in S}Π_jq_{ji}\\
+    &amp;=Π_j\sum_{i\in S}q_{ji}\\
+    &amp;=Π_jv_j\end{split}\]</div>
+<p>which is the global balance equation for state <span class="math">\(j\)</span>.</p>
+<div class="admonition-example-birth-death-processes admonition">
+<p class="first admonition-title">Example (Birth-Death Processes)</p>
+<p>Suppose <span class="math">\(S=\{0,1,2,...\}\)</span></p>
+<div class="math">
+\[\begin{split}q_{i,i+1}=λ_i&gt;0\end{split}\]</div>
+<p>for <span class="math">\(i\geq 0\)</span>.</p>
+<div class="math">
+\[\begin{split}q_{i,i-1}=μ_i&gt;0\end{split}\]</div>
+<p>for <span class="math">\(i\geq 1\)</span>.</p>
+<p>The <span class="math">\(λ_i\)</span> are called the birth rates, the <span class="math">\(μ_i\)</span> are called the death rates.</p>
+<p>The local balance equations are</p>
+<div class="math">
+\[Π_iq_{i,i+1}=Π_{i+1}q_{i+1,i}\]</div>
+<p><span class="math">\(i\geq 0\)</span>. Or</p>
+<div class="math">
+\[Π_iλ_i=Π_{i+1}μ_{i+1}\]</div>
+<p>So</p>
+<div class="math">
+\[\begin{split}Π_{i+1}&amp;=\frac{λ_i}{μ_{i+1}}Π_i\\
+    &amp;=\frac{λ_i}{μ_{i+1}}\frac{λ_{i-1}}{μ_i}Π_{i-1}\\
+    &amp;=\frac{λ_i...λ_0}{μ_{i+1}...μ_1}Π_0\end{split}\]</div>
+<p>For a stationary distribution to exist, we must have</p>
+<div class="math">
+\[\begin{split}Π_0(1+\frac{λ_0}{μ_1}+...+\frac{λ_0...λ_{i-1}}{μ_1...μ_i}+...)}&lt;\infty\end{split}\]</div>
+<p>i.e.</p>
+<div class="math">
+\[1+\sum_{i=1}^\infty \frac{λ_0...λ_{i-1}}{μ_1...μ_i}+...}\]</div>
+<p>in which case</p>
+<div class="math">
+\[Π_i=\frac{λ_0...λ_{i-1}}{μ_1...μ_i}(1+\sum_{i=1}^\infty \frac{λ_0...λ_{i-1}}{μ_1...μ_i})^{-1}\]</div>
+<div class="admonition-special-case-m-m-1-queue last admonition">
+<p class="first admonition-title">Special Case: M/M/1 Queue</p>
+<ul class="simple">
+<li>A single server first-in-first-out queue with arrivals coming as a Poisson process with rate <span class="math">\(λ\)</span> and service times independent <span class="math">\(Exponential(μ)\)</span></li>
+</ul>
+<p>Let <span class="math">\(X(t)\)</span> be the # of customers in the system at time <span class="math">\(t\)</span>.</p>
+<p>Then <span class="math">\(\{X(t):t\geq 0\}\)</span> is a birth-death process with <span class="math">\(λ_i=λ\)</span> for all <span class="math">\(i\)</span> and <span class="math">\(μ_i=μ\)</span> for all <span class="math">\(i\)</span>. A stationary distribution exists if</p>
+<div class="math">
+\[\begin{split}1+\frac{λ}{μ}+(\frac{λ}{μ})^2+...&lt;\infty\end{split}\]</div>
+<p>which is true <strong>iff</strong> <span class="math">\(λ&lt;μ\)</span>. In this case,</p>
+<div class="math">
+\[Π_i=(\frac{λ}{μ})^i(1-\frac{λ}{μ})\]</div>
+<p>for <span class="math">\(i=0,1,2,3,..\)</span></p>
+<p class="last">i.e. <span class="math">\(Π\)</span> is <span class="math">\(Geometric(\frac{λ}{μ})\)</span>.</p>
+</div>
+</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>Consider a system with <span class="math">\(r\)</span> servers.</p>
+<p>Service times at server <span class="math">\(i\)</span> are <span class="math">\(Exponential(μ_i)\)</span>.</p>
+<p>A total of <span class="math">\(N\)</span> customers move among these servers. When a customer finishes service at a server, it chooses a different server at random and moves to that server.</p>
+<p>Let <span class="math">\(X(t)=(n_1(t),...,n_r(t)\)</span> where <span class="math">\(n_r(t)\)</span> is the # of customers at server <span class="math">\(i\)</span> at time <span class="math">\(t\)</span>.</p>
+<p>Find the stationary distribution.</p>
+<p>First, the state space is</p>
+<div class="math">
+\[S=\{(n_1,...,n_r):n_i\text{ is a non-negaative integer, }\sum_{i=1}^r n_i=N\}\]</div>
+<p>From state <span class="math">\(n=(n_1,...,n_r)\)</span>, the process can only move to the state of the form</p>
+<div class="math">
+\[n-e_i+e_j\]</div>
+<p>where <span class="math">\(e_i\)</span> is vector of all zeros except with a 1 in position <span class="math">\(i\)</span>.</p>
+<p>Then what is <span class="math">\(q_{n,n-e_i+e_j}\)</span>?</p>
+<p>This is</p>
+<div class="math">
+\[\begin{split}\sum_{k=1}^r μ_kI_{\{n_k&gt;0\}}\left(\frac{μ_iI_{\{n_i&gt;0\}}}{\sum_{k=1}^r μ_kI_{\{n_k&gt;0\}}}\right)\frac{1}{r-1}\\
+=\frac{μ_i}{r-1}\end{split}\]</div>
+<p>(assuming <span class="math">\(n_i&gt;0\)</span>).</p>
+<p>Similarly, <span class="math">\(q_{n-e_i+e_j,n}=\frac{μ_i}{r-1}\)</span></p>
+<p>Thus the local balance equations:</p>
+<div class="math">
+\[Π_n\frac{μ_i}{r-1}=Π_{n-e_i+e_j}\frac{μ_j}{r-1}\]</div>
+<p>These are shrewdly solved by letting</p>
+<div class="last math">
+\[Π_n=C\frac{1}{μ_1^{n_1}...μ_r^{n_r}}\]</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-11-25.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-11-29.html" title="next chapter">Final Exam Information</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-11-27.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

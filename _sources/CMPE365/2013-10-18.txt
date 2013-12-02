@@ -1,0 +1,11 @@
+
+This is a cool title
+********************
+
+.. note::
+
+
+.. admonition:: Example
+
+
+Let :math:`ε>0`

@@ -1,0 +1,124 @@
+*************************
+The Channel Coding Theory
+*************************
+.. image:: .static/10-31-1.jpg
+    :width: 50%
+
+.. admonition:: Definition
+
+    Block code for discrete channels
+
+    Consider a discrete channel :math:`(\mathcal X,\mathcal Y,P_{Y^n|X^n})`. Given a blocklength :math:`n` and a set of messages :math:`\mathcal M=\{1,2,3,...,M\}` with :math:`M=M(n)`, then an :math:`(M,n)` block code for the channel consists of:
+
+    * Encoding function :math:`f: \mathcal M\to \mathcal X^n`
+    
+        The encoding function yields codewords
+
+        .. math::
+            f(1)=x^n(1),f(2)=x^n(2),...,f(M)=x^n(M)
+
+        where each codeword :math:`x^n(i)=(x_1(i),...,x_n(i)), i\in \mathcal M`.
+
+        The set of these :math:`M` codewords of blocklength :math:`n` is called the *codebook*:
+
+        .. math::
+            \mathcal C=\{x^n(1),...,x^n(M)\}\subseteq \mathcal X^n
+
+        To transmit message :math:`W` over the channel, the encoder sends codeword :math:`f(W)=X^n(W)` over the channel.
+    * Decoding function :math:`g: \mathcal Y^n\to \mathcal M`
+    
+        Receive :math:`Y^n` at the channel output and estimate the transmitted messages via :math:`g(Y^n)=\hat W`
+
+        The code rate
+        
+        .. math::
+            R&=\frac{1}{n}\log_2|\mathcal M|
+             &=\frac{1}{n}\log_2M\frac{\text{message bits}}{\text{channel symbol (use)}}
+
+.. admonition:: Definition
+
+    Probability of Error
+    
+    If message :math:`i\in\mathcal M` is sent over the channel (via its codeword :math:`x^n(i)`), an error occurs at the decoder if :math:`g(y^n)\neq i`.
+
+    The **conditional probability of decoding error given message** :math:`i` **is sent** is:
+
+    .. math::
+        λ_i:=&P[g(Y^n)\neq i|X^n=x^n(i)]
+            =&\sum_{y^n\in\mathcal Y^n: g(y^n)\neq i}P_{Y^n|X^n}(y^n|x^n(i))
+
+    where :math:`P_{Y^n|X^n}(\cdot)` is the channel probability law
+
+    Error Criteria
+
+    1. Maximal probability of error: :math:`λ^{(n)}` for an :math:`(M,n)` code:
+    
+        .. math::
+            λ^{(n)}:=max_{i\in\mathcal M=\{1,2,...,M\}}λ_i
+
+    2. Average probability of error: :math:`P_e^{(n)}` for an :math:`(M,n)` code:
+
+        .. math::
+            P_e^{(n)}=\frac{1}{M}\sum_{i=1}^Mλ_i
+
+    .. note::
+        Obviously, :math:`P_e^{(n)}\leqλ^{(n)}`.
+
+    .. note::
+        If message :math:`W` is *uniformly* distributed over :math:`\mathcal M=\{1,2,...,M\}`, then 
+
+        .. math::
+            P_e^{(n)}=P[g(Y^n)\neq W]
+
+    .. admonition:: Remark
+
+        One would expect that :math:`P_e^{(n)}` behaves differently than :math:`λ^{(n)}`. But we will see that (for the class of channels considered) a small :math:`P_e^{(n)}` implies a small :math:`λ^{(n)}` at essentially the code rate. We will say that a channel code is "good" if either :math:`P_e^{(n)}` or :math:`λ^{(n)}` can be made arbitrarily small for large :math:`n`.
+
+.. admonition:: Definition
+
+    Achievable Rate
+    
+    :math:`R>0` is called an **achievable code rate** for a channel if there exists a sequence of :math:`(\lceil 2^{nR}\rceil,n)` block codes for the channel such that the code's maximized error probability
+
+    .. math::
+        λ^{(n)}\to 0\text{ as }n\to\infty
+
+    (i.e. for arbitrary :math:`ε>0`, :math:`\exists` :math:`n_0=n_0(ε,R)` s.t. :math:`\forall n\geq n_0`, there exists a code of blocklength :math:`n` and rate :math:`R` with :math:`λ^{(n)}\leq ε`).
+
+    .. note::
+        For ease of notation, we write :math:`(2^{nR},n)` code to mean :math:`(\lceil 2^{nR}\rceil,n)`
+
+.. admonition:: Definition
+
+    Operational capacity
+    
+    The **operational capacity** of a channel is the *supremum of all achievable code rates*.
+
+    (i.e. it is the largest rate at which one can transmit info over the channel via block codes and recover it at the decoder *reliably* (i.e. with vanishing error probability for :math:`n` large).)
+
+Shannon's Discovery:
+--------------------
+It is possible to have arbitrarily small error probability **without** decreasing rate (at a fixed rate) for :math:`n` large.
+
+:math:`\implies` such good codes **exist**
+
+For a DMC,
+
+.. math::
+    \text{operational capacity}=C:=max_{p_X}I(X;Y)
+
+.. admonition:: Definition
+
+    Joint Typicality
+
+    The set :math:`A_ε^{(n)}` of **jointly typical sequences** :math:`\{(x^n,y^n\}` with respect to distribution :math:`p_{XY}(x,y)` is the set of n-sequences whose empirical entropies are ε-close to the time entropies:
+
+    .. math::
+        A_ε^{(n)}:=\{(x^n,y^n)\in\mathcal X^n\times\mathcal Y^n: |-\frac{1}{n}\log_2p_{X^n}(x^n)-H(X)|\leq ε, |-\frac{1}{n}\log_2p_{Y^n}(y^n)-H(Y)|\leq ε, |-\frac{1}{n}\log_2p_{X^n,Y^n}(x^n,y^n)-H(X,Y)|\leq ε\}
+
+    where 
+
+    .. math::
+        p_{X^nY^n}(x^n,y^n)&=\prod_{i=1}^n p_{XY}(x_i,y_i)\\
+               p_{X^n}(x^n)&=\prod_{i=1}^np_X(x_i)\\
+               p_{Y^n}(y^n)&=\prod_{i=1}^np_Y(y_i)

@@ -1,0 +1,129 @@
+**********************************
+More Continuous-Time Markov Chains
+**********************************
+
+Last time we described a class of continuous-time processes.
+
+.. admonition:: Further Remarks
+
+    (1) By memorylessness of the exponential distribution, if we observe :math:`X(t)=i` for an arbitrary time :math:`t`, the remaining times until alarm of the timers that started when the process entered state :math:`i` are still independent :math:`Exponential(q_{ij}),j\in S_i`
+        
+        .. admonition:: Recall
+
+            :math:`S_i` is the set of states :math:`j` that we can get to from :math:`i`.
+
+        And the remaining holding time in state :math:`i` is still :math:`Exponential(v_i)`. Where
+
+        .. math::
+            v_i = \sum_{j\in S_i}q_{ij}
+    
+    (2) These processes have the Markov property:
+    
+        .. math::
+            P(X(t)=j|X(s)=i,X(t_{n-1})=i_{n-1},...,X(t_1)=i_1)\\
+            =P(X(t)=j|X(s)=i)
+
+        for :math:`0\leq t_1\leq t_2\leq ...\leq t_{n-1}\leq s\leq t`
+
+        because in both the LHS and RHS, the probability of the event :math:`\{X(t)=j\}` depends only on the evolution of the process from time :math:`s`, and given :math:`X(s)=i`, any information about the process before time :math:`s` does not change the probabilistic properties of that evolution (because of the memorylessness)
+
+    (3) These processes are time-homogeneous:
+        
+        .. math::
+            P(X(t)=j|X(s)=i)=P(X(t-s)=j|X(0)=i)
+
+        because for any time :math:`u`, given :math:`X(u)=i`, the probabilistic evolution from time :math:`u` is the same for any :math:`u`.
+
+    (4) By (2) and (3), these processes are time-homogeneous, continuous-time Markov chains. In this course, any reference to a "continuous-time Markov chain" will mean a process of this class.
+    (5) To specify this process, it's not necessary to first specify the :math:`p_{ij}` and :math:`v_i` then define
+        
+        .. math::
+            q_{ij}=v_ip_{ij}
+
+    One can simply specify the :math:`q_{ij}` (with :math:`q_{ii}=0`) from the start.
+
+    We also assume that :math:`q_{ij}>0` for only finitely-many :math:`j`, for each :math:`i`.
+
+    Then
+
+    .. math::
+        v_i = \sum_{j: q_{ij}>0}q_{ij}
+
+    is the parameter of the exponential holding time in state :math:`i`.
+
+    As well,
+
+    .. math::
+        p_{ij}=\frac{q_{ij}}{\sum_{k:q_{ik}>0}q_{ik}}
+
+    is the probability of going to state :math:`j` when the process leaves state :math:`i`, and :math:`p_{ij}>0` if :math:`q_{ij}>0` and :math:`p_{ij}=0` if :math:`q_{ij}=0`.
+
+    So :math:`S_i` is the set of states :math:`j` that the process can jump to upon leaving state :math:`i` is:
+
+    .. math::
+        \{j: q_{ij}>0\}
+
+    :math:`q_{ij}` is called the rate of going from :math:`i` to :math:`j`.
+
+    These parameters are usually put into a matrix called the *generator matrix*, denoted by :math:`G`, where 
+
+    .. math::
+        g_{ij}=
+        \begin{cases}
+            q_{ij} &\text{ if }i\neq j\\
+            -v_i&\text{ if }i=j
+        \end{cases}
+
+
+Let us now consider what such a process does in an interval of length :math:`h`.
+
+(1) First,
+    
+    .. math::
+        P(0\text{ transitions by time }h|X(0)=i)\\
+        =P(T_i>h)
+
+    where :math:`T_i` is the holding time in state :math:`i`.
+
+    .. math::
+        =e^{-v_ih}\\
+        =1-{v_ih}+\frac{(v_ih)^2}{2}-\frac{(v_ih)^3}{6}+...\\
+        =1-v_ih+o(h)
+
+(2) Next, consider
+    
+    .. math::
+        P(\text{2 or more transitions by time }h|X(0)=i)\\
+        \sum_{j\neq i}P(\text{2 or more transitions by time }h|X(0)=i,\text{1st transition is to }j)P(\text{1st transition is to }j|X(0)=i)\\
+        =\sum_{j\neq i}P(T_i+T_j)p_{ij}
+
+    where :math:`T_j` is the holding time in state :math:`j`.
+
+    .. note::
+
+        .. math::
+            \{T_i+T_j\leq h}\subset\{T_i\leq h,T_j\leq h\}
+
+        So,
+
+        .. math::
+            P(T_i+T_j\leq h)&\leq P(T_i\leq h,T_j\leq h)\\
+                            &= P(T_i\leq h)P(T_j\leq h)\\
+                            &= (1-e^{-v_ih})(1-e^{-v_jh})\\
+                            &= (v_ih+o(h))(v_jh+o(h))\\
+                            &= v_iv_jh^2 + o(h)\\
+                            &= o(h)
+
+    So 
+
+    .. math::
+        P(\text{2 or more transitions by time }h|X(0)=i)=o(h)
+
+    By subtraction,
+
+    .. math::
+        P(\text{exactly 1 transition by time }h|X(0)=i)\\
+        =1-(o(h)+1-v_ih+o(h))\\
+        =v_ih+o(h)
+
+Next: Kolmogorov equations

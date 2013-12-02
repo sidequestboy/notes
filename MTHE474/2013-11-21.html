@@ -1,0 +1,217 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Memoryless Gaussian Channel &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-11-25.html" />
+    <link rel="prev" title="Maximal differential entropy for real-valued random vectors" href="2013-11-19.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-25.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-19.html" title="Maximal differential entropy for real-valued random vectors"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="memoryless-gaussian-channel">
+<h1>Memoryless Gaussian Channel<a class="headerlink" href="#memoryless-gaussian-channel" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="discrete-additive-white-gaussian-noise-awgn-channel">
+<h2>Discrete Additive White Gaussian noise (AWGN) channel<a class="headerlink" href="#discrete-additive-white-gaussian-noise-awgn-channel" title="Permalink to this headline">¶</a></h2>
+<p>Channel output:</p>
+<div class="math">
+\[Y_i=X_i+Z_i\]</div>
+<p>for <span class="math">\(i=1,2,...\)</span>, <span class="math">\(X_i\)</span> is the input, <span class="math">\(Z_i\)</span> is the noise</p>
+<p><span class="math">\(X_i\)</span> is independent of <span class="math">\(Z_j\)</span> for all <span class="math">\(i,j\)</span></p>
+<p><span class="math">\(\{Z_i\}_{i=1}^\infty\)</span> are iid Gaussian with <span class="math">\(Z_i\sim N(0,N)\)</span></p>
+<div class="math">
+\[\begin{split}f_{Y^n|X_n}(y^n|x^n)&amp;=f_{Z^n}(y^n,x^n)\\
+    &amp;=\prod_{i=1}^n f_Z(y_i,x_i)\\
+    &amp;=\prod_{i=1}^n f_{Y|X}(y_i|x_i)\end{split}\]</div>
+<div class="math">
+\[f_{Y|X}(y_i,x_i)=\frac{1}{\sqrt{2πN}}e^{\frac{-(y_i-x_i)^2}{2N}}\]</div>
+<p>In practice, input is a current or voltage signal. So we need to impose a cost constraint, usually in the form of a <em>power constraint</em>.</p>
+<div class="section" id="average-power-input-constraint">
+<h3>Average power input constraint<a class="headerlink" href="#average-power-input-constraint" title="Permalink to this headline">¶</a></h3>
+<p>For any input sequence <span class="math">\(x^n=(x_1,...,x_n)\)</span> sent over the channel, require:</p>
+<div class="math">
+\[\frac{1}{n}\sum_{i=1}^n x_i^2\leq P\]</div>
+<p>for some given <span class="math">\(P\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The AWGN model is widely used for modelling many practical channels, like radio channels, satellite links, telephone channels, etc.</p>
+<p>The additive noise is usually due to a variety of causes, whose commutative effect is <em>approximately Gaussian</em>. This is justified by the Central Limit Theorem which states that if <span class="math">\(X_i\)</span> are iid, with mean <span class="math">\(μ\)</span> and variance <span class="math">\(σ^2\)</span>, then</p>
+<div class="last math">
+\[\frac{1}{\sqrt{n}}\sum_{i=1}^n(x_i-μ)\to_{\text{in dist. as }n\to\infty}\to N(0,σ^2)\]</div>
+</div>
+<div class="admonition-definition-the-information-capacity admonition">
+<p class="first admonition-title">Definition (The Information Capacity)</p>
+<p>The <em>information capacity</em> of the memoryless Gaussian channel with input power <span class="math">\(P\)</span> is:</p>
+<div class="math">
+\[C=C(P)=max_{p_X:E[X^2]\leq P} I(X;Y)\]</div>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We will see via the Channel Coding Theorem for the memoryless Gaussian channel that the above <span class="math">\(C\)</span> is the channel&#8217;s <em>operational capacity</em>.</p>
+</div>
+</div>
+<p>Compute <span class="math">\(C\)</span> is closed form:</p>
+<div class="math">
+\[Y=X+Z\text{ where }X\text{ is independent of }Z\text{ and }X\sim N(0,N)\]</div>
+<div class="math">
+\[\begin{split}I(X;Y)&amp;=h(Y)-h(Y|X)\\
+    &amp;=h(Y)-h(X+Z|X)\\
+    &amp;=h(Y)-h(Z|X)\end{split}\]</div>
+<p>The last step follows because <span class="math">\(h(\cdot)\)</span> is <em>invariant</em> under translations.</p>
+<div class="math">
+\[\begin{split}I(X;Y)&amp;=h(Y)-h(Z)\text{ since }X\text{ is independent of }Z\\
+    &amp;=h(Y)-\frac{1}{2}\log(2πeΝ))\text{ since }Z\sim N(0,N)\end{split}\]</div>
+<div class="math">
+\[\begin{split}Y=X+Z\\
+E[Y^2]=E[X^2]+E[Z^2]\leq P+N\\
+\implies Var(Y)\leq P+N\end{split}\]</div>
+<p>Therefore</p>
+<div class="math">
+\[\begin{split}h(Y)&amp;\leq \frac{1}{2}\log[2πeVar(Y)]\\
+    &amp;\leq \frac{1}{2}\log[2πe(P+N)]\end{split}\]</div>
+<p>with equality <strong>iff</strong> <span class="math">\(Y\sim N(0,P+N)\)</span>.</p>
+<p>Choosing <span class="math">\(X\sim N(0,P)\)</span> yields <span class="math">\(Y\sim N(0,P_N)\)</span> and maximizes <span class="math">\(I(X;Y)\)</span>.</p>
+<p>Therefore,</p>
+<div class="math">
+\[\begin{split}C&amp;=\frac{1}{2}\log[2πe(P+N)]-\frac{1}{2}\log(2πeN)\\
+\implies C&amp;=\frac{1}{2}\log_2(\frac{P+N}{N})=\frac{1}{2}\log_2(1+\frac{P}{N})\text{ bits/channel use}\end{split}\]</div>
+<p>discrete-time AWGN channel with input power <span class="math">\(P\)</span> and noise power <span class="math">\(N\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<div class="math">
+\[\frac{P}{N}\]</div>
+<p class="last">is the <em>signal-to-noise ratio</em> of the channel (SNR)</p>
+</div>
+<p>Block diagram of BSC equivalent channel of AWGN with BPSK Modulation and Hard decision demodulation:</p>
+<img alt="../_images/11-21-1.jpg" src="../_images/11-21-1.jpg" style="width: 50%;" />
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A <span class="math">\((M,n)\)</span> code for the Gaussian channel with power constraint <span class="math">\(P\)</span> is:</p>
+<ul>
+<li><p class="first">Set of messages <span class="math">\(\mathcal M=\{1,2,...,M\}\)</span></p>
+</li>
+<li><p class="first">Encoder: <span class="math">\(x:\mathcal M\to \mathcal X^n\)</span></p>
+<p>yielding codewords <span class="math">\(x^n(1),...,x^n(M)\)</span> satisfying power constraint <span class="math">\(P\)</span>:</p>
+<div class="math">
+\[\frac{1}{n}\sum_{i=1}^n z_i^2(w)\leq P\]</div>
+<p>for all <span class="math">\(w=1,...,M\)</span></p>
+</li>
+</ul>
+<p>Rate:</p>
+<div class="math">
+\[R=\frac{1}{n}\log_2 M\text{message bits/channel use}\]</div>
+<p>conditional error probability given message <span class="math">\(i\)</span> is sent:</p>
+<div class="math">
+\[\begin{split}λ_i=P[g(Y^n)\neq i|X^n=x^n(i)]\\
+    =\int_{\{y^n:g(y^n)\neq i\}}f_{Y^n|X^n}(y^n|x^n(i))dy^n\end{split}\]</div>
+<p>Max: <span class="math">\(λ^{(n)}=max_{i\in\mathcal M}λ_i\)</span></p>
+<p class="last">Average: <span class="math">\(P_e^{(n)}=\frac{1}{M}\sum_{i=1}^Mλ_i\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Memoryless Gaussian Channel</a><ul>
+<li><a class="reference internal" href="#discrete-additive-white-gaussian-noise-awgn-channel">Discrete Additive White Gaussian noise (AWGN) channel</a><ul>
+<li><a class="reference internal" href="#average-power-input-constraint">Average power input constraint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-11-19.html" title="previous chapter">Maximal differential entropy for real-valued random vectors</a></li>
+      <li>Next: <a href="2013-11-25.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-11-21.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

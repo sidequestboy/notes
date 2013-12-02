@@ -1,0 +1,136 @@
+**************************
+Review of Order Statistics
+**************************
+Suppose :math:`X_1,...,X_n` are independent, identically distributedm continuous random variables with common pdf :math:`f`.
+
+The joint pdf of :math:`(X_1,...,X_n)` is
+
+.. math::
+    f_n(x_1,...,x_n)=\prod^n_{i=1}f(x_i)
+
+The order statistics of :math:`X_1,...,X_n` are denoted :math:`X_{(1)},...,X_{(n)}`, where
+
+.. math::
+    X_{(1)}&=min(X_1,...,X_n)\\
+    ...\\
+    X_{(k)}&=\text{kth smallest of }X_1,...,X_n\\
+    ...\\
+    X_{(n)}&=max(X_1,...,X_n)
+
+Let us consider the joint pdf of the order statistics :math:`X_{(1)},...,X_{(n)}`
+
+Call this :math:`g(x_1,...,x_n)`.
+
+.. note::
+    If :math:`x_1,...,x_n` do not satisfy :math:`x_1<x_2<...<x_n`, then :math:`g(x_1,...,x_n)` will be 0. So let :math:`x_1,...,x_n` be such that :math:`x_1<x_2<...<x_n`
+
+Consider
+
+.. math::
+    P(X_{(i)}\in [x_i,x_i+h),i=1,...,n)\\
+    =\sum_Π P(X_{Π_i}\in [x_i,x_i+h),i=1,...,n)
+
+where the sum is over all permutations :math:`(Π_1,...,Π_n)` of :math:`(1,...,n)`
+
+.. math::
+    =n!P(X_i\in[x_i,x_i+h),i=1,...,n)
+
+Dividing this by :math:`h^n` and letting :math:`h\to 0` gives :math:`g(x_1,...,x_n)`
+
+So
+
+.. math::
+    g(x_1,...,x_n)&=n!f_n(x_1,...,x_n)\\
+    &=n!\prod_{i=1}^n f(x_i)
+
+Last time, we got that the conditional joint density of the arrival times :math:`S_1,...,S_n` given :math:`N(t)=n` is
+
+.. math::
+    h(s_1,...,s_n|N(t)=n)=\frac{n!}{t^n}
+
+for :math:`0<s_1<s_2<...<s_n<t`, and 0 otherwise
+
+.. note::
+    
+    .. math::
+        \frac{n!}{t^n}=n!\prod_{i=1}^n\frac{1}{t}
+
+In other words, the conditional distribution of the arrival times :math:`S_1,...,S_n` given :math:`N(t)=n` is that of the order statistics of :math:`n` i.i.d. :math:`Uniform(0,t)` random variables.
+
+.. admonition:: Example
+
+    An insurance company receives claims according to a Poisson process with rate :math:`λ`. The cost of the ith claim is :math:`C_i`, where :math:`C_1,C_2,...` are independent and identically distributed with mean :math:`μ`.
+
+    Then, in the interval :math:`[0,t]`, the total discounted cost of the claims is
+
+    .. math::
+        D(t)=\sum_1^{N(t)} e^{-αS_i}C_i
+
+    Where :math:`S_i` is the arrival time of the ith claim and :math:`α` is the discount rate.
+
+    Let us compute :math:`E[D(t)]`.
+
+    Conditioning on :math:`N(t)`, we have
+
+    .. math::
+        :label: a
+
+        E[D(t)]&=\sum_{n=0}^\infty E[D(t)|N(t)=n]P(N(t)=n)\\
+               &=\sum_{n=0}^\infty E[\sum_{i=1}^{N(t)} e^{-αS_i}C_i|N(t)=n] P(N(t)=n)
+
+    where
+
+    .. math::
+        E[\sum_{i=1}^{N(t)} e^{-αS_i}C_i|N(t)=n]=E[\sum_{i=1}^ne^{-αU_{(i)}}C_i]
+
+    where :math:`U_{(i)}` is the ith order statistic from :math:`U_1,...,U_n` where :math:`U_i` is :math:`Uniform(0,t)`
+
+    .. math::
+        &=\sum_{i=1}^n E[C_i]E[e^{-αU_{(i)}}]\\
+        &=μ\sum_{i=1}^n E[e^{-αU_{(i)}}]\\
+        &=μΕ[\sum_{i=1}^n e^{-αU_{(i)}}]\\
+        &=μE[\sum_{i=1}^n e^{-αU_i}]\\
+        &=μnE[e^{-αU_1}]\\
+        &=μn\int_0^t \frac{1}{t}e^{-αu}du\\
+        &=μn\frac{1}{t}\frac{1}{α}(1-e^{-αt})
+
+    Putting this back into :eq:`a` gives
+
+    .. math::
+        E[D(t)]&=μ\frac{1}{αt}(1-e^{-αt})E[N(t)]\\
+               &=\frac{μλ}{α}(1-e^{-αt})
+
+.. admonition:: Example
+    
+    Filtered Poisson Process
+
+    Suppose
+
+    .. math::
+        X(t)=\sum_{i=1}^{N(t)}f(t,S_i,Y_i)
+
+    where :math:`\{N(t):t\geq 0\}` is  Poisson process with rate :math:`λ`, :math:`S_1,...,S_n` are the arrival times, and :math:`Y_1,Y_2,...` are independent and identically distributed random variables.
+
+    Let us compute :math:`E[s^{X(t)}]`.
+
+    We have
+
+    .. math::
+        E[s^{X(t)}]&=E[s^{\sum_{i=1}^{N(t)}f(t,S_i,Y_i)}]\\
+                   &=\sum_{k=0}^\infty E[s^{\sum_{i=1}^{N(t)}f(t,S_i,Y_i)}|N(t)=k]P(N(t)=k)\\
+                   &=\sum_{k=0}^\infty E[s^{\sum_{i=1}^k f(t,U_{(i)},Y_i)}]P(N(t)=k)\\
+                   &=\sum_{k=0}^\infty E[s^{\sum_{i=1}^k f(t,U_i,Y_i)}]P(N(t)=k)\\
+                   &=\sum_{k=0}^\infty E[\prod_{i=1}^k s^{f(t,U_i,Y_i)}]P(N(t)=k)\\
+                   &=\sum_{k=0}^\infty \prod_{i=1}^k E[s^{f(t,U_i,Y_i)}]P(N(t)=k)\\
+                   &=\sum_{k=0}^\infty E[s^{f(t,U_i,Y_i)}]^k P(N(t)=k)\\
+                   =G_{N(t)}(E[s^{f(t,U_1,Y_1)}])
+
+    where :math:`G_{N(t)}(s)` is the generating function of :math:`N(t)`. Since :math:`N(t)` is :math:`Poisson(λt)`, :math:`G_{N(t)}` is
+
+    .. math::
+        \sum_{k=0}^\infty s^k\frac{(λt)^k}{k!}e^{-λt}\\
+        =e^{-λt}e^{sλt}=e^{λt(s-1)}
+
+    
+
+

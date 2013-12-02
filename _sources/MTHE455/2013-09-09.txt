@@ -1,6 +1,6 @@
-**********************************
-Introduction to Stochastic Process
-**********************************
+************************************
+Introduction to Stochastic Processes
+************************************
 
 .. admonition:: Definition
 

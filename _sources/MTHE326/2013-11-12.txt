@@ -1,0 +1,115 @@
+*************
+Taylor Series
+*************
+
+.. admonition:: Theorem (Taylor's Theorem for Holomorphic Functions)
+
+    Let :math:`f:D\to\mathbb C` be holomorphic and :math:`D_r(z_0)\subset D`.
+
+    Then the power series
+
+    .. math::
+        \sum_{n=0}^\infty \frac{f^{(n)}(z_0)}{n!}(z-z_0)=f(z)\text{ on }D_r(z_0)
+
+    Proof:
+
+    Fix :math:`z\in D_r(z_0)`, and :math:`δ>0` s.t. :math:`|z-z_0|<δ<r`.
+
+    Let :math:`γ=z_0+δe^{it}`, :math:`t\in [0,2π]` circle of radius :math:`δ` around :math:`z_0`.
+
+    .. image:: .static/11.12.1.png
+        :width: 50%
+
+    By Cauchy Integral Formula:
+
+    .. math::
+        f(z)=\frac{1}{2πi}\int_γ\frac{f(w)}{w-z}dw
+
+    But
+
+    .. math::
+        \frac{1}{wz}&=\frac{1}{(w-z_0)-(z-z_0)}\\
+                    &=\frac{1}{w-z_0}\frac{w-z_0}{(w-z_0)-(z-z_0)}\\
+                    &=\frac{1}{w-z_0}\frac{1}{1-\frac{z-z_0}{w-z_0}}\\
+                    &=\frac{1}{w-z_0}\sum_{n=0}^\infty (\frac{z-z_0}{w-z_0})^n\\
+                    &=\sum_{n=0}^\infty\frac{(z-z_0)^n}{(w-z_0)^{n+1}}
+
+    where the sum is locally uniformly convergent for :math:`z\in D_δ(z_0)` since :math:`|z-z_0|<|w-z_0|=δ`.
+
+    So
+
+    .. math::
+        \int_γ\frac{f(w)}{w-z}dw=\int_γ\sum_{n=0}^\infty\frac{f(w)(z-z_0)^n)}{(w-z_0)^{n+1}}dw
+
+    and L.U. on :math:`D_δ(z_0)`
+
+    So
+
+    .. math::
+        \frac{1}{2πi}\int_γ\frac{f(w)}{w-z}dw&=\sum_{n=0}^\infty (z-z_0)^n\frac{1}{2πi}\int_γ\frac{f(w)}{(w-z_0)^{n+1}}dw\\
+        &=\sum_{n=0}^\infty (z-z_0)\frac{f^{(n)}(z_0)}{n!}
+
+This is what the term "analytic" means, that a function has a taylor series expansion.
+
+For complex functions this is equivalent to holomorphic (Complex differentiable on open sets)
+
+We also have the converse corollaries of Weierstrass's Theorem of Holomorphic Convergence
+
+.. admonition:: Corollary 1
+
+    All power series are holomorphic inside their radii of convergence.
+
+    Proof:
+
+    Uniform Convergence of Holomorphic Polynomials
+
+.. admonition:: Corollary 2
+
+    Derivative of a power series is given by term-by-term differentiation:
+
+    .. math::
+        f(z)=\sum_{n=0}^\infty a_n(z-z_0)^n\to f'(z)=\sum_{n=0}^\infty a_n n(z-z_0)^n
+
+    Proof:
+
+    If :math:`f_n\to f` uniformly, :math:`f_n^{(k)}\to f^{(k)}` uniformly.
+
+.. admonition:: Corollary 4
+
+    Taylor Series is unique
+
+    Proof:
+
+    .. math::
+        a_n=\frac{f^{(n)}}{n!}
+
+A consequence of Corollary 1 is that radius of convergence is preserved by integration and differentiation.
+
+.. admonition:: Example
+
+    .. math::
+        \arctan(x)=x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+...
+
+    is the real Taylor series expansion around :math:`x=0` of radius 1.
+
+    Question: Why radius 1?
+
+    Answer 1: Do the ratio or root tests, get 1 as an answer.
+
+    Answer 2:
+
+    Think of :math:`\frac{d}{dx}\arctan(x)=\frac{1}{1+x^2}=f(x)`. 
+
+    If we extend this to a complex function
+
+    .. math::
+        f(z)=\frac{1}{1+z^2}
+
+    where are its poles? :math:`\pm i`.
+
+    So we can't make a circle of radius around 0 larger than 1 where :math:`f(z)` is holomorphic. The same is true for :math:`\arctan(z)`
+
+    .. image:: .static/11.12.2.png
+        :width: 50%
+
+    Meanwhile, since :math:`e^z`, :math:`\sin(z)`, and :math:`\cos(z)` are entire, their radii of convergence are :math:`\infty`.

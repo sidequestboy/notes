@@ -1,0 +1,164 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Contour Integration &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-10-14.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-10-08.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-14.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-08.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="contour-integration">
+<h1>Contour Integration<a class="headerlink" href="#contour-integration" title="Permalink to this headline">¶</a></h1>
+<p>We will integrate along paths.</p>
+<p>For <span class="math">\(g:(a,b)\subseteq\mathbb R^2\to\mathbb C\)</span></p>
+<p>where <span class="math">\(g(t)=u(t)+iv(t)\)</span>, we define:</p>
+<div class="math">
+\[\int_a^b g(t)dt=\int_a^bu(t)dt+i\int_a^bv(t)dt\]</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[f:(0,\frac{\pi}{4})\to\mathbb C\]\[f(t)=cos(t)+isin(t)\]\[\int_0^{\frac{\pi}{4}}f(t)dt=\int_0^{\frac{\pi}{4}}\cos tdt+i\int_0^{\frac{\pi}{4}}\sin t dt\]\[=[\sin t]|^{\frac{pi}/{4}}_0+i[-\cos t]|^{\frac{pi}/{4}}_0\]\[=\frac{\sqrt(2)}{2}+i(-\frac{\sqrt(2)}{2}+1)\]</div>
+<p>but <span class="math">\(f(t)=e^{it}\)</span></p>
+<p>So, one may wonder,</p>
+<div class="math">
+\[\int_0^{\frac{\pi}{4}}e^{it}dt=^?[\frac{1}{t}e^{it}]{\frac{\pi}{4}}\]</div>
+<p>well,</p>
+<div class="last math">
+\[=\frac{1}{i}(\frac{\sqrt{2}}{2}+i\frac{\sqrt{2}}{2}-1)\]\[=\frac{\sqrt{2}}{2}+i(1-\frac{\sqrt{2}}{2})\]</div>
+</div>
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<p>That an oriented (directed) curve <span class="math">\(\gamma:[a,b]\to\mathbb C\)</span> is said to be <em>smooth</em> pr <span class="math">\(C^1\)</span> if</p>
+<div class="math">
+\[\gamma(t)=x(t)+iy(t)\]</div>
+<p>and</p>
+<div class="math">
+\[\gamma'(t)=x'(t)+iy'(t)\]</div>
+<p>exists, and is continuous.</p>
+<p class="last">A curve is <em>piecewise-smooth</em> if it finitely divides into smooth pieces</p>
+</div>
+<p>If <span class="math">\(f:S\to\mathbb C\)</span> is a complex-valued function (not necessarily analytic) and <span class="math">\(\gamma\subset S\)</span> is a curve, we want to define</p>
+<div class="math">
+\[\int_\gamma f(z)dz\]</div>
+<p>How do we do this? -Riemann Sums.</p>
+<p>consider the sum</p>
+<div class="math">
+\[\sum_{k=1}^n f(z_k)(z_k=z_{k-1})\]</div>
+<p>If <span class="math">\(\gamma:[a,b]\to\mathbb C\)</span>, we can partition <span class="math">\([a,b]\)</span> so that</p>
+<div class="math">
+\[\gamma(t_k)=z_k\]</div>
+<p>Rewrite the sum as:</p>
+<div class="math">
+\[\sum_{k=1}^n f(\gamma(t_k))(\gamma(t_k)=\gamma(t_{k-1}))\]\[=\sum_{k=1}^n f(\gamma(t_k))\frac{(\gamma(t_k)=\gamma(t_{k-1}))}{t_k-t_{k-1}}(t_k-t_{k-1})\]</div>
+<p>Taking the limit of the partition as <span class="math">\(n\to\infty\)</span>, the sum becomes:</p>
+<div class="math">
+\[\int_a^b f(\gamma(t))\gamma'(t)dt\]\[=: \int_\gamma f(z)dz\]</div>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>f(z)=frac{1}{z}</p>
+<p class="last">gamma(t)=cos(t)+isin(t)</p>
+</div>
+<p>for <span class="math">\(t\in [0,2\pi]\)</span></p>
+<div class="math">
+\[\int_\gamma f(z)dz=\int_0^{2\pi}f(\gamma(t))\gamma'(t)dt\]\[=\int_0^{2\pi}\frac{1}{\cos t+i\sin t}(-\sin t+i\cos t)dt\]</div>
+<p>(and since <span class="math">\(\frac{1}{\cos t+i\sin t}=e^{-it}=\cos t-i\sin t\)</span>)</p>
+<div class="math">
+\[=\int_0^{2\pi}(\cos t-i\sin t)(-\sin t+i\cos t)\]\[=i\int_0^{2\pi}1dt\]\[=2\pi i\]</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-10-08.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Next: <a href="2013-10-14.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-10-10.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

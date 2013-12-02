@@ -1,0 +1,169 @@
+*******************************************
+Differential Entropy of a Continuous Source
+*******************************************
+How to define the notion of entropy for a real-valued RV
+========================================================
+The usual (intuitive) concept of entropy does *not* apply for real-valued random variables. The **operational** meaning of entropy is that it is the minimum number of bits required to losslessly describe a random variable :math:`X`.
+
+If :math:`X` takes on values in a continuum, then the number of bits needed to describe it reliably is clearly infinite.
+
+The natural way to examine entropy in the continuous case would be to take a discrete approximation (quantization) of the real-valued random varible :math:`X`, and make the approximation finer, and study its limit.
+
+Let :math:`[X]_n` denote the discretized approximation of :math:`X` up to :math:`n` (fractional) **binary digits** (uniform quantization of :math:`X` up to n-bit resolution). Describe the support of RV :math:`X` (:math:`X\sim_{pdf} f_X` support of :math:`X` is :math:`S_X=\{x\in \mathbb R: f_X(x)>0\}`) into intervales of length :math:`\frac{1}{2^n}` and quantize:
+
+.. math::
+    [X]_n=\frac{k}{2^n}
+
+if :math:`\frac{k}{2^n}\leq X<\frac{k+1}{2^n}`, :math:`k=1,\pm 1, \pm 2,...`
+
+So :math:`[X]_n` is a *discrete* RV (with finite or countable alphabet)
+
+Let
+
+.. math::
+    p_{k,n}&=P[[X]_n=\frac{k}{2^n}]=\int_{\frac{k}{2^n}}^{\frac{k+1}{2^n}}f_X(t)dt\\
+           &\approxf_X(\frac{k}{2^n})\frac{1}{2^n}
+
+Now
+
+.. math::
+    H([X]_n)=-\sum_K p_{k,n}\log_2 p_{k,n}\\
+            \approx -\sum_K f_X(\frac{k}{2^n})\frac{1}{2^n}\log_2[f_X(\frac{k}{2^n})\frac{1}{2^n}]\\
+            =-\sum_K f_X(\frac{k}{2^n})\log_2[f_X(\frac{k}{2^n})]\frac{1}{2^n}+n\sum_K f_X(\frac{k}{2^n})\frac{1}{2^n}
+
+where the first term is a Riemann approximation sum, and the second term sums over the pmf of RV :math:`[X]_n` is thus :math:`n\cdot 1`
+
+and thus for :math:`n` large,
+
+.. math::
+    \approx -\int f_X(t)\log f_X(t)dt+n
+
+whose first term we define as the *differential entropy* of :math:`X`:
+
+.. admonition:: Definition (Differential Entropy)
+
+    For :math:`X\sim_{pdf} f_X`, the differential entropy of :math:`X`:
+
+    .. math::
+        h(x) := -\int f_X(t)\log_2 f_X(t)dt
+
+A continuous RV contains an infinite amount of information, but we can measure the information contained in its n-bit quantized version:
+
+.. math::
+    H([X]_n)\approx h(X)+n
+
+(for :math:`n` large)
+
+.. math::
+    \lim_{n\to\infty}(H([X]_n)-n)=h(X)
+
+Usual vector generalization
+---------------------------
+
+.. math::
+    X^n=(X_1,...,X_n)\sim_{pdf} f_{X^n}\\
+    h(X_1,...,X_n):=-\int_{\mathbb R^n}f_{X^n}(x_1,...,x_n)\log_2 f_{X^n}(x_1,...,x_n)dx_1...dx_n
+
+.. note::
+    :math:`X,Y\sim f_{XY}`,
+
+    .. math::
+        H([X]_n,[Y]_n)\approx h(X,Y)+m+n
+
+    (:math:`m,n` large)
+
+    where:
+
+    .. math::
+        [X]_n=\text{ discretized version of }X\text{ up to }n\text{ bits}\\
+        [Y]_m=\text{ discretized version of }Y\text{ up to }m\text{ bits}
+
+.. admonition:: Example (Uniform)
+
+    :math:`X` *uniformly* distributed over :math:`(a,b)`
+
+    .. math::
+        f_X(x) = \begin{cases}
+            \frac{1}{b-a} && \text{ if }a<x<b\\
+            0 && \text{ otherwise}
+            \end{cases}
+
+    .. math::
+        h(X) = -\int_a^b f_X(t)\log f_X(t)dt=-\int_a^b \frac{1}{b-a}\log_2 \frac{1}{b-a}dt
+
+    .. math::
+        \implies h(X)=\log_2(b-a)
+
+    .. note::
+        if :math:`b-a<1`, :math:`h(X)<0`
+
+        if :math:`b-a=1`, :math:`h(X)=0`
+
+        if :math:`b-a>1`, :math:`h(X)>0`
+
+.. admonition:: Example (Gaussian)
+
+    :math:`X` is a Gaussian RV:
+
+    .. math::
+        X\sim N(μ,σ^2)
+
+    where :math:`μ` is the mean, :math:`E[X]`, and :math:`σ^2=Var(X)=E[X^2]-μ^2`
+
+    .. math::
+        f_X(x)=\frac{1}{\sqrt{2πσ^2}}e^{\frac{-(x-μ)^2}{2σ^2}}
+
+    for :math:`x\in \mathbb R`
+
+    .. note::
+
+        .. math::
+            h(X)=h(X+c)
+
+        for all constants :math:`c`.
+
+    So **wlog**, assume that :math:`μ=0`. (:math:`h(X-μ)=h(X)`)
+
+    .. math::
+        h(X)=-\int_{-\infty}^{+\infty}f_X(x)\log_2[\frac{1}{\sqrt{2πσ^2}}e^{\frac{-x^2}{2σ^2}}]dx
+
+    Therefore,
+
+    .. math::
+        h(X) &= -\int_{-\infty}^{+\infty}f_X(x)[-\frac{1}{2}\log_2(2πσ^2)-\frac{x^2}{2σ^2}\log_2 e]dx\\
+             &= \frac{1}{2}\log_2(2πσ^2)+\frac{\log_2 e}{2σ^2}\int x^2 f_X(x)dx\\
+             &= \frac{1}{2}\log_2(2πeσ^2)
+
+    Thus,
+
+    .. math::
+        X\sim N(μ,σ^2)\\
+        h(X)=\frac{1}{2}\log_2(2πeσ^2)\text{ (bits)}
+
+.. admonition:: Definition (Conditional Differential Entropy)
+
+    .. math::
+        (X,Y)\sim f_{XY}\\
+        h(Y|X):=&E_{XY}[-\log_2 f_{Y|X}(Y|X)]\\
+              =&-\int_{X,Y} f_{XY}(x,y)\log_2(f_{Y|X}(y|x))dxdy
+
+    where :math:`f_{Y|X}(y|x)=\frac{f_{XY}(x,y)}{f_X(x)}`
+
+.. note::
+    Chain Rule:
+
+    .. math::
+        h(X,Y)&=h(X)+h(Y|X)=E_{XY}[-\log f_{XY}(X,Y)]\\
+              &=h(Y)+h(X|Y)
+
+
+.. admonition:: Definition (Mutual Information)
+
+    :math:`(X,Y)\sim f_{XY}`
+
+    .. math::
+        I(X;Y)&=h(X)+h(Y)-h(X,Y)\\
+              &=h(Y)+h(Y|X)\\
+              &=h(X)+h(X|Y)\\
+              &=\int\int f_{XY}(x,y)\log{\frac{f_{XY}(x,y)}{f_X(x)f_Y(y)}}dxdy
+

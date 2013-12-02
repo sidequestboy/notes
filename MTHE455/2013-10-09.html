@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    <title>Existence and Uniqueness (cont’d) &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
-    <link rel="next" title="MTHE 474 - Information Theory" href="../MTHE474/index.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="2013-10-08.html" />
+    <link rel="next" title="Example of Probability Generating Function (PGF) for \(Π\)" href="2013-10-11.html" />
+    <link rel="prev" title="Existence and Uniqueness of Stationary Distributions" href="2013-10-07.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -45,10 +45,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../MTHE474/index.html" title="MTHE 474 - Information Theory"
+          <a href="2013-10-11.html" title="Example of Probability Generating Function (PGF) for \(Π\)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="2013-10-08.html" title="&lt;no title&gt;"
+          <a href="2013-10-07.html" title="Existence and Uniqueness of Stationary Distributions"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
@@ -60,7 +60,104 @@
         <div class="bodywrapper">
           <div class="body">
             
-  
+  <div class="section" id="existence-and-uniqueness-cont-d">
+<h1>Existence and Uniqueness (cont&#8217;d)<a class="headerlink" href="#existence-and-uniqueness-cont-d" title="Permalink to this headline">¶</a></h1>
+<p>Previously we saw how to construct a vector <span class="math">\(ρ(k)\)</span> that satisfies the equations <span class="math">\(ρ(k)=ρ(k)P\)</span>, when <span class="math">\(P\)</span> is the transition matrix of an irreducible, recurrent Markov chain. Note that we didn&#8217;t need the chain to be positive recurrent, just recurrent. As an example, consider the simple random walk with <span class="math">\(p=\frac{1}{2}\)</span>. We have seen that this Markov chain is irreducible and null recurrent. The transition matrix is:</p>
+<div class="math">
+\[\begin{split}P=\left[\matrix{... &amp;&amp; ... &amp;&amp; ... \\
+              &amp;&amp; \frac{1}{2} &amp;&amp; 0 &amp;&amp; \frac{1}{2} \\
+              &amp;&amp;     &amp;&amp; \frac{1}{2} &amp;&amp; 0 &amp;&amp; \frac{1}{2} \\
+              &amp;&amp;     &amp;&amp;      &amp;&amp; \frac{1}{2} &amp;&amp; 0 &amp;&amp; \frac{1}{2} \\
+              &amp;&amp;     &amp;&amp;      &amp;&amp;     &amp;&amp; ... &amp;&amp; ... &amp;&amp; ...}\right]\end{split}\]</div>
+<p>and one can easily verify that the vector <span class="math">\(Π=(...,1,1,1,...)\)</span> satisfies <span class="math">\(Π=ΠP\)</span> (any constant multiple of <span class="math">\(Π\)</span> will also work). However, <span class="math">\(Π\)</span> cannot be a stationary distribution because its components sum to infinity. Today we will show that if a stationary distribution exists for an irreducible Markov chain, then it must be a positive recurrent Markov chain. Moreover, the stationary distribution is unique.</p>
+<p>Last time we gave a (hopefully) intuitive argument as to why, if a stationary distribution did exist, we might expect that <span class="math">\(Π_iμ_i=1\)</span>, where <span class="math">\(μ_i\)</span> is the mean time to return to state <span class="math">\(i\)</span>, given that we start in state <span class="math">\(i\)</span>. We&#8217;ll prove this rigorously now. So assume that a stationary distribution <span class="math">\(Π\)</span> exists, and let the initial distribution of <span class="math">\(X_0\)</span> be <span class="math">\(Π\)</span>, so that we make our process stationary. Let <span class="math">\(T_i\)</span> be the first time we enter state <span class="math">\(i\)</span>, starting from time 1 (this is the same definition of <span class="math">\(T_i\)</span> as in last lecture). So we have that</p>
+<div class="math">
+\[μ_i=E[T_i|X_0=i]\]</div>
+<p>and also</p>
+<div class="math">
+\[μ_iΠ_i=E[T_i|X_0=i]P(X_0=i)\]</div>
+<p>We wish to show that this equals one, and the first thing we do is write out the expectation, but in a somewhat nonstandard form. The random variable <span class="math">\(T_i\)</span> is defined on the nonnegative integers, and there is a useful way to represent the mean of such a random variable, as follows:</p>
+<div class="math">
+\[\begin{split}E[T_i|X_0=i]&amp;=\sum_{k=1}^\infty kP(T_i=k|X_0=i)\\
+            &amp;=\sum_{k=1}^\infty(\sum_{n=1}^k(1))P(T_i=k|X_0=i)\\
+            &amp;=\sum_{n=1}^\infty\sum{k=n}^\infty P(T_i=k|X_0=i)\\
+            &amp;=\sum_{n=1}^\infty P(T_i\geq n|X_0=i)\end{split}\]</div>
+<p>by interchanging the order of summation in the second equality.</p>
+<p>So we have that</p>
+<div class="math">
+\[\begin{split}μ_iΠ_i&amp;=\sum_{n=1}^\infty P(T_i\geq n| X_0=i)P(X_0=i)\\
+      &amp;=\sum_{n=1}^\infty P(T_i\geq n, X_0=i)\end{split}\]</div>
+<p>Now for <span class="math">\(n=1\)</span>, we have <span class="math">\(P(T_i\geq 1,X_0=i)=P(X_0=i)\)</span>, while for <span class="math">\(n\geq 2\)</span>, we write</p>
+<div class="math">
+\[P(T_i\geq n,X_0=i)=P(X_{n-1}\neq i, X_{n-1}\neq i,...,X_1\neq i,X_0=i)\]</div>
+<p>Now for any events <span class="math">\(A\)</span> and <span class="math">\(B\)</span>, we have that</p>
+<div class="math">
+\[P(A\cap B)=P(A)-P(A\cap B^c)\]</div>
+<p>which follows directly from <span class="math">\(P(A)=P(A\cap B)+P(A\cap B^c)\)</span>. With <span class="math">\(A=\{X_{n-1}\neq i,...,X_1\neq i\}\)</span> and <span class="math">\(B=\{X_0=i\}\)</span>, we get</p>
+<div class="math">
+\[\begin{split}μ_iΠ_i&amp;=P(X_0=i)+\sum_{n=2}^\infty\left(P(X_{n-1}\neq i,...,X_1\neq i) - P(X_{n-1}\neq i,...,X_1\neq i,X_0\neq i)\right)\\
+      &amp;=P(X_0=i)+\sum_{n=2}^\infty\left(P(X_{n-2}\neq i,...,X_0\neq i)-P(X_{n-1}\neq i,...,X_1\neq i,X_0\neq i)\right)\end{split}\]</div>
+<p>where we did a shift in index to get the last expression. This shift is allowed because we are assuming the process is stationary.</p>
+<p>We are almost done now. To make notation a bit less clunky, let&#8217;s define</p>
+<div class="math">
+\[a_n:=P(X_n\neq i,...,X_0\neq i)\]</div>
+<p>Our expression for <span class="math">\(μ_iΠ_i\)</span> can now be written as</p>
+<div class="math">
+\[\begin{split}μ_iΠ_i&amp;=P(X_0=i)+\sum_{n=2}^\infty(a_{n-2}-a_{n-1})\\
+      &amp;=P(X_0=i)+a_0-a_1+a_1-a_2+a_2-a_3+...\end{split}\]</div>
+<p>The above sum is what is called a <em>telescoping</em> sum because of the was the partial sums collapse. Indeed, the nth partial sum is</p>
+<div class="math">
+\[P(X_0=i)+a_0-a_n\]</div>
+<p>so that the infinite sum (by definition the limit of the partial sums) is</p>
+<div class="math">
+\[μ_iΠ_i=P(Χ_0=i)+a_0-\lim_{n\to\infty}a_n\]</div>
+<p>Two facts give our desired result that <span class="math">\(μ_iΠ_i=1\)</span>. The first is the simple fact that <span class="math">\(a_0=P(X_0\neq i)\)</span> so that</p>
+<div class="math">
+\[P(X_0=i)+a_0=P(X_0=i)+P(X_o\neq i)=1\]</div>
+<p>The second fact is that</p>
+<div class="math">
+\[\lim_{n\to\infty} a_n=0\]</div>
+<p>This fact is not completely obvious. To see this, note that this limit is the probability that the chain <em>never</em> visits state <span class="math">\(i\)</span>. Suppose the chain starts in some arbitrary state <span class="math">\(j\)</span>. Because <span class="math">\(j\)</span> is recurrent by the markov property it will be revisited infinitely often with probability 1. Since the chain is irreducible, there is some <span class="math">\(n\)</span> such that <span class="math">\(p_{ji}(n)&gt;0\)</span>. Thus on each visit to <span class="math">\(j\)</span> there is some positive probability that <span class="math">\(i\)</span> will be visited after a finite number of steps. So the situation is like flipping a coin with a positive probability of heads. It is not hard to see that a heads will eventually be flipped with probability one.</p>
+<p>Thus, we&#8217;re done. We&#8217;ve shown that <span class="math">\(μ_iΠ_i=1\)</span> for any state <span class="math">\(i\)</span>. Note that the only thing we&#8217;ve assumed is that the chain is irreducible and that a stationary distribution exists. The fact that <span class="math">\(μ_iΠ_i=1\)</span> has several important implications. One, obviously, is that</p>
+<div class="math">
+\[μ_i=\frac{1}{Π_i}\]</div>
+<p>That is, the mean time to return to state <span class="math">\(i\)</span> can be computed by determining the stationary probability <span class="math">\(Π_i\)</span>, if possible. Another implication is that if a stationary distribution <span class="math">\(Π\)</span> exists, then it must be unique, because the mean recurrence times <span class="math">\(μ_i\)</span> are obviously unique. The third important implication is that</p>
+<div class="math">
+\[Π_i=\frac{1}{μ_i}\]</div>
+<p>This immediately implies that if state <span class="math">\(i\)</span> is positive recurrent (which means by definition that <span class="math">\(μ_i&lt;\infty\)</span>), then <span class="math">\(Π_i&gt;0\)</span>. In fact, we&#8217;re now in a position to prove that positive recurrence is a class property (recall that when we stated this &#8220;fact&#8221;, we delayed the proof of it till later. That later is now). We are still assuming that a stationary distribution exists. As we have seen before, this implies that</p>
+<div class="math">
+\[Π_j=\sum_{i\in S}Π_ip_{ij}(n)\]</div>
+<p>for every <span class="math">\(n\geq 1\)</span> and every <span class="math">\(j\in S\)</span>. Suppose that <span class="math">\(Π_j=0\)</span> for some state <span class="math">\(j\)</span>. Then, that implies that</p>
+<div class="math">
+\[0=\sum_{i\in S}Π_ip_{ij}(n)\]</div>
+<p>for that particular <span class="math">\(j\)</span>, and for every <span class="math">\(n\geq 1\)</span>.</p>
+<p>But since the state space is irreducible (all states communicate with one another), for every <span class="math">\(i\)</span> there is some <span class="math">\(n\)</span> such that <span class="math">\(p_{ij}(n)&gt;0\)</span>. This implies that <span class="math">\(Π_i\)</span> must be 0 for every <span class="math">\(i\in S\)</span>. But this is impossible because the <span class="math">\(Π_i\)</span> must sum to one. So we have shown that <em>if a stationary distribution exists, then</em> <span class="math">\(Π_i\)</span> <em>must be strictly positive for every i</em>. This implies that all states must be positive recurrent. So, putting this together with our previous result that we can construct a stationary distribution if at least one state is positive recurrent, we see that if one state is positive recurrent, then we can construct a stationary distribution, and then this implies that all states must be positive recurrent. In other words, positive recurrence is a class property. Of course, this then implies that null recurrence is also a class property.</p>
+<p>Let&#8217;s summarize the main results that we&#8217;ve proved over the last two lectures in a theorem:</p>
+<div class="admonition-theorem admonition">
+<p class="first admonition-title">Theorem</p>
+<p class="last">For an irrudible Markov chain, a stationary distribution <span class="math">\(Π\)</span> exists if and only if all states are positive recurrent. In this case, the stationary distribution is unique and <span class="math">\(Π_i=\frac{1}{μ_i}\)</span>, where <span class="math">\(μ_i\)</span> is the mean recurrence time to state <span class="math">\(i\)</span>.</p>
+</div>
+<p>So we can&#8217;t make a transient or a null recurrent Markov chain stationary. Also, if the Markov chain has two or more equivalence classes (we say the Markov chain is <em>reducible</em>), then in general there will be many stationary distributions. One of the STAT855 problems is to give an example of this. In these cases, there are different questions to ask about the prcess, as we shall see. Also note that there are no conditions on the period of the Markov chain for the existence and uniqueness of the stationary distribution. This is not true when we consider limiting probabilities, as we shall also see.</p>
+<div class="admonition-example-ross-p-229-26-extended admonition">
+<p class="first admonition-title">Example (Ross, p.229 #26, extended)</p>
+<p>Three out of every four trucks on the road are followed by a car, while only one out of every five cars is followed by a truck. If I see a truck pass me by on the road, on average how many vehicles pass before I see another truck?</p>
+<p>Solution:</p>
+<p>Recall that we set this up as a Markov chain in which we imagine sitting on the side of the road watching vehicles go by. If a truck goes by, the next vehicle will be a car with probability <span class="math">\(\frac{3}{4}\)</span> and will be a truck with probability <span class="math">\(\frac{1}{4}\)</span>. If a car goes by, the next vehicle will be a car with probability <span class="math">\(\frac{4}{5}\)</span> and will be a truck with probability <span class="math">\(\frac{1}{5}\)</span>. If we let <span class="math">\(X_n\)</span> denote the type of the nth vehicle that passes by (0 for truck and 1 for car), then <span class="math">\(\{X_n:n\geq 1\}\)</span> is a Markov chain with two states (0 and 1) and transition probability matrix</p>
+<div class="math">
+\[\begin{split}P=\begin{array}{l|cc}
+  &amp; 0 &amp; 1 \\
+\hline
+0 &amp; \frac{1}{4} &amp; \frac{3}{4} \\
+1 &amp; \frac{1}{5} &amp; \frac{4}{5}
+\end{array}\end{split}\]</div>
+<p>The equations <span class="math">\(Π=ΠP\)</span> are</p>
+<div class="math">
+\[\begin{split}Π_0=\frac{1}{4}Π_0+\frac{1}{5}Π_1\\
+Π_1=\frac{3}{4}Π_0+\frac{4}{5}Π_1\end{split}\]</div>
+<p class="last">which, together with the constraint <span class="math">\(Π_0+Π_1=1\)</span>, we had solved previously to yield <span class="math">\(Π_0=\frac{4}{19}\)</span> and <span class="math">\(Π_1=\frac{15}{19}\)</span>. If I see a truck pass by then the average number of vehicles that pass by before I see another truck corresponds to the mean recurrence time to state 0, given that I am currently in state 0. By our theorem, the mean recurrence time to state 0 is <span class="math">\(μ_0=\frac{1}{μ_0}=\frac{19}{4}\)</span>, which is roughly 5 vehicles.</p>
+</div>
+</div>
+
 
           </div>
         </div>
@@ -70,8 +167,8 @@
 <ul>
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
-      <li>Previous: <a href="2013-10-08.html" title="previous chapter">&lt;no title&gt;</a></li>
-      <li>Next: <a href="../MTHE474/index.html" title="next chapter">MTHE 474 - Information Theory</a></li>
+      <li>Previous: <a href="2013-10-07.html" title="previous chapter">Existence and Uniqueness of Stationary Distributions</a></li>
+      <li>Next: <a href="2013-10-11.html" title="next chapter">Example of Probability Generating Function (PGF) for <span class="math">\(Π\)</span></a></li>
   </ul></li>
   </ul></li>
 </ul>

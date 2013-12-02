@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Entropy Rate: &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    <title>Entropy Rate for Stationary Source &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,6 +27,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-10-07.html" />
     <link rel="prev" title="Entropy Rate for Sources with Memory" href="2013-10-01.html" />
    
   
@@ -44,6 +45,9 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="2013-10-07.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
           <a href="2013-10-01.html" title="Entropy Rate for Sources with Memory"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
@@ -56,45 +60,47 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <p>Given a finite alphabet homogeneous Markov Chain <span class="math">\(\{X_i\}\)</span> with alphabet</p>
+  <div class="section" id="entropy-rate-for-stationary-source">
+<h1>Entropy Rate for Stationary Source<a class="headerlink" href="#entropy-rate-for-stationary-source" title="Permalink to this headline">¶</a></h1>
+<p>Given a finite alphabet homogeneous Markov Chain <span class="math">\(\{X_i\}\)</span> with alphabet</p>
 <div class="math">
-\[\cal X = \{1,2,...,m\}\]</div>
+\[\mathcal X = \{1,2,...,m\}\]</div>
 <p>and state transition probability matrix</p>
 <div class="math">
-\[Q_{|\cal X|\times |\cal X|}=[p_{ij}]\]</div>
-<p>where <span class="math">\(p_{ij}:=P[X_n=j|X_{n-1}=i]\)</span>, <span class="math">\(i,j \in \cal X\)</span></p>
+\[Q_{m\times m}=[p_{ij}]\]</div>
+<p>where <span class="math">\(p_{ij}:=P[X_n=j|X_{n-1}=i]\)</span>, <span class="math">\(i,j \in \mathcal X\)</span></p>
 <p>then the probability distribution vector,</p>
 <div class="math">
-\[\Pi=(\Pi_1,\Pi_2,...,\Pi_m)\]</div>
-<p>such that <span class="math">\(\Pi_l\geq 0\)</span>, <span class="math">\(l=1,2,...m\)</span> and <span class="math">\(\sum_{l=1}^m \Pi_l=1\)</span></p>
+\[Π=(Π_1,Π_2,...,Π_m)\]</div>
+<p>such that <span class="math">\(Π_l\geq 0\)</span>, <span class="math">\(l=1,2,...m\)</span> and <span class="math">\(\sum_{l=1}^m Π_l=1\)</span></p>
 <div class="math">
-\[\Pi=\Pi Q\]</div>
+\[Π=Π Q\]</div>
 <div class="admonition-example admonition">
 <p class="first admonition-title">Example</p>
 <p>Homogeneous Binary Markov Chain</p>
 <div class="math">
-\[\cal X=\{0,1\}\]\[\begin{split}Q_{2\times 2}=[p_{ij}]=\left[\matrix{p_00 &amp; p_01 \\ p_10 &amp; p_11}\right]\end{split}\]\[\begin{split}= \left[\matrix{1-\alpha &amp; \alpha \\ \beta &amp; \1-\beta}\right]\end{split}\]\[.. image::\]</div>
-<p>Solve for <span class="math">\(\Pi=(\Pi_1,\Pi_2)\)</span>:</p>
+\[\mathcal X=\{0,1\}\]\[\begin{split}Q_{2\times 2}=[p_{ij}]=\left[\matrix{p_{00} &amp; p_{01} \\ p_{10} &amp; p_{11}}\right]\end{split}\]\[\begin{split}= \left[\matrix{1-α &amp; α \\ β &amp; 1-β}\right]\end{split}\]</div>
+<p>Solve for <span class="math">\(Π=(Π_0,Π_1)\)</span>:</p>
 <div class="math">
-\[\Pi = \Pi Q\]\[\begin{split}(\Pi_0,1-\Pi_0)=(\Pi_0,1-\Pi_0)\left(\matrix{1-\alpha &amp; \alpha \\ \beta &amp; \1-\beta}\right)\end{split}\]\[\implies \Pi_0=\frac{\beta}{\alpha+\beta}\]\[\Pi_1=1-\Pi_0\]</div>
+\[Π = Π Q\]\[\begin{split}(Π_0,1-Π_0)=(Π_0,1-Π_0)\left(\matrix{1-α &amp; α \\ β &amp; 1-β}\right)\end{split}\]\[\implies Π_0=\frac{β}{α+β}\]\[Π_1=1-Π_0\]</div>
 <p>therefore,</p>
 <div class="math">
-\[\Pi=(\Pi_0,\Pi_1)=(\frac{\beta}{\alpha+\beta},\frac{\alpha}{\alpha+\beta})\]</div>
+\[Π=(Π_0,Π_1)=(\frac{β}{α+β},\frac{α}{α+β})\]</div>
 <p>So if,</p>
 <div class="math">
-\[P[X_1=0]=\Pi_0=1-P[X_1=1]\]</div>
+\[P[X_1=0]=Π_0=1-P[X_1=1]\]</div>
 <p class="last">then the MC is <em>stationary</em>.</p>
 </div>
 <div class="section" id="entropy-rate">
-<h1>Entropy Rate:<a class="headerlink" href="#entropy-rate" title="Permalink to this headline">¶</a></h1>
+<h2>Entropy Rate:<a class="headerlink" href="#entropy-rate" title="Permalink to this headline">¶</a></h2>
 <p>For a DMS, we defined the source entropy as the entropy of any RV in the DMS. (since all its RVs are iid.)</p>
 <p>Question:</p>
 <p>How might we define the notion of entropy for a source with memory?</p>
 <div class="admonition-definition admonition">
 <p class="first admonition-title">Definition</p>
-<p>The <em>entropy rate</em> of a source <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with alphabet <span class="math">\(\cal X\)</span> is denoted by <span class="math">\(H(\cal X)\)</span> (or <span class="math">\(H_\infty(X)\)</span> or <span class="math">\(H(X_\infty)\)</span>) and defined by:</p>
+<p>The <em>entropy rate</em> of a source <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with alphabet <span class="math">\(\mathcal X\)</span> is denoted by <span class="math">\(H(\mathcal X)\)</span> (or <span class="math">\(H_\infty(X)\)</span> or <span class="math">\(H(X_\infty)\)</span>) and defined by:</p>
 <div class="math">
-\[H(\cal X):=\lim_{n\to \infty} \frac{1}{n}H(X_1,X_2,...X_n)\]</div>
+\[H(\mathcal X):=\lim_{n\to \infty} \frac{1}{n}H(X_1,X_2,...X_n)\]</div>
 <p class="last">provided that the limit exists.</p>
 </div>
 <div class="admonition note">
@@ -108,13 +114,13 @@
 <p>by identical distribution</p>
 <p>therefore,</p>
 <div class="last math">
-\[H(\cal X)=H(X_1)\]</div>
+\[H(\mathcal X)=H(X_1)\]</div>
 </div>
 <div class="admonition-lemma admonition">
 <p class="first admonition-title">Lemma</p>
 <p>For a stationary source, <span class="math">\(\{X_i\}_{i=1}^\infty\)</span>, the conditional entropy, <span class="math">\(H(X_n|X_{n-1},...H_1)\)</span> is decreasing in <span class="math">\(n\)</span>, and has <em>a limit</em>:</p>
 <div class="math">
-\[H'(\cal X):=\lim_{n\to \infty}H(X_n|X_{n-1},...X_1)\]\[H'(\cal X):=\lim_{n\to \infty}H(X_n|X^{n-1})\]</div>
+\[H'(\mathcal X):=\lim_{n\to \infty}H(X_n|X_{n-1},...X_1)\]\[H'(\mathcal X):=\lim_{n\to \infty}H(X_n|X^{n-1})\]</div>
 <p>Proof:</p>
 <div class="math">
 \[H(X_n|X_{n-1},...,X_1)\leq H(X_n|X_{n-1},...,X_2)\]</div>
@@ -128,7 +134,7 @@
 <p>by the chain rule.</p>
 <p>Since <span class="math">\(H(C_n|X^{n-1})\)</span> is a decreasing sequence in <span class="math">\(n\)</span>, and is bounded below (by 0), it must have a limit:</p>
 <div class="last math">
-\[H'(\cal X)=\lim_{n\to\infty} H(X_n|X_{n-1})\]</div>
+\[H'(\mathcal X)=\lim_{n\to\infty} H(X_n|X_{n-1})\]</div>
 </div>
 <div class="admonition-theorem admonition">
 <p class="first admonition-title">Theorem</p>
@@ -140,22 +146,22 @@
 </div>
 <div class="admonition-theorem admonition">
 <p class="first admonition-title">Theorem</p>
-<p>For a stationary source <span class="math">\(\{X_1\}_{i=1}^\infty\)</span> with alphabet <span class="math">\(\cal X\)</span>, its entropy rate <span class="math">\(H(\cal X)\)</span> always exists, and is given by:</p>
+<p>For a stationary source <span class="math">\(\{X_1\}_{i=1}^\infty\)</span> with alphabet <span class="math">\(\mathcal X\)</span>, its entropy rate <span class="math">\(H(\mathcal X)\)</span> always exists, and is given by:</p>
 <div class="math">
-\[H(\cal X)=H'(\cal X)\]\[=\lim_{n\to \infty}H(X_n|X_{n-1},...,X_1)\]</div>
+\[H(\mathcal X)=H'(\mathcal X)\]\[=\lim_{n\to \infty}H(X_n|X_{n-1},...,X_1)\]</div>
 <p>Proof:</p>
 <div class="math">
 \[\frac{1}{n}H(X_1,...,X_n)=\frac{1}{n}\sum_{i=1}^n H(C_1|X^{i-1})\]</div>
 <p>by chain rule.</p>
-<p>But, we know that <span class="math">\(H(X_i|X^{i-1})\)</span> decreases with <span class="math">\(i\)</span>, and converges to <span class="math">\(H'(\cal X)\)</span> as <span class="math">\(i\to\infty\)</span></p>
+<p>But, we know that <span class="math">\(H(X_i|X^{i-1})\)</span> decreases with <span class="math">\(i\)</span>, and converges to <span class="math">\(H'(\mathcal X)\)</span> as <span class="math">\(i\to\infty\)</span></p>
 <p>So by the Cesaro-Mean Theorem,</p>
 <div class="math">
-\[H(\cal X)=H'(\cal X)\]</div>
+\[H(\mathcal X)=H'(\mathcal X)\]</div>
 <div class="last admonition note">
 <p class="first admonition-title">Note</p>
 <p>For any <span class="math">\(n\)</span>,</p>
 <div class="math">
-\[H(\cal X)\leqH(X_n|X^{n-1})\]</div>
+\[H(\mathcal X)\leq H(X_n|X^{n-1})\]</div>
 <p>and</p>
 <div class="math">
 \[\frac{1}{n}H(X_1,...,X_n)\]</div>
@@ -166,14 +172,15 @@
 <p class="first admonition-title">Example</p>
 <p>Consider the stationary binary Markov Chain</p>
 <div class="math">
-\[H(\cal X)=\lim_{n\to\infty}H(X_n|X^{n-1})\]\[= \lim_{n\to\infty}H(X_n|X_{n-1})\]\[=H(X_2|X_1)\]\[=-\sum_{i\in\cal X}\sum_{j\in\cal X}P[X_2=j|X_1=i]P[X_1=i]\log_2 P[C_2=j|Xi=i]\]\[=-\sum_{i\in\cal X}\sum_{j\in\cal X}p_{ij}\Pi_i\log_2 p_{ij}\]\[=\frac{\beta}{\alpha+\beta}h_b(\alpha)-\frac{\alpha}{\alpha+\beta}h_b(\beta)\]</div>
-<p class="last">where <span class="math">\(h_b(c)=\x\log_2 x - (1-x)\log_2 (1-x)\)</span> is the binary entropy function.</p>
+\[H(\mathcal X)=\lim_{n\to\infty}H(X_n|X^{n-1})\]\[= \lim_{n\to\infty}H(X_n|X_{n-1})\]\[=H(X_2|X_1)\]\[=-\sum_{i\in\mathcal X}\sum_{j\in\mathcal X}P[X_2=j|X_1=i]P[X_1=i]\log_2 P[C_2=j|Xi=i]\]\[=-\sum_{i\in\mathcal X}\sum_{j\in\mathcal X}p_{ij}Π_i\log_2 p_{ij}\]\[=\frac{β}{α+β}h_b(α)-\frac{α}{α+β}h_b(β)\]</div>
+<p class="last">where <span class="math">\(h_b(c)=x\log_2 x - (1-x)\log_2 (1-x)\)</span> is the binary entropy function.</p>
 </div>
 </div>
 <div class="section" id="stationary-ergodic-sources">
-<h1>Stationary Ergodic Sources<a class="headerlink" href="#stationary-ergodic-sources" title="Permalink to this headline">¶</a></h1>
+<h2>Stationary Ergodic Sources<a class="headerlink" href="#stationary-ergodic-sources" title="Permalink to this headline">¶</a></h2>
 <p>Loosely speaking, stationary sources that cannot be separated into different persisting asymptotic modes of behaviour are known as <em>ergodic sources</em>.</p>
-<p>A <em>stationary ergodic</em> source satisfies the Law of Large Numbers.c</p>
+<p>A <em>stationary ergodic</em> source satisfies the Law of Large Numbers</p>
+</div>
 </div>
 
 
@@ -184,14 +191,18 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Entropy Rate:</a></li>
+<li><a class="reference internal" href="#">Entropy Rate for Stationary Source</a><ul>
+<li><a class="reference internal" href="#entropy-rate">Entropy Rate:</a></li>
 <li><a class="reference internal" href="#stationary-ergodic-sources">Stationary Ergodic Sources</a></li>
+</ul>
+</li>
 </ul>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
       <li>Previous: <a href="2013-10-01.html" title="previous chapter">Entropy Rate for Sources with Memory</a></li>
+      <li>Next: <a href="2013-10-07.html" title="next chapter">&lt;no title&gt;</a></li>
   </ul></li>
   </ul></li>
 </ul>

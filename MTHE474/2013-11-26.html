@@ -1,0 +1,246 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Final &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="2013-11-25.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-25.html" title="&lt;no title&gt;"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="final">
+<h1>Final<a class="headerlink" href="#final" title="Permalink to this headline">¶</a></h1>
+<p>Wed. Dec 11: 9AM-Noon
+Mac Corry Hall, Room B201
+8.5x11 paper of formulas allowed &amp; small calculator</p>
+<div class="section" id="material">
+<h2>Material<a class="headerlink" href="#material" title="Permalink to this headline">¶</a></h2>
+<p>Notes ch 1-5
+Text ch 1-5,7,8,9 (Sec. 9.1,9.2)
+HW #1-5</p>
+<p>Sample of past exam problems posted on website</p>
+<div class="section" id="rate-distortion-theory">
+<h3>Rate-Distortion Theory<a class="headerlink" href="#rate-distortion-theory" title="Permalink to this headline">¶</a></h3>
+<p>(Lossy Source Coding)</p>
+<p>Consider a DMS <span class="math">\(\{X_i\}_{i=1}^\infty\)</span> with <em>finite</em> alphabet <span class="math">\(\mathcal X\sim p_X\)</span></p>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>For a given <span class="math">\(\mathcal X\)</span>, <span class="math">\(\mathcal \hat X\)</span> is the source reproduction alphabet. (usually <span class="math">\(\mathcal X=\mathcal \hat X\)</span>, in general <span class="math">\(\mathcal \hat X\subseteq \mathcal X\)</span>)</p>
+<p>A distortion function, <span class="math">\(d(\cdot,\cdot)\)</span>:</p>
+<div class="math">
+\[d:\mathcal X\times \mathcal \hat X\to[0,\infty)\]</div>
+<p><span class="math">\(d(x,\hat x)\)</span> measures the cost of representing source symbol <span class="math">\(x\)</span> via <span class="math">\(\hat x\)</span>.</p>
+<ul class="last">
+<li><p class="first">bounded</p>
+<blockquote>
+<div><div class="math">
+\[\begin{split}max_{x,\hat x}d(x,\hat x)&lt;\infty\end{split}\]</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="common-distortion-measures">
+<h1>Common Distortion Measures<a class="headerlink" href="#common-distortion-measures" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hamming-distortion-measure">
+<h2>Hamming Distortion measure<a class="headerlink" href="#hamming-distortion-measure" title="Permalink to this headline">¶</a></h2>
+<div class="math">
+\[\begin{split}d(x,\hat x)=\begin{cases}
+    1\text{ if }x\neq \hat x\\
+    0\text{ if }x=\hat x
+    \end{cases}\end{split}\]</div>
+<div class="math">
+\[E[d(X,\hat X)]=P[X\neq \hat X]\]</div>
+</div>
+<div class="section" id="squared-error">
+<h2>Squared Error<a class="headerlink" href="#squared-error" title="Permalink to this headline">¶</a></h2>
+<div class="math">
+\[d(x,\hat x)=(x-\hat x)^2\]</div>
+</div>
+<div class="section" id="additive-distortion-measure">
+<h2>Additive distortion measure<a class="headerlink" href="#additive-distortion-measure" title="Permalink to this headline">¶</a></h2>
+<div class="math">
+\[d(x^n,\hat x^n)=\frac{1}{n}\sum_{i=1}^n d(x_i,\hat x_i)\]</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>A <span class="math">\((2^{nR},n)\)</span> <em>rate-distortion</em> (lossy source) code encoder:</p>
+<div class="math">
+\[f_n: \mathcal X^n\to\{1,2,3,...,2^{nR}}\]</div>
+<p>decoder:</p>
+<div class="math">
+\[g_n: \{1,2,3,...,2^{nR}}\to\hat \mathcal X\]</div>
+<p><em>Distortion</em> associated with code:</p>
+<div class="math">
+\[\frac{1}{n}E[d(X^n,g_n(f_n(X^n)))]=\frac{1}{n}\sum_{\mathcal X^n}p_{X^n}(x^n)d(x^n,g_n(f_n(x^n)))\]</div>
+<p>Codebook:</p>
+<div class="last math">
+\[\mathcal C=\{g_n(1),...g_n(2^{nR})\}=\{\hat x^n(1),...,\hat x^n(2^{nR})}\]</div>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Operational Rate-Distortion function:</p>
+<p>Given <span class="math">\(D\geq 0\)</span>, the <em>operational rate-distortion function</em> <span class="math">\(R(D)\)</span> for a source is the infimum of all rates <span class="math">\(R\)</span> for which <span class="math">\(\exists\)</span> a sequence of <span class="math">\((2^{nR},n)\)</span> rate-distortion codes <span class="math">\((f_n,g_n)\)</span> with</p>
+<div class="last math">
+\[\lim_{n\to\infty}E[d(X^n,g_n(f_n(X^n)))]\leq D\]</div>
+</div>
+<div class="admonition-definition admonition">
+<p class="first admonition-title">Definition</p>
+<p>Information Rate-distoriton function</p>
+<div class="last math">
+\[R^{(I)}(D):=min_{p_{\hat X|X}: E[d(X,\hat X)]\leq D} I(X;\hat X)\]</div>
+</div>
+<div class="admonition-theorem-shannon-s-rate-distortion-theorem-for-dms admonition">
+<p class="first admonition-title">Theorem (Shannon&#8217;s Rate-Distortion Theorem for DMS)</p>
+<div class="math">
+\[R(D)=R^{(I)}(D):=min_{p_{\hat X|X}: E[d(X,\hat X)]\leq D} I(X;\hat X)\]</div>
+<p>where <span class="math">\(R(D)\)</span> is the operational rate-distortion function</p>
+<p class="last">See Text for Proof</p>
+</div>
+<div class="admonition-example-iid-bernoulli-source admonition">
+<p class="first admonition-title">Example (IID Bernoulli source)</p>
+<p><span class="math">\(\{X_i\}\)</span> is a binary-valued iid source with <span class="math">\(P[X=0]=p\)</span>. Consider Hamming distortion measure</p>
+<div class="math">
+\[\begin{split}R(D)=\begin{cases}
+    h_b(p)-h_b(D), &amp; 0\leq D\leq min(p,1-p)\\
+    0 &amp; \text{otherwise}
+\end{cases}\end{split}\]</div>
+<div class="math">
+\[h_b(x)=-x\log x-(1-x)\log(1-x)\]</div>
+<div class="last admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When <span class="math">\(D=0\)</span>, <span class="math">\(R(D)=h_b(p)=H(X)\)</span> - reduces to source coding Theorem.</p>
+</div>
+</div>
+<div class="admonition-example-gaussian-source admonition">
+<p class="first admonition-title">Example (Gaussian Source)</p>
+<p>IID Gaussian source <span class="math">\(\{X_i\}\)</span></p>
+<div class="math">
+\[X_i\sim N(0,σ^2)\]</div>
+<p>and squared dist. measure <span class="math">\(d(x,\hat x)=(x-\hat x)^2\)</span></p>
+<div class="last math">
+\[\begin{split}R(d)=\begin{cases}
+    \frac{1}{2}\log_2 \frac{σ^2}{D} &amp; \text{ if }0&lt;D\leq σ^2\\
+    0 &amp; \text{ if }D&gt;σ^2
+\end{cases}\end{split}\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="lossy-joint-source-channel-coding-theorem">
+<h1>Lossy Joint Source-Channel Coding Theorem<a class="headerlink" href="#lossy-joint-source-channel-coding-theorem" title="Permalink to this headline">¶</a></h1>
+<img alt="../_images/11-26-1.png" src="../_images/11-26-1.png" style="width: 75%;" />
+<ol class="loweralpha simple">
+<li>If a <span class="math">\(rR(D)&lt;C\)</span>, then communication of source over the channel via a lossy-JSCC at rate <span class="math">\(r\)</span> is possible with asymptotic exected distortion <span class="math">\(\leq D\)</span></li>
+<li>If <span class="math">\(rR(D)&gt;C\)</span>, not possible.</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Final</a><ul>
+<li><a class="reference internal" href="#material">Material</a><ul>
+<li><a class="reference internal" href="#rate-distortion-theory">Rate-Distortion Theory</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#common-distortion-measures">Common Distortion Measures</a><ul>
+<li><a class="reference internal" href="#hamming-distortion-measure">Hamming Distortion measure</a></li>
+<li><a class="reference internal" href="#squared-error">Squared Error</a></li>
+<li><a class="reference internal" href="#additive-distortion-measure">Additive distortion measure</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lossy-joint-source-channel-coding-theorem">Lossy Joint Source-Channel Coding Theorem</a></li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-11-25.html" title="previous chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-11-26.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

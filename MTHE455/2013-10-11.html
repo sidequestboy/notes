@@ -1,0 +1,206 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Example of Probability Generating Function (PGF) for \(Π\) &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="2013-10-14.html" />
+    <link rel="prev" title="Existence and Uniqueness (cont’d)" href="2013-10-09.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-14.html" title="&lt;no title&gt;"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-09.html" title="Existence and Uniqueness (cont’d)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="example-of-probability-generating-function-pgf-for">
+<h1>Example of Probability Generating Function (PGF) for <span class="math">\(Π\)</span><a class="headerlink" href="#example-of-probability-generating-function-pgf-for" title="Permalink to this headline">¶</a></h1>
+<p>Today we&#8217;ll start with another example illustrating the calculation of the mean time to return to a state in a Markoc chain by calculating the stationary probability of that state, but this time though the use of the probability generating function (pgf) of the stationary distribution.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>I&#8217;m taking a lot of courses this term. Every Monday ! get 2 new assignments with probability <span class="math">\(\frac{2}{3}\)</span> and 3 new assignments with probability <span class="math">\(\frac{1}{3}\)</span>. Every week, between Monday morning and Friday afternoon I finish 2 assignments (they might be new ones or ones unfinished from previous weeks). If I have any unfinished assignments on Friday afternoon, then I find that over the weekend, independently of anything else, I finish one assignment by Monday morning with probability <span class="math">\(c\)</span> and don&#8217;t finish any of them with probability <span class="math">\(1-c\)</span>. If the term goes on forever, how many weeks is it before I can expect a weekend with no homework to do?</p>
+<p>Solution:</p>
+<p>Let <span class="math">\(X_n\)</span> be the number of unfinished homeworks at the end of the nth Friday after term starts, where <span class="math">\(X_0=0\)</span> is the number of unfinished homeworks on the Friday before term starts. Then <span class="math">\(\{X_n: n\geq 0\}\)</span> is a Markov chain with state space <span class="math">\(S=\{0,1,2,...\}\)</span>. Some transition probabilities are, for example:</p>
+<p><span class="math">\(0\to 0\)</span> with probability <span class="math">\(\frac{2}{3}\)</span> (2 new ones on Monday)</p>
+<p><span class="math">\(0\to 1\)</span> with probability <span class="math">\(\frac{1}{3}\)</span> (3 new ones on Monday)</p>
+<p><span class="math">\(1\to 0\)</span> with probability <span class="math">\(\frac{2c}{3}\)</span></p>
+<p><span class="math">\(1\to 1\)</span> with probability <span class="math">\(\frac{c}{3}+\frac{2(1-c)}{3}=\frac{(2-c)}{3}\)</span></p>
+<p><span class="math">\(1\to 2\)</span> with probability <span class="math">\(\frac{(1-c)}{3}\)</span></p>
+<p>and, in general, if I have <span class="math">\(i\)</span> unfinished homeworks on a Friday afternoon, then the transition probabilities are given by</p>
+<p><span class="math">\(i\to i-1\)</span> with probability <span class="math">\(\frac{2c}{3}\)</span></p>
+<p><span class="math">\(i\to i\)</span> with probability <span class="math">\(\frac{c}{3}+\frac{2(1-c)}{3}=\frac{(2-c)}{3}\)</span></p>
+<p><span class="math">\(i\to i+1\)</span> with probability <span class="math">\(\frac{(1-c)}{3}\)</span></p>
+<p>The transition probability matrix for this Markov chain is given by</p>
+<div class="math">
+\[\begin{split}P=\begin{array}{l|ccccccc}
+  &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; ... &amp; \\
+\hline
+0 &amp; \frac{2}{3} &amp; \frac{1}{3} \\
+1 &amp; q &amp; r &amp; p &amp; 0 &amp; ... \\
+2 &amp; 0 &amp; q &amp; r &amp; p &amp; 0 &amp; ... \\
+3 &amp; 0 &amp; 0 &amp; q &amp; r &amp; p &amp; 0 &amp; ... \\
+4 &amp; 0 &amp; 0 &amp; 0 &amp; ... &amp; ... &amp; ... \\
+... &amp; ... &amp; ... &amp; ...
+\end{array}\end{split}\]</div>
+<p>where</p>
+<div class="math">
+\[\begin{split}q&amp;=\frac{2c}{3}\\
+r&amp;=\frac{(2-c)}{3}\\
+p&amp;=\frac{(1-c)}{3}\end{split}\]</div>
+<p>and <span class="math">\(q+r+p=1\)</span>. In the parlance of Markov chains, this process is an example of a <em>random walk with a reflecting barrier at 0</em>.</p>
+<p>We should remark here that it&#8217;s not at all clear that this Markov chain always has a stationary distribution for every <span class="math">\(c\in[0,1]\)</span>. On the one hand, if <span class="math">\(c=1\)</span>, so that I always do a homework over the weekend if there is one to do, then I will never have more than one unfinished homework on a Friday afternoon. This case corresponds to <span class="math">\(p=0\)</span>, and we can see from the transition matrix that states <span class="math">\(\{0,1\}\)</span> will be a closed, positive recurrent class, while the states <span class="math">\(\{2,3,...\}\)</span> will be a transient class of states. On ethe other extreme, if <span class="math">\(c=0\)</span>, so that I never do a homework on the weekend, then every time I get 3 new homeworks on a Monday, my backlog of unfinished homeworks will increase by one permanently. In this case <span class="math">\(q=0\)</span> and one can see from the transition matrix that I never reduce my number of unfinished homeworks, and eventually my backlog of unfinished homeworks will go off to infinity. We call such a system <em>unstable</em>. Stability can ofter be a major design issue for complex systemds that service jobs/tasks/processes (generically customers). A stochastic model can be invaluable for providing insight into the parameters affecting the stability of a system. For our example here, there should be some theshold value <span class="math">\(c_0\)</span> such that the system is stable for <span class="math">\(c&gt;c_0\)</span> and unstable for <span class="math">\(c&lt;c_0\)</span>. One valuable use of staionary distributions comes from the mere fact of their existence. If we can find those values of <span class="math">\(c\)</span> for which a stationary distribution evists, then it is for those values of <span class="math">\(c\)</span> that the system is stable.</p>
+<p>So we look for a stationary distribution. Note that if we find one, then the answer to our question of how many weeks do we have to wait on average for a homework-free weekend is <span class="math">\(μ_0=\frac{1}{Π_0}\)</span>, then mean recurrence time to state 0, our starting state. A stationary distribution <span class="math">\(Π=(Π_0,Π_1,...)\)</span> must satisfy <span class="math">\(Π=ΠP\)</span>, which we write out as</p>
+<div class="math">
+\[\begin{split}Π_0&amp;=\frac{2}{3}Π_0+qΠ_1\\
+Π_1&amp;=\frac{1}{3}Π_0+rΠ_1+qΠ_2\\
+Π_2&amp;=pΠ_1+rΠ_2+qΠ_3\\
+...\\
+Π_i&amp;=pΠ_{i-1}+rΠ_i+qΠ_{i+1}\\
+...\end{split}\]</div>
+<p>A direct attack on this system of linear equations is possible, by expressing <span class="math">\(Π_i\)</span> in terms of <span class="math">\(Π_0\)</span>, and then summing <span class="math">\(Π_i\)</span> over all <span class="math">\(i\)</span> to get <span class="math">\(Π_0\)</span> using the constraint that <span class="math">\(\sum_{i=0}^\infty=1\)</span>. However, this approach is somewhat cumbersome. A more elegant approach is to use the method of generating functions. This method can often be applied to solve a linear system of equations, especially when there are an infinite number of equations, in situations where each equation only involves variables &#8220;close to one another&#8221; (for example, each of the equations above involves only two or three consecutive variables) and all, or almost all, of the equations have a regular form (as in <span class="math">\(Π_ipΠ_{i-1}+rΠ_i+qΠ_{i+1}\)</span>).</p>
+<p>By multiplying the ith equation above by <span class="math">\(s^i\)</span> and then summing over <span class="math">\(i\)</span>, we collapse the above infinite set of equations into just a single equation for the generating function.</p>
+<p>Let <span class="math">\(G(s)=\sum_{i=0}^\infty s^iΠ_i\)</span> denote the generating function of the stationary distribution <span class="math">\(Π\)</span>. If we multiply the ith equation in <span class="math">\(Π=ΠP\)</span> by <span class="math">\(s^i\)</span> and sum over <span class="math">\(i\)</span>, we obtain</p>
+<div class="math">
+\[sum_{i=0}^\infty s^iΠ_i=\frac{2}{3}Π_0+\frac{1}{3}Π_0s+p\sum_{i=2}^\infty s^i Π_{i-1}+r\sum_{i=1}^\infty s^iΠ_i+q\sum_{i=0}^\infty s^iΠ_{i+1}\]</div>
+<p>The left hand side is just <span class="math">\(G(s)\)</span> while the sums on the right hand side are not difficult to express in terms of <span class="math">\(G(s)\)</span> with a little bit of manipulation. In particular,</p>
+<div class="math">
+\[\begin{split}p\sum_{i=2}^\infty s^i Π_{i-1}&amp;=ps\sum_{i=2}^\infty s^{i-1}Π_{i-1}\\
+                              &amp;=ps\sum_{i=1}^\infty s^iΠ_i\\
+                              &amp;=ps\sum_{i=0}^\infty s^i Π_i-psΠ_0\\
+                              &amp;=psG(s)-psΠ_0\end{split}\]</div>
+<p>Similarly,</p>
+<div class="math">
+\[\begin{split}r\sum_{i=1}^\infty s^iΠ_i&amp;=r\sum{i=0}^\infty s^iΠ_i-rΠ_0\\
+                         &amp;=rG(s)-rΠ_0\end{split}\]</div>
+<p>and</p>
+<div class="math">
+\[\begin{split}q\sum_{i=0}^\infty s^iΠ_{i+1}&amp;=\frac{q}{s}\sum_{i=0}^\infty s^{i+1}Π_{i+1}=\frac{q}{s}\sum_{i=1}^\infty s^iΠ_i\\
+&amp;=\frac{q}{s}\sum_{i=0}^\infty s^iΠ_i-\frac{q}{s}Π_0\\
+&amp;=\frac{q}{s}G(s)-\frac{q}{s}Π_0\end{split}\]</div>
+<p>Therefore, the equation we obtain for <span class="math">\(G(s)\)</span> is</p>
+<div class="math">
+\[G(s)=\frac{2}{3}Π_0+\frac{s}{3}Π_0+psG(s)-psΠ_0+rG(s)-rΠ_0+\frac{q}{s}G(s)-\frac{q}{s}Π_0\]</div>
+<p>Collecting like terms, we have</p>
+<div class="math">
+\[G(s)[1-ps-r-\frac{q}{s}]=Π_0[\frac{2}{3}+\frac{s}{3}-ps-r-\frac{q}{s}]\]</div>
+<p>To get rid of the fractions, we&#8217;ll multiply both sides by <span class="math">\(3s\)</span>, giving</p>
+<div class="math">
+\[\begin{split}G(s)[3s-3ps^2-3rs-3q]&amp;=Π_0[2s+s^2-3ps^2-3rs-3q]\\
+\implies G(s)=\frac{Π_0[2s+s^2-3ps^2-3rs-3q]}{[3s-3ps^2-3rs-3q]}\end{split}\]</div>
+<p>In order to determine the unknown <span class="math">\(Π_0\)</span> we use the boundary condition <span class="math">\(G(1)=1\)</span>, which must be satisfied if <span class="math">\(Π\)</span> is to be a stationary distribution. This boundary condition also gives us a way to check for the values of <span class="math">\(c\)</span> for which the stationary distribution exists. If a stationary distribution does not exist, then we will not be able to satisfy the condition <span class="math">\(G(1)=1\)</span>. Plugging in <span class="math">\(s=1\)</span>, we obtain</p>
+<div class="math">
+\[G(1)=\frac{Π_0(2+1-3p-3r-3q)}{3-3p-3r-3q}\]</div>
+<p>However, we run into a problem here due to the fact that <span class="math">\(p+r+q=1\)</span>, which means that <span class="math">\(G(1)\)</span>  is an indeterminate form</p>
+<div class="math">
+\[G(1)=[\frac{0}{0}]\]</div>
+<p>Therefore, we use L&#8217;Hopital&#8217;s rule to determine the limiting value of <span class="math">\(G(s)\)</span> as <span class="math">\(s\to 1\)</span>. This gives:</p>
+<div class="math">
+\[\begin{split}\lim_{s\to 1}G(s)&amp;=Π_0\frac{\lim_{s\to 1}(2+2s-6ps-3r)}{\lim_{s\to 1}(3-6ps-3r)}\\
+&amp;=Π_0\frac{4-6p-3r}{3-6p-3r}\end{split}\]</div>
+<p>We had previously defined our quantities <span class="math">\(p,r\)</span> and <span class="math">\(q\)</span> in terms of <span class="math">\(c\)</span> to make it easier to write down the transition matrix <span class="math">\(P\)</span>, but now we would like to re-express these back in terms of <span class="math">\(c\)</span> to make it simpler to see when <span class="math">\(\lim_{s\to 1}G(s)=1\)</span> is possible. Recall that <span class="math">\(p=\frac{(1-c)}{3}\)</span>, <span class="math">\(r={(2-c)}{3}\)</span> and <span class="math">\(q=\frac{2c}{3}\)</span>, so that <span class="math">\(4-6p-3r=4-2(1-c)-(2-c)=3c\)</span> and <span class="math">\(3-6p-3r=3c-1\)</span>. So in terms of <span class="math">\(c\)</span>, we have</p>
+<div class="math">
+\[\lim_{s\to 1} G(s)=Π_0\frac{3c}{3c-1}\]</div>
+<p>In order to have a proper stationary distribution, we must have the left hand side equal to 1 and we must have <span class="math">\(0&lt;Π_0&lt;1\)</span>. Together, these imply that we must have <span class="math">\(\frac{3c}{3c-1}&gt;1\)</span>, which will only be true if <span class="math">\(3c-1&gt;0\)</span>, or <span class="math">\(c&gt;\frac{1}{3}\)</span>. Thus, we have found our threshold value of <span class="math">\(c_0=\frac{1}{3}\)</span> such that the system is stable (since it has a stationary distribution) for <span class="math">\(c&gt;c_0\)</span> and is unstable for <span class="math">\(c\leq c_0\)</span>. Assuming <span class="math">\(c&gt;\frac{1}{3}\)</span> so that the system is stable, we may now solve for <span class="math">\(Π_0\)</span> through the relationship</p>
+<div class="math">
+\[\begin{split}1&amp;=Π_0\frac{3c}{3c-1}\\
+\implies Π_0&amp;=\frac{3c-1}{3c}\end{split}\]</div>
+<p>The answer to our original question of what is the mean number of weeks until a return to state 0 is</p>
+<div class="math">
+\[\frac{1}{μ_0}=\frac{3c}{3c-1}\]</div>
+<p>Observe that we have found a mean return time of interest, <span class="math">\(μ_0\)</span>, in terms of a system parameter, <span class="math">\(c\)</span>. More generally, a typical thing we try to do in stochastic modeling is find out how some performance measure of interest depends, explicitly or even just qualitatively, on one or more system parameters. In particular, if we have some control over one or more of those system parameters, then we have a useful tool to help us design our system. For example, if I wanted to design my homework habits so that I could expect to have a homework-free weekend in siz weeks, I can solve for <span class="math">\(c\)</span> to make <span class="math">\(μ_0\leq 6\)</span>. This gives <span class="math">\(μ_0=\frac{3c}{3c-1}\leq 6\implies 3c\leq 18c-6\)</span> or <span class="math">\(c\geq \frac{2}{5}\)</span>.</p>
+<p>Let us now return to some general theory. We&#8217;ve already proved one of the main general theorems concerning Markov chains, that we emphasized last lecture. This was the theorem concerning the conditions for the existence and uniqueness of a stationary distribution for a Markov chain. We reiterate here that there were no conditions on the perios of the Markov chain for that result. The other main theoretical result concerning Markov chains has to do with the limiting probabilities <span class="math">\(\lim_{n\to\infty}p_{ij}(n)\)</span>. For this result, the period does matter. Let&#8217;s state what that result is now:</p>
+<p>When the stationary distribution exists <em>and</em> the chain is aperiodic (so the chain is irreducible, positive recurrent, and aperiodic), <span class="math">\(p_{ij}(n)\)</span> converges to the stationary probability <span class="math">\(Π_j\)</span> as <span class="math">\(n\to\infty\)</span>. Note that the limit does not depend on the starting state <span class="math">\(i\)</span>. This is quite important. In words, for an irreducible, positive recurrent, aperiodic Markov chain, no matter where we start from and <em>no matter what our initial distribution is</em>, if we let the chain run for a long time, then the distribution of <span class="math">\(X_n\)</span> will be very much like the stationary distribution <span class="math">\(Π\)</span>.</p>
+<p class="last">An important first step in proving the above limiting result is to show that for an irreducible, positive recurrent, aperiodic Markov chain, the n-step transition probability <span class="math">\(p_{ij}(n)\)</span> is strictly positive for <em>all</em> <span class="math">\(n\)</span> &#8220;big enough&#8221;. That is, there exists some integer <span class="math">\(M\)</span> such that <span class="math">\(p_{ij}(n)&gt;0\)</span> for all <span class="math">\(n\geq M\)</span>. To show this we will need some results from basic number theory. Stay tuned.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-10-09.html" title="previous chapter">Existence and Uniqueness (cont&#8217;d)</a></li>
+      <li>Next: <a href="2013-10-14.html" title="next chapter">&lt;no title&gt;</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-10-11.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

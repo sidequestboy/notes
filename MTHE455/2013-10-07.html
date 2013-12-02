@@ -1,0 +1,196 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Existence and Uniqueness of Stationary Distributions &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Existence and Uniqueness (cont’d)" href="2013-10-09.html" />
+    <link rel="prev" title="Introduction to Stationary Distributions" href="2013-10-04.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-09.html" title="Existence and Uniqueness (cont’d)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-04.html" title="Introduction to Stationary Distributions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="existence-and-uniqueness-of-stationary-distributions">
+<h1>Existence and Uniqueness of Stationary Distributions<a class="headerlink" href="#existence-and-uniqueness-of-stationary-distributions" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">these notes were taken practically verbatim from Section 13 of <a class="reference external" href="http://www.mast.queensu.ca/~stat455/lecturenotes/set3.pdf">Prof. Takahara&#8217;s online notes</a></p>
+</div>
+<p>We now begin to answer some of the main theoretical questions concerning Markov chains. The first, and perhaps most important, question is under what conditions does a stationary distribution exist, and if it exists, is it unique? In general, a Markov chain can have more than one equivalence class. There are really only 3 combinations of equivalence classes hat we need to consider. These are:</p>
+<ol class="arabic simple">
+<li>when there is only one equivalence class</li>
+<li>when there are two or more classes, all transient</li>
+<li>when there are two or more classes with some transient and some recurrent</li>
+</ol>
+<p>As we have mentioned previously when there are two or more classes and they are all recurrent, we can assume that the whole state space is the class that we start the process in, because such classes are closed. We will consider case (3) when we get to Section 4.6 in the text and we will not really consider case (2), as this does not arise very much in practice. Our main focus will be on case (1). When there is only one equivalence class we say the Markov chan is <em>irreducible</em>.</p>
+<p>We will show that for an irreducible Markov chain, a stationary distribution exists if and only if all states are positive recurrent, and in this case the stationary distribution is unique.</p>
+<p>We will start off by showing that if there is at least one recurrent state in our Markov chain, then there exists a solution to the equations <span class="math">\(Π=ΠP\)</span>, and we will demonstrate that solution by constructing it.</p>
+<p>First we&#8217;ll try to get an intuitive sense of the construction. The basic property of Markov chains can be described as a <em>starting over</em> property. If we fix a state <span class="math">\(k\)</span> and start out the chain in state <span class="math">\(k\)</span>, then every time the chain returns to state <span class="math">\(k\)</span>, it starts over in a probabilistic sense. We say that the chain <em>regenerates</em> itself. Let us call the time that the chain spends moving about the state space from the initial time 0, where it starts in state <span class="math">\(k\)</span>, to the time when it first returns to state <span class="math">\(k\)</span>, a <em>sojourn</em> from state <span class="math">\(k\)</span> back to state <span class="math">\(k\)</span>. Successive sojourns all &#8220;look the same&#8221; and so what the chain does during one sojourn sould, on average at least, be the same as what it does on every other sojourn. In particular, for any state <span class="math">\(i\neq k\)</span>, the number of times the chain visits state <span class="math">\(i\)</span> during a sojourn should, again on average, be the same as in every other sojourn. If we accept this, then we should accept that the <em>proportion of time</em> during a sojourn that the chain spends in state <span class="math">\(i\)</span> should be the same, again on average, for all sojourns. But this reasoning then leads us to expect that the proportion of time that the chain spends in state <span class="math">\(i\)</span> <em>over the long run</em> should be the same as the proportion of time that the chain spends in state <span class="math">\(i\)</span> during any sojourn, in particular the first sojourn from state <span class="math">\(k\)</span> back to state <span class="math">\(k\)</span>. But this is also how we interpret <span class="math">\(Π_i\)</span>, the stationary probability of state <span class="math">\(i\)</span>, as the long run proportion of time the chain spends in state <span class="math">\(i\)</span>, So this is how we will construct a vector to satisfy the equations <span class="math">\(Π=ΠP\)</span>. We will let the ith component of our solution be the expected number of visits to state <span class="math">\(i\)</span> during the first sojourn. This should be proportional to a stationary distribution, if such a distribution exists.</p>
+<p>Let us first set our notation. Define</p>
+<div class="math">
+\[\begin{split}T_k &amp;= \text{first time the chain visits state }k\text{ starting at time 1}\\
+N_i &amp;= \text{the number of visits to state }i\text{during the first sojourn}\\
+ρ_i(k) &amp;= E[N_i|X_0=k]\end{split}\]</div>
+<p>Thus, <span class="math">\(ρ_i(k)\)</span> is the expected number of visits to state <span class="math">\(i\)</span> during the first sojourn from state <span class="math">\(k\)</span> back to state <span class="math">\(k\)</span>. We define the (row) vector <span class="math">\(ρ(k)=(ρ_i(k))_{k\in S}\)</span>, whose ith component is <span class="math">\(ρ_i(k)\)</span>. Based on our previous discussion, our goal now is to show that the vector <span class="math">\(ρ(k)\)</span> satisfies <span class="math">\(ρ(k)=ρ(k)P\)</span>. We should mention here that the sojourn from state <span class="math">\(k\)</span> back to state <span class="math">\(k\)</span> may never even happen if state <span class="math">\(k\)</span> is transient because the chain may never return to state <span class="math">\(k\)</span>. Therefore, we assume that state <span class="math">\(k\)</span> is recurrent, and it is exactly at this point that we need to assume it. Assuming state <span class="math">\(k\)</span> is recurrent, then the chain will return to state <span class="math">\(k\)</span> with probability 1. Also, the sojourn includes the last step back to state <span class="math">\(k\)</span>; that is, during this sojourn, state <span class="math">\(k\)</span> is, by definition, visited exactly once. In other words, <span class="math">\(ρ_k(k)=1\)</span> (assuming state <span class="math">\(k\)</span> is recurrent).</p>
+<p>One other important thing to observe about <span class="math">\(ρ_i(k)\)</span> is that if we sum <span class="math">\(ρ_i(k)\)</span> over all <span class="math">\(i\in S\)</span>, then that is the expected length of the whole sojourn. But the expected length of the sojourn is the mean time to return to state <span class="math">\(k\)</span>, given that we start in state <span class="math">\(k\)</span>. That is, if <span class="math">\(μ_k\)</span> denotes the mean recurrence time to state <span class="math">\(k\)</span>, then</p>
+<div class="math">
+\[μ_k=\sum_{i\in S}ρ_i(k)\]</div>
+<p>If state <span class="math">\(k\)</span> is positive recurrent then this sum will be finite and it will be infinite if state <span class="math">\(k\)</span> is null recurrent.</p>
+<p>As we have done in previous examples, we will use indicator functions to represent the number of visits to state <span class="math">\(i\)</span> during the first sojourn. If we define <span class="math">\(I_{\{X_n=i,T_k\geq n\}}\)</span> as the indicator of the event that the chain is in state <span class="math">\(i\)</span> at time <span class="math">\(n\)</span> and we have not yet revisited state <span class="math">\(k\)</span> by time <span class="math">\(n\)</span> (i.e. we are still in the first sojourn), then we may represent the total expected number of visits to state <span class="math">\(i\)</span> during the first sojourn as</p>
+<div class="math">
+\[\begin{split}ρ_i(k)&amp;=\sum_{n=1}^\infty E[I_{\{X_n=i,T_k\geq n\}}|X_0=k]\\
+      &amp;=\sum_{n=1}^\infty P(X_n=i,T_k\geq n| X_0=k)\end{split}\]</div>
+<p>(We are assuming here that <span class="math">\(i\neq k\)</span>). Purely for the sake of shorter notation we will let</p>
+<div class="math">
+\[l_{ki}(n)=P(X_n=i,T_k\geq n|X_0=k)\]</div>
+<p>so that now we will write</p>
+<div class="math">
+\[ρ_i(k)=\sum_{n=1}^\infty l_{ki}(n)\]</div>
+<p>We proceed by deriving an equation for <span class="math">\(l_{ki}(n)\)</span>, which will then give an equation for <span class="math">\(ρ_i(k)\)</span>, and we will see that this equation is exactly the ith equation in <span class="math">\(ρ(k)=ρ(k)P\)</span>. To derive the equation, we intersect the event <span class="math">\(\{X_n=i,T_k\geq n\}\)</span> with all possible values of <span class="math">\(X_{n-1}\)</span>. Doing this is a special case of the following calculation in basic probability.</p>
+<p>If <span class="math">\(\{B_j\}\)</span> is a partition of the probability space such that <span class="math">\(P(\cup_j B_j)=1\)</span> and <span class="math">\(B_j\cap B_{j'}=\{\}\)</span>, the empty set, for <span class="math">\(j\neq j'\)</span>, then for any event <span class="math">\(A\)</span>,</p>
+<div class="math">
+\[P(A)=P(A\cap (\cup_j B_j))=P(\cup_j(A\cap B_j))=\sum_j P(A\cap B_j)\]</div>
+<p>Because the <span class="math">\(B_j\)</span> and so the <span class="math">\(A\cap B_j\)</span> are all disjoint.</p>
+<p>For <span class="math">\(n=1\)</span> we have <span class="math">\(l_{ki}(1)=P(X_1=i,T_k\geq 1|X_0=k)=p_{ki}\)</span>, the 1-step transition probability from state <span class="math">\(k\)</span> to state <span class="math">\(i\)</span>. For <span class="math">\(n\geq 2\)</span>, we let <span class="math">\(B_j=\{X_{n-1}=j\}\)</span> and <span class="math">\(A=\{X_n=i,T_k\geq n\}\)</span> in the previous paragraph, to get</p>
+<div class="math">
+\[\begin{split}l_{ki}(n) &amp;= P(X_n=i,T_k\geq n|X_0=k)\\
+          &amp;= \sum_{j\in S}P(X_n=i,X_{n-1}=j,T_k\geq n|X_0=k)\end{split}\]</div>
+<p>First we note that when <span class="math">\(j=k\)</span>, the above probability is 0 because the event <span class="math">\(\{X_{n-1}=k\}\)</span> implies that the sojourn is over by time <span class="math">\(n-1\)</span> while the event <span class="math">\(\{T_k\geq n\}\)</span> says that the sojourn is not over at time <span class="math">\(n-1\)</span>. Therefore, their intersection is the empty set. Thus,</p>
+<div class="math">
+\[l_{ki}(n) = \sum_{j\neq k}P(X_n=i,X_{n-1}=j,T_k\geq n|X_0=k)\]</div>
+<p>Next, we note that the event above says that, given we start in state <span class="math">\(k\)</span>, we go to state <span class="math">\(j\)</span> at time <span class="math">\(n-1\)</span> without revisiting state <span class="math">\(k\)</span> in the meantime, and then go to state <span class="math">\(i\)</span> in the next step. But this is just <span class="math">\(l_{kj}(n-1)p_{ji}\)</span>, and so</p>
+<div class="math">
+\[l_{ki}(n)=\sum_{j\neq k}l_{kj}(n-1)p_{ji}\]</div>
+<p>This is our basic equation for <span class="math">\(l_{ki}(n)\)</span>, for <span class="math">\(n\geq 2\)</span>. Now, if we sum this over <span class="math">\(n\geq 2\)</span> and use the fact that <span class="math">\(l_{ki}(n)=p_{ki}\)</span> we have</p>
+<div class="math">
+\[\begin{split}ρ_i(k)&amp;=\sum_{n=1}^\infty l_{ki}(n)\\
+      &amp;=p_{ki}+\sum_{n=2}^\infty\sum_{j\neq k}l_{kj}(n-1)p_{ji}\\
+      &amp;=p_{ki}+\sum_{j\neq k}[\sum_{n=2}^\infty l_{kj}(n-1)]p_{ji}\end{split}\]</div>
+<p>But <span class="math">\(\sum_{n=2}^\infty l_{kj}(n-1)=\sum_{n=1}^\infty l_{kj}(n)\)</span> is equal to <span class="math">\(ρ_j(k)\)</span>, so we get the equation</p>
+<div class="math">
+\[ρ_i(k)=p_{ki}+\sum_{j\neq k}ρ_j(k)p_{ji}\]</div>
+<p>Now we use the fact that <span class="math">\(ρ_k(k)=1\)</span> to write:</p>
+<div class="math">
+\[\begin{split}ρ_i(k)&amp;=ρ_k(k)p_{ki}+\sum_{j\neq k}ρ_j(k)p_{ji}\\
+      &amp;=\sum_{j\in S}ρ_j(k)p_{ji}\end{split}\]</div>
+<p>But now we are done, because this is exactly the ith equation in <span class="math">\(ρ(k)=ρ(k)P\)</span>. So we have finished our construction. The vector <span class="math">\(ρ(k)\)</span>, as we have defined it, has been shown to satisfy the matrix equation <span class="math">\(ρ(k)=ρ(k)P\)</span>. Moreover, as was noted earlier, if state <span class="math">\(k\)</span> is a positive recurrent state, then the components of <span class="math">\(ρ(k)\)</span> have a finite sum, so that</p>
+<div class="math">
+\[Π=ρ(k)/\sum_{i\in S}ρ_i(k)\]</div>
+<p>is a stationary distribution. We have shown that if our Markov chain has at least one positive recurrent state, then there exists a stationary distribution <span class="math">\(Π\)</span>.</p>
+<p>Now that we have shown that a stationary distribution exists if there is at least one positive recurrent state, the next thing we want to show is that if a stationary distribution does exist, then all states must be positive recurrent and the stationary distribution is unique.</p>
+<p>First, we can show that if a stationary distribution exists, then the Markov chain cannot be transient. If <span class="math">\(Π\)</span> is a stationary distribution, then <span class="math">\(Π=ΠP\)</span>. Multiplying both sides by <span class="math">\(P^{n-1}\)</span> we get <span class="math">\(ΠP^{n-1}=ΠP^n\)</span>. But we can reduce the left hand side down to <span class="math">\(Π\)</span> by successively applying the relationship <span class="math">\(Π=ΠP\)</span>. Therefore, we have the relationship that <span class="math">\(Π=ΠP^n\)</span> for any <span class="math">\(n\geq 1\)</span>, which in a more detailed form is</p>
+<div class="math">
+\[Π_j=\sum_{i\in S}Π_ip_{ij}(n)\]</div>
+<p>for any <span class="math">\(i,j\in S\)</span> and all <span class="math">\(n\geq 1\)</span>, where <span class="math">\(p_{ij}(n)\)</span> is the n-step transition probability from state <span class="math">\(i\)</span> to state <span class="math">\(j\)</span>.</p>
+<p>Now consider what happens when we take the limit as <span class="math">\(n\to\infty\)</span> in the above equality. When we look at</p>
+<div class="math">
+\[\lim_{n\to\infty}\sum_{i\in S}Π_ip_{ij}(n)\]</div>
+<p>if we can take the limit inside the summation, then we could use the fact that <span class="math">\(\lim_{n\to\infty}p_{ij}(n)=0\)</span> for all <span class="math">\(i,j\in S\)</span> if all states are transient (recall the Corollary we showed at the end of Lecture 10), to conclude that <span class="math">\(Π_j\)</span> must equal zero for all <span class="math">\(j\in S\)</span>. It turns out we <em>can</em> take the limit inside the summation, but we should be careful because the summation is in general an infinite sum, and limits cannot be taken inside infinite sums in general (recall the example that <span class="math">\(+\infty=\lim_{n\to\infty}\sum_{i=1}^\infty\frac{1}{n}\neq\sum_{i=1}^\infty\lim_{n\to\infty}\frac{1}{n}=0\)</span> ). The fact that we can take the limit inside the summation here is a consequence of the fact that we can uniformly bound the vector <span class="math">\((Π_ip_{ij}(n))_{i\in S}\)</span> by a summable vector (uniformly means we can find a bound that works for all <span class="math">\(n\)</span>).</p>
+<p>In particular, since <span class="math">\(p_{ij}(n)\leq 1\)</span> for all <span class="math">\(n\)</span>, we have that <span class="math">\(Π_ip_{ij}(n)\leq Π_i\)</span> for all <span class="math">\(i\in S\)</span>. The fact that this allows us to take the limit inside the summation is an instance of a more general result known as the <em>bounded convergence theorem</em>. This is a well-known and useful result in probability, but we won&#8217;t invoke its use here, as we can show directly that we can take the limit inside the summation as follows.</p>
+<p>Let <span class="math">\(F\)</span> be any finite subset of the state space <span class="math">\(S\)</span>. Then we can write</p>
+<div class="math">
+\[\begin{split}\lim_{n\to\infty}\sum_{i\in S}Π_ip_{ij}(n)&amp;=\lim_{n\to\infty}\sum_{i\in F}Π_ip_{ij}(n)+\lim_{n\to\infty}\sum_{i\in F^c}Π_ip_{ij}(n)\\
+&amp;\leq \lim_{n\to\infty}\sum_{i\in F}Π_ip_{ij}(n)+\sum_{i\in F^c}Π_i\end{split}\]</div>
+<p>from the inequality <span class="math">\(p_{ij}(n)\leq 1\)</span>. But for the first finite summation, we can take the limit inside, so we get that the limit of the first sum (over <span class="math">\(F\)</span>) is 0). Therefore,</p>
+<div class="math">
+\[\lim_{n\to\infty}\sum_{i\in S}Π_ip_{ij}(n)\leq \sum_{i\in F^c}Π_i\]</div>
+<p>for any finite subset <span class="math">\(F\)</span> of <span class="math">\(S\)</span>. But since <span class="math">\(\sum_{i\in S}Π_i=1\)</span> is a convergent sum, for any <span class="math">\(ε&gt;0\)</span> we can take the set <span class="math">\(F\)</span> so large (but still finite) to make <span class="math">\(\sum_{i\in F^c}Π_i&lt;ε\)</span>. This implies that</p>
+<div class="math">
+\[\lim_{n\to\infty}\sum_{i\in S}Π_ip_{ij}(n)\leq ε\]</div>
+<p>for every <span class="math">\(ε&gt;0\)</span>. But the only way this can be true is if the above limit is 0. Therefore, going back to our original argument, we see that if all states are transient, this implies that <span class="math">\(Π_j=0\)</span> for all <span class="math">\(j\in S\)</span>. This is clearly impossible since the components of <span class="math">\(Π\)</span> must sum to 1. Therefore, if a stationary distribution exists for an irreducible Markov chain, all states must be recurrent.</p>
+<p>We end here with another attempt at some intuitive understanding, this time of why the stationary distribution <span class="math">\(Π\)</span>, if it did exist, might be unique. In particular, let us try to see why we might expect that <span class="math">\(Π_i=\frac{1}{μ_i}\)</span>, where <span class="math">\(μ_i\)</span> is the mean recurrence time to state <span class="math">\(i\)</span>. Suppose we start the chain in state <span class="math">\(i\)</span> and then observe the chain over <span class="math">\(N\)</span> time periods, where <span class="math">\(N\)</span> is large. Over those <span class="math">\(N\)</span> time periods, let <span class="math">\(n_i\)</span> be the number of times that the chain revisits state <span class="math">\(i\)</span>. If <span class="math">\(N\)</span> is large, we expect that <span class="math">\(\frac{n_i}{N}\)</span> is approximately equal to <span class="math">\(Π_i\)</span>, and indeed should converge to <span class="math">\(Π_i\)</span> as <span class="math">\(N\)</span> went to infinity. On the other hand, if the times that the chain returned to state <span class="math">\(i\)</span> were <em>uniformly</em> spread over the times from 0 to <span class="math">\(N\)</span>, then each time state <span class="math">\(i\)</span> was visited, the chain would return to state <span class="math">\(i\)</span> after <span class="math">\(\frac{N}{n_i}\)</span> steps. For example, if the chain visited state <span class="math">\(i\)</span> 10 times in 100 steps and the times it returned to state <span class="math">\(i\)</span> were uniformly spread, then the chain would have returned to state <span class="math">\(i\)</span> every <span class="math">\(100/10=10\)</span> steps. In reality, the return times to state <span class="math">\(i\)</span> vary, perhaps a lot, over the different returns to state <span class="math">\(i\)</span>. But if we average all these return times (meaning the arithmetic average), then this average behaves very much like the return time when all the return times are the same. So we should expect that the average return time to state <span class="math">\(i\)</span> should be close to <span class="math">\(\frac{N}{n_i}\)</span>, when <span class="math">\(N\)</span> is ver large (note that as <span class="math">\(N\)</span> grows, so does <span class="math">\(n_i\)</span>), and as <span class="math">\(N\)</span> went to infinity, the ratio <span class="math">\(\frac{N}{n_i}\)</span> should actually converge to <span class="math">\(μ_i\)</span>, the mean return time to state <span class="math">\(i\)</span>. Given these two things, that <span class="math">\(Π_i\)</span> should be close to <span class="math">\(\frac{n_i}{N}\)</span>, and <span class="math">\(μ_i\)</span> should be close to <span class="math">\(\frac{N}{n_i}\)</span>, we should expect their product to be 1; that is, <span class="math">\(Π_iμ_i=1\)</span> or <span class="math">\(Π_i=\frac{1}{μ_i}\)</span>. Note that if this relationship holds, then this directly relates the stationary distribution to the null or positive recurrence of the chain, through the mean recurrence times <span class="math">\(μ_i\)</span>. If <span class="math">\(Π_i\)</span> is positive, then <span class="math">\(μ_i\)</span> must be finite, and hence state <span class="math">\(i\)</span> must be positive recurrent. Also, the stationary distribution must be unique, because the mean recurrence times are unique. Next we will prove more rigorously that the relationship <span class="math">\(Π_iμ_i=1\)</span> does indeed hold and we will furthermore show that if the stationary distribution exists, then <em>all</em> states must be positive recurrent.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-10-04.html" title="previous chapter">Introduction to Stationary Distributions</a></li>
+      <li>Next: <a href="2013-10-09.html" title="next chapter">Existence and Uniqueness (cont&#8217;d)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-10-07.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

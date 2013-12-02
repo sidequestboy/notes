@@ -1,0 +1,168 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Dirichlet Problem and Poisson’s Formula &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Convergent Series of Analytic Functions" href="2013-11-07.html" />
+    <link rel="prev" title="Max Modulus Theorem &amp; Harmonic Functions" href="2013-11-04.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-07.html" title="Convergent Series of Analytic Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-04.html" title="Max Modulus Theorem &amp; Harmonic Functions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="dirichlet-problem-and-poisson-s-formula">
+<h1>Dirichlet Problem and Poisson&#8217;s Formula<a class="headerlink" href="#dirichlet-problem-and-poisson-s-formula" title="Permalink to this headline">¶</a></h1>
+<p>In applications of Harmonic Functions (see <a class="reference external" href="https://en.wikipedia.org/wiki/Physics">physics</a>), we are faced with the problem of, given a bounded domain <span class="math">\(D\)</span> and a continuous function <span class="math">\(u:δD\to\mathbb R\)</span>, extending <span class="math">\(u\)</span> to a harmonic function on <span class="math">\(D\)</span> which is continuous on <span class="math">\(\bar D\)</span>.</p>
+<img alt="../_images/11.05.1.png" src="../_images/11.05.1.png" style="width: 50%;" />
+<p>For example, given the temperature on the boundary of a slab, we want to find the temperature on the slab.</p>
+<p>This problem is the <em>Dirichlet Problem</em>.</p>
+<div class="admonition-lemma admonition">
+<p class="first admonition-title">Lemma</p>
+<p>Solutions to Dirichlet Problem are unique if they exist.</p>
+<p>Proof:</p>
+<p>Suppose <span class="math">\(u,\tilde u:\bar D\to\mathbb R\)</span> are continuous, agree on <span class="math">\(δD\)</span> and are harmonic on <span class="math">\(D\)</span>. Then <span class="math">\(u-\tilde u=0\)</span> everywhere on <span class="math">\(δD\)</span> and by Global Max/Min Principle,</p>
+<div class="math">
+\[0\leq u-\tilde u\leq 0\]</div>
+<p class="last">on <span class="math">\(D\)</span>. So <span class="math">\(u=\tilde u\)</span>.</p>
+</div>
+<p>If <span class="math">\(D\)</span> is a disk, Dirichlet Problem is solved via an explicit formulation known as Poisson&#8217;s Formula.</p>
+<p>The idea is that if we knew <span class="math">\(u\)</span>, we could find a harmonic conjugate <span class="math">\(v\)</span>, so that <span class="math">\(f=u+iv\)</span> and then</p>
+<div class="math">
+\[u(x,y)=Re \frac{1}{2πv}\int_γ \frac{f(w)}{w-(x+iy)}dw\]</div>
+<p>We want the RHS to only depend on <span class="math">\(u\)</span>, not <span class="math">\(v\)</span>.</p>
+<div class="admonition-theorem-poisson-s-formula admonition">
+<p class="first admonition-title">Theorem (Poisson&#8217;s Formula)</p>
+<p>If <span class="math">\(u_0\)</span> is harmonic on a domain containing the closed disk <span class="math">\(\overline{D_R(0)}\)</span> for <span class="math">\(R&gt;0\)</span>, then <span class="math">\(\forall z=x+iy\in D_R(0)\)</span>:</p>
+<div class="math">
+\[u(z)\frac{1}{2π}\int_0^{2π}u_0(Re^{it})\frac{R^2-r^2}{|Re^{it}-z|^2}dt\]</div>
+<p>Letting <span class="math">\(z=re^{iα}\)</span>, in polar coordinates this is</p>
+<div class="math">
+\[u(re^{iα})=\frac{R^2-r^2}{2π}\int_0^{2π}\frac{u_0(Re^{it})}{R^2-2Rr\cos(t-α)+r^2}dt\]</div>
+<p>Proof:</p>
+<p>Let <span class="math">\(v\)</span> be the harmonic conjugate for <span class="math">\(u_0\)</span> on a simply-connected set containing <span class="math">\(D_R(0)\)</span>. So <span class="math">\(f=u+iv\)</span></p>
+<div class="math">
+\[f(z)=\frac{1}{2πi}\int_{γ_R}\frac{f(w)}{w-z}dw\]</div>
+<p>where <span class="math">\(γ_R\)</span> is the CCW circle of radius <span class="math">\(R\)</span></p>
+<p>Now consider (for fixed <span class="math">\(z\)</span> with <span class="math">\(|z|&lt;R\)</span>)</p>
+<div class="math">
+\[\frac{f(w)\bar z}{R^2-w\bar z}\]</div>
+<p>which is holomorphic in <span class="math">\(w\)</span> on <span class="math">\(D_{R_1}(0)\)</span> where <span class="math">\(R_1&gt;R\)</span>, slightly.</p>
+<p>Since <span class="math">\(R^2-w\bar x\neq 0\)</span> on <span class="math">\(D_{R_1}(0)\)</span> or on its boundary.</p>
+<p>So</p>
+<div class="math">
+\[\frac{1}{2πi}\int_{γ_R}\frac{f(w)\bar z}{R^2-w\bar z}dw=0\]</div>
+<p>by Cauchy&#8217;s Theorem</p>
+<p>So</p>
+<div class="math">
+\[\begin{split}f(z)&amp;=\frac{1}{2πi}\int_{γ_R}\frac{f(w)}{w-z}+\frac{f(w)\bar z}{R^2-w\bar z}dw\\
+    &amp;=\frac{1}{2πi}\int_{γ_R}\frac{f(w)(R^2-|z|^2)}{(w-z)(R^2-w\bar z)}dw\\
+    &amp;=\frac{1}{2πi}\int_{0}^{2π}\frac{f(Re^{it})(R^2-|z|^2)}{(Re^{it}-z)(R^2-Re^{it}\bar z)}Rie^{it}dt\\
+    &amp;=\frac{1}{2π}\int_{0}^{2π}\frac{f(Re^{it})(R^2-|z|^2)}{(R-z^{-it})(R-e^{it\bar z})}dt\\
+    &amp;=\frac{1}{2π}\int_0^{2π}\frac{f(Re^{it})(R^2-|z|^2)}{|R-ze^{-it}|^2}dt\\
+    &amp;=\frac{1}{2π}\int_0^{2π}\frac{f(Re^{it})(R^2-|z|^2)}{|Re^{it}-z|^2}dt\\
+    &amp;=\frac{1}{2π}\int_0^{2π}\frac{u(Re^{it})(R^2-|z|^2)}{|Re^{it}-z|^2}dt+\frac{i}{2π}\int_0^{2π}\frac{v(Re^{it})(R^2-|z|^2)}{|Re^{it}-z|^2}dt\\
+    &amp;=u(z)+iv(z)\end{split}\]</div>
+<p>Taking the real part of both sides yields the solution.</p>
+<p>So,</p>
+<div class="math">
+\[\begin{split}u(z)&amp;=\frac{R^2-|z|^2}{2π}\int_0^{2π}\frac{u(Re^{it})}{|Re^{it}-z|^2}\\
+    &amp;=\frac{R^2-r^2}{2π}\int_0^{2π}\frac{u(Re^{it})}{(Re^{it}-re^{iα})(Re^{-it}-re^{-iα})}\\
+    &amp;=\frac{R^2-r^2}{2π}\int_0^{2π}\frac{u(Re^{it})}{R^2+r^2-2Rr(e^{i(t-α)}+e^{i(α-t)})}dt\\
+    &amp;=\frac{R^2-r^2}{2π}\int_0^{2π}\frac{u(Re^{it})}{R^2+r^2-2Rr\cos(t-α)}dt\end{split}\]</div>
+<p class="last">As required.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-11-04.html" title="previous chapter">Max Modulus Theorem &amp; Harmonic Functions</a></li>
+      <li>Next: <a href="2013-11-07.html" title="next chapter">Convergent Series of Analytic Functions</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-11-05.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

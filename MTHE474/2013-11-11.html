@@ -1,0 +1,204 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Proof of Channel Coding Thm contd, Feedback &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 474 - Information Theory" href="index.html" />
+    <link rel="next" title="Joint Source Coding Theorem &amp; Continuous Information Theory" href="2013-11-12.html" />
+    <link rel="prev" title="Analysis of Probability of Error" href="2013-11-07.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-12.html" title="Joint Source Coding Theorem &amp; Continuous Information Theory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-07.html" title="Analysis of Probability of Error"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 474 - Information Theory</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="proof-of-channel-coding-thm-contd-feedback">
+<h1>Proof of Channel Coding Thm contd, Feedback<a class="headerlink" href="#proof-of-channel-coding-thm-contd-feedback" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<p>Fano Inequality:</p>
+<div class="math">
+\[:label:`1`
+H(w|\hat w)\leq 1+nRP_e^{(n)}\]</div>
+<div class="last math">
+\[:label:`2`
+I(X^n;Y^n)\leq nC, \forall p_{X^n}\]</div>
+</div>
+<div class="section" id="ii-proof-of-the-converse-part">
+<h2>(ii) Proof of the Converse Part<a class="headerlink" href="#ii-proof-of-the-converse-part" title="Permalink to this headline">¶</a></h2>
+<p>Need to show that <span class="math">\(\forall\)</span> sequence of <span class="math">\((2^{nR},n)\)</span> codes with</p>
+<div class="math">
+\[\begin{split}R&gt;C=max_{p_X}I(X;Y)\end{split}\]</div>
+<p>their <span class="math">\(P_e^{(n)}\)</span> <strong>cannot</strong> be made arbitrarily small (Equivalently, <span class="math">\(\forall\)</span> codes <span class="math">\((2^{nR},n)\)</span> with <span class="math">\(P_e^{(n)}\to 0\)</span> as <span class="math">\(n\to \infty\)</span>, we must have <span class="math">\(R\leq C\)</span>).</p>
+<p>Take message <span class="math">\(w\)</span> uniformly dist. over <span class="math">\(\mathcal M=\{1,2,...,2^{nR}\}\)</span></p>
+<p>Then <span class="math">\(P_e^{(n)}=\frac{1}{2^{nR}}\sum_{i=1}^{2nR}λ_i=P[\hat w\neq w]\)</span></p>
+<p>Hence:</p>
+<div class="math">
+\[H(w)=nR\]</div>
+<p>since <span class="math">\(w\)</span> is <em>uniform</em></p>
+<div class="admonition-recall admonition">
+<p class="first admonition-title">Recall</p>
+<p class="last"><span class="math">\(H(w)=H(w|\hat w)+I(w;\hat w)\)</span></p>
+</div>
+<p>Therefore,</p>
+<div class="math">
+\[\begin{split}nR=H(w)\\
+=H(w|\hat w)+I(w;\hat w)\\
+\leq H(w|\hat w)+I(X^n;Y^n)\end{split}\]</div>
+<p>where the inequality follows by the Data Processing inequality. (since <span class="math">\(w\to X^n\to Y^n\to \hat w\)</span>)</p>
+<div class="math">
+\[\leq 1+nRP_e^{(n)}+nC\]</div>
+<p>Therefore,</p>
+<div class="math">
+\[R\leq \frac{1}{n}+P_e^{(n)}R+C\]</div>
+<p>Therefore,</p>
+<div class="math">
+\[P_e^{(n)}\geq 1-\frac{1}{nR}-\frac{C}{R}\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If <span class="math">\(R&gt;C\)</span>, <span class="math">\(P_e^{(n)}\)</span> is bounded away from zero for n suff. large.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Channel rehability (reliability?) problem</p>
+</div>
+</div>
+<div class="section" id="feedback">
+<h2>Feedback<a class="headerlink" href="#feedback" title="Permalink to this headline">¶</a></h2>
+<p>At time <span class="math">\(i\)</span>, encoder knows previously received channel outputs via feedback links.</p>
+<div class="math">
+\[x_i=f(w,y_1,...,y_i-1)\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Shannon showed that for a DMC, <span class="math">\(C_{FB}=C\)</span>. In general, for a channel with memory, <span class="math">\(C_{FB}\geq C\)</span>.</p>
+<p>However, in certain channels with memory, feedback <em>does not</em> help increase the capacity of the channel.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<p>For additive noise channels with Memory:</p>
+<div class="math">
+\[\begin{split}Y_i=X_i\oplus Z_i, i=1,2,...\\
+\mathcal X=\mathcal Y=\mathcal Z=\{0,1,...,q-1\}\end{split}\]</div>
+<p><span class="math">\(X_i\)</span> independent of <span class="math">\(Z_i\)</span>, <span class="math">\(Z_i\)</span> noise processes has <em>memory</em>, then</p>
+<div class="last math">
+\[C_{FB}=C\]</div>
+</div>
+<p class="last">There are no sophisticated schemes with feedback.</p>
+</div>
+</div>
+<div class="section" id="lossless-joint-source-channel-coding-theorem">
+<h2>Lossless Joint Source-Channel Coding Theorem<a class="headerlink" href="#lossless-joint-source-channel-coding-theorem" title="Permalink to this headline">¶</a></h2>
+<p>(Section 7.13 in Textbook - no section in online notes)</p>
+<p>We consider 2 systems:</p>
+<ol class="arabic simple">
+<li>Source <span class="math">\(\to\)</span> Encoder <span class="math">\(\to\)</span> Channel <span class="math">\(\to\)</span> Decoder <span class="math">\(\to\)</span> Destination</li>
+<li>Source <span class="math">\(\to\)</span> (Source Encoder <span class="math">\(\to\)</span> Channel Encoder) <span class="math">\(\to\)</span> Channel <span class="math">\(\to\)</span> (Channel Decoder <span class="math">\(\to\)</span> Source Decoder) <span class="math">\(\to\)</span> Destination</li>
+</ol>
+<p>Clearly (1) is the more general form, which subsumes (2). So, we should be able to achieve better rates with joint Source-Channel schemes over tandem schemes. However, Shannon showed that if the entropy of the source is less than the capacity of the channel, asymptotically, we lose no optimality by using tandem codes.</p>
+<div class="admonition-caveat admonition">
+<p class="first admonition-title">Caveat</p>
+<p class="last">This result only holds for <span class="math">\(n\to\infty\)</span>. (1) still goes to 0 asymptotically <em>faster</em> than (2).</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Proof of Channel Coding Thm contd, Feedback</a><ul>
+<li><a class="reference internal" href="#ii-proof-of-the-converse-part">(ii) Proof of the Converse Part</a></li>
+<li><a class="reference internal" href="#feedback">Feedback</a></li>
+<li><a class="reference internal" href="#lossless-joint-source-channel-coding-theorem">Lossless Joint Source-Channel Coding Theorem</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 474 - Information Theory</a><ul>
+      <li>Previous: <a href="2013-11-07.html" title="previous chapter">Analysis of Probability of Error</a></li>
+      <li>Next: <a href="2013-11-12.html" title="next chapter">Joint Source Coding Theorem &amp; Continuous Information Theory</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE474/2013-11-11.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

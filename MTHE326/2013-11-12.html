@@ -1,0 +1,181 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Taylor Series &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 326 - Functions of a Complex Variable" href="index.html" />
+    <link rel="next" title="Laurent Series" href="2013-11-14.html" />
+    <link rel="prev" title="Uniform Convergence and Analytic Functions, Power Series" href="2013-11-11.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-11-14.html" title="Laurent Series"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-11-11.html" title="Uniform Convergence and Analytic Functions, Power Series"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 326 - Functions of a Complex Variable</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="taylor-series">
+<h1>Taylor Series<a class="headerlink" href="#taylor-series" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-theorem-taylor-s-theorem-for-holomorphic-functions admonition">
+<p class="first admonition-title">Theorem (Taylor&#8217;s Theorem for Holomorphic Functions)</p>
+<p>Let <span class="math">\(f:D\to\mathbb C\)</span> be holomorphic and <span class="math">\(D_r(z_0)\subset D\)</span>.</p>
+<p>Then the power series</p>
+<div class="math">
+\[\sum_{n=0}^\infty \frac{f^{(n)}(z_0)}{n!}(z-z_0)=f(z)\text{ on }D_r(z_0)\]</div>
+<p>Proof:</p>
+<p>Fix <span class="math">\(z\in D_r(z_0)\)</span>, and <span class="math">\(δ&gt;0\)</span> s.t. <span class="math">\(|z-z_0|&lt;δ&lt;r\)</span>.</p>
+<p>Let <span class="math">\(γ=z_0+δe^{it}\)</span>, <span class="math">\(t\in [0,2π]\)</span> circle of radius <span class="math">\(δ\)</span> around <span class="math">\(z_0\)</span>.</p>
+<img alt="../_images/11.12.1.png" src="../_images/11.12.1.png" style="width: 50%;" />
+<p>By Cauchy Integral Formula:</p>
+<div class="math">
+\[f(z)=\frac{1}{2πi}\int_γ\frac{f(w)}{w-z}dw\]</div>
+<p>But</p>
+<div class="math">
+\[\begin{split}\frac{1}{wz}&amp;=\frac{1}{(w-z_0)-(z-z_0)}\\
+            &amp;=\frac{1}{w-z_0}\frac{w-z_0}{(w-z_0)-(z-z_0)}\\
+            &amp;=\frac{1}{w-z_0}\frac{1}{1-\frac{z-z_0}{w-z_0}}\\
+            &amp;=\frac{1}{w-z_0}\sum_{n=0}^\infty (\frac{z-z_0}{w-z_0})^n\\
+            &amp;=\sum_{n=0}^\infty\frac{(z-z_0)^n}{(w-z_0)^{n+1}}\end{split}\]</div>
+<p>where the sum is locally uniformly convergent for <span class="math">\(z\in D_δ(z_0)\)</span> since <span class="math">\(|z-z_0|&lt;|w-z_0|=δ\)</span>.</p>
+<p>So</p>
+<div class="math">
+\[\int_γ\frac{f(w)}{w-z}dw=\int_γ\sum_{n=0}^\infty\frac{f(w)(z-z_0)^n)}{(w-z_0)^{n+1}}dw\]</div>
+<p>and L.U. on <span class="math">\(D_δ(z_0)\)</span></p>
+<p>So</p>
+<div class="last math">
+\[\begin{split}\frac{1}{2πi}\int_γ\frac{f(w)}{w-z}dw&amp;=\sum_{n=0}^\infty (z-z_0)^n\frac{1}{2πi}\int_γ\frac{f(w)}{(w-z_0)^{n+1}}dw\\
+&amp;=\sum_{n=0}^\infty (z-z_0)\frac{f^{(n)}(z_0)}{n!}\end{split}\]</div>
+</div>
+<p>This is what the term &#8220;analytic&#8221; means, that a function has a taylor series expansion.</p>
+<p>For complex functions this is equivalent to holomorphic (Complex differentiable on open sets)</p>
+<p>We also have the converse corollaries of Weierstrass&#8217;s Theorem of Holomorphic Convergence</p>
+<div class="admonition-corollary-1 admonition">
+<p class="first admonition-title">Corollary 1</p>
+<p>All power series are holomorphic inside their radii of convergence.</p>
+<p>Proof:</p>
+<p class="last">Uniform Convergence of Holomorphic Polynomials</p>
+</div>
+<div class="admonition-corollary-2 admonition">
+<p class="first admonition-title">Corollary 2</p>
+<p>Derivative of a power series is given by term-by-term differentiation:</p>
+<div class="math">
+\[f(z)=\sum_{n=0}^\infty a_n(z-z_0)^n\to f'(z)=\sum_{n=0}^\infty a_n n(z-z_0)^n\]</div>
+<p>Proof:</p>
+<p class="last">If <span class="math">\(f_n\to f\)</span> uniformly, <span class="math">\(f_n^{(k)}\to f^{(k)}\)</span> uniformly.</p>
+</div>
+<div class="admonition-corollary-4 admonition">
+<p class="first admonition-title">Corollary 4</p>
+<p>Taylor Series is unique</p>
+<p>Proof:</p>
+<div class="last math">
+\[a_n=\frac{f^{(n)}}{n!}\]</div>
+</div>
+<p>A consequence of Corollary 1 is that radius of convergence is preserved by integration and differentiation.</p>
+<div class="admonition-example admonition">
+<p class="first admonition-title">Example</p>
+<div class="math">
+\[\arctan(x)=x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+...\]</div>
+<p>is the real Taylor series expansion around <span class="math">\(x=0\)</span> of radius 1.</p>
+<p>Question: Why radius 1?</p>
+<p>Answer 1: Do the ratio or root tests, get 1 as an answer.</p>
+<p>Answer 2:</p>
+<p>Think of <span class="math">\(\frac{d}{dx}\arctan(x)=\frac{1}{1+x^2}=f(x)\)</span>.</p>
+<p>If we extend this to a complex function</p>
+<div class="math">
+\[f(z)=\frac{1}{1+z^2}\]</div>
+<p>where are its poles? <span class="math">\(\pm i\)</span>.</p>
+<p>So we can&#8217;t make a circle of radius around 0 larger than 1 where <span class="math">\(f(z)\)</span> is holomorphic. The same is true for <span class="math">\(\arctan(z)\)</span></p>
+<img alt="../_images/11.12.2.png" src="../_images/11.12.2.png" style="width: 50%;" />
+<p class="last">Meanwhile, since <span class="math">\(e^z\)</span>, <span class="math">\(\sin(z)\)</span>, and <span class="math">\(\cos(z)\)</span> are entire, their radii of convergence are <span class="math">\(\infty\)</span>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 326 - Functions of a Complex Variable</a><ul>
+      <li>Previous: <a href="2013-11-11.html" title="previous chapter">Uniform Convergence and Analytic Functions, Power Series</a></li>
+      <li>Next: <a href="2013-11-14.html" title="next chapter">Laurent Series</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE326/2013-11-12.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>

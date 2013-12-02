@@ -1,0 +1,119 @@
+************
+More Poisson
+************
+If :math:`\{N(t):t\geq 0\}` is a Poisson process with rate :math:`λ` and each event is type 1 with probability :math:`p` and type 2 with probability :math:`1-p`, then if
+
+:math:`N_1(t)` is the number of type 1 events in :math:`[0.t)`
+:math:`N_2(t)` is the number of type 2 events in :math:`[0,t)`
+
+Then :math:`\{N_1(t):t\geq 0\}` and :math:`\{N_2:t\geq 0\}` are Poisson processes with rates :math:`λp` and :math:`λ(1-p)` respectively.
+
+Let us see that these 2 processes are independent. (i.e. :math:`P(N_1(t_1)=n_1,N2(t_2)=n_2) = P(N_1(t_1)=n_1)P(N_2(t_2)=n_2)` for any :math:`t_1,t_2` and :math:`n_1,n_2`).
+
+First, suppose :math:`t_1=t_2=t`
+
+Compute
+
+.. math::
+    P(N_1(t),N_2(t)=n_2)\\
+    &=P(N_1(t),n_1,N_2(t)=n_2|N(t)=n_1+n_2)P(N(t)=n_1+n_2)\\
+    &={n_1+n_2 choose n_1}p^{n_1}(1-p)^{n_2}\frac{(λt)^{n_1+n_2}}{(n_1+n_2)!}e^{-λt}\\
+    &=[\frac{(λpt)^{n_1}}{n_1!}e^{-λ[t]}][\frac{[λ(1-p)t]^{n_2}}{n_2!}e^{-λ(1-p)t}]\\
+    &=P(N_1(t)=n_1)P(N_2(t)=n_2)
+
+Now assume (wlog) :math:`t_1<t_2`.
+
+.. math::
+    P(N_1(t_1)=n_1,N_2(t_2)=n_2)\\
+    =\sum_{k=0}^{n_2}P(N_1(t_1)=n_1,N_2(t_2)=k,N(t_2)-N_2(t_1)=n_2-k)
+
+All three events in the summand proabbility are independent
+
+.. math::
+    =P(N_1(t_1)=n_1)\sum_{k=0}^{n_2}P(N_2(t_1)=k,N_2(t_2)-N_2(t_1)=n_2-k)\\
+    =P(N_1(t_1)=n_1)P(N_2(t_2)=n)2
+
+Midterm
+=======
+* Same instructions as last year.
+* 3 questions - 2 for 455, 3 for 855
+* 8.5by11 sheet of notes, both sides, calculator
+* 455 students do 2 of 3 questions, default is the first 2 questions, unless specified on answer sheet.
+* Each question is worth 15 marks (30 total for 455, 45 total for 855)
+* Question 1 will be on conditioning
+* Question 2 will be on basic properties of Markov chains and classification of states
+* Question 3 - surprise!
+
+.. admonition:: Example
+
+    .. note:: Problem 1 will be similar to this
+
+    Consider a particle that moves among the vertices of a square. At each step, it chooses one of its neighbouring vertices at random, and moves to that vertex. Find the expected number of steps, starting at a given vertex, for the particle to get to the opposite vertex.
+
+    Square:
+
+    1-2
+
+    3-4
+
+    Matrix:
+
+    .. math::
+        P=\matrix{0 && 0.5 && 0.5 && 0 \\
+                  0.5 && 0 && 0 && 0.5 \\
+                  0.5 && 0 && 0 && 0.5 \\
+                  0 && 0.5 && 0.5 && 0}
+
+    Let :math:`M_2` be the expected number of steps to get to vertex 2 edges away.
+
+    Let :math:`M_1` be the expected number of steps to get to a particular vertex that is one edge away
+
+    Condition on first move, we get
+
+    .. math::
+        M_2 = \frac{1}{2}(1+M_1)+\frac{1}{2}(1+M_1)=1+M_1
+
+    Now find :math:`M_1`. Condition on first move again.
+
+    .. math::
+        M_1 = \frac{1}{2}(1) + \frac{1}{2}(1+M_2)
+
+    Solving,
+
+    .. math::
+        M_2 = 1+1+\frac{1}{2}M_2=1+\frac{1}{2}M_2\\
+        M_2 = 4
+
+For Question 2, review in particular the notion of period and cyclic classes
+
+Conditional Distribution of Arrival Times Given :math:`N(t)=n`
+==============================================================
+Let :math:`S_1,...,S_n` be the event times of the first :math:`n` events.
+
+Let
+
+.. math::
+    I_k=[t_k,t_k+h)
+
+The joint conditional density of :math:`S_1,...,S_n` at :math:`(t_1,...,t_n)` given :math:`N(t)=n` can be written as
+
+.. math::
+    \lim_{h\to 0}\frac{P(S_k\in I_k,k=1,...,n|N(t)=n)}{h^n}
+
+Consider
+
+.. math::
+    P&(S_k\in I_k,k=1,...,n | N(t)=n)\\
+    &=\frac{P(S_k\in I_k,k=1,...,n, N(t)=n)}{P(N(t)=n)}\\
+    &=\frac{P(\text{exactly 1 event in }I_k,k=1,...,n,\text{ 0 events in }J_k,k=1,...,n+1)}{P(N(t)=n)}\\
+    &=\frac{(λhe^{-λh})^ne^{-λ(t-nh)}}{\frac{(λt)^n}{n!}e^{-λt}}\\
+    &=\frac{h^nn!}{t^n}
+
+now divide by :math:`h^n` and get
+
+.. math::
+    g(t_1,...,t_n|N(t)=n)=\frac{n!}{t^n}
+
+for :math:`t_t<t_2<...<t_n`
+
+recall: order statistics

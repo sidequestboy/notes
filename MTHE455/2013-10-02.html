@@ -27,8 +27,8 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
     <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
-    <link rel="next" title="&lt;no title&gt;" href="2013-10-08.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="2013-10-01.html" />
+    <link rel="next" title="Introduction to Stationary Distributions" href="2013-10-04.html" />
+    <link rel="prev" title="Generating Functions" href="2013-09-30.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -45,10 +45,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="2013-10-08.html" title="&lt;no title&gt;"
+          <a href="2013-10-04.html" title="Introduction to Stationary Distributions"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="2013-10-01.html" title="&lt;no title&gt;"
+          <a href="2013-09-30.html" title="Generating Functions"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
@@ -75,7 +75,9 @@
 \[G_1(s) = \frac{1-\sqrt{1-4pqs^2}}{2qs}\]</div>
 <p>Now consider <span class="math">\(G_0(s)\)</span>. We have (conditioning on <span class="math">\(X_1\)</span>):</p>
 <div class="math">
-\[f_0(n)=P(T_0=n|X_0=0)\]\[=P(T_0=n|X_1=1,X_0=0)P(X_1=1|X_0=0)+P(T_0=n|X_1=-1,X_0=0)P(X_1=-1|X_0=0)\]\[=P(T_0=n|X_1=1)p + P(T_0=n|X_1=-1)q\]</div>
+\[\begin{split}f_0(n)&amp;=P(T_0=n|X_0=0)\\
+      &amp;=P(T_0=n|X_1=1,X_0=0)P(X_1=1|X_0=0)+P(T_0=n|X_1=-1,X_0=0)P(X_1=-1|X_0=0)\\
+      =P(T_0=n|X_1=1)p + P(T_0=n|X_1=-1)q\end{split}\]</div>
 <p>Consider <span class="math">\(P(T_0=n|X_1=-1)\)</span></p>
 <img alt="MTHE455/.static/10.02.1.jpg" src="MTHE455/.static/10.02.1.jpg" style="width: 50%;" />
 <p>By temporal and spatial homogeneity,</p>
@@ -94,10 +96,18 @@
 \[\sum_{n=1}^\infty f_0(n)s^n=\sum_{n=1}^\infty pf_1^*(n-1)s^n+\sum_{n=1}^\infty qf_1(n-1)s^n\]</div>
 <p>or</p>
 <div class="math">
-\[G_0(s)=psG_1^*(s)+qsG_1(s)\]\[=ps\frac{1-\sqrt{1-4pqs^2}}{2ps}+qs\frac{1-\sqrt{1-4qps^2}}{2qs}\]\[=1-\sqrt{1-4pqs^2}\]</div>
+\[\begin{split}G_0(s)&amp;= psG_1^*(s)+qsG_1(s)\\
+      &amp;= ps\frac{1-\sqrt{1-4pqs^2}}{2ps}+qs\frac{1-\sqrt{1-4qps^2}}{2qs}\\
+      &amp;= 1-\sqrt{1-4pqs^2}\end{split}\]</div>
 <p>Now, we can compute the probability:</p>
 <div class="math">
-\[P(\text{walk ever returns to }0|X_0=0)\]\[=G_0(1)\]\[=1-\sqrt{1-4pq}\]\[=1-\sqrt{1-4(1-q)q}\]\[=1-\sqrt{1-4+4q^2}\]\[=1-\sqrt{(1-2q)^2}\]\[=1-|1-2q|\]</div>
+\[\begin{split}P(\text{walk ever returns to }0|X_0=0)\\
+&amp;=G_0(1)\\
+&amp;=1-\sqrt{1-4pq}\\
+&amp;=1-\sqrt{1-4(1-q)q}\\
+&amp;=1-\sqrt{1-4+4q^2}\\
+&amp;=1-\sqrt{(1-2q)^2}\\
+&amp;=1-|1-2q|\end{split}\]</div>
 <p>If <span class="math">\(q=\frac{1}{2}\)</span>, then <span class="math">\(G_0(1)=1\)</span></p>
 <p>If <span class="math">\(q&lt;\frac{1}{2}\)</span>, then <span class="math">\(G_0(1)=2q&lt;1\)</span></p>
 <p>If <span class="math">\(q&gt;\frac{1}{2}\)</span>, then <span class="math">\(G_0(1)=2p&lt;1\)</span></p>
@@ -127,7 +137,7 @@
 </div>
 <div class="admonition-theorem admonition">
 <p class="first admonition-title">Theorem</p>
-<p>Let <span class="math">\(X_i, i=1,2,...\)</span>  be i.i.d. random variable and <span class="math">\(N\)</span> be a random variable independent of <span class="math">\(X_i`s on the non-negative integers, with generating functions :math:`G_X(s)\)</span> and <span class="math">\(G_N(s)\)</span> resp.</p>
+<p>Let <span class="math">\(X_i, i=1,2,...\)</span>  be i.i.d. random variable and <span class="math">\(N\)</span> be a random variable independent of <span class="math">\(X_i\)</span> on the non-negative integers, with generating functions <span class="math">\(G_X(s)\)</span> and <span class="math">\(G_N(s)\)</span> resp.</p>
 <p>Let <span class="math">\(Y=X_1+X_2+...X_n\)</span></p>
 <p>Then the generating function of <span class="math">\(Y\)</span> is:</p>
 <div class="math">
@@ -135,7 +145,15 @@
 <p>Proof:</p>
 <p>We have</p>
 <div class="last math">
-\[G_Y(s) = E[s^Y]\]\[=E[s^{X_1+...+X_N}]\]\[=\sum_{n=0}^{\infty}E[s^{X_1+...+X_N} |N=n]P(N=n)\]\[=\sum_{n=0}^\infty E[s^{X_1+...+X^n}]P(N=n)\]\[=\sum_{n=0}^\infty E[\prod_{i=1}^n s^{X_i}]P(X=n)\]\[=\sum_{n=0}^\infty \prod_{i=1}^n E[s^{X_i}]P(X=n)\]\[=\sum_{n=0}^\infty \prod_{i=1}^n G_X(s)^n P(X=n)\]\[=E[G_X(s)^N]\]\[=G_N(G_X(s))\]</div>
+\[\begin{split}G_Y(s) &amp;= E[s^Y]\\
+&amp;=E[s^{X_1+...+X_N}]\\
+&amp;=\sum_{n=0}^{\infty}E[s^{X_1+...+X_N} |N=n]P(N=n)\\
+&amp;=\sum_{n=0}^\infty E[s^{X_1+...+X^n}]P(N=n)\\
+&amp;=\sum_{n=0}^\infty E[\prod_{i=1}^n s^{X_i}]P(X=n)\\
+&amp;=\sum_{n=0}^\infty \prod_{i=1}^n E[s^{X_i}]P(X=n)\\
+&amp;=\sum_{n=0}^\infty \prod_{i=1}^n G_X(s)^n P(X=n)\\
+&amp;=E[G_X(s)^N]\\
+&amp;=G_N(G_X(s))\end{split}\]</div>
 </div>
 </div>
 
@@ -148,8 +166,8 @@
 <ul>
   <li><a href="../index.html">Overview</a><ul>
   <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
-      <li>Previous: <a href="2013-10-01.html" title="previous chapter">&lt;no title&gt;</a></li>
-      <li>Next: <a href="2013-10-08.html" title="next chapter">&lt;no title&gt;</a></li>
+      <li>Previous: <a href="2013-09-30.html" title="previous chapter">Generating Functions</a></li>
+      <li>Next: <a href="2013-10-04.html" title="next chapter">Introduction to Stationary Distributions</a></li>
   </ul></li>
   </ul></li>
 </ul>

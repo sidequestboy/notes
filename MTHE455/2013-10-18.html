@@ -1,0 +1,203 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Results from Number Theory (contd) &mdash; Jamie&#39;s reStructured Notes 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Jamie&#39;s reStructured Notes 0.1 documentation" href="../index.html" />
+    <link rel="up" title="MTHE 455 - Stochastic Processes &amp; Applications" href="index.html" />
+    <link rel="next" title="Limiting Probabilities" href="2013-10-21.html" />
+    <link rel="prev" title="Some Number Theory Results" href="2013-10-16.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+  
+  
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="2013-10-21.html" title="Limiting Probabilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2013-10-16.html" title="Some Number Theory Results"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Jamie&#39;s reStructured Notes 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">MTHE 455 - Stochastic Processes &amp; Applications</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="results-from-number-theory-contd">
+<h1>Results from Number Theory (contd)<a class="headerlink" href="#results-from-number-theory-contd" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple" start="2">
+<li></li>
+</ol>
+<p>Let <span class="math">\(b_1,...,b_r\)</span> be a finite set of positive integers with gcd 1. Then there exists integers <span class="math">\(a_1,...,a_r\)</span> (not necessarily non-negative) such that <span class="math">\(a_1b_1+...+a_rb_r=1\)</span></p>
+<div class="section" id="proof">
+<h2>Proof<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h2>
+<p>Consider the set of all integers of the form</p>
+<div class="math">
+\[c_1b_1+...c_rb_r\]</div>
+<p>where the <span class="math">\(c_i\)</span> range over the integers.</p>
+<p>Let <span class="math">\(l\)</span> denote the least positive integer in this set. We will show that <span class="math">\(l=1\)</span>. It suffices to show that <span class="math">\(l\)</span> divides all of <span class="math">\(b_1,...b_r\)</span>. We will show <span class="math">\(l\)</span> divides <span class="math">\(b_i\)</span> by proof by contradiction.</p>
+<p>Suppose <span class="math">\(l\)</span> does not divide <span class="math">\(b_i\)</span>. Then</p>
+<div class="math">
+\[b_i=ql+R\]</div>
+<p>where <span class="math">\(q\geq 0\)</span> is an integer and <span class="math">\(0&lt;R&lt;l\)</span>.</p>
+<p>But then</p>
+<div class="math">
+\[\begin{split}R&amp;=b_i-ql \\
+ &amp;=b_i-q(a_1b_1+...+a_rb_r)\end{split}\]</div>
+<p>(let <span class="math">\(l=a_1b_1+...+a_rb_r\)</span>)</p>
+<div class="math">
+\[=(1-a_iq)b_i+\sum_{j\neq 1}(-qa_j)b_j\]</div>
+<p>Since <span class="math">\(R&lt;l\)</span>, this contradicts the minimality of <span class="math">\(l\)</span>.</p>
+<ol class="arabic simple" start="3">
+<li></li>
+</ol>
+<p>Let <span class="math">\(b_1,...,b_r\)</span> be a finite collection of positive integers with gcd 1. Then there exists a positive integer <span class="math">\(M\)</span> such that for every <span class="math">\(n&gt;M\)</span>, there exist nonnegative integers <span class="math">\(d_1,...,d_r\)</span> such that <span class="math">\(n=d_1b_1+...+d_rb_r\)</span>.</p>
+</div>
+<div class="section" id="id1">
+<h2>Proof<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>From previous proof, there exist integers (not necessarily nonnegative) <span class="math">\(a_1,...,a_r\)</span> such that <span class="math">\(a_1b_1+...+a_rb_r=1\)</span>. Now choose</p>
+<div class="math">
+\[M=(|a_1|b_1+...+|a_r|b_r)b_1\]</div>
+<p>If <span class="math">\(n&gt;M\)</span>, then we can write:</p>
+<div class="math">
+\[n=M+qb_1+R\]</div>
+<p>where <span class="math">\(q\geq 0\)</span> is an integer and <span class="math">\(0\leq R&lt;b_1\)</span> is an integer.</p>
+<p>If <span class="math">\(R=0\)</span>, then we are done, since we can take <span class="math">\(d_1=|a_1|b_1+...+|a_r|b_r+q\)</span> and <span class="math">\(d_k=0\)</span> for <span class="math">\(k=2,...,r\)</span></p>
+<p>If <span class="math">\(0&lt;R&lt;b_1\)</span>, then</p>
+<div class="math">
+\[\begin{split}n&amp;=M+qb_1+R\times 1 \\
+ &amp;=M+qb_1+R(a_1b_1+...+a_rb_r)\\
+ &amp;=(|a_1|b_1+q+Ra_1)b_1+\sum_{k=2}^r(|a_k|b_1+Ra_k)b_k\end{split}\]</div>
+<p>which is of the form desired. Since <span class="math">\(n\)</span> was arbitrary, the proof is finished.</p>
+</div>
+<div class="section" id="back-to-markov-chains">
+<h2>Back to Markov Chains<a class="headerlink" href="#back-to-markov-chains" title="Permalink to this headline">¶</a></h2>
+<p>Now, suppose <span class="math">\(\{X_n:n\geq 0\}\)</span> that is irreducible, positive recurrent, and aperiodic (i.e. the period of every state is 1). Consider state <span class="math">\(j\)</span>.</p>
+<p>Then <span class="math">\(\{n:p_{ji}(n&gt;0)\}\)</span> has gcd 1.</p>
+<p>By result (1), we can take a finite subset <span class="math">\(b_1,...,b_r\)</span> such that <span class="math">\(p_{jj}(b_k)&gt;0\)</span> for <span class="math">\(k=1,...,r\)</span> and <span class="math">\(gcd(b_1,...,b_r)=1\)</span>.</p>
+<p>Take <span class="math">\(a_q,...,a_r\)</span> such that <span class="math">\(a_1b_1+...+a_rb_r=1\)</span> (we can do so by result (2))</p>
+<p>and take</p>
+<div class="math">
+\[M=|a_1|b_1+...+|a_r|b_r\]</div>
+<p>(by result (3))</p>
+<p>Then for <span class="math">\(n&gt;M\)</span>, there exist nonnegative integers <span class="math">\(d_1,...,d_r\)</span> such that <span class="math">\(n=d_1b_1+...+d_rb_r\)</span>.</p>
+<p>Then</p>
+<div class="math">
+\[p_{jj}(n) \leq p_{jj}(b_1)\times ...\times p_{jj}(b_1)\times ...\times p_{jj}(b_r)\times ...\times p_{jj}(b_r)\]</div>
+<p>where the inequality follows from the fact that the RHS is the probability of a subset of the set of all paths that go from <span class="math">\(j\)</span> back to <span class="math">\(j\)</span> in <span class="math">\(n\)</span> steps, i.e. a subset of the LHS event.</p>
+<div class="math">
+\[\begin{split}&gt;0\end{split}\]</div>
+<p>since <span class="math">\(p_{jj}(b_i)&gt;0\)</span> for all <span class="math">\(i\)</span>.</p>
+<p>Also, if <span class="math">\(i\neq j\)</span>, then since the chain is irreducible, there is some <span class="math">\(m&gt;0\)</span> such that <span class="math">\(p_{ij}(m)&gt;0\)</span>.</p>
+<p>But</p>
+<div class="math" id="equation-result">
+<span class="eqno">(1)</span>\[p_{ij}(m+n)\geq p_{ij}(m)p_{jj}(n)\]</div>
+<p>which is positive for all <span class="math">\(n\)</span> big enough.</p>
+<p>Let <span class="math">\(Π\)</span> be the unique stationary distribution for the <span class="math">\(X\)</span> chain. We wish to show that</p>
+<div class="math">
+\[p_{ij}(n)\to Π_j\text{ as }n\to\infty\text{ for any }i\]</div>
+<p>Recall that</p>
+<div class="math">
+\[Π_j=\sum_{k\in S} Π_kp_{kj}(n)\]</div>
+<p>Using this, we can write:</p>
+<div class="math">
+\[\begin{split}Π_j - p_{ij}(n)&amp;=\sum_{k\in S} Π_kp_{kj}(n)-\sum_{k\in S} Π_kp_{ij}(n)\\
+               &amp;=\sum_{k\in S} Π_k(p_{kj}(n)-p_{ij}(n))\end{split}\]</div>
+<p>Take limit as <span class="math">\(n\to\infty\)</span> on both sides, and show that it converges to limit 0.</p>
+<div class="admonition-note admonition">
+<p class="first admonition-title">note</p>
+<p class="last">On the RHS, we can take the limit inside by an argument similar to last lecture, by dividing our state space <span class="math">\(S\)</span> into a finite set, <span class="math">\(F\)</span>, and its (generally infinite) complement set <span class="math">\(F^c\)</span>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Results from Number Theory (contd)</a><ul>
+<li><a class="reference internal" href="#proof">Proof</a></li>
+<li><a class="reference internal" href="#id1">Proof</a></li>
+<li><a class="reference internal" href="#back-to-markov-chains">Back to Markov Chains</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Overview</a><ul>
+  <li><a href="index.html">MTHE 455 - Stochastic Processes &amp; Applications</a><ul>
+      <li>Previous: <a href="2013-10-16.html" title="previous chapter">Some Number Theory Results</a></li>
+      <li>Next: <a href="2013-10-21.html" title="next chapter">Limiting Probabilities</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/MTHE455/2013-10-18.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer">
+    &copy; Copyright 2013, Jamie Macdonald.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  
+  </body>
+</html>
