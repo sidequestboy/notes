@@ -1,0 +1,119 @@
+
+****************************************************
+Fundamental Theorm of Algebra & Max Modulus Theorems
+****************************************************
+
+.. admonition:: Recall
+
+    Liouville's Theorem
+
+    If :math:`f` is entire *and* bounded (:math:`|f(z))|\leq M, \forall x\in\mathbb C`), then :math:`f` is constant.
+
+.. admonition:: Theorem
+
+    Fundamental Theorem of Algebra
+
+    If :math:`P(z)` is a polynomial of degree :math:`n\geq 2` over :math:`\mathbb C`, then :math:`P(z)` factors completely as a product of linear factors.
+
+    Proof:
+    
+    It is enough to show
+
+    .. math::
+        P(α)=0
+
+    for some :math:`α\in \mathbb C` because if :math:`P(α)=0`, polynomial long division can show
+
+    .. math::
+        P(z)=q(z)(z-α)
+
+    where :math:`q(z)` is degree :math:`n-1` polynomial.
+
+    Proof that root exists by contradiction:
+
+    Suppose :math:`P(z)` has not roots. Then :math:`f(z)=\frac{1}{P(z)}` is holomorphic everywhere.
+
+    Since
+
+    .. math::
+        |P(z)|\geq |a_n||z|^n-|a_{n-1}||z|^{n-1}-...-|a_1||z|-|a_0|
+
+    Thus, :math:`\exists ρ>0` such that
+
+    .. math::
+        |P(z)|\geq \frac{|a_n|}{2}|z|^n
+
+    for :math:`|z|>0`
+
+    So 
+
+    .. math::
+        |f(z)|&=\frac{1}{|P(z)|}\\
+              &\leq \frac{2}{|a_n||z|^n}\\
+              &\leq \frac{2}{|a_n|ρ^n}
+
+    for :math:`|z|\geq ρ`
+
+    Let 
+
+    .. math::
+        M=max_{z\in \bar D_ρ(0)}|f(z)|
+
+    Then we have:
+
+    .. math::
+        |f(z)|\leq Max(M, \frac{2}{|a_n|ρ^n})
+
+Max Modulus Theorems for Holomorphic and Harmonic Functions
+===========================================================
+Suppose :math:`f:D\to \mathbb C` is holomorphic and :math:`D` contains a closed disk centered at :math:`z_0` of radius :math:`r`.
+
+Then
+
+.. math::
+    f(z_0)=\frac{1}{2π}\int_0^{2π}f(z_0+re^{iθ})dθ
+
+Proof:
+------
+Let :math:`γ:[0,2π]\to D` by CIF
+
+.. math::
+    f(z_0)&=\frac{1}{2πi}\int_γ\frac{f(w)}{w-z_0}dw\\
+          &=\frac{1}{2πi}\int_0^{2π}\frac{f(γ(t))}{γ(t)-z_0}γ'(t)dt\\
+          &=\frac{1}{2π}\int_0^{2π}f(z_0+re^{it})dt
+
+.. admonition:: Theorem
+    
+    Max Modulus (Local Version)
+
+    If :math:`f:D\to \mathbb C` is holomorphic and :math:`\exists` a :math:`z_0\in D` that is a *local max*: :math:`\exists ρ>0` such that if :math:`z\in D_ρ(z_0)`, :math:`|f(z)|\leq |f(z_0)|`, then :math:`f` is constant on :math:`D_ρ(z_0)`.
+
+.. admonition:: Lemma
+
+    Suppose :math:`f:D\to\mathbb C` is holomorphic and :math:`|f(z)|` is constant, then :math:`f(z)` is constant.
+
+    Proof:
+
+    First suppose :math:`|f(z)|=0` for some :math:`z\in D`, so :math:`|f(z)|=0` on all :math:`D`, so is :math:`f(z)`.
+
+    So consider
+
+    .. math::
+        C=|f(z)|^2=f(z)\bar f(z)
+
+    So
+
+    .. math::
+        \bar f(z)=\frac{C}{f(z)}
+
+    is holomorphic on :math:`D`. (look at CREs)
+
+Proof of Local Max Modulus
+--------------------------
+If :math:`f(z_0)` is a local max on :math:`D_ρ(z_0)` and :math:`f` is not constant on :math:`D_ρ(z_0)`, :math:`\exists` a :math:`z\in D_ρ(z_0)` such that
+
+.. math::
+    M:=|f(z)|>|f(z)|
+
+...
+

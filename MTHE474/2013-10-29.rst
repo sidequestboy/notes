@@ -1,0 +1,214 @@
+*******************
+Cool capacity stuff
+*******************
+
+For a weakly-symmetric DMC :math:`(\mathcal X,\mathcal Y,Q)`
+
+.. math::
+    C:=&max_{p_X}I(X;Y)\\
+      =&log_2 |\mathcal Y| - H(q_1,q_2,...,q_{|\mathcal Y|})\\
+      =&log_2 |\mathcal Y| - \sum_{i=1}^{|\mathcal Y|}q_ilog_2q_i
+
+where :math:`(q_1,...,q_{|\mathcal Y|})` is *any row* in :math:`Q`.
+
+Proof
+-----
+
+.. math::
+    I(X;Y)=H(Y)-H(Y|X)\\
+    H(Y|X)=\sum_{x\in\mathcal X}p_X(x)H(Y|X=x)\\
+
+where
+
+.. math::
+    H(Y|X=x)=-\sum_{y\in\mathcal Y}p_{Y|X}(y|x)log_2 p_{Y|X}(y|x)
+
+Since every row of :math:`Q` is a permutation of every other row, :math:`H(Y|X=x)` is independent of :math:`x`:
+
+.. math::
+    H(Y|X=x)=H(q_1,...,q_{|\mathcal Y|})
+
+Therefore,
+
+.. math::
+    H(Y|X)=H(q_1,...,q_{|\mathcal Y|})
+
+Hence,
+
+.. math::
+    I(X;Y)&=H(Y)-H(q_1,...,q_{|\mathcal Y|})\\
+          &\leq log_2 |\mathcal Y|-H(q_1,...,q_{|\mathcal Y|})
+
+with equality iff :math:`Y` is uniform.
+
+But choosing :math:`p_X(x)=\frac{1}{|\mathcal X|}` for all :math:`x\in \mathcal X` (uniform) yields a uniformly distributed output Y since:
+
+For :math:`y\in \mathcal Y`,
+
+.. math::
+    p_Y(y)&=\sum_{x\in\mathcal X}p_X(x)p_{Y|X}(y|x)\\
+          &=\frac{1}{|\mathcal X|}\sum_{x\in\mathcal X}p_{Y|X}(y|x)\\
+          &=c\text{ (constant)}\\
+          &=\text{sum of entries in column in }Q\text{ for value y}
+
+since:
+
+.. math::
+    \sum_{y\in\mathcal Y}p_Y(y)=1\iff c\frac{|\mathcal Y|}{|\mathcal X|}=1\iff c=\frac{|\mathcal Y|}{|\mathcal X|}
+
+therefore,
+
+.. math::
+    p_Y(y)&=\frac{|\mathcal X|}{|\mathcal Y|}\cdot\frac{1}{|\mathcal X|}\\
+          &=\frac{1}{|\mathcal Y|} && \forall y\in \mathcal Y
+
+therefore, :math:`Y` is uniform.
+
+.. admonition:: Example
+
+    (a) BSC(:math:`ε`): Applying (*),
+        
+        .. math::
+            log_2|\mathcal Y|=H(1-ε,ε)
+            =1-h_b(ε)
+
+    (b) q-ary symmetric channel:
+    
+        .. math::
+            C=log_2 q - H(1-ε, \frac{ε}{q-1},...,\frac{ε}{q-1})
+
+.. admonition:: Definition
+
+    Quasi-symmetric DMC
+
+    A DMC :math:`(\mathcal X,\mathcal Y,Q_{|\mathcal X|\times|\mathcal Y|}=[p_{Y|X}])` is said to be *Quasi-symmetric* if :math:`Q` can be partitioned along its columns into :math:`m` **weakly-symmetric** sub-matrices :math:`Q_1,Q_2,...,Q_m` (for some integer :math:`m\geq 1`), where each sub-matrix :math:`Q_i` has size :math:`|\mathcal X| \times |\mathcal Y_i|`, :math:`i=1,...,m` with
+
+    .. math::
+        \mathcal Y_1\cup \mathcal Y_2\cup ...\cup \mathcal Y_m=\mathcal Y\\
+        \mathcal Y_i\cap Y_j=\{\} && \forall i\neq j
+
+.. admonition:: Example
+
+    BEC(:math:`α`):
+
+    .. math::
+        Q=\left[\matrix{1-α && α && 0 \\
+                        0 && α && 1-α
+        }\right]
+
+    .. math::
+        Q_1&=\left[\matrix{1-α && 0 \\
+                          0 && 1-α}\right]\\
+        Q_2&=\left[\matrix{α\\α}\right]
+
+.. note:: symmetry :math:`\implies` weak symmetry :math:`\implies` quasi-symmetry
+
+.. admonition:: Theorem
+
+    Capacity of quasi-symmetric DMC:
+
+    The capacity of a *quasi-symmetric* DMC :math:`(\mathcal X, \mathcal Y, Q)` is given by:
+
+    .. math::
+        C=\sum_{i=1}^m a_iC_i
+
+    where
+
+    .. math::
+        a_i=\sum_{y\in\mathcal Y_i}p_{Y|X}(y|x)=\text{sum of any row in sub-matrix }Q_i\\
+        C_i=log_2|\mathcal Y_i|-H(\text{any row in matrix }\frac{1}{a_i}Q_i)
+
+    :math:`i=1,...,m`
+
+    Proof
+    -----
+    see online notes Lemma 4.17
+
+.. math::
+    C=a_1C_1+a_2C_2\\
+    a_1=1-α\\
+    a_2=α\\
+    C_1&=log_2 2- H(\frac{1-α}{1-α}\frac{0}{1-α})\\
+       &=1-H(1,0)=1\\
+    C_2=log_2|1| - H(\frac{α}{α})=0\\
+    C=(1-α)(1)+(α)(0)\\
+    \implies C=1-α
+
+.. admonition:: Example
+
+    BEC
+
+    .. math::
+        Q=\left[\matrix{1-α-ε && α && ε\\
+                        ε && α && 1-α-ε}\right]
+
+    is quasi-symmetric:
+
+    .. math::
+        Q_1=\left[\matrix{1-α-ε && ε\\
+                          ε && 1-α-ε}\right]\\
+        Q_2=\left[\matrix{α\\α}\right]
+
+    Apply previous theorem to get:
+
+    .. math::
+        C=(1-α)[1-h_b((1-ε-α)/(1-α))]
+
+    special case:
+
+    .. math::
+        α&=0\implies BSC(ε)\\
+        ε&=0\implies BEC(α)
+
+Capacity of sum channel
+=======================
+
+.. math::
+    Q=\left[\matrix{Q_{1_{|\mathcal X_1|\times |\mathcal Y_1|}} && 0\\
+                    0 && Q_{2_{|\mathcal X_2|\times |\mathcal Y_2|}}
+                    }
+      \right]
+
+.. math::
+    \mathcal X=\mathcal X_1\cup \mathcal X_2\\
+    \mathcal Y=\mathcal Y_1\cup \mathcal Y_2
+
+with
+
+.. math::
+    \mathcal X_1\cap \mathcal X_2=\{\}\\
+    \mathcal Y_1\cap \mathcal Y_2=\{\}
+
+.. math::
+    C=log_2(2^{C_1}+1^{C_2})
+
+where :math:`C_1` is the capacity of :math:`Q_1` and :math:`C_2` is the capacity of :math:`Q_2`.
+
+Midterm:
+========
+Wed. Nov. 6 @ 5:30pm
+
+Duration: 100 minutes for undergrads
+
+Jeffery Hall, Room 101
+
+Closed notes - 1 8.5x11 double-sided formula sheet allowed.
+
+Chapters 1-5 in (text)
+
+Ch 1-3 (notes)
+
+Homeworks 1,2,3
+
+
+
+
+
+
+
+
+
+
+
+
+:math:`\exists`

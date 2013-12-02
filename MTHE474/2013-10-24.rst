@@ -1,0 +1,132 @@
+
+
+General channel with Memory
+===========================
+* Finite input alphabet :math:`\mathcal X`
+* Finite output alphabet :math:`\mathcal Y`
+* :math:`p_{Y^n|X^n}(y^n|x^n)`, :math:`n=1,2,...`, :math:`x^n\in \mathcal X^n`, :math:`y^n\in \mathcal Y^n`
+
+.. admonition:: Definition (DMC)
+
+    A *discrete memoryless channel* (DMC) is a discrete channel for which the conditional (transition) distribution of output given input satisfies:
+
+    .. math::
+        :label: α
+
+        p_{Y^n|X^n}(y^n|x^n)=\prod_{i=1}^n p_{Y|X}(y|x) && i=1,2...\\
+        (x^n,y^n)\in \mathcal X \times \mathcal Y
+
+    where :math:`p_{Y|X}(y|x)`, :math:`(x^n,y^n)\in \mathcal X \times \mathcal Y` is a *one-dimensional* transition distribution
+
+.. admonition:: Remark
+
+    The following equivalences can be shown:
+
+    (Observation 4.3 online notes)
+
+    The above condition for a DMC, :eq:`α`, is equivalent to (a) and (b) together, while (b) :math:`\iff` (c):
+
+    (a) :math:`P_{Y_n|X^n,Y^{n-1}}(y_n|y^{n-1},x^{n})=P_{Y|X}(y_n|x_n)` (memoryless property)
+    (b) :math:`P_{X_n|X^{n-1},Y^{n-1}}(x_n|x^{n-1},y^{n-1})=P_{X_n|X^{n-1}}(x_n|x^{n-1})` (non-anticipatory property)
+    (c) :math:`P_{Y^{n-1}|X^n}(y^{n-1}|x^n)=P_{Y^{n-1}|X^{n-1}}(y^{n-1}|x^{n-1})`
+
+.. admonition:: Examples of DMC
+
+    (1) Binary Symmetric Channel (BSC)
+    
+        .. math::
+            \mathcal X=\mathcal Y=\{0,1\}
+
+        .. image::
+
+        Transition matrix
+        -----------------
+        .. math::
+            Q_{|\mathcal X|\times |\mathcal Y|}&=[p_{Y|X}(y|x)]\\
+            &=\left[\matrix{p_{Y|X}(0|0) && p_{Y|X}(1|0)\\
+                    p_{Y|X}(0|1) && p_{Y|X}(1|1)}\right]\\
+            &=\left[\matrix{1-ε && ε\\
+                    ε && 1-ε}\right]
+
+        where :math:`ε` is the crossover probability
+
+        .. admonition:: Remark
+
+            BSC can be described as a modulo-2 additive noise channel via:
+
+            .. math::
+                Y_n=X_n\oplus Z_n &&, m=1,2,...
+
+            * :math:`\oplus` modulo-2 addition
+            * :math:`\{Z_n\}^\infty_{n=1}` iid noise process, binary-valued
+                
+                with distribution :math:`P[Z_n=1]=ε`, :math:`\forall n=1,2,...`
+            * Input and noise processes are *independent* of each other.
+
+        .. note::
+            When :math:`ε=0`, the channel is noiseless.
+
+    (2) Binary Erasure Channel (BEC)
+    
+        .. math::
+            \mathcal X=\{0,1\} && \mathcal Y=\{0,E,1\}
+
+        .. math::
+            Q_{|\mathcal X|\times |\mathcal Y|}&=[p_{Y|X}(y|x)]\\
+            &=\left[\matrix{p_{Y|X}(0|0) && p_{Y|X}(1|0)\\
+                    p_{Y|X}(0|1) && p_{Y|X}(1|1)}\right]\\
+            &=\left[\matrix{1-α && α\\
+                    α && 1-α}\right]
+
+        Where :math:`α` is the *erasure probability*
+
+    (3) A more general channel BSEC
+    
+        .. math::
+            \mathcal X=\{0,1\} && \mathcal Y=\{0,E,1\}
+
+        .. math::
+            Q_{|\mathcal X|\times |\mathcal Y|}&=[p_{Y|X}(y|x)]\\
+            &=\left[\matrix{p_{Y|X}(0|0) && p_{Y|X}(1|0)\\
+                    p_{Y|X}(0|1) && p_{Y|X}(1|1)}\right]\\
+            &=\left[\matrix{1-α-β && α && β\\
+                    β && 1-α-β && α}\right]
+
+Fundamental Problem
+-------------------
+Need to transmit over the channel information at a high rate such that decodability at the receiver is possible with arbitrary low probability of error
+
+.. admonition:: Definition
+
+    Given a DMC :math:`(\mathcal X,\mathcal Y,p_{Y|X})`, its "information" capacity denoted by :math:`C` is defined as:
+
+    .. math::
+        C:=max_{p_X}I(X;Y)
+
+    where :math:`X` is the input of the channel
+
+    and :math:`Y` is the output of the channel
+
+    maximization is taken over all input distributions :math:`p_X`
+
+.. admonition:: Remark
+    
+    (1)
+
+        * :math:`C\geq 0`, since :math:`I(X;Y)\geq0`
+        * :math:`C\leq min(log_2|\mathcal X|, log_2|\mathcal Y|)` bounded
+        * :math:`I(X;Y)` is concave (and continuous in the *variational distance* [1]_) in :math:`p_X` (for a fixed :math:`p_{Y|X}`)
+        * :math:`C` is *well-defined*: there exists at least one input distribution :math:`p_X^*` that maximizes :math:`I(X;Y)`
+    (2) For a channel, its "operational" capacity will be defined as the highest rate in bits/channel symbol at which information can be transmitted over the channel via block code and recovered at the receiver with arbitrarily low error probability.
+    
+        We will see via Shannon's channel coding Theorem, that for a DMC,
+
+        operational capacity = "info capacity"= :math:`C=max_{p_X}I(X;Y)`
+    
+
+
+
+
+
+
+.. [1] :math:`d_{var}(p_X,p_{X'})=\sum_{\mathcal X}|p_{X'}(x)-p_X(x)|`

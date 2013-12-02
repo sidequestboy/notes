@@ -1,60 +1,62 @@
-
+**********************************
+Entropy Rate for Stationary Source
+**********************************
 
 Given a finite alphabet homogeneous Markov Chain :math:`\{X_i\}` with alphabet
 
 .. math::
-	\cal X = \{1,2,...,m\}
+	\mathcal X = \{1,2,...,m\}
 
 and state transition probability matrix
 
 .. math::
-	Q_{|\cal X|\times |\cal X|}=[p_{ij}]
+	Q_{m\times m}=[p_{ij}]
 
-where :math:`p_{ij}:=P[X_n=j|X_{n-1}=i]`, :math:`i,j \in \cal X`
+where :math:`p_{ij}:=P[X_n=j|X_{n-1}=i]`, :math:`i,j \in \mathcal X`
 
 then the probability distribution vector,
 
 .. math::
-	\Pi=(\Pi_1,\Pi_2,...,\Pi_m)
+	Π=(Π_1,Π_2,...,Π_m)
 
-such that :math:`\Pi_l\geq 0`, :math:`l=1,2,...m` and :math:`\sum_{l=1}^m \Pi_l=1`
+such that :math:`Π_l\geq 0`, :math:`l=1,2,...m` and :math:`\sum_{l=1}^m Π_l=1`
 
 .. math::
-	\Pi=\Pi Q
+	Π=Π Q
 
 .. admonition:: Example
 
 	Homogeneous Binary Markov Chain
 
 	.. math::
-		\cal X=\{0,1\}
+		\mathcal X=\{0,1\}
 
-		Q_{2\times 2}=[p_{ij}]=\left[\matrix{p_00 & p_01 \\ p_10 & p_11}\right]
+		Q_{2\times 2}=[p_{ij}]=\left[\matrix{p_{00} & p_{01} \\ p_{10} & p_{11}}\right]
 
-		= \left[\matrix{1-\alpha & \alpha \\ \beta & \1-\beta}\right]
+		= \left[\matrix{1-α & α \\ β & 1-β}\right]
 
-		.. image::
+	.. image::
 
-	Solve for :math:`\Pi=(\Pi_1,\Pi_2)`:
+	Solve for :math:`Π=(Π_0,Π_1)`:
 
 	.. math::
-		\Pi = \Pi Q
+		Π = Π Q
 
-		(\Pi_0,1-\Pi_0)=(\Pi_0,1-\Pi_0)\left(\matrix{1-\alpha & \alpha \\ \beta & \1-\beta}\right)
+		(Π_0,1-Π_0)=(Π_0,1-Π_0)\left(\matrix{1-α & α \\ β & 1-β}\right)
 
-		\implies \Pi_0=\frac{\beta}{\alpha+\beta}
+		\implies Π_0=\frac{β}{α+β}
 
-		\Pi_1=1-\Pi_0
+		Π_1=1-Π_0
 
 	therefore,
 
 	.. math::
-		\Pi=(\Pi_0,\Pi_1)=(\frac{\beta}{\alpha+\beta},\frac{\alpha}{\alpha+\beta})
+		Π=(Π_0,Π_1)=(\frac{β}{α+β},\frac{α}{α+β})
 
 	So if,
 
 	.. math::
-		P[X_1=0]=\Pi_0=1-P[X_1=1]
+		P[X_1=0]=Π_0=1-P[X_1=1]
 
 	then the MC is *stationary*.
 
@@ -68,10 +70,10 @@ How might we define the notion of entropy for a source with memory?
 
 .. admonition:: Definition
 
-	The *entropy rate* of a source :math:`\{X_i\}_{i=1}^\infty` with alphabet :math:`\cal X` is denoted by :math:`H(\cal X)` (or :math:`H_\infty(X)` or :math:`H(X_\infty)`) and defined by:
+	The *entropy rate* of a source :math:`\{X_i\}_{i=1}^\infty` with alphabet :math:`\mathcal X` is denoted by :math:`H(\mathcal X)` (or :math:`H_\infty(X)` or :math:`H(X_\infty)`) and defined by:
 
 	.. math::
-		H(\cal X):=\lim_{n\to \infty} \frac{1}{n}H(X_1,X_2,...X_n)
+		H(\mathcal X):=\lim_{n\to \infty} \frac{1}{n}H(X_1,X_2,...X_n)
 
 	provided that the limit exists.
 
@@ -91,16 +93,16 @@ How might we define the notion of entropy for a source with memory?
 	therefore,
 
 	.. math::
-		H(\cal X)=H(X_1)
+		H(\mathcal X)=H(X_1)
 
 .. admonition:: Lemma
 
 	For a stationary source, :math:`\{X_i\}_{i=1}^\infty`, the conditional entropy, :math:`H(X_n|X_{n-1},...H_1)` is decreasing in :math:`n`, and has *a limit*:
 
 	.. math::
-		H'(\cal X):=\lim_{n\to \infty}H(X_n|X_{n-1},...X_1)
+		H'(\mathcal X):=\lim_{n\to \infty}H(X_n|X_{n-1},...X_1)
 
-		H'(\cal X):=\lim_{n\to \infty}H(X_n|X^{n-1})
+		H'(\mathcal X):=\lim_{n\to \infty}H(X_n|X^{n-1})
 
 	Proof:
 
@@ -126,7 +128,7 @@ How might we define the notion of entropy for a source with memory?
 	Since :math:`H(C_n|X^{n-1})` is a decreasing sequence in :math:`n`, and is bounded below (by 0), it must have a limit:
 
 	.. math::
-		H'(\cal X)=\lim_{n\to\infty} H(X_n|X_{n-1})
+		H'(\mathcal X)=\lim_{n\to\infty} H(X_n|X_{n-1})
 
 .. admonition:: Theorem
 
@@ -141,10 +143,10 @@ How might we define the notion of entropy for a source with memory?
 
 .. admonition:: Theorem
 
-	For a stationary source :math:`\{X_1\}_{i=1}^\infty` with alphabet :math:`\cal X`, its entropy rate :math:`H(\cal X)` always exists, and is given by:
+	For a stationary source :math:`\{X_1\}_{i=1}^\infty` with alphabet :math:`\mathcal X`, its entropy rate :math:`H(\mathcal X)` always exists, and is given by:
 
 	.. math::
-		H(\cal X)=H'(\cal X)
+		H(\mathcal X)=H'(\mathcal X)
 
 		=\lim_{n\to \infty}H(X_n|X_{n-1},...,X_1)
 
@@ -155,18 +157,18 @@ How might we define the notion of entropy for a source with memory?
 
 	by chain rule.
 
-	But, we know that :math:`H(X_i|X^{i-1})` decreases with :math:`i`, and converges to :math:`H'(\cal X)` as :math:`i\to\infty`
+	But, we know that :math:`H(X_i|X^{i-1})` decreases with :math:`i`, and converges to :math:`H'(\mathcal X)` as :math:`i\to\infty`
 
 	So by the Cesaro-Mean Theorem, 
 
 	.. math::
-		H(\cal X)=H'(\cal X)
+		H(\mathcal X)=H'(\mathcal X)
 
 	.. note::
 		For any :math:`n`,
 
 		.. math::
-			H(\cal X)\leqH(X_n|X^{n-1})
+			H(\mathcal X)\leq H(X_n|X^{n-1})
 
 		and
 
@@ -180,22 +182,24 @@ How might we define the notion of entropy for a source with memory?
 	Consider the stationary binary Markov Chain
 
 	.. math::
-		H(\cal X)=\lim_{n\to\infty}H(X_n|X^{n-1})
+		H(\mathcal X)=\lim_{n\to\infty}H(X_n|X^{n-1})
 
 		= \lim_{n\to\infty}H(X_n|X_{n-1})
 
 		=H(X_2|X_1)
 
-		=-\sum_{i\in\cal X}\sum_{j\in\cal X}P[X_2=j|X_1=i]P[X_1=i]\log_2 P[C_2=j|Xi=i]
+		=-\sum_{i\in\mathcal X}\sum_{j\in\mathcal X}P[X_2=j|X_1=i]P[X_1=i]\log_2 P[C_2=j|Xi=i]
 
-		=-\sum_{i\in\cal X}\sum_{j\in\cal X}p_{ij}\Pi_i\log_2 p_{ij}
+		=-\sum_{i\in\mathcal X}\sum_{j\in\mathcal X}p_{ij}Π_i\log_2 p_{ij}
 
-		=\frac{\beta}{\alpha+\beta}h_b(\alpha)-\frac{\alpha}{\alpha+\beta}h_b(\beta)
+		=\frac{β}{α+β}h_b(α)-\frac{α}{α+β}h_b(β)
 
-	where :math:`h_b(c)=\x\log_2 x - (1-x)\log_2 (1-x)` is the binary entropy function.
+	where :math:`h_b(c)=x\log_2 x - (1-x)\log_2 (1-x)` is the binary entropy function.
 
 Stationary Ergodic Sources
 ==========================
 Loosely speaking, stationary sources that cannot be separated into different persisting asymptotic modes of behaviour are known as *ergodic sources*.
 
-A *stationary ergodic* source satisfies the Law of Large Numbers.c
+A *stationary ergodic* source satisfies the Law of Large Numbers
+
+

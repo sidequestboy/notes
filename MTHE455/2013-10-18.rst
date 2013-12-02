@@ -1,0 +1,131 @@
+**********************************
+Results from Number Theory (contd)
+**********************************
+2. 
+
+Let :math:`b_1,...,b_r` be a finite set of positive integers with gcd 1. Then there exists integers :math:`a_1,...,a_r` (not necessarily non-negative) such that :math:`a_1b_1+...+a_rb_r=1`
+
+Proof
+=====
+Consider the set of all integers of the form
+
+.. math::
+    c_1b_1+...c_rb_r
+
+where the :math:`c_i` range over the integers.
+
+Let :math:`l` denote the least positive integer in this set. We will show that :math:`l=1`. It suffices to show that :math:`l` divides all of :math:`b_1,...b_r`. We will show :math:`l` divides :math:`b_i` by proof by contradiction.
+
+Suppose :math:`l` does not divide :math:`b_i`. Then
+
+.. math::
+    b_i=ql+R
+
+where :math:`q\geq 0` is an integer and :math:`0<R<l`.
+
+But then
+
+.. math::
+    R&=b_i-ql \\
+     &=b_i-q(a_1b_1+...+a_rb_r)
+
+(let :math:`l=a_1b_1+...+a_rb_r`)
+
+.. math::
+    =(1-a_iq)b_i+\sum_{j\neq 1}(-qa_j)b_j
+
+Since :math:`R<l`, this contradicts the minimality of :math:`l`.
+
+3.
+
+Let :math:`b_1,...,b_r` be a finite collection of positive integers with gcd 1. Then there exists a positive integer :math:`M` such that for every :math:`n>M`, there exist nonnegative integers :math:`d_1,...,d_r` such that :math:`n=d_1b_1+...+d_rb_r`.
+
+Proof
+=====
+From previous proof, there exist integers (not necessarily nonnegative) :math:`a_1,...,a_r` such that :math:`a_1b_1+...+a_rb_r=1`. Now choose
+
+.. math::
+    M=(|a_1|b_1+...+|a_r|b_r)b_1
+
+If :math:`n>M`, then we can write:
+
+.. math::
+    n=M+qb_1+R
+
+where :math:`q\geq 0` is an integer and :math:`0\leq R<b_1` is an integer.
+
+If :math:`R=0`, then we are done, since we can take :math:`d_1=|a_1|b_1+...+|a_r|b_r+q` and :math:`d_k=0` for :math:`k=2,...,r`
+
+If :math:`0<R<b_1`, then
+
+.. math::
+    n&=M+qb_1+R\times 1 \\
+     &=M+qb_1+R(a_1b_1+...+a_rb_r)\\
+     &=(|a_1|b_1+q+Ra_1)b_1+\sum_{k=2}^r(|a_k|b_1+Ra_k)b_k
+
+which is of the form desired. Since :math:`n` was arbitrary, the proof is finished.
+
+Back to Markov Chains
+=====================
+Now, suppose :math:`\{X_n:n\geq 0\}` that is irreducible, positive recurrent, and aperiodic (i.e. the period of every state is 1). Consider state :math:`j`.
+
+Then :math:`\{n:p_{ji}(n>0)\}` has gcd 1.
+
+By result (1), we can take a finite subset :math:`b_1,...,b_r` such that :math:`p_{jj}(b_k)>0` for :math:`k=1,...,r` and :math:`gcd(b_1,...,b_r)=1`.
+
+Take :math:`a_q,...,a_r` such that :math:`a_1b_1+...+a_rb_r=1` (we can do so by result (2))
+
+and take
+
+.. math::
+    M=|a_1|b_1+...+|a_r|b_r
+
+(by result (3))
+
+Then for :math:`n>M`, there exist nonnegative integers :math:`d_1,...,d_r` such that :math:`n=d_1b_1+...+d_rb_r`.
+
+Then
+
+.. math::
+    p_{jj}(n) \leq p_{jj}(b_1)\times ...\times p_{jj}(b_1)\times ...\times p_{jj}(b_r)\times ...\times p_{jj}(b_r)
+
+where the inequality follows from the fact that the RHS is the probability of a subset of the set of all paths that go from :math:`j` back to :math:`j` in :math:`n` steps, i.e. a subset of the LHS event.
+
+.. math::
+    >0
+
+since :math:`p_{jj}(b_i)>0` for all :math:`i`.
+
+Also, if :math:`i\neq j`, then since the chain is irreducible, there is some :math:`m>0` such that :math:`p_{ij}(m)>0`.
+
+But
+
+.. math::
+    :label: result
+
+    p_{ij}(m+n)\geq p_{ij}(m)p_{jj}(n)
+
+which is positive for all :math:`n` big enough.
+
+Let :math:`Π` be the unique stationary distribution for the :math:`X` chain. We wish to show that
+
+.. math::
+    p_{ij}(n)\to Π_j\text{ as }n\to\infty\text{ for any }i
+
+Recall that
+
+.. math::
+    Π_j=\sum_{k\in S} Π_kp_{kj}(n)
+
+Using this, we can write:
+
+.. math::
+    Π_j - p_{ij}(n)&=\sum_{k\in S} Π_kp_{kj}(n)-\sum_{k\in S} Π_kp_{ij}(n)\\
+                   &=\sum_{k\in S} Π_k(p_{kj}(n)-p_{ij}(n))
+
+Take limit as :math:`n\to\infty` on both sides, and show that it converges to limit 0.
+
+.. admonition:: note
+
+    On the RHS, we can take the limit inside by an argument similar to last lecture, by dividing our state space :math:`S` into a finite set, :math:`F`, and its (generally infinite) complement set :math:`F^c`.
+

@@ -1,0 +1,97 @@
+***************************************
+Dirichlet Problem and Poisson's Formula
+***************************************
+
+In applications of Harmonic Functions (see `physics`_), we are faced with the problem of, given a bounded domain :math:`D` and a continuous function :math:`u:δD\to\mathbb R`, extending :math:`u` to a harmonic function on :math:`D` which is continuous on :math:`\bar D`.
+
+.. image:: .static/11.05.1.png
+    :width: 50%
+
+For example, given the temperature on the boundary of a slab, we want to find the temperature on the slab.
+
+This problem is the *Dirichlet Problem*.
+
+.. admonition:: Lemma
+
+    Solutions to Dirichlet Problem are unique if they exist.
+
+    Proof:
+
+    Suppose :math:`u,\tilde u:\bar D\to\mathbb R` are continuous, agree on :math:`δD` and are harmonic on :math:`D`. Then :math:`u-\tilde u=0` everywhere on :math:`δD` and by Global Max/Min Principle,
+
+    .. math::
+        0\leq u-\tilde u\leq 0
+
+    on :math:`D`. So :math:`u=\tilde u`.
+
+If :math:`D` is a disk, Dirichlet Problem is solved via an explicit formulation known as Poisson's Formula.
+
+The idea is that if we knew :math:`u`, we could find a harmonic conjugate :math:`v`, so that :math:`f=u+iv` and then
+
+.. math::
+    u(x,y)=Re \frac{1}{2πv}\int_γ \frac{f(w)}{w-(x+iy)}dw
+
+We want the RHS to only depend on :math:`u`, not :math:`v`.
+
+.. admonition:: Theorem (Poisson's Formula)
+
+    If :math:`u_0` is harmonic on a domain containing the closed disk :math:`\overline{D_R(0)}` for :math:`R>0`, then :math:`\forall z=x+iy\in D_R(0)`:
+
+    .. math::
+        u(z)\frac{1}{2π}\int_0^{2π}u_0(Re^{it})\frac{R^2-r^2}{|Re^{it}-z|^2}dt
+
+    Letting :math:`z=re^{iα}`, in polar coordinates this is
+
+    .. math::
+        u(re^{iα})=\frac{R^2-r^2}{2π}\int_0^{2π}\frac{u_0(Re^{it})}{R^2-2Rr\cos(t-α)+r^2}dt
+
+    Proof:
+
+    Let :math:`v` be the harmonic conjugate for :math:`u_0` on a simply-connected set containing :math:`D_R(0)`. So :math:`f=u+iv`
+
+    .. math::
+        f(z)=\frac{1}{2πi}\int_{γ_R}\frac{f(w)}{w-z}dw
+
+    where :math:`γ_R` is the CCW circle of radius :math:`R`
+
+    Now consider (for fixed :math:`z` with :math:`|z|<R`)
+
+    .. math::
+        \frac{f(w)\bar z}{R^2-w\bar z}
+
+    which is holomorphic in :math:`w` on :math:`D_{R_1}(0)` where :math:`R_1>R`, slightly.
+
+    Since :math:`R^2-w\bar x\neq 0` on :math:`D_{R_1}(0)` or on its boundary.
+
+    So
+
+    .. math::
+        \frac{1}{2πi}\int_{γ_R}\frac{f(w)\bar z}{R^2-w\bar z}dw=0
+
+    by Cauchy's Theorem
+
+    So
+
+    .. math::
+        f(z)&=\frac{1}{2πi}\int_{γ_R}\frac{f(w)}{w-z}+\frac{f(w)\bar z}{R^2-w\bar z}dw\\
+            &=\frac{1}{2πi}\int_{γ_R}\frac{f(w)(R^2-|z|^2)}{(w-z)(R^2-w\bar z)}dw\\
+            &=\frac{1}{2πi}\int_{0}^{2π}\frac{f(Re^{it})(R^2-|z|^2)}{(Re^{it}-z)(R^2-Re^{it}\bar z)}Rie^{it}dt\\
+            &=\frac{1}{2π}\int_{0}^{2π}\frac{f(Re^{it})(R^2-|z|^2)}{(R-z^{-it})(R-e^{it\bar z})}dt\\
+            &=\frac{1}{2π}\int_0^{2π}\frac{f(Re^{it})(R^2-|z|^2)}{|R-ze^{-it}|^2}dt\\
+            &=\frac{1}{2π}\int_0^{2π}\frac{f(Re^{it})(R^2-|z|^2)}{|Re^{it}-z|^2}dt\\
+            &=\frac{1}{2π}\int_0^{2π}\frac{u(Re^{it})(R^2-|z|^2)}{|Re^{it}-z|^2}dt+\frac{i}{2π}\int_0^{2π}\frac{v(Re^{it})(R^2-|z|^2)}{|Re^{it}-z|^2}dt\\
+            &=u(z)+iv(z)
+
+    Taking the real part of both sides yields the solution.
+
+    So,
+
+    .. math::
+        u(z)&=\frac{R^2-|z|^2}{2π}\int_0^{2π}\frac{u(Re^{it})}{|Re^{it}-z|^2}\\
+            &=\frac{R^2-r^2}{2π}\int_0^{2π}\frac{u(Re^{it})}{(Re^{it}-re^{iα})(Re^{-it}-re^{-iα})}\\
+            &=\frac{R^2-r^2}{2π}\int_0^{2π}\frac{u(Re^{it})}{R^2+r^2-2Rr(e^{i(t-α)}+e^{i(α-t)})}dt\\
+            &=\frac{R^2-r^2}{2π}\int_0^{2π}\frac{u(Re^{it})}{R^2+r^2-2Rr\cos(t-α)}dt
+
+    As required.
+
+.. _`physics`: https://en.wikipedia.org/wiki/Physics

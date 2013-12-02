@@ -1,4 +1,4 @@
-..epigraph::
+.. epigraph::
 	We cannot prevent the Singularity
 
 	Happy Birthday to Verner Vinge

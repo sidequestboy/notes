@@ -1,0 +1,126 @@
+***************
+Poisson Process
+***************
+
+.. note:: See `Takahara's online notes`_ Lecture 21 for info on the Exponential Distribution
+
+Let :math:`\{X_t: t\geq 0\}` be a stochastic process with index set :math:`[0,\infty)`
+
+.. admonition:: Definition
+
+    An *increment* is of the form
+
+    .. math::
+        X(t)-X(s), s\geq t
+
+.. admonition:: Definition
+
+    The process :math:`\{X_t: t\geq 0\}` is said to have *stationary increments* if the distribution of :math:`X_t-X_s` depends only on the difference :math:`t-s`.
+
+.. admonition:: Definition
+
+    The process :math:`\{X(t): t\geq 0\}` is said to have independent increments if any two increments  involving disjoint intervals are independent.
+
+.. admonition:: Example
+
+    If :math:`Z_i`, :math:`i=1,2,...` are independent and identically distributed, and :math:`X_n=\sum_{i=1}^nZ_i`, then :math:`\{X_n:n\geq 0\}` has both stationary and independent increments.
+
+.. admonition:: Definition
+
+    **Poisson Process**
+
+    A continuous-time stochastic process
+
+    .. math::
+        \{N(t): t\geq 0\}
+
+    is a Poisson process with rate :math:`λ` if
+
+    i. :math:`N(0)=0`
+    ii. It has stationary and independent increments
+    iii. The distribution of :math:`N(t)` is Poisson with mean :math:`λt`
+    
+        .. math::
+            P(N(t)=k)=\frac{(λt)^k}{k!}e^{-λt}, && k=0,1,2
+
+From this definition
+
+* For :math:`s<t`, the distribution of :math:`N(t)-N(s)` is the same as the distribution of :math:`N(t-s)-N(0)`, by stationary increments, and since :math:`N(0)=0`, we have
+
+  .. math::
+      N(t)-N(s)\sim Poisson(λ(t-s))
+
+* The process is non-decreasing since
+
+  .. math::
+      N(t)-N(s)\sim Poisson(λ(t-s))\geq 0
+
+  with probability 1
+* The sample space of the Poisson process is :math:`S=\{0,1,2,...\}`
+
+Landau's "Little oh" Notation
+=============================
+The notation :math:`o(h)` is called "little oh of h", and does not refer to any specific function
+
+It specifies any function of :math:`h` that goes to 0 at a faster rate than :math:`h`, as :math:`h\to 0`.
+
+In other words, :math:`\frac{o(h)}{h}\to 0` as :math:`h\to 0`.
+
+We get things like
+
+.. math::
+          o(h)+o(h)&=o(h)\\
+           o(h)o(h)&=o(h)\\
+        c\cdot o(h)&=o(h)
+
+where :math:`c` is any constant
+
+.. admonition:: Example
+
+    :math:`h^k` is :math:`o(h)` for any :math:`k>1`
+
+    .. math::
+        \sum_{k=2}^\infty c_k h^k\text{ with }|c_k|<1 && \forall k
+
+    is :math:`o(h)`
+
+.. admonition:: Definition
+
+    Poisson Process (def 2)
+
+    A continuous time process :math:`\{N(t):t\geq 0\}` is a Poisson process with rate :math:`λ>0` if
+
+    i. :math:`N(0)=0`
+    ii. It has stationary and independent increments
+    iii. The probabilities:
+
+      .. math::
+               P(N(h)=1)&=λh+o(h)\\
+           P(N(h)\geq 2)&=o(h)\\
+               P(N(h)=0)&=1-λh+o(h)
+
+Let us show that the first definition implies this definition.
+
+First, note that :math:`N(h)\sim Poisson(λh)`
+
+So
+
+.. math::
+    P(N(h)=0)&=e^{-λh}\\
+             &=1-λh+\frac{(λh)^2}{2}-\frac{(λh)^3}{3!}+...\\
+             &=1-λh+o(h)
+
+Also,
+
+.. math::
+    P(N(h)=1)&=λhe^{-λh}\\
+             &=λh-λ^2h^2+\frac{(λh)^3}{2}-\frac{(λh)^3}{3!}+...\\
+             &=λh+o(h)
+
+By subtraction,
+
+.. math::
+    P(N\geq 2)&=1-(λh+o(h))-(1-λh+o(h))\\
+              &=o(h)
+
+.. _`Takahara's online notes`: http://www.mast.queensu.ca/~stat455/lecturenotes/set4.pdf

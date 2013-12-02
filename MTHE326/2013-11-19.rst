@@ -1,0 +1,108 @@
+*******************************************
+Residue Theorem and Calculation of Residues
+*******************************************
+
+Proof of Residue Lemma from previous lecture:
+---------------------------------------------
+(1) We have
+    
+    .. math::
+        f(z)=\frac{g(z)}{h(z)}=\frac{a_k(z-z_0)^k+a_{k+1}(z-z_0)^{k+1}+...}{b_k(z-z_0)^k+b_{k+1}(z-z_0)^{k+1}+...}
+
+    Where :math:`a_k,b_k\neq 0`, :math:`k\in\mathbb Z`.
+
+    Then
+
+    .. math::
+        f(z)=\frac{a_k+a_{k+1}(z-z_0)+...}{b_k+b_{k+1}(z-z_0)+...}
+
+    So we can let :math:`f(z_0)=\frac{a_k}{b_k}`
+
+(2) If :math:`\lim_{z\to z_0}(z-z_0)f(z)=L`, then
+    
+    .. math::
+        \lim_{z\to z_0}(z-z_0)\sum_{n=-\infty}^\infty a_n(z-z_0)^n=L
+
+    So 
+
+    .. math::
+        \lim_{z\to z_0}\sum_{n=-\infty}^\infty a_n(z-z_0)^{n+1}=L
+
+    (:math:`n+1\leq 0` or limit won't exist)
+
+    :math:`a_n=0` for :math:`n<-1`
+
+    So :math:`f` has, at most, a simpmle pole, and :math:`a_{-1}=L`.
+
+(3) :math:`f(z)=\frac{g(z)}{h(z)}`, :math:`g(z_0)\neq 0`, :math:`h(z_0)=0`, :math:`h'(z_0)\neq 0` then
+    
+    .. math::
+        f(z)=\frac{a_0+a_1(z-z_0)+a_2(z-z_0)^2+...}{b_1(z-z_0)+b_2(z-z_0)^2+...}
+
+    :math:`a_0\neq 0`, :math:`b_1\neq 0`
+
+    So
+
+    .. math::
+        f(z)&=\frac{1}{z-z_0}\frac{a_0+a_1(z-z_0)+a_2(z-z_0)^2+...}{b_0+b_1(z-z_0)+b_2(z-z_0)^2+...}\\
+            &=\frac{s(z)}{z-z_0}
+
+    Where
+
+    .. math::
+        s(z):=\frac{a_0+a_1(z-z_0)+a_2(z-z_0)^2+...}{b_0+b_1(z-z_0)+b_2(z-z_0)^2+...}
+
+    is holomorphic at :math:`z_0` and :math:`s(z_0)\neq 0`.
+
+    So:
+
+    .. math::
+        \lim_{z\to z_0}(z-z_0)f(z)&=\lim_{z\to z_0}s(z)\\
+            &=s(z_0)\\
+            &=\frac{a_0}{b_1}\\
+            &=\frac{g(z_0)}{h'(z_0)}\\
+            &=Res(f,z_0)
+(4) :math:`f(z)=\frac{g(z)}{(z-z_0)^2}`, :math:`g(z_0)\neq 0` then
+    
+    .. math::
+        f(z)&=\frac{a_0+a_1(z-z_0)+a_2(z-z_0)^2+...}{(z-z_0)^2}\\
+            &=\frac{a_0}{(z-z_0)^2}+\frac{a_1}{(z-z_0)}+a_2+...
+
+    So degree two pole and :math:`Res(f,z_0)=a_1=g'(z_0)`
+
+(5) Explored in Assignment 11.
+    
+
+.. admonition:: Examples
+
+    (a) Find residues of :math:`f(z)=\frac{2}{z^2+1}` at :math:`z=\pm i`
+        
+        .. math::
+            f(z)&=\frac{2}{(z+i)(z-i)}\\
+                &=\frac{g(z)=\frac{2}{z+i}}{h(z)=(z-i)}
+
+        :math:`g(z)` is holomorphic at :math:`z=i`, not zero and :math:`h(z)` is zero at :math:`z=i`.
+
+        By Residue Lemma 3,
+
+        .. math::
+            Res(f,i)&=\frac{g(i)}{h'(i)}\\
+            &=\frac{\frac{2}{i+i}}{1}\\
+            &=-i
+
+        symmetrically,
+
+        .. math::
+            f(z)&=\frac{2}{(z+i)(z-i)}\\
+                &=\frac{g(z)=\frac{2}{z-i}}{h(z)=(z+i)}
+
+        :math:`g(z)` is holomorphic at :math:`z=-i`, not zero and :math:`h(z)` is zero at :math:`z=-i`.
+
+        So
+
+        .. math::
+            Res(f,-i)&=\frac{g(-i)}{h'(-i)}\\
+                &=\frac{\frac{2}{(-i-i)}}{1}\\
+                &=i
+
+        Can also use Lemma 2, find :math:`\lim_{z\to\pm i}(z\mp i)f(z)`

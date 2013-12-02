@@ -1,0 +1,111 @@
+*******************************************
+Proof of Channel Coding Thm contd, Feedback
+*******************************************
+
+.. admonition:: Recall
+
+    Fano Inequality:
+
+    .. math::
+        :label:`1`
+        H(w|\hat w)\leq 1+nRP_e^{(n)}
+
+    .. math::
+        :label:`2`
+        I(X^n;Y^n)\leq nC, \forall p_{X^n}
+
+(ii) Proof of the Converse Part
+===============================
+Need to show that :math:`\forall` sequence of :math:`(2^{nR},n)` codes with
+
+.. math::
+    R>C=max_{p_X}I(X;Y)
+
+their :math:`P_e^{(n)}` **cannot** be made arbitrarily small (Equivalently, :math:`\forall` codes :math:`(2^{nR},n)` with :math:`P_e^{(n)}\to 0` as :math:`n\to \infty`, we must have :math:`R\leq C`).
+
+Take message :math:`w` uniformly dist. over :math:`\mathcal M=\{1,2,...,2^{nR}\}`
+
+Then :math:`P_e^{(n)}=\frac{1}{2^{nR}}\sum_{i=1}^{2nR}λ_i=P[\hat w\neq w]`
+
+Hence:
+
+.. math::
+    H(w)=nR
+
+since :math:`w` is *uniform*
+
+.. admonition:: Recall
+
+    :math:`H(w)=H(w|\hat w)+I(w;\hat w)`
+
+Therefore, 
+
+.. math::
+    nR=H(w)\\
+    =H(w|\hat w)+I(w;\hat w)\\
+    \leq H(w|\hat w)+I(X^n;Y^n)
+
+where the inequality follows by the Data Processing inequality. (since :math:`w\to X^n\to Y^n\to \hat w`)
+
+.. math::
+    \leq 1+nRP_e^{(n)}+nC
+
+Therefore,
+
+.. math::
+    R\leq \frac{1}{n}+P_e^{(n)}R+C
+
+Therefore,
+
+.. math::
+    P_e^{(n)}\geq 1-\frac{1}{nR}-\frac{C}{R}
+
+.. note::
+    If :math:`R>C`, :math:`P_e^{(n)}` is bounded away from zero for n suff. large.
+
+.. note:: Channel rehability (reliability?) problem
+
+Feedback
+========
+.. image::
+
+At time :math:`i`, encoder knows previously received channel outputs via feedback links.
+
+.. math::
+    x_i=f(w,y_1,...,y_i-1)
+
+.. note::
+    Shannon showed that for a DMC, :math:`C_{FB}=C`. In general, for a channel with memory, :math:`C_{FB}\geq C`.
+
+    However, in certain channels with memory, feedback *does not* help increase the capacity of the channel.
+
+    .. admonition:: Example
+
+        For additive noise channels with Memory:
+
+        .. math::
+            Y_i=X_i\oplus Z_i, i=1,2,...\\
+            \mathcal X=\mathcal Y=\mathcal Z=\{0,1,...,q-1\}
+
+        :math:`X_i` independent of :math:`Z_i`, :math:`Z_i` noise processes has *memory*, then
+
+        .. math::
+            C_{FB}=C
+
+    There are no sophisticated schemes with feedback.
+
+Lossless Joint Source-Channel Coding Theorem
+============================================
+(Section 7.13 in Textbook - no section in online notes)
+
+We consider 2 systems:
+
+(1) Source :math:`\to` Encoder :math:`\to` Channel :math:`\to` Decoder :math:`\to` Destination
+(2) Source :math:`\to` (Source Encoder :math:`\to` Channel Encoder) :math:`\to` Channel :math:`\to` (Channel Decoder :math:`\to` Source Decoder) :math:`\to` Destination
+
+Clearly (1) is the more general form, which subsumes (2). So, we should be able to achieve better rates with joint Source-Channel schemes over tandem schemes. However, Shannon showed that if the entropy of the source is less than the capacity of the channel, asymptotically, we lose no optimality by using tandem codes.
+
+.. admonition:: Caveat
+    
+    This result only holds for :math:`n\to\infty`. (1) still goes to 0 asymptotically *faster* than (2).
+

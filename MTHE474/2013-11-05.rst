@@ -1,0 +1,129 @@
+**************************************************
+Proof of Shannon's Channel Coding Theorem for DMCs
+**************************************************
+Consider a DMC :math:`(\mathcal X, \mathcal Y, p_{Y|X}` with info capacity :math:`C=max_{p_X}I(X;Y)>0`.
+
+(a) Forward (Achievability) part
+
+    All code rates below :math:`C` are *achievable* - i.e., :math:`\forall  ε>0` and :math:`0<R<C`, :math:`\exists` a sequence of :math:`(2^{nR},n)` block codes for the channel such that their :math:`p_e^{(n)}<ε` for :math:`n` sufficiently large.
+
+(b) Converse part:
+
+    Conversely, if :math:`R>C`, then it is *not* an achievable rate (i.e. cannot make :math:`p_e^{(n)}` arbitrarily small).
+
+Conclusion:
+
+For a DMC,
+
+.. math::
+    \text{operational capacity} = C:=max_{p_X}I(X;Y)    
+
+.. admonition:: Remark
+
+    A similar theorem can be proced for a large class of "info-stable" channels with memory (i.e. channels for which the input process that maximizes :math:`\frac{1}{n}I(X^n;Y^n)` and its corresponding output form a stationary ergodic input-output process)
+
+    .. math::
+        \text{operational capacity}=C=\lim_{n\to\infty}max_{p_{X^n}}\frac{1}{n}I(X^n;Y^n)
+
+Proof:
+======
+(a) Forward Part
+
+    .. admonition:: Goal
+
+        Want to prove the existence of a code with block length :math:`n`, and :math:`2^{nR}` codewords, where :math:`R<C` such that :math:`p_e^{(n)}\to 0` as :math:`n\to \infty`.
+
+    .. admonition:: Technique: Random Coding
+
+        Describe a process of *randomly* generating a code :math:`\mathcal C` with :math:`2^{nR}` codewords. Then show that the mean of :math:`p_e^{(n)}(\mathcal C)` over all randomly generated codes satisfies:
+
+        .. math::
+            E_{\mathcal C}[p_e^{(n)}(\mathcal C)]\to 0\text{ as }n\to \infty
+
+        This will imply the existence of *at least one* "good" code, :math:`\mathcal C^*` such that :math:`p_e^{(n)}(\mathcal C^*)\to 0` as :math:`n\to\infty`
+
+    Fix :math:`R<C`.
+
+    .. note:: R can be very close to :math:`C`, but below it.
+
+    and fix :math:`n`. ("think of :math:`n` as sufficiently large").
+
+    Let :math:`p^*_X` be the input distribution that maximizes the channel's :math:`I(X;Y)`, i.e.
+
+    .. math::
+        I(X;Y)|_{p_X=p_X^*}=C
+
+    *Generate* a :math:`(2^{nR},n)` code at *random* according to :math:`p_X^*` - i.e. generate each of the :math:`2^{nR}` codewords (which a n-tuples over :math:`\mathcal X`) by **independently** drawing n symbols from :math:`\mathcal X` according to :math:`p_X^*`.
+
+    So if :math:`x^n\in \mathcal X^n`, then the probability that :math:`x^n` is chosen as a codeword is:
+
+    .. math:: p^*_X(x^n)=\prod_{i=1}^n p_X^*(x_i)
+
+    and let
+
+    .. math::
+        \mathcal C = \{x^n(1), x^n(2), ..., x^n(2^{nR})\}
+
+    be a possible **codebook** (code), where
+
+    .. math::
+        x^n(w)=(x_1(w),...,x_n(w))
+
+    for :math:`w=1,2,...,2^{nR}` is a codeword for message :math:`w\in \mathcal M=\{1,2,...,2^{nR}\}`
+
+    Then the probability that :math:`\mathcal C` is chosen as our codebook is:
+
+    .. math::
+        :label: α
+
+        P(\mathcal C)=\prod_{w=1}^{2^{nR}}p_{X^n}^*(x^n(w))=\prod_{w=1}^{2^{nR}}\prod_{i=1}^np_X^*(x_i(w))
+
+    How many possible codebooks do we have?
+
+    .. math::
+        |\mathcal X|^{n2^{nR}}
+
+    Consider the following:
+
+    (1) A codebook :math:`\mathcal C` is generated at random as described via :eq:`α` according to :math:`p_X^*`
+    (2) Codebook :math:`C` is recealed to both the transmitter and receiver. We also assume that the channel law :math:`p_{Y|X}` is known by transmitter/receiver.
+    (3) A message :math:`w` is chosen uniformly from set of messages :math:`\mathcal M=\{1,2,...,2^{nR}\}`
+    
+        .. math::
+            P[W=w]=\frac{1}{2^{nR}} && \forall w\in \mathcal M
+    (4) Transmit message :math:`w` by sending its corresponding codeword :math:`x^n(w)` in :math:`\mathcal C` over the channel.
+    (5) At receiver, receive :math:`y^n\in\mathcal Y^n` according to:
+        
+        .. math::
+            P[Y^n=y^n|X^n=x^n(w)]=\prod_{i=1}^np_{Y|X}(y_i|x_i(w))
+
+        since channel is **DMC**
+    (6) Decoding:
+        
+        Reciever guesses which message was sent.
+
+        .. note:: The optimal decoding rule (:math:`\forall n`) is maximum likelihood (ML) decoding
+
+            .. math::
+                \hat w_{ML}=argmax_{w\in\mathcal M}p(y^n|w)
+
+        We use a sub-optimal rule: **typical set decoding**
+
+        .. admonition:: Definition
+
+            Typical Set Decoding
+
+            Decoder rule:
+
+            .. math:: g_{\mathcal C}: \mathcal Y^n\to\{0,1,2,...,2^{nR}\}
+
+            Decoder decodes :math:`g_{\mathcal C}(y^n)=\hat w` was sent if:
+
+            
+            (i) :math:`(x^n(\hat w), y^n)\in A_ε^{(n)}` jointly typical set :math:`A_ε^{(n)}` with :math:`p_X^*p_{Y|X}` **and**
+            (ii) there is no other index :math:`j\in\mathcal M` s.t. :math:`(x^n(j),y^n)\in A_ε^{(n)}`, :math:`\forall j\in\mathcal M,j\neq \hat w`.
+            
+            If no such :math:`\hat w` exists, declare an error and output 0
+
+    (7) Decoding error: :math:`\hat w\neq w`
+

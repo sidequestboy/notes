@@ -4,37 +4,35 @@ Generating Function Example
 Recall,
 
 .. math::
-	G_r(s) = \sum_{n=0}^\infty f_r(n)s^n
+    G_r(s) = \sum_{n=0}^\infty f_r(n)s^n
 
 Where :math:`f_r(n)=P(T_r=n|X_0=0)`
 
 .. math::
-	T_r=\begin{cases}
-	\text{first time walk reaches }r & r\geq 1 \\
-	\text{first time walk returns to 0,}& r=0
-	\end{cases}
+    T_r=\begin{cases}
+    \text{first time walk reaches }r & r\geq 1 \\
+    \text{first time walk returns to 0,}& r=0
+    \end{cases}
 
 .. math::
-	G_1(s) = \frac{1-\sqrt{1-4pqs^2}}{2qs}
+    G_1(s) = \frac{1-\sqrt{1-4pqs^2}}{2qs}
 
 Now consider :math:`G_0(s)`. We have (conditioning on :math:`X_1`):
 
 .. math::
-	f_0(n)=P(T_0=n|X_0=0)
-
-	=P(T_0=n|X_1=1,X_0=0)P(X_1=1|X_0=0)+P(T_0=n|X_1=-1,X_0=0)P(X_1=-1|X_0=0)
-
-	=P(T_0=n|X_1=1)p + P(T_0=n|X_1=-1)q
+    f_0(n)&=P(T_0=n|X_0=0)\\
+          &=P(T_0=n|X_1=1,X_0=0)P(X_1=1|X_0=0)+P(T_0=n|X_1=-1,X_0=0)P(X_1=-1|X_0=0)\\
+          =P(T_0=n|X_1=1)p + P(T_0=n|X_1=-1)q
 
 Consider :math:`P(T_0=n|X_1=-1)`
 
 .. image:: .static/10.02.1.jpg
-	:width: 50%
+    :width: 50%
 
 By temporal and spatial homogeneity,
 
 .. math::
-	P(T_0=n|X_1=-1)=f_1(n-1)
+    P(T_0=n|X_1=-1)=f_1(n-1)
 
 For :math:`P(T_0=n|X_1=1)`, the picture is:
 
@@ -43,45 +41,37 @@ For :math:`P(T_0=n|X_1=1)`, the picture is:
 By flipping the picture around the :math:`x` - axis, interchange roles of :math:`p` and :math:`q`, and using temporal spatial homogeneity,
 
 .. math::
-	P(T_0=n|X_1=1)f_1^*(n-1)
+    P(T_0=n|X_1=1)f_1^*(n-1)
 
 where "*" refers to a random walk where the "up" probability is :math:`q`, and the "down" probability is :math:`p`.
 
 So,
 
 .. math::
-	f_0(n)=f_1^*(n-1)p+f_1(n-1)q
+    f_0(n)=f_1^*(n-1)p+f_1(n-1)q
 
 Multiply by :math:`s^n, n\geq 1` and sum over :math:`n`:
 
 .. math::
-	\sum_{n=1}^\infty f_0(n)s^n=\sum_{n=1}^\infty pf_1^*(n-1)s^n+\sum_{n=1}^\infty qf_1(n-1)s^n
+    \sum_{n=1}^\infty f_0(n)s^n=\sum_{n=1}^\infty pf_1^*(n-1)s^n+\sum_{n=1}^\infty qf_1(n-1)s^n
 
 or
 
 .. math::
-	G_0(s)=psG_1^*(s)+qsG_1(s)
-
-	=ps\frac{1-\sqrt{1-4pqs^2}}{2ps}+qs\frac{1-\sqrt{1-4qps^2}}{2qs}
-
-	=1-\sqrt{1-4pqs^2}
+    G_0(s)&= psG_1^*(s)+qsG_1(s)\\
+          &= ps\frac{1-\sqrt{1-4pqs^2}}{2ps}+qs\frac{1-\sqrt{1-4qps^2}}{2qs}\\
+          &= 1-\sqrt{1-4pqs^2}
 
 Now, we can compute the probability:
 
 .. math::
-	P(\text{walk ever returns to }0|X_0=0)
-
-	=G_0(1)
-
-	=1-\sqrt{1-4pq}
-
-	=1-\sqrt{1-4(1-q)q}
-	
-	=1-\sqrt{1-4+4q^2}
-	
-	=1-\sqrt{(1-2q)^2}
-	
-	=1-|1-2q|
+    P(\text{walk ever returns to }0|X_0=0)\\
+    &=G_0(1)\\
+    &=1-\sqrt{1-4pq}\\
+    &=1-\sqrt{1-4(1-q)q}\\
+    &=1-\sqrt{1-4+4q^2}\\
+    &=1-\sqrt{(1-2q)^2}\\
+    &=1-|1-2q|
 
 If :math:`q=\frac{1}{2}`, then :math:`G_0(1)=1`
 
@@ -94,18 +84,18 @@ Therefore, if :math:`p=\frac{1}{2}`, then state 0 and, by irreducibility, all st
 If :math:`p\neq \frac{1}{2}`, then state 0 (and all states) are transient.
 
 .. note::
-	Note that when :math:`p=\frac{1}{2}`, :math:`T_0` is a proper random variable; i.e. it is real-valued with probability 1.
+    Note that when :math:`p=\frac{1}{2}`, :math:`T_0` is a proper random variable; i.e. it is real-valued with probability 1.
 
-	If :math:`p\neq \frac{1}{2}`, then the probability that :math:`T_0` is real-valued is less than 1 (i.e. :math:`P(T_0=\infty|X_0=0)>0`). In this case, we call :math:`T_0` a defective random variable.
+    If :math:`p\neq \frac{1}{2}`, then the probability that :math:`T_0` is real-valued is less than 1 (i.e. :math:`P(T_0=\infty|X_0=0)>0`). In this case, we call :math:`T_0` a defective random variable.
 
 When :math:`p=\frac{1}{2}`, we can use :math:`G_0(s)` to find :math:`E[T_0]`, via:
 
 .. math::
-	E[T_0]=G_0'(1)
+    E[T_0]=G_0'(1)
 
-	G_0'(s)=\frac{8pqs}{\sqrt{1-4pqs^2}}
+    G_0'(s)=\frac{8pqs}{\sqrt{1-4pqs^2}}
 
-	=\frac{2s}{\sqrt{1-s^2}}
+    =\frac{2s}{\sqrt{1-s^2}}
 
 when :math:`p=q=\frac{1}{2}`.
 
@@ -113,51 +103,43 @@ So, :math:`G_0'(1)=\infty` (i.e. the expected time to return to 0 is :math:`\inf
 
 .. admonition:: Definition
 
-	A recurrent state is called *null recurrent* if the expected time to return is :math:`+\infty`. Otherwise, it is called *positive recurrent*.
+    A recurrent state is called *null recurrent* if the expected time to return is :math:`+\infty`. Otherwise, it is called *positive recurrent*.
 
 .. admonition:: Theorem
 
-	Recurrent classes are closed.
+    Recurrent classes are closed.
 
-	That is, one the Markov chain is in a recurrent class, it will never leave the class (with probability 1).
+    That is, one the Markov chain is in a recurrent class, it will never leave the class (with probability 1).
 
-	Proof:
+    Proof:
 
-	Suppose the recurrent class was not closed.
+    Suppose the recurrent class was not closed.
 
-	Then there must be some state :math:`i` in the class and some state :math:`j` outside the class such that :math:`p_{ij}>0`. But it must be possible to return to state :math:`i` with positive probability since :math:`i` is recurrent. But then, :math:`i` and :math:`j` communicate; so :math:`j` could not have been outside the class.
+    Then there must be some state :math:`i` in the class and some state :math:`j` outside the class such that :math:`p_{ij}>0`. But it must be possible to return to state :math:`i` with positive probability since :math:`i` is recurrent. But then, :math:`i` and :math:`j` communicate; so :math:`j` could not have been outside the class.
 
 .. admonition:: Theorem
 
-	Let :math:`X_i, i=1,2,...`  be i.i.d. random variable and :math:`N` be a random variable independent of :math:`X_i`s on the non-negative integers, with generating functions :math:`G_X(s)` and :math:`G_N(s)` resp.
+    Let :math:`X_i, i=1,2,...`  be i.i.d. random variable and :math:`N` be a random variable independent of :math:`X_i` on the non-negative integers, with generating functions :math:`G_X(s)` and :math:`G_N(s)` resp.
 
-	Let :math:`Y=X_1+X_2+...X_n`
+    Let :math:`Y=X_1+X_2+...X_n`
 
-	Then the generating function of :math:`Y` is:
+    Then the generating function of :math:`Y` is:
 
-	.. math::
-		G_Y(s)=G_N(G_X(S))
+    .. math::
+        G_Y(s)=G_N(G_X(S))
 
-	Proof:
+    Proof:
 
-	We have
+    We have
 
-	.. math::
-		G_Y(s) = E[s^Y]
-
-		=E[s^{X_1+...+X_N}]
-
-		=\sum_{n=0}^{\infty}E[s^{X_1+...+X_N} |N=n]P(N=n)
-
-		=\sum_{n=0}^\infty E[s^{X_1+...+X^n}]P(N=n)
-
-		=\sum_{n=0}^\infty E[\prod_{i=1}^n s^{X_i}]P(X=n)
-
-		=\sum_{n=0}^\infty \prod_{i=1}^n E[s^{X_i}]P(X=n)
-
-		=\sum_{n=0}^\infty \prod_{i=1}^n G_X(s)^n P(X=n)
-
-		=E[G_X(s)^N]
-
-		=G_N(G_X(s))
+    .. math::
+        G_Y(s) &= E[s^Y]\\
+        &=E[s^{X_1+...+X_N}]\\
+        &=\sum_{n=0}^{\infty}E[s^{X_1+...+X_N} |N=n]P(N=n)\\
+        &=\sum_{n=0}^\infty E[s^{X_1+...+X^n}]P(N=n)\\
+        &=\sum_{n=0}^\infty E[\prod_{i=1}^n s^{X_i}]P(X=n)\\
+        &=\sum_{n=0}^\infty \prod_{i=1}^n E[s^{X_i}]P(X=n)\\
+        &=\sum_{n=0}^\infty \prod_{i=1}^n G_X(s)^n P(X=n)\\
+        &=E[G_X(s)^N]\\
+        &=G_N(G_X(s))
 

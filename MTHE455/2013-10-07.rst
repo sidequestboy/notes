@@ -1,0 +1,140 @@
+****************************************************
+Existence and Uniqueness of Stationary Distributions
+****************************************************
+.. note:: these notes were taken practically verbatim from Section 13 of `Prof. Takahara's online notes`_
+
+We now begin to answer some of the main theoretical questions concerning Markov chains. The first, and perhaps most important, question is under what conditions does a stationary distribution exist, and if it exists, is it unique? In general, a Markov chain can have more than one equivalence class. There are really only 3 combinations of equivalence classes hat we need to consider. These are:
+
+(1) when there is only one equivalence class
+(2) when there are two or more classes, all transient
+(3) when there are two or more classes with some transient and some recurrent
+
+As we have mentioned previously when there are two or more classes and they are all recurrent, we can assume that the whole state space is the class that we start the process in, because such classes are closed. We will consider case (3) when we get to Section 4.6 in the text and we will not really consider case (2), as this does not arise very much in practice. Our main focus will be on case (1). When there is only one equivalence class we say the Markov chan is *irreducible*.
+
+We will show that for an irreducible Markov chain, a stationary distribution exists if and only if all states are positive recurrent, and in this case the stationary distribution is unique.
+
+We will start off by showing that if there is at least one recurrent state in our Markov chain, then there exists a solution to the equations :math:`Π=ΠP`, and we will demonstrate that solution by constructing it.
+
+First we'll try to get an intuitive sense of the construction. The basic property of Markov chains can be described as a *starting over* property. If we fix a state :math:`k` and start out the chain in state :math:`k`, then every time the chain returns to state :math:`k`, it starts over in a probabilistic sense. We say that the chain *regenerates* itself. Let us call the time that the chain spends moving about the state space from the initial time 0, where it starts in state :math:`k`, to the time when it first returns to state :math:`k`, a *sojourn* from state :math:`k` back to state :math:`k`. Successive sojourns all "look the same" and so what the chain does during one sojourn sould, on average at least, be the same as what it does on every other sojourn. In particular, for any state :math:`i\neq k`, the number of times the chain visits state :math:`i` during a sojourn should, again on average, be the same as in every other sojourn. If we accept this, then we should accept that the *proportion of time* during a sojourn that the chain spends in state :math:`i` should be the same, again on average, for all sojourns. But this reasoning then leads us to expect that the proportion of time that the chain spends in state :math:`i` *over the long run* should be the same as the proportion of time that the chain spends in state :math:`i` during any sojourn, in particular the first sojourn from state :math:`k` back to state :math:`k`. But this is also how we interpret :math:`Π_i`, the stationary probability of state :math:`i`, as the long run proportion of time the chain spends in state :math:`i`, So this is how we will construct a vector to satisfy the equations :math:`Π=ΠP`. We will let the ith component of our solution be the expected number of visits to state :math:`i` during the first sojourn. This should be proportional to a stationary distribution, if such a distribution exists.
+
+Let us first set our notation. Define
+
+.. math::
+    T_k &= \text{first time the chain visits state }k\text{ starting at time 1}\\
+    N_i &= \text{the number of visits to state }i\text{during the first sojourn}\\
+    ρ_i(k) &= E[N_i|X_0=k]
+
+Thus, :math:`ρ_i(k)` is the expected number of visits to state :math:`i` during the first sojourn from state :math:`k` back to state :math:`k`. We define the (row) vector :math:`ρ(k)=(ρ_i(k))_{k\in S}`, whose ith component is :math:`ρ_i(k)`. Based on our previous discussion, our goal now is to show that the vector :math:`ρ(k)` satisfies :math:`ρ(k)=ρ(k)P`. We should mention here that the sojourn from state :math:`k` back to state :math:`k` may never even happen if state :math:`k` is transient because the chain may never return to state :math:`k`. Therefore, we assume that state :math:`k` is recurrent, and it is exactly at this point that we need to assume it. Assuming state :math:`k` is recurrent, then the chain will return to state :math:`k` with probability 1. Also, the sojourn includes the last step back to state :math:`k`; that is, during this sojourn, state :math:`k` is, by definition, visited exactly once. In other words, :math:`ρ_k(k)=1` (assuming state :math:`k` is recurrent).
+
+One other important thing to observe about :math:`ρ_i(k)` is that if we sum :math:`ρ_i(k)` over all :math:`i\in S`, then that is the expected length of the whole sojourn. But the expected length of the sojourn is the mean time to return to state :math:`k`, given that we start in state :math:`k`. That is, if :math:`μ_k` denotes the mean recurrence time to state :math:`k`, then
+
+.. math::
+    μ_k=\sum_{i\in S}ρ_i(k)
+
+If state :math:`k` is positive recurrent then this sum will be finite and it will be infinite if state :math:`k` is null recurrent.
+
+As we have done in previous examples, we will use indicator functions to represent the number of visits to state :math:`i` during the first sojourn. If we define :math:`I_{\{X_n=i,T_k\geq n\}}` as the indicator of the event that the chain is in state :math:`i` at time :math:`n` and we have not yet revisited state :math:`k` by time :math:`n` (i.e. we are still in the first sojourn), then we may represent the total expected number of visits to state :math:`i` during the first sojourn as
+
+.. math::
+    ρ_i(k)&=\sum_{n=1}^\infty E[I_{\{X_n=i,T_k\geq n\}}|X_0=k]\\
+          &=\sum_{n=1}^\infty P(X_n=i,T_k\geq n| X_0=k)
+
+(We are assuming here that :math:`i\neq k`). Purely for the sake of shorter notation we will let 
+
+.. math::
+    l_{ki}(n)=P(X_n=i,T_k\geq n|X_0=k)
+
+so that now we will write
+
+.. math::
+    ρ_i(k)=\sum_{n=1}^\infty l_{ki}(n)
+
+We proceed by deriving an equation for :math:`l_{ki}(n)`, which will then give an equation for :math:`ρ_i(k)`, and we will see that this equation is exactly the ith equation in :math:`ρ(k)=ρ(k)P`. To derive the equation, we intersect the event :math:`\{X_n=i,T_k\geq n\}` with all possible values of :math:`X_{n-1}`. Doing this is a special case of the following calculation in basic probability.
+
+If :math:`\{B_j\}` is a partition of the probability space such that :math:`P(\cup_j B_j)=1` and :math:`B_j\cap B_{j'}=\{\}`, the empty set, for :math:`j\neq j'`, then for any event :math:`A`,
+
+.. math::
+    P(A)=P(A\cap (\cup_j B_j))=P(\cup_j(A\cap B_j))=\sum_j P(A\cap B_j)
+
+Because the :math:`B_j` and so the :math:`A\cap B_j` are all disjoint.
+
+For :math:`n=1` we have :math:`l_{ki}(1)=P(X_1=i,T_k\geq 1|X_0=k)=p_{ki}`, the 1-step transition probability from state :math:`k` to state :math:`i`. For :math:`n\geq 2`, we let :math:`B_j=\{X_{n-1}=j\}` and :math:`A=\{X_n=i,T_k\geq n\}` in the previous paragraph, to get
+
+.. math::
+    l_{ki}(n) &= P(X_n=i,T_k\geq n|X_0=k)\\
+              &= \sum_{j\in S}P(X_n=i,X_{n-1}=j,T_k\geq n|X_0=k)
+
+First we note that when :math:`j=k`, the above probability is 0 because the event :math:`\{X_{n-1}=k\}` implies that the sojourn is over by time :math:`n-1` while the event :math:`\{T_k\geq n\}` says that the sojourn is not over at time :math:`n-1`. Therefore, their intersection is the empty set. Thus,
+
+.. math::
+    l_{ki}(n) = \sum_{j\neq k}P(X_n=i,X_{n-1}=j,T_k\geq n|X_0=k)
+
+Next, we note that the event above says that, given we start in state :math:`k`, we go to state :math:`j` at time :math:`n-1` without revisiting state :math:`k` in the meantime, and then go to state :math:`i` in the next step. But this is just :math:`l_{kj}(n-1)p_{ji}`, and so
+
+.. math::
+    l_{ki}(n)=\sum_{j\neq k}l_{kj}(n-1)p_{ji}
+
+This is our basic equation for :math:`l_{ki}(n)`, for :math:`n\geq 2`. Now, if we sum this over :math:`n\geq 2` and use the fact that :math:`l_{ki}(n)=p_{ki}` we have
+
+.. math::
+    ρ_i(k)&=\sum_{n=1}^\infty l_{ki}(n)\\
+          &=p_{ki}+\sum_{n=2}^\infty\sum_{j\neq k}l_{kj}(n-1)p_{ji}\\
+          &=p_{ki}+\sum_{j\neq k}[\sum_{n=2}^\infty l_{kj}(n-1)]p_{ji}
+
+But :math:`\sum_{n=2}^\infty l_{kj}(n-1)=\sum_{n=1}^\infty l_{kj}(n)` is equal to :math:`ρ_j(k)`, so we get the equation
+
+.. math::
+    ρ_i(k)=p_{ki}+\sum_{j\neq k}ρ_j(k)p_{ji}
+
+Now we use the fact that :math:`ρ_k(k)=1` to write:
+
+.. math::
+    ρ_i(k)&=ρ_k(k)p_{ki}+\sum_{j\neq k}ρ_j(k)p_{ji}\\
+          &=\sum_{j\in S}ρ_j(k)p_{ji}
+
+But now we are done, because this is exactly the ith equation in :math:`ρ(k)=ρ(k)P`. So we have finished our construction. The vector :math:`ρ(k)`, as we have defined it, has been shown to satisfy the matrix equation :math:`ρ(k)=ρ(k)P`. Moreover, as was noted earlier, if state :math:`k` is a positive recurrent state, then the components of :math:`ρ(k)` have a finite sum, so that
+
+.. math::
+    Π=ρ(k)/\sum_{i\in S}ρ_i(k)
+
+is a stationary distribution. We have shown that if our Markov chain has at least one positive recurrent state, then there exists a stationary distribution :math:`Π`.
+
+Now that we have shown that a stationary distribution exists if there is at least one positive recurrent state, the next thing we want to show is that if a stationary distribution does exist, then all states must be positive recurrent and the stationary distribution is unique.
+
+First, we can show that if a stationary distribution exists, then the Markov chain cannot be transient. If :math:`Π` is a stationary distribution, then :math:`Π=ΠP`. Multiplying both sides by :math:`P^{n-1}` we get :math:`ΠP^{n-1}=ΠP^n`. But we can reduce the left hand side down to :math:`Π` by successively applying the relationship :math:`Π=ΠP`. Therefore, we have the relationship that :math:`Π=ΠP^n` for any :math:`n\geq 1`, which in a more detailed form is
+
+.. math::
+    Π_j=\sum_{i\in S}Π_ip_{ij}(n)
+
+for any :math:`i,j\in S` and all :math:`n\geq 1`, where :math:`p_{ij}(n)` is the n-step transition probability from state :math:`i` to state :math:`j`.
+
+Now consider what happens when we take the limit as :math:`n\to\infty` in the above equality. When we look at
+
+.. math::
+    \lim_{n\to\infty}\sum_{i\in S}Π_ip_{ij}(n)
+
+if we can take the limit inside the summation, then we could use the fact that :math:`\lim_{n\to\infty}p_{ij}(n)=0` for all :math:`i,j\in S` if all states are transient (recall the Corollary we showed at the end of Lecture 10), to conclude that :math:`Π_j` must equal zero for all :math:`j\in S`. It turns out we *can* take the limit inside the summation, but we should be careful because the summation is in general an infinite sum, and limits cannot be taken inside infinite sums in general (recall the example that :math:`+\infty=\lim_{n\to\infty}\sum_{i=1}^\infty\frac{1}{n}\neq\sum_{i=1}^\infty\lim_{n\to\infty}\frac{1}{n}=0` ). The fact that we can take the limit inside the summation here is a consequence of the fact that we can uniformly bound the vector :math:`(Π_ip_{ij}(n))_{i\in S}` by a summable vector (uniformly means we can find a bound that works for all :math:`n`).
+
+In particular, since :math:`p_{ij}(n)\leq 1` for all :math:`n`, we have that :math:`Π_ip_{ij}(n)\leq Π_i` for all :math:`i\in S`. The fact that this allows us to take the limit inside the summation is an instance of a more general result known as the *bounded convergence theorem*. This is a well-known and useful result in probability, but we won't invoke its use here, as we can show directly that we can take the limit inside the summation as follows.
+
+Let :math:`F` be any finite subset of the state space :math:`S`. Then we can write
+
+.. math::
+    \lim_{n\to\infty}\sum_{i\in S}Π_ip_{ij}(n)&=\lim_{n\to\infty}\sum_{i\in F}Π_ip_{ij}(n)+\lim_{n\to\infty}\sum_{i\in F^c}Π_ip_{ij}(n)\\
+    &\leq \lim_{n\to\infty}\sum_{i\in F}Π_ip_{ij}(n)+\sum_{i\in F^c}Π_i
+
+from the inequality :math:`p_{ij}(n)\leq 1`. But for the first finite summation, we can take the limit inside, so we get that the limit of the first sum (over :math:`F`) is 0). Therefore,
+
+.. math::
+    \lim_{n\to\infty}\sum_{i\in S}Π_ip_{ij}(n)\leq \sum_{i\in F^c}Π_i
+
+for any finite subset :math:`F` of :math:`S`. But since :math:`\sum_{i\in S}Π_i=1` is a convergent sum, for any :math:`ε>0` we can take the set :math:`F` so large (but still finite) to make :math:`\sum_{i\in F^c}Π_i<ε`. This implies that
+
+.. math::
+    \lim_{n\to\infty}\sum_{i\in S}Π_ip_{ij}(n)\leq ε
+
+for every :math:`ε>0`. But the only way this can be true is if the above limit is 0. Therefore, going back to our original argument, we see that if all states are transient, this implies that :math:`Π_j=0` for all :math:`j\in S`. This is clearly impossible since the components of :math:`Π` must sum to 1. Therefore, if a stationary distribution exists for an irreducible Markov chain, all states must be recurrent.
+
+We end here with another attempt at some intuitive understanding, this time of why the stationary distribution :math:`Π`, if it did exist, might be unique. In particular, let us try to see why we might expect that :math:`Π_i=\frac{1}{μ_i}`, where :math:`μ_i` is the mean recurrence time to state :math:`i`. Suppose we start the chain in state :math:`i` and then observe the chain over :math:`N` time periods, where :math:`N` is large. Over those :math:`N` time periods, let :math:`n_i` be the number of times that the chain revisits state :math:`i`. If :math:`N` is large, we expect that :math:`\frac{n_i}{N}` is approximately equal to :math:`Π_i`, and indeed should converge to :math:`Π_i` as :math:`N` went to infinity. On the other hand, if the times that the chain returned to state :math:`i` were *uniformly* spread over the times from 0 to :math:`N`, then each time state :math:`i` was visited, the chain would return to state :math:`i` after :math:`\frac{N}{n_i}` steps. For example, if the chain visited state :math:`i` 10 times in 100 steps and the times it returned to state :math:`i` were uniformly spread, then the chain would have returned to state :math:`i` every :math:`100/10=10` steps. In reality, the return times to state :math:`i` vary, perhaps a lot, over the different returns to state :math:`i`. But if we average all these return times (meaning the arithmetic average), then this average behaves very much like the return time when all the return times are the same. So we should expect that the average return time to state :math:`i` should be close to :math:`\frac{N}{n_i}`, when :math:`N` is ver large (note that as :math:`N` grows, so does :math:`n_i`), and as :math:`N` went to infinity, the ratio :math:`\frac{N}{n_i}` should actually converge to :math:`μ_i`, the mean return time to state :math:`i`. Given these two things, that :math:`Π_i` should be close to :math:`\frac{n_i}{N}`, and :math:`μ_i` should be close to :math:`\frac{N}{n_i}`, we should expect their product to be 1; that is, :math:`Π_iμ_i=1` or :math:`Π_i=\frac{1}{μ_i}`. Note that if this relationship holds, then this directly relates the stationary distribution to the null or positive recurrence of the chain, through the mean recurrence times :math:`μ_i`. If :math:`Π_i` is positive, then :math:`μ_i` must be finite, and hence state :math:`i` must be positive recurrent. Also, the stationary distribution must be unique, because the mean recurrence times are unique. Next we will prove more rigorously that the relationship :math:`Π_iμ_i=1` does indeed hold and we will furthermore show that if the stationary distribution exists, then *all* states must be positive recurrent.
+
+.. _`Prof. Takahara's online notes`: http://www.mast.queensu.ca/~stat455/lecturenotes/set3.pdf

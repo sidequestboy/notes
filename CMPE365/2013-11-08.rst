@@ -1,0 +1,46 @@
+.. epigraph::
+    The final test of a theory is its capacity to solve the problems that originated it
+
+    Happy Birthday to George Dansig
+
+    (simplex algorithm to be improved upon by Karmarkar)
+
+**********************************
+Branch & Bound for Task Assignment
+**********************************
+
+Compare routine:
+
+.. code:: python
+
+    P_1 = (L_1, U_1)
+    P_2 = (L_2, U_2)
+
+    if P_1[0] < P_2[0]:
+        return -1 # P_1 < P_2
+    elif P_1[0] == P_2[0]
+        if P_1[1] < P_2[1]:
+            return -1 # P_1 < P_2
+        elif P_1[1] == P_2[1]:
+            return one that has made more assignments so far
+        else: # P_1[1] > P_2[1]
+            return 1
+    else:
+        return 1 # P_1[0] > P_2[0]
+
+Kuhn-Munkres for Task Assignment Algorithm
+==========================================
+.. image:: .static/11.08.01.jpg
+    :width: 50%
+
+T.S.P
+
+.. image:: .static/11.08.02.jpg
+    :width: 50%
+
+.. math::
+    \left[\matrix{\infty && 4 && 3 && 1 && 3 \\
+                  4 && \infty && 2 && 3 && 2 \\
+                  3 && 2 && \infty && 6 && 5 \\
+                  1 && 3 && 6 && \infty && 4 \\
+                  3 && 2 && 5 && 4 && \infty}\right]

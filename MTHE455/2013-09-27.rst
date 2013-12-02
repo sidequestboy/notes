@@ -11,7 +11,7 @@ Recurrence and Transience
 
 		= P(X_n=i\text{ for some }n\geq 1 | X_0=i)
 
-	We say sa state :math:`i` is "recurrent" if :math:`f_i=1`
+	We say a state :math:`i` is "recurrent" if :math:`f_i=1`
 
 	We say a state :math:`i` is "transient" if :math:`f_i<1`
 
@@ -43,7 +43,7 @@ Recurrence and Transience
 
 	Now assume state :math:`i` is not recurrent. Then we will show the expected number of times we return to state :math:`i` given we start in state :math:`i` is finite.
 
-	If state :math:`i is transient, then every time the process returns to state :math:`i`, it is faced with the probability of returning again, with probability or never returning again, with probability :math:`i-f_i`
+	If state :math:`i` is transient, then every time the process returns to state :math:`i`, it is faced with the probability of returning again, with probability or never returning again, with probability :math:`i-f_i`
 
 	The return process is equivalent to a sequence of independent Bernoulli trials, where a "success" is the event we never return to state :math:`i` again, and the probability of success is :math:`1-f_i`.
 
@@ -87,7 +87,7 @@ Recurrence and Transience
 
 	Proof:
 	------
-	state :math:`i` communicates with state :math:`j` :math:`\implies` that there exists :math:`m,n` so that :math:`p_{i,j}(n)>0` & :math:`p_{j,i}(n)>0`
+	state :math:`i` communicates with state :math:`j` :math:`\implies` that there exists :math:`m,n` so that :math:`p_{i,j}(n)>0` & :math:`p_{j,i}(m)>0`
 
 	Also, state :math:`i` is recurrent :math:`\implies` :math:`\sum_{n=0}^\infty p_{i,j}(n)=\infty`
 
@@ -120,7 +120,7 @@ Recurrence and Transience
 
 		\implies \sum_{r=0}^\infty p_{j,j}(r)=\infty
 
-		\implies state :math:`j` is recurrent
+		\implies\text{state }j\text{ is recurrent.}
 
 .. admonition:: Remark
 

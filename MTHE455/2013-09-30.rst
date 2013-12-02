@@ -3,7 +3,7 @@ Generating Functions
 ********************
 
 .. math::
-	G(s) = \sum_{n=0}^\infty a_n s^n
+    G(s) = \sum_{n=0}^\infty a_n s^n
 
 for a sequence :math:`\{a_n\}_{n=0}^\infty`
 
@@ -18,12 +18,12 @@ So, :math:`G'(1) = a_1+2a_2 + ... + na_n+...=E[X]`
 The nth derivative of :math:`G(s)` at :math:`s=0` is
 
 .. math::
-	n!a_n
+    n!a_n
 
 That is, :math:`G^{(n)}(0)=n!a_n` or,
 
 .. math::
-	a_n = \frac{1}{n!}G^{(n)}(0)
+    a_n = \frac{1}{n!}G^{(n)}(0)
 
 So, :math:`G` determines :math:`a_n` for every :math:`n`. So there is a one-to-one correspondence between sequences and generating functions.
 
@@ -40,32 +40,32 @@ Note that :math:`f_r(0)=0` for all :math:`r\geq 0`
 Let
 
 .. math::
-	G_r(s) = \sum_{n=0}^\infty f_r(n)s^n
+    G_r(s) = \sum_{n=0}^\infty f_r(n)s^n
 
 be the generating function of the sequence :math:`\{f_r(0),f_r(1),f_r(2),...\}` for :math:`r \geq 0`,
 
 .. note::
-	.. math::
-		G_1(1) = \text{ probability walk ever goes to state 1.}
+    .. math::
+        G_1(1) = \text{ probability walk ever goes to state 1.}
 
-	and
+    and
 
-	.. math::
-		G_0(1) = \text{ probability walk ever returns to state 0.}
+    .. math::
+        G_0(1) = \text{ probability walk ever returns to state 0.}
 
 First, consider :math:`G_r(s)`, :math:`r>1`. Consider
 
 .. math::
-	f_r(n) = P(T_r=n|X_0=0)
+    f_r(n) = P(T_r=n|X_0=0)
 
-	= \sum_{k=0}^\infty P(T_r=n|T_1=k,X_0=0)P(T_1=k|X_0=0)
+    = \sum_{k=0}^\infty P(T_r=n|T_1=k,X_0=0)P(T_1=k|X_0=0)
 
-	= \sum_{k=0}^n P(T_r=n|T_1=k) f_1(k)
+    = \sum_{k=0}^n P(T_r=n|T_1=k) f_1(k)
 
 because of Markov property, def'n of :math:`f_1(k)`
 
 .. math::
-	= \sum_{k=0}^n f_{r-1}(n-k)f_1(k)
+    = \sum_{k=0}^n f_{r-1}(n-k)f_1(k)
 
 by spatial & temporal homogeneity.
 
@@ -74,101 +74,86 @@ The summand is the nth term of convolution of :math:`\{f_{r-1}(n)\}` and :math:`
 Multiply both sides by :math:`s^n`, sum over :math:`n`, giving:
 
 .. math::
-	G_r(s) = G_{r-1}(s)G_1(s)
+    G_r(s) = G_{r-1}(s)G_1(s)
 
 Recursively then, we obtain:
 
 .. math::
-	G_r(s) = G_1(s)^r
+    G_r(s) = G_1(s)^r
 
 Now look at :math:`G_1(s)`. Now condition on :math:`X_1`.
 
 .. math::
-	f_1(n) = P(T_1=n|X_0=0)
+    f_1(n) = P(T_1=n|X_0=0)
 
-	= P(T_1=n|X_1=1,X_0=0)P(X_1=1|X_0=0) + P(T_1=n|X_1=-1,X_0=0)P(X_1=-1|X_0=0)
+    = P(T_1=n|X_1=1,X_0=0)P(X_1=1|X_0=0) + P(T_1=n|X_1=-1,X_0=0)P(X_1=-1|X_0=0)
 
-	= P(T_1=n|X_1=1,X_0=0)p + P(T_1=n|X_1=-1,X_0=0)(q=1-p)
+    = P(T_1=n|X_1=1,X_0=0)p + P(T_1=n|X_1=-1,X_0=0)(q=1-p)
 
-	= P(T_1=n|X_1=1)p + P(T_1=n|X_1=-1)q
+    = P(T_1=n|X_1=1)p + P(T_1=n|X_1=-1)q
 
 If :math:`n>1`, then :math:`P(T_1=n|X_1=1) = 0`.
 
 Then
 
 .. math::
-	f_1(n)=P(T_1=n | X_1=-1)q
+    f_1(n)=P(T_1=n | X_1=-1)q
 
-	= f_2(n-1)
+    = f_2(n-1)
 
 by temporal and spatial homogeneity.
 
 .. math::
-	f_1(n) = \cases \left \{f_2(n-1)q \text{ for }n>1 \\
-	p \text{ for }n=1 \\
-	0 \text{ for }n=0 \right
+    f_1(n) = \begin{cases} f_2(n-1)q && \text{for }n>1 \\
+    p && \text{for }n=1 \\
+    0 && \text{for }n=0\end{cases}
 
 Then 
 
 .. math::
-	G_1(s) = \sum_{n=0}^\infty s^nf_1(n)
-
-	= ps + \sum_{n=0}^\infty s^n f_2(n-1)q
-
-	= sp + sq\sum_{n=2}^\infty s^{n-1}f_2(n-1)
-
-	= sp + sq\sum_{n=1}^\infty s^n f_2(n)
-
-	= sp + sqG_2(s)
+    G_1(s) &= \sum_{n=0}^\infty s^nf_1(n)\\
+           &= ps + \sum_{n=0}^\infty s^n f_2(n-1)q\\
+           &= sp + sq\sum_{n=2}^\infty s^{n-1}f_2(n-1)\\
+           &= sp + sq\sum_{n=1}^\infty s^n f_2(n)\\
+           &= sp + sqG_2(s)
 
 So,
 
 .. math::
-	G_1(s) = sp+sqG_2(s) = sp + sqG_1(s)^2
-
-	\implies sqG_q(s)^2 - G_1(s) + sp = 0
-
-	\implies \frac{q \pm \sqrt{1-4s^2pq}}{2sq}
+    G_1(s) = sp+sqG_2(s) = sp + sqG_1(s)^2\\
+    \implies sqG_q(s)^2 - G_1(s) + sp = 0\\
+    \implies \frac{q \pm \sqrt{1-4s^2pq}}{2sq}
 
 A boundary condition for :math:`G_1(s)` is :math:`G_1(0)=f_1(0)=0`
 
 The only solution that satisfies the boundary condition is:
 
 .. math::
-	G_1(s) = \frac{1 - \sqrt{1-4s^2pq}}{2sq}
+    G_1(s) = \frac{1 - \sqrt{1-4s^2pq}}{2sq}
 
 (check using l'Hopital's rule that this :math:`\to 0` as :math:`s \to 0`)
 
 Now, 
 
 .. math::
-	G_1(1)=\frac{1-\sqrt{1-4pq}}{2q}
-
-	=\frac{1-\sqrt{1-4(1-q)q}}{2q}
-
-	=\frac{1-\sqrt{1-4q+4q^2}}{2q}
-
-	=\frac{1-\sqrt{(1-2q)^2}}{2q}
-
-	=\frac{1-|1-2q|}{2q}
+    G_1(1)&=\frac{1-\sqrt{1-4pq}}{2q}\\
+          &=\frac{1-\sqrt{1-4(1-q)q}}{2q}\\
+          &=\frac{1-\sqrt{1-4q+4q^2}}{2q}\\
+          &=\frac{1-\sqrt{(1-2q)^2}}{2q}\\
+          &=\frac{1-|1-2q|}{2q}
 
 If :math:`q<\frac{1}{2}`, then
 
 .. math::
-	G_1(1)=\frac{1-(1-2q)}{2q}
-
-	= \frac{2q}{2q} = 1
+    G_1(1)&=\frac{1-(1-2q)}{2q}\\
+          &= \frac{2q}{2q} = 1
 
 If :math:`q<\frac{1}{2}`, then
 
 .. math::
-	G_1(1)=\frac{1-(2q-1)}{2q}
-
-	=\frac{2-2q}{2q}
-
-	=\frac{2(1-q)}{2q}
-
-	=\frac{2p}{2q}
-
-	= \frac{p}{q}
+    G_1(1)&=\frac{1-(2q-1)}{2q}\\
+          &=\frac{2-2q}{2q}\\
+          &=\frac{2(1-q)}{2q}\\
+          &=\frac{2p}{2q}\\
+          &= \frac{p}{q}
 

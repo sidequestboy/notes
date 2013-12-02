@@ -1,0 +1,228 @@
+************************************************************
+Classification of Singularities and Cauchy's Residue Theorem
+************************************************************
+
+What's the Laurent series for
+
+.. math::
+    \frac{1}{z-α}
+
+at :math:`z=α`, :math:`r=0`, :math:`R=\infty`?
+
+It's
+
+.. math::
+    \frac{1}{z-α}
+
+:math:`a_{-1}=1`, all other :math:`a_n=0`.
+
+Singularities (and Poles)
+=========================
+A point :math:`z_0\in\mathbb C` where :math:`f` is undefined at :math:`z_0` but is holomorphic on some deleted disk around :math:`z_0` (:math:`D^*_r(z_0)=\{z\in\mathbb C | 0<|z-z_0|<r\}`) is called an *isolated singularity*.
+
+If :math:`z_0` is an isolated singularity, it has a Laurent series
+
+.. math::
+    f(z) = \sum_{-\infty}^\infty a_n(z-z_0)^n
+
+on :math:`D^*_r(z_0)`.
+
+We say that :math:`z_0` is
+
+(a) A *removable singularity* of :math:`f` if :math:`a_m=0` :math:`\forall m<0`
+   
+    .. admonition:: Example
+
+        .. math::
+            f(z)&=\frac{\sin(z)}{z}\\
+                &=\frac{1}{z}(z-\frac{z^3}{3!}+\frac{z^5}{5!}-...)\\
+                &=1-\frac{z^2}{3!}+\frac{z^4}{5!}-...
+
+        .. note:: no negative powers
+
+    :math:`f(z)` is undefined at 0, but the power series is entire. So we can *extend* :math:`f(z)` to a function holomorphic at zero by letting :math:`f(0)=1`.
+
+    Thus the singularity is removed.
+
+(b) We say :math:`z_0` is a *pole of order* :math:`k` if :math:`a_{-k}\neq 0` and :math:`a_m=0` :math:`\forall m<-k`.
+    
+    So
+
+    .. math::
+        f(z)=\frac{a_{-k}}{(z-z_0)^k}+\frac{a_{1-k}}{(z-z_0)^{k-1}}+...+\frac{a_{-1}}{(z-z_0)}+a_0+a_1(z-z_0)+...
+
+    Equivalently (proof below), if :math:`k\in\mathbb N` is the smallest natural number such that :math:`z_0` is a removable singularity for :math:`(z-z_0)^kf(z)`, i.e. :math:`(z-z_0)^kf(z)` extends to a holomorphic function at and around :math:`z_0`, then the pole has order :math:`k`.
+
+(c) :math:`f` has an *essential singularity* at :math:`z_0` if :math:`a_m\neq 0` for infinitely many negative :math:`m`. Thus, not a pole, not removable.
+
+.. admonition:: Lemma 1
+
+    :math:`F` has a pole of order :math:`k` at :math:`z_0` **iff**
+
+    .. math::
+        F(z)=\frac{g(z)}{(z-z_0)^n}
+
+    where :math:`g(z)` is holomorphic "at" :math:`z_0` and :math:`g(z_0\neq 0`.
+
+    Proof:
+
+    .. math::
+        f(z)=\frac{a_{-k}}{(z-z_0)^k}+\frac{z_{-k+1}}{(z-z_0)^{k-1}}+...+\frac{a_{-1}}{(z-z_0)}+a_0+a_1(z-z_0)+...
+
+    :math:`a_{-k}\neq 0`, Then:
+
+    .. math::
+        g(z)&=a_{-k}+a_{-k+1}(z-z_0)+...+a_{-1}(z-z_0)^{k-1}+a_0(z-z_0)^k+...\\
+        g(z_0)&=a_{-k}\neq 0
+
+    and is holomorphic "at" :math:`z_0`.
+
+    conversely, if
+
+    .. math::
+        f(z)=\frac{g(z)}{(z-z_0)^k}
+
+    then
+
+    .. math::
+        g(z)=b_0+b_1(z-z_0)+b_2(z-z_0)^2+...
+
+    .. math::
+        g(z_0)=b_0\neq 0
+
+    So
+
+    .. math::
+        f(z)=\frac{b_0}{(z-z_0)^k}+\frac{b_1}{(z-z_0)^{k-1}}+...
+
+    has a pole of order :math:`k` at :math:`z_0`.
+
+.. admonition:: Lemma 2
+
+    If :math:`f` has a pole of order :math:`k` at :math:`z_0`, then for all :math:`m<k`, 
+
+    .. math::
+        \lim_{z\to z_0}|(z-z_0)^mf(z)|=
+            \begin{cases}
+                \infty&\text{ for all }m<k\\
+                \text{something finite}&\text{ if }m=k\\
+                0&\text{ for all }m>k
+            \end{cases}
+
+    Proof:
+
+    by previous Lemma,
+
+    .. math::
+        \lim_{z\to z_0}|(z-z_0)^mf(z)|\\
+        =\lim_{z\to z_0}\left|\frac{g(z)}{(z-z_0)^{k-m}}\right|
+
+    where :math:`g(z_0)\neq 0`, :math:`g(z)` is holomorphic in a nbd around :math:`z_0`.
+
+.. admonition:: Theorem
+
+    If :math:`z_0` is an essential singularity of :math:`f` and :math:`D_r^*(z_0)` is a punctured disk at :math:`z_0`, then for all :math:`w\in\mathbb C` (except maybe one :math:`w_0\in \mathbb C`),
+
+    there exists :math:`z\in D_r^*(z_0)` such that :math:`f(z)=w`
+
+    Proof: Beyond scope of this class
+
+    .. admonition:: Example
+
+        for all :math:`ε>0`, for all :math:`q\in\mathbb C`, :math:`w\neq 0`, there exists :math:`z\in D_ε^*(0)` such that
+
+        .. math::
+            e^{\frac{1}{z}}=w
+
+Zeros of f
+==========
+If :math:`f` is holomorphic at and around :math:`z_0`, we say :math:`f` has a zero of order :math:`k>0` if the following equivalent things hold:
+
+(a) :math:`f(z)=a_k(z-z_0)^k+a_{k+1}(z-z_0)^{k+1}+...`, :math:`a_k\neq 0` and :math:`a_m=0` for all :math:`m<k`
+(b) :math:`f(z_0)=a_0=0`, :math:`f'(z_0)=a_1=0`, ..., :math:`f^{(k-1)}(z-z_0)=(k-1)!a_{k-1}=0`
+(c) We can write
+    
+    .. math::
+        f(z)=(z-z_0)^kg(z)
+
+    where :math:`g` is holomorphic at :math:`z_0` and :math:`g(z_0)\neq 0`.
+
+Proof: See Lemma 1
+
+We can say :math:`z_0` is "an order zero zero" if :math:`f(z_0)\neq 0`.
+
+Why? So we can generalize the concept of "zeros" to include poles.
+
+.. admonition:: Definition
+
+    We say :math:`z_0` is a "zero" of order :math:`k\in\mathbb Z` if
+
+    .. math::
+        f(z)=(z-z_0)^kg(z)
+
+    where :math:`g` is holomorphic at :math:`z_0` and :math:`g(z_0)\neq 0`.
+
+.. admonition:: Definition (Residue)
+
+    If :math:`f` has an isolated singularity at :math:`z_0`, its *residue* is the :math:`a_{-1}` coefficient. We write:
+
+    .. math::
+        Res(f,z_0)=a_{-1}
+
+.. admonition:: Lemma 3
+
+    If :math:`z_0` is an isolated singularity of :math:`f` which is holomorphic on :math:`D_ε^*(z_0)`, then for :math:`γ` a counterclockwise circle around :math:`z_0` in :math:`D_ε^*(z_0)`, then
+
+    .. math::
+        \int_γ f(w)dw=2πi Res(f,z_0)
+
+    Proof:
+
+    .. math::
+        \int_γ f(w)dw&=\int_γ\sum_{n=-k}^\infty a_n(w-z_0)^ndw\\
+                     &=\sum_{n=-k}^\infty a_n\int_γ(w-z_0)^ndw\\
+                     &=2πia_{-1}\\
+                     &=2πiRes(f,z_0)
+
+.. admonition:: Definition
+
+    :math:`f` is *meromorphic* on :math:`D` if for all :math:`z_0\in D`, :math:`f` is analytic on an open neighbourhood of :math:`z_0` or :math:`f` has a pole at :math:`z_0`.
+
+.. admonition:: Theorem (Cauchy's Residue Theorem)
+
+    if :math:`f` is meromorphic on :math:`D` and :math:`γ` is a simple closed counterclockwise curve in :math:`D` with interior in :math:`D` and finitely many poles :math:`\{z_1,...,z_n\}` in the interior of :math:`γ`, then
+
+    .. math::
+        \int_γf(w)dw=\sum_{j=1}^n2πiRes(f,z)
+
+    Proof:
+
+    By Cauchy's Theorem:
+
+    .. image:: .static/11.16.1.png
+        :width: 50%
+
+    Use Lemma 3.
+
+.. admonition:: Residue Lemma
+
+    Assume all functions are holomorphic around :math:`z_0`
+
+    (1) :math:`f(z)=\frac{g(z)}{h(z)}` where :math:`g` and :math:`h` have zero of same order at :math:`z_0`, then :math:`Res(f,z_0)=0`
+    (2) If :math:`\lim_{z\to z_0}(z-z_0)f(z)` exists, :math:`f(z)` has at most a simple pole at :math:`z_0` and
+        
+        .. math::
+            \lim_{z\to z_0}(z-z_0)f(z)=Res(f,z_0)
+
+    (3) :math:`f(z)=\frac{g(z)}{h(z)}`, :math:`g(z_0)\neq 0`, :math:`h(z_0)=0`, and :math:`h'(z_0)\neq 0`, then :math:`Res(f,z_0)=\frac{g(z_0)}{h'(z_0)}`
+    (4) :math:`f(z)=\frac{g(z)}{(z-z_0)^2}`, :math:`g(z_0)\neq 0` then :math:`Res(f,z_0)=g'(z_0)`.
+    (5) :math:`f(z)=\frac{g(z)}{h(z)}` where :math:`g` has a zero of order :math:`l` at :math:`z_0` and :math:`h` has a zero of order :math:`k+l>0` at :math:`z_0`
+        
+        Then :math:`f` has a pole of order :math:`k` at :math:`z_0` and
+
+        .. math::
+            Res(f,z_0)=\frac{1}{(k-1)!}\lim{z\to z_0}φ^{(k-1)}(z)
+
+        where :math:`φ(z)=(z-z_0)^kf(z)`
+
+    Proof: Follows from Laurent Expansion (see next lecture)

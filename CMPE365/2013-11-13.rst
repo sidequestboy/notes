@@ -1,0 +1,52 @@
+.. epigraph::
+    Keep your eyes open to your mercies
+
+    Happy Birthday to Robert Louis Stevenson
+
+    "Whatever your morals are, if they make you dreary, they are **wrong**"
+
+Class Choice
+============
+Linear Programming
+
+Consider this Problem
+=====================
+
+:math:`n` persons, :math:`n` tasks,
+
+:math:`w(p_i,t_j)=` cost of assigning person :math:`i` to task :math:`j`.
+
+Find **minimum cost assignment**
+
+This can be drawn as either a matrix or a *bipartite graph*.
+
+Complete bipartite graph, all edges have weight :math:`\geq` 0. We want a perfect matching, i.e. one that includes *every* vertex.
+
+.. image:: .static/11.13.1.png
+    :width: 30%
+
+A *feasible* vertex labelling:
+
+.. math::
+    l: V\to\mathbb N
+
+
+:math:`\forall i,j`, :math:`l(p_i)+l(t_j)\leq w(p_i,t_j)`
+
+Let :math:`G_l` be the set of edges where equality holds. :math:`l(p_i)+l(t_j)=w(p_i,t_j)`
+
+.. admonition:: Theorem
+
+    Suppose :math:`l` is feasible & :math:`G_l` contains a *complete* matching :math:`M`. Then :math:`M` is a *minimum cost matching*.
+
+    Proof:
+
+    Let :math:`M'` be any complete matching. Then 
+
+    .. math::
+        w(M')&=\sum_{(p_i,t_j)\in M'}w(p_i,t_j)\\
+        &\geq\sum_{(p_i,t_j)\in M'}l(p_i)+l(t_j)\\
+        &=\sum_{p_i\in M'}l(p_i)+\sum_{t_j\in M'}l(t_j)\\
+        &=w(M)
+
+    Therefore, :math:`M` is *optimal*.

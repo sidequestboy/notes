@@ -1,0 +1,102 @@
+**********************
+Final Exam Information
+**********************
+Dec. 4, Wednesday, 7PM-10PM, Dunning Hall, Ground Floor
+
+- 8.5"x11" sheet of notes, both sides
+- calculator, non-programmable
+- 5 questions for 855, 4 for 455
+  
+  - 455 can do any 4 of the 5, but question 5 is written for the 855 students.
+- Question 1 on Branching Processes
+  
+  - Concerns probability of ultimate extinction
+- Question 2 on Discrete-Time Markov Chains
+- Question 3 on the Poisson Process
+- Question 4 on Continuous-Time Markov Chains
+  
+  - Will require calculation of stationary distribution for the process and for the embedded jump chain.
+- Question 5 related to the Poisson process...
+
+.. admonition:: Example (Q1: Branching Process)
+
+    .. admonition:: Recall
+
+        The extinction probability is the smallest solution to :math:`η=G(η)`, where :math:`G` is the family size generating function.
+
+    Suppose family size is :math:`Geometric(p)` on :math:`\{0,1,2,...\}`:
+
+    .. math::
+        P(\text{family size is }k)=pq^k
+
+    where :math:`q=1-p`, for :math:`k=0,1,2,...`
+
+    Suppose each child born survives with probability :math:`r`, and does not survive to the next generation with probability :math:`1-r`
+
+    Let :math:`X` be the number of offspring of any given individual that make it to next generation.
+
+    .. math::
+        P(X=k)=\sum_{n=k}^\infty P(X=k|Y=n)pq^n
+
+    where :math:`Y\sim Geometric(p)`
+
+    .. math::
+        P(X=k)=\sum_{n=k}^\infty {n choose k}r^k(1-r)^{n-k}pq^n
+
+    For the extinction probability, we want the generating function of :math:`X`:
+
+    .. math::
+        G_X(s)&=\sum_{k=0}^\infty s^kP(X=k)\\
+            &=\sum_{k=0}^\infty s^k\sum_{n=k}^\infty {n choose k}r^k(1-r)^{n-k}pq^n\\
+            &=\sum_{n=0}^\infty pq^n \sum_{k=0}^n {n choose k}(sr)^k(1-r)^{n-k}\\
+            &=\sum_{n=0}^\infty pq^n (sr+1-r)^n\\
+            &=p\sum_{n=0}^\infty (q(sr+1-r))^n\\
+            &=\frac{p}{1-q(sr+1-r)}
+
+    Extinction probability satisfies:
+
+    .. math::
+        η=\frac{p}{1-q(ηr+1-r)}
+
+    or
+
+    .. math::
+        η(1-q(ηr+1-r))=p\\
+        qrη^2 -(1-q(1-r))η+p=0
+
+.. admonition:: Example (2012 Final #4(a))
+
+    Firefly alternates between illuminated and not illuminated. At time :math:`t`, the firefly is illuminated if and only if the most recent event before time :math:`t` in a Poisson process with rate :math:`λ` occured in :math:`[t-1,t]`.
+
+    At time :math:`t`, what is the probability that the firefly is illuminated?
+
+    Given :math:`N(t)=n`, the most recent event time is distributed as :math:`max(U_1,...,U_n)`, where the :math:`U_i` are independent :math:`Unif(0,t)` random variables.
+
+    So if :math:`A_t` is the event that the firefly is illuminated at time :math:`t` and :math:`L(t)` is the time of the most recent event before time :math:`t`, then
+
+    .. math::
+        P(A_t)&=\sum_{n=1}^\infty P(A_t | N(t)=n)P(N(t)=n)\\
+            &=\sum_{n=1}^\infty P(L(t)\in [t-1,t]|N(t)=n)P(N(t)=n)
+
+    .. math::
+        P(L(t)in [t-1,t]|N(t)=n) &= P(max(U_1,...,U_n)\geq t-1)\\
+            &=1-P(max(U_1,...,U_n) < t-1)\\
+            &= 1-P(U_1<t-1,...,U_n<t-1)\\
+            &=1-\left(\frac{t-1}{t}\right)^n
+
+    So now,
+
+    .. math::
+        P(A_t)=\sum_{n=1}^\infty \left(1-\left(\frac{t-1}{t}\right)^n\right)\frac{(λt)^n}{n!}e^{-λt}
+
+    ... Taylor series expansion.
+
+.. admonition:: Example (Final Exam 2012 Problem 5(a))
+
+    If a discrete-time Markov chain is time-reversible, then show that the period of any state cannot be greater than 2.
+
+    Suppose :math:`p_{ij}>0` for some :math:`j`. Then :math:`p_{ji}>0` by time reversibility.
+
+    Then :math:`p_{ii}(2)\geq p_{ij}p{ji}>0`. Thus, the period must divide 2. QED
+
+

@@ -1,0 +1,151 @@
+**************************************************************
+Example of Probability Generating Function (PGF) for :math:`Π`
+**************************************************************
+Today we'll start with another example illustrating the calculation of the mean time to return to a state in a Markoc chain by calculating the stationary probability of that state, but this time though the use of the probability generating function (pgf) of the stationary distribution.
+
+.. admonition:: Example
+
+    I'm taking a lot of courses this term. Every Monday ! get 2 new assignments with probability :math:`\frac{2}{3}` and 3 new assignments with probability :math:`\frac{1}{3}`. Every week, between Monday morning and Friday afternoon I finish 2 assignments (they might be new ones or ones unfinished from previous weeks). If I have any unfinished assignments on Friday afternoon, then I find that over the weekend, independently of anything else, I finish one assignment by Monday morning with probability :math:`c` and don't finish any of them with probability :math:`1-c`. If the term goes on forever, how many weeks is it before I can expect a weekend with no homework to do?
+
+    Solution:
+
+    Let :math:`X_n` be the number of unfinished homeworks at the end of the nth Friday after term starts, where :math:`X_0=0` is the number of unfinished homeworks on the Friday before term starts. Then :math:`\{X_n: n\geq 0\}` is a Markov chain with state space :math:`S=\{0,1,2,...\}`. Some transition probabilities are, for example:
+
+    :math:`0\to 0` with probability :math:`\frac{2}{3}` (2 new ones on Monday)
+
+    :math:`0\to 1` with probability :math:`\frac{1}{3}` (3 new ones on Monday)
+
+    :math:`1\to 0` with probability :math:`\frac{2c}{3}`
+
+    :math:`1\to 1` with probability :math:`\frac{c}{3}+\frac{2(1-c)}{3}=\frac{(2-c)}{3}`
+
+    :math:`1\to 2` with probability :math:`\frac{(1-c)}{3}`
+
+    and, in general, if I have :math:`i` unfinished homeworks on a Friday afternoon, then the transition probabilities are given by
+
+    :math:`i\to i-1` with probability :math:`\frac{2c}{3}`
+
+    :math:`i\to i` with probability :math:`\frac{c}{3}+\frac{2(1-c)}{3}=\frac{(2-c)}{3}`
+
+    :math:`i\to i+1` with probability :math:`\frac{(1-c)}{3}`
+
+    The transition probability matrix for this Markov chain is given by
+
+    .. math::
+        P=\begin{array}{l|ccccccc}
+          & 0 & 1 & 2 & 3 & 4 & ... & \\
+        \hline
+        0 & \frac{2}{3} & \frac{1}{3} \\
+        1 & q & r & p & 0 & ... \\
+        2 & 0 & q & r & p & 0 & ... \\
+        3 & 0 & 0 & q & r & p & 0 & ... \\
+        4 & 0 & 0 & 0 & ... & ... & ... \\
+        ... & ... & ... & ...
+        \end{array}
+
+    where
+
+    .. math::
+        q&=\frac{2c}{3}\\
+        r&=\frac{(2-c)}{3}\\
+        p&=\frac{(1-c)}{3}
+
+    and :math:`q+r+p=1`. In the parlance of Markov chains, this process is an example of a *random walk with a reflecting barrier at 0*.
+
+    We should remark here that it's not at all clear that this Markov chain always has a stationary distribution for every :math:`c\in[0,1]`. On the one hand, if :math:`c=1`, so that I always do a homework over the weekend if there is one to do, then I will never have more than one unfinished homework on a Friday afternoon. This case corresponds to :math:`p=0`, and we can see from the transition matrix that states :math:`\{0,1\}` will be a closed, positive recurrent class, while the states :math:`\{2,3,...\}` will be a transient class of states. On ethe other extreme, if :math:`c=0`, so that I never do a homework on the weekend, then every time I get 3 new homeworks on a Monday, my backlog of unfinished homeworks will increase by one permanently. In this case :math:`q=0` and one can see from the transition matrix that I never reduce my number of unfinished homeworks, and eventually my backlog of unfinished homeworks will go off to infinity. We call such a system *unstable*. Stability can ofter be a major design issue for complex systemds that service jobs/tasks/processes (generically customers). A stochastic model can be invaluable for providing insight into the parameters affecting the stability of a system. For our example here, there should be some theshold value :math:`c_0` such that the system is stable for :math:`c>c_0` and unstable for :math:`c<c_0`. One valuable use of staionary distributions comes from the mere fact of their existence. If we can find those values of :math:`c` for which a stationary distribution evists, then it is for those values of :math:`c` that the system is stable.
+
+    So we look for a stationary distribution. Note that if we find one, then the answer to our question of how many weeks do we have to wait on average for a homework-free weekend is :math:`μ_0=\frac{1}{Π_0}`, then mean recurrence time to state 0, our starting state. A stationary distribution :math:`Π=(Π_0,Π_1,...)` must satisfy :math:`Π=ΠP`, which we write out as
+
+    .. math::
+        Π_0&=\frac{2}{3}Π_0+qΠ_1\\
+        Π_1&=\frac{1}{3}Π_0+rΠ_1+qΠ_2\\
+        Π_2&=pΠ_1+rΠ_2+qΠ_3\\
+        ...\\
+        Π_i&=pΠ_{i-1}+rΠ_i+qΠ_{i+1}\\
+        ...
+
+    A direct attack on this system of linear equations is possible, by expressing :math:`Π_i` in terms of :math:`Π_0`, and then summing :math:`Π_i` over all :math:`i` to get :math:`Π_0` using the constraint that :math:`\sum_{i=0}^\infty=1`. However, this approach is somewhat cumbersome. A more elegant approach is to use the method of generating functions. This method can often be applied to solve a linear system of equations, especially when there are an infinite number of equations, in situations where each equation only involves variables "close to one another" (for example, each of the equations above involves only two or three consecutive variables) and all, or almost all, of the equations have a regular form (as in :math:`Π_ipΠ_{i-1}+rΠ_i+qΠ_{i+1}`).
+
+    By multiplying the ith equation above by :math:`s^i` and then summing over :math:`i`, we collapse the above infinite set of equations into just a single equation for the generating function.
+
+    Let :math:`G(s)=\sum_{i=0}^\infty s^iΠ_i` denote the generating function of the stationary distribution :math:`Π`. If we multiply the ith equation in :math:`Π=ΠP` by :math:`s^i` and sum over :math:`i`, we obtain
+
+    .. math::
+        sum_{i=0}^\infty s^iΠ_i=\frac{2}{3}Π_0+\frac{1}{3}Π_0s+p\sum_{i=2}^\infty s^i Π_{i-1}+r\sum_{i=1}^\infty s^iΠ_i+q\sum_{i=0}^\infty s^iΠ_{i+1}
+
+    The left hand side is just :math:`G(s)` while the sums on the right hand side are not difficult to express in terms of :math:`G(s)` with a little bit of manipulation. In particular,
+
+    .. math::
+        p\sum_{i=2}^\infty s^i Π_{i-1}&=ps\sum_{i=2}^\infty s^{i-1}Π_{i-1}\\
+                                      &=ps\sum_{i=1}^\infty s^iΠ_i\\
+                                      &=ps\sum_{i=0}^\infty s^i Π_i-psΠ_0\\
+                                      &=psG(s)-psΠ_0
+
+    Similarly,
+
+    .. math::
+        r\sum_{i=1}^\infty s^iΠ_i&=r\sum{i=0}^\infty s^iΠ_i-rΠ_0\\
+                                 &=rG(s)-rΠ_0
+
+    and
+
+    .. math::
+        q\sum_{i=0}^\infty s^iΠ_{i+1}&=\frac{q}{s}\sum_{i=0}^\infty s^{i+1}Π_{i+1}=\frac{q}{s}\sum_{i=1}^\infty s^iΠ_i\\
+        &=\frac{q}{s}\sum_{i=0}^\infty s^iΠ_i-\frac{q}{s}Π_0\\
+        &=\frac{q}{s}G(s)-\frac{q}{s}Π_0
+
+    Therefore, the equation we obtain for :math:`G(s)` is
+
+    .. math::
+        G(s)=\frac{2}{3}Π_0+\frac{s}{3}Π_0+psG(s)-psΠ_0+rG(s)-rΠ_0+\frac{q}{s}G(s)-\frac{q}{s}Π_0
+
+    Collecting like terms, we have
+
+    .. math::
+        G(s)[1-ps-r-\frac{q}{s}]=Π_0[\frac{2}{3}+\frac{s}{3}-ps-r-\frac{q}{s}]
+
+    To get rid of the fractions, we'll multiply both sides by :math:`3s`, giving
+
+    .. math::
+        G(s)[3s-3ps^2-3rs-3q]&=Π_0[2s+s^2-3ps^2-3rs-3q]\\
+        \implies G(s)=\frac{Π_0[2s+s^2-3ps^2-3rs-3q]}{[3s-3ps^2-3rs-3q]}
+
+    In order to determine the unknown :math:`Π_0` we use the boundary condition :math:`G(1)=1`, which must be satisfied if :math:`Π` is to be a stationary distribution. This boundary condition also gives us a way to check for the values of :math:`c` for which the stationary distribution exists. If a stationary distribution does not exist, then we will not be able to satisfy the condition :math:`G(1)=1`. Plugging in :math:`s=1`, we obtain
+
+    .. math::
+        G(1)=\frac{Π_0(2+1-3p-3r-3q)}{3-3p-3r-3q}
+
+    However, we run into a problem here due to the fact that :math:`p+r+q=1`, which means that :math:`G(1)`  is an indeterminate form
+
+    .. math::
+        G(1)=[\frac{0}{0}]
+
+    Therefore, we use L'Hopital's rule to determine the limiting value of :math:`G(s)` as :math:`s\to 1`. This gives:
+
+    .. math::
+        \lim_{s\to 1}G(s)&=Π_0\frac{\lim_{s\to 1}(2+2s-6ps-3r)}{\lim_{s\to 1}(3-6ps-3r)}\\
+        &=Π_0\frac{4-6p-3r}{3-6p-3r}
+
+    We had previously defined our quantities :math:`p,r` and :math:`q` in terms of :math:`c` to make it easier to write down the transition matrix :math:`P`, but now we would like to re-express these back in terms of :math:`c` to make it simpler to see when :math:`\lim_{s\to 1}G(s)=1` is possible. Recall that :math:`p=\frac{(1-c)}{3}`, :math:`r={(2-c)}{3}` and :math:`q=\frac{2c}{3}`, so that :math:`4-6p-3r=4-2(1-c)-(2-c)=3c` and :math:`3-6p-3r=3c-1`. So in terms of :math:`c`, we have
+
+    .. math::
+        \lim_{s\to 1} G(s)=Π_0\frac{3c}{3c-1}
+
+    In order to have a proper stationary distribution, we must have the left hand side equal to 1 and we must have :math:`0<Π_0<1`. Together, these imply that we must have :math:`\frac{3c}{3c-1}>1`, which will only be true if :math:`3c-1>0`, or :math:`c>\frac{1}{3}`. Thus, we have found our threshold value of :math:`c_0=\frac{1}{3}` such that the system is stable (since it has a stationary distribution) for :math:`c>c_0` and is unstable for :math:`c\leq c_0`. Assuming :math:`c>\frac{1}{3}` so that the system is stable, we may now solve for :math:`Π_0` through the relationship
+
+    .. math::
+        1&=Π_0\frac{3c}{3c-1}\\
+        \implies Π_0&=\frac{3c-1}{3c}
+
+    The answer to our original question of what is the mean number of weeks until a return to state 0 is
+
+    .. math::
+        \frac{1}{μ_0}=\frac{3c}{3c-1}
+
+    Observe that we have found a mean return time of interest, :math:`μ_0`, in terms of a system parameter, :math:`c`. More generally, a typical thing we try to do in stochastic modeling is find out how some performance measure of interest depends, explicitly or even just qualitatively, on one or more system parameters. In particular, if we have some control over one or more of those system parameters, then we have a useful tool to help us design our system. For example, if I wanted to design my homework habits so that I could expect to have a homework-free weekend in siz weeks, I can solve for :math:`c` to make :math:`μ_0\leq 6`. This gives :math:`μ_0=\frac{3c}{3c-1}\leq 6\implies 3c\leq 18c-6` or :math:`c\geq \frac{2}{5}`.
+
+    Let us now return to some general theory. We've already proved one of the main general theorems concerning Markov chains, that we emphasized last lecture. This was the theorem concerning the conditions for the existence and uniqueness of a stationary distribution for a Markov chain. We reiterate here that there were no conditions on the perios of the Markov chain for that result. The other main theoretical result concerning Markov chains has to do with the limiting probabilities :math:`\lim_{n\to\infty}p_{ij}(n)`. For this result, the period does matter. Let's state what that result is now:
+
+    When the stationary distribution exists *and* the chain is aperiodic (so the chain is irreducible, positive recurrent, and aperiodic), :math:`p_{ij}(n)` converges to the stationary probability :math:`Π_j` as :math:`n\to\infty`. Note that the limit does not depend on the starting state :math:`i`. This is quite important. In words, for an irreducible, positive recurrent, aperiodic Markov chain, no matter where we start from and *no matter what our initial distribution is*, if we let the chain run for a long time, then the distribution of :math:`X_n` will be very much like the stationary distribution :math:`Π`.
+
+    An important first step in proving the above limiting result is to show that for an irreducible, positive recurrent, aperiodic Markov chain, the n-step transition probability :math:`p_{ij}(n)` is strictly positive for *all* :math:`n` "big enough". That is, there exists some integer :math:`M` such that :math:`p_{ij}(n)>0` for all :math:`n\geq M`. To show this we will need some results from basic number theory. Stay tuned.

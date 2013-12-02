@@ -1,0 +1,13 @@
+****************************************************************************
+Proof of Cauchy's Theorem (version 3), Consequences, Cauchy Integral Formula
+****************************************************************************
+.. admonition:: Recall
+
+    If :math:`f:D\to\mathbb C` is holomorphic and :math:`γ_0,γ_1` are closed loops homotopic in :math:`D`,
+
+    .. math::
+        \int_{γ_0}f(z)dz=\int_{γ_1}f(z)dz
+
+Proof
+-----
+blegh

@@ -1,0 +1,175 @@
+***************************************************************
+Proof of Lossless Variable-Length Source-Coding Theorem for DMS
+***************************************************************
+Proof
+-----
+(i) Forward Part: For each source n-tuple :math:`x^n\in\mathcal X^n`, choose the length :math:`l_{X^n}` of its associated codeword according to:
+
+.. math::
+    l_{X^n}=\lceil -\log_D p_{X^n}(x^n)\rceil
+
+where :math:`\lceil x\rceil` is the *smallest* integer :math:`\geq x`
+
+Now:
+
+.. math::
+    l_{X^n}=\lceil -\log_Dp_{X^n}(x^n)\rceil\implies l_{X^n}\geq-\log_D p_{X^n}(x^n)
+
+    \implies D^{-lx^n}\leq p_{X^n}(x^n)
+
+    \implies \sum_{x^n\in\mathcal X^n}D^{-lx^n}\leq\sum_{x^n\in\mathcal X^n}p_{X^n}(x^n)=1
+
+Therefore,
+
+.. math::
+    \sum_{x^n\in\mathcal X^n}D^{l_{x^n}}\leq 1
+
+and Kraft's inequality is satisfied for these lengths.
+
+Therefore, there exists a D-ary prefix code for the source with the above codeword lengths (by previous theorem)
+
+Furthermore, for this prefix code,
+
+.. math::
+    l_{X^n}=\lceil -\log_D p_{X^n}(x^n)\rceil\implies l_{X^n}<-\log_D p_{X^n}(x^n)+1
+
+    \implies \sum_{x^n\in\mathcal X^n}p_{X^n}(x^n)l_{X^n}<-\sum_{x^n\in\mathcal X^n}p_{X^n}(x^n)\log_D P_{X^n}(x^n)+\sum_{X^n}p_{X^n}(x^n)
+
+    =H_D(X^n)+1
+
+Therefore,
+
+.. math::
+    \bar l<H_D(X^n)+1
+
+Therefore,
+
+.. math::
+    \bar R=\frac{\bar l}{n}<\frac{H_D(X^n)}{n}+\frac{1}{n}
+
+Since the source is a DMS, we have that
+
+.. math::
+    H_D*X^n)=nH_D(X)
+
+Therefore, for a DMS,
+
+.. math::
+    \bar R<H_D(x)+\frac{1}{n}
+
+choosing :math:`n` large enough (s.t. :math:`\frac{1}{n}<\epsilon`) completes the proof.
+
+(ii) Converse Part:
+
+Consider a UD code :math:`f:\mathcal X^n\to\{0,...,D-1\}^*`
+
+and let :math:`l_{X^n}` be the length of codeword :math:`f(x^n)` associated to :math:`x^n`. Then:
+
+.. math::
+    H_D(X)-\bar R=\frac{1}{n}\left[\frac{nH(X)}{\log_2 D}-\bar l\right]
+
+where :math:`H_D(X)` is in base :math:`D` and :math:`H(X)` is in base 2.
+
+.. math::
+    =\frac{1}{n\log_2 D}\left[nH(X)-\bar l \log_2 D\right]
+
+    =\frac{1}{n\log_2 D}\left[H(X^n)-\bar l \log_2 D\right]
+
+Since source is DMS
+
+.. math::
+    =\frac{1}{n\log_2 D}\left[-\sum_{X^n}p_{X^n}p_{X^n}(x^n)\log_2 p_{X^n}(x^n)-\sum_{X^n}p_{X^n}(x^n)l_{x^n} \log_2 D\right]
+
+    =\frac{1}{n\log_2 D}\left[-\sum_{X^n}p_{X^n}p_{X^n}(x^n)\log_2 p_{X^n}(x^n)+\sum_{X^n}p_{X^n}(x^n) \log_2 D^{-l_{x^n}}\right]
+
+    =\frac{1}{n\log_2 D}\left[\sum_{X^n}p_{X^n}(x^n)\log_2\frac{D^{-l_{x^n}}}{p_{X^n}(x^n)}\right]
+
+    \leq \frac{1}{\ln 2}\frac{1}{n\log_2 D}\left[\sum_{X^n}p_{X^n}(x^n)(\frac{D^{-l_{x^n}}}{p_{X^n}(x^n)}-1)\right]
+
+    =\frac{1}{\ln 2}\frac{1}{n\log_2 D}\left[\sum_{X^n}D^{-l_{x^n}}-1\right]
+
+But since the code is UD, it must satisfy Kraft's inequality:
+
+.. math::
+    \sum_{X^n}D^{-l_{x^n}}\leq 1
+
+Therefore, for any :math:`n`, every UD code :math:`f:\mathcal X^n\to\{0,1,...D-1\}^*` satisfies:
+
+.. math::
+    H_D(X)-\bar R\leq 0
+
+    \iff \bar R\geq H_D(X)
+
+
+.. admonition:: note
+
+    Note that :math:`\bar R=H_D(X)` iff :math:`p_{X^n}(x^n)=D^{-l_{X^n}}` for all :math:`x^n\in\mathcal X^n` (D-adic distribution)
+
+Conclusion:
+
+For DMS, the source entropy :math:`H_D(X)` measured in D-ary code symbols/source symbol, is the *smallest* variable length lossless compression rate (for :math:`n` sufficiently large).
+
+.. admonition:: Corollary
+
+    For any :math:`n`, there exists a *prefix* (hence UD) VLC code
+
+    .. math::
+        f: \mathcal X^n\to\{0,1,...D-1\}^*
+
+    for a DMS :math:`\{X_i\}_{i=1}^\infty` s.t.
+
+    .. math::
+        H_D(X)\leq \bar R<H_D(X)+\frac{1}{n} (*)
+
+For a general source, the above statement holds with (*) replaced by:
+
+.. math::
+    \frac{H_D(X^n)}{n}\leq \bar R<\frac{H_D(X^n)}{n}+\frac{1}{n}
+
+.. admonition:: Theorem
+
+    Lossless Variable-Length Source Coding Theorem for Sources with Memory: stationary sources
+
+    Consider a *stationary* source :math:`\{X_i\}_{i=1}^\infty` with finite alphabet :math:`\mathcal X`, and entrpy rate :math:`H_D(\mathcal X)`. Then:
+
+    (i) For any :math:`\epsilon>0`, there exists prefix (hence UD) code :math:`f:\mathcal X^n\to\{0,1,....,D-1\}^*` satisfying:
+
+    .. math::
+        \bar R<H_D(\mathcal X)+\epsilon\text{ for n suff. large}
+
+    (ii) Conversely, every UD code :math:`f:\mathcal X^n\to\{0,1,....,D-1\}^*` for the source satisfies:
+
+    .. math::
+        \bar R\geq H_D(\mathcal X)
+
+    Conclusion:
+
+    The entropy rate :math:`H_D(\mathcal X)` for a stationary source is the smallest CL compression rate for which there exists D-ary prefix codes (for :math:`n` suff. large).
+
+Construction of Optimal VLC: Huffman Codes
+==========================================
+Goal:
+-----
+Given a DMS with alphabet :math:`\mathcal X=\{a_1,a_2,...a_M\}` and dist. vector (pmf) :math:`(p_1,p_2,...p_M)` where :math:`p_i=p_X(a_i)`, :math:`i=1,...M` where :math:`\sum_{i=1}^M p_i=1`, :math:`M=|\mathcal X|`
+
+Construct a binary UD VLC
+
+.. math::
+    f:\mathcal X^n\to\{0,1\}^*
+
+such that the codes average codeword length :math:`\bar l` (or equivalently the average code rate :math:`\bar R=\frac{\bar l}{n}`) is *minimized*.
+
+Such a code is called *optimal*.
+
+.. admonition:: Notes
+
+    * we will first construct optimal codes for :math:`n=1` (:math:`f:\mathcal X\to\{0,1\}`). Finding codes for :math:`n>1` follows directly by considering :math:`\mathcal X^n` as a "super-alphabet".
+    * for :math:`n=1`, we know already that :math:`\exists` a binary prefix code for the source with
+    
+      .. math::
+          H(X)\leq \bar l<H(X)+1
+
+      We want to find an *optimal such code (i.e. with :math:`\bar l` minimal)
+
+      A code with :math:`\bar R=H(X)` is called *absolutely optimal*
+

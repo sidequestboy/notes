@@ -1,0 +1,112 @@
+*************************************************
+Liouville Theorem, Cauchy Differentiation Formula
+*************************************************
+
+Proof of Theorem 1 (For first derivative only)
+
+.. math::
+    G(z)=\frac{1}{2πi}\int_γ\frac{g(w)}{w-z}dw
+
+(:math:`z\in \mathbb C\backslash γ`)
+
+.. math::
+    &\frac{G(z+h)-G(z)}{h}\\
+    =&\frac{1}{h}\frac{1}{2πi}\int_γ\frac{g(w)}{w-(z+h)}-\frac{g(w)}{w-z}dw\\
+    =&\frac{1}{h}\frac{1}{2πi}\int_γ\frac{hg(w)}{(w-(z+h))(w-z)}dw\\
+    =&\frac{1}{2πi}\int_γ\frac{g(w)}{(w-(z+h))(w-z)}dw
+
+We want to show this converges to
+
+.. math::
+    \frac{1}{2πi}\int_γ\frac{g(w)}{(w-z)^2}dw
+
+as :math:`h\to 0`.
+
+Well, :math:`|(w-(z+h))(w-z)^2|\geq δ^3`, so
+
+.. math::
+    &\frac{1}{2πi}(\int_γ\frac{g(w)}{(w-(z+h))(w-z)}dz-\int_γ\frac{g(w)}{(w-z)^2}dz)\\
+    =&\frac{1}{2πi}\int_γ\frac{hg(w)}{(w-(z+h))(w-z)^2}dw
+
+By uniform convergence argument.
+
+Let :math:`L=length(γ)` and :math:`M=max_{w\in γ}|g(w)|`, then:
+
+.. math::
+    &|\frac{1}{2πi}\int_γ\frac{hg(w)}{(w-(z+h))(w-z)^2}dw|\\
+    \leq &\frac{h}{2π}\frac{LM}{δ^3}\to_{h\to 0}\to 0
+
+Giving results.
+
+Argument for higher derivatives follows similarly from induction.
+
+.. admonition:: Corollary 1 (A holomorphic function is infinitely differentiable.)
+
+    Proof:
+
+    If :math:`f:D\to\mathbb C` is holomorphic on some open set, then :math:`\forall z_0\in D`, :math:`\exists ρ>0` s.t. :math:`D_ρ(z_0)\subset D` and disks are simple connected. Use CDF.
+
+.. admonition:: Corollary 2 (Cauchy's Inequality for Derivative)
+
+    If :math:`f:D\to\mathbb C` is holomorphic and a circle :math:`γ\subset D` has radius :math:`R` centered at :math:`z_0` and :math:`max_{w\in γ}|f(z)\leq M|` then,
+
+    .. math::
+        |f^{(k)}(z_0)|\leq \frac{k!}{R^k}M
+
+    Proof:
+
+    .. math::
+        |f^{(k)}(z_0)|=|\frac{k!}{2πi}\int_γ\frac{f(w)}{(w-z)^{k+1}}dw|\\
+        \leq \frac{k!}{2πi}\frac{M}{R^{k+1}}2πR\\
+        =\frac{k!M}{R^k}
+
+.. admonition:: Corollary 3 (Liouville's Theorem)
+
+    The only bounded entire functions are constant.
+
+    Proof:
+
+    If :math:`f:\mathbb C\to\mathbb C` is holomorphic and bounded, :math:`\exists M>0` s.t. :math:`|f(z)|\leq M` for all :math:`R>0`, :math:`\forall z\in \mathbb C` since we can take :math:`γ` arbitrarily large.
+
+    So :math:`f'(z)=0` for all :math:`z\in\mathbb C`. So :math:`f(z)` is constant.
+
+.. admonition:: Corollary 4: (Fundamental Theorem of Algebra) (FTA)
+
+    Ever Polynomial on :math:`\mathbb C` factors completely into linear components
+
+    Proof:
+
+    If :math:`P(z)=a_nz^n+...+a_1z+a_0` is a polynomial of degree :math:`n\geq 1`, then if :math:`P(α)=C`, :math:`P(z)-C=g(z)(z-α)` where :math:`g(z)` is a polynomial of degree :math:`n-1`.
+
+    Why? Polynomial long-division
+
+    So it is enough to show :math:`P(α)=0` for some :math:`α\in\mathbb C`, then :math:`P(z)=q(z)(z-α)` and we have reduced the problem to degree :math:`n-1` and we can proceed by induction until :math:`g(z)` is degree 1 (linear).
+
+    So FTA :math:`\iff` :math:`P(α)=0` for :math:`α\in\mathbb C`.
+
+    Proof by Contradiction:
+
+    Suppose :math:`p(α)\neq 0` for all :math:`α\in \mathbb C`. Then :math:`f(z)=\frac{1}{P(z)}` is entire.
+
+    Since :math:`|P(z)|\geq |a_n||z|^n-|a_{n-1}||z|^{n-1}-...-|a_1||z|+|a_0|`,
+
+    We have
+
+    .. math::
+        |P(z)|\geq \frac{|a_n|}{2}|z|^n
+
+    for sufficiently large :math:`|z|\geq ρ>0`
+
+    So
+
+    .. math::
+        |f(z)|=\frac{1}{|P(z)|}\leq \frac{2}{|a_n||z|^n}\leq \frac{2}{p^n|a_n|}
+
+    for :math:`|z|\geq ρ`.
+
+    and :math:`M=max_{|z|\leq ρ}|f(z)|` exists since :math:`f(z)` is continuous everywhere and :math:`|z|\leq ρ` is compact so:
+
+    .. math::
+        |f(z)|\leq max(M,\frac{2}{ρ^n|a_n|})
+
+    so :math:`f(z)` is bounded, thus constant.

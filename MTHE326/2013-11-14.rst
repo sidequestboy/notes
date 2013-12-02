@@ -1,0 +1,217 @@
+**************
+Laurent Series
+**************
+
+We can generalize the Taylor series to functions that have poles. This will be useful when we get to the residue theorem.
+
+.. admonition:: Theorem (Laurent Series)
+
+    Suppose that :math:`f` is holomorphic on the annulus :math:`D=\{z\in\mathbb C | r<|z-z_0|<R\}` for some :math:`r<R` (:math:`r` can be 0, :math:`R` can be :math:`\infty`).
+
+    Then we can write
+
+    .. math::
+        f(z)&=\sum_{n=0}^\infty a_n(z-z_0)^n+\sum_{n=1}^\infty\frac{b_n}{(z-z_n)^n}\\
+            &=\sum_{n=-\infty}^\infty c_n(z-z_0)^n
+
+    The sum converges L.U. on the annulus.
+
+    .. math::
+        c_n=\frac{1}{2πi}\int_γ\frac{f(w)}{(w-z)^{n+1}}dw
+
+    where :math:`γ` is a CCW circle with radius between :math:`r` and :math:`R`.
+
+    .. note::
+        unlike for Taylor series,
+
+        .. math::
+            a_n\neq \frac{f^{(n)}(z_0)}{n!}
+
+        :math:`f` isn't defined at :math:`z_0`, but the integrals are!
+
+    Proof:
+
+    Let :math:`γ_1,γ_2` be circles of radii :math:`ρ_1,ρ_2` respectively, and :math:`r<ρ_1<ρ_2<R`. Then for every :math:`z` between :math:`γ_1` and :math:`γ_2`,
+
+    .. image:: .static/11.14.1.png
+        :width: 50%
+
+    .. math::
+        f(z)=\frac{1}{2πi}\int_{γ_2}\frac{f(w)}{w-z}dw - \frac{1}{2πi}\int_{γ_1}\frac{f(w)}{w-z}dw
+
+    by the Cauchy Integral Formula.
+
+    On :math:`γ_2`, we use the identity:
+
+    .. math::
+        \frac{1}{w-z}=\sum_{n=0}^\infty \frac{(z-z_0)^n}{(w-z_0)^{n+1}}
+
+    (LU Convergent) since
+
+    .. math::
+        \left|\frac{z-z_0}{w-z_0}\right|<1
+
+    on :math:`γ_2`.
+
+    So
+
+    .. math::
+        \frac{1}{2πi}\int_{γ_2}\frac{f(w)}{w-z}dw&=\sum_{n=0}^\infty (z-z_0)^n\frac{1}{2πi}\int_{γ_2}\frac{f(w)}{(w-z)^{n+1}}dw\\
+        &=\sum_{n=0}^\infty (z-z_0)^na_n
+
+    For :math:`γ_1`, we use the series
+
+    .. math::
+        -\frac{1}{w-z}&=\frac{1}{z-w}\\
+        &=\sum_{n=0}^\infty\frac{(w-z_0)^n}{(z-z_0)^{n+1}}
+
+    (LU Convergent) since
+
+    .. math::
+        \left|\frac{w-z_0}{z-z_0}\right|<1
+
+    on :math:`γ_1`
+
+    So:
+
+    .. math::
+        -\frac{1}{2πi}\int_{γ_1}\frac{f(w)}{w-z}dw&=\sum_{n=1}^\infty\frac{1}{(z-z_0)^n}\frac{1}{2πi}\int_{γ_1}\frac{f(w)}{(w-z)^{1-n}}dw\\
+        &=\sum_{n=1}^\infty\frac{1}{(z-z_0)^n}b_n
+
+The expansion depends on :math:`R` and :math:`r`.
+
+.. admonition:: Example
+
+    .. math::
+        f(z) = \frac{1}{z(z-1)}
+
+    Consider :math:`r=1`, :math:`R=\infty` (:math:`|z|>1`)
+
+    Then
+
+    .. math::
+        \frac{1}{z(z-1)}&=\frac{1}{z^2(1-\frac{1}{z})}\\
+                        &=\frac{1}{z^2}(1+\frac{1}{z}+\frac{1}{z^2}+\frac{1}{z^3}+...)\\
+                        &=\frac{1}{z^2}+\frac{1}{z^3}+\frac{1}{z^4}+...
+
+    On :math:`|z|<1`, so this is a Laurent series around zero for this radius.
+
+    If :math:`r=0` and :math:`R=1` (so :math:`0<|z|<1`)
+
+    Then
+
+    .. math::
+        \frac{1}{z(z-1)}&=\frac{1}{z}(\frac{1}{1-z})\\
+                        &=-\frac{1}{z}(1+z+z^2+...)\\
+                        &=-\frac{1}{z}-1-z-z^2-...
+
+    This is because the pole at :math:`z=1` gets in our way.
+
+
+.. admonition:: Theorem (Uniqueness of Laurent Expansion)
+
+    For fixed :math:`r,R`, the Laurent expansion of :math:`f` is unique on the annulus :math:`A`.
+
+    Proof:
+
+    Suppose
+
+    .. math::
+        f(z)=\sum_{-\infty}^\infty a_n(z-z_0)^n
+
+    on :math:`A=\{z\in\mathbb C | r<|z-z_0|<R\}`.
+
+    Let :math:`γ` be a loop in :math:`A` around :math:`z_0`, :math:`I(γ,z_0)=1`.
+
+    .. math::
+        \frac{1}{2πi}\int_{γ}\frac{f(w)}{(w-z_0)^{k+1}}&=\frac{1}{2πi}\sum_{n=-\infty}^\infty a_n(z-z_0)^{(n-k)-1}dw\\
+        &=\frac{1}{2πi}\int_γ\sum_{n=-\infty}^\infty a_n\int_γ(z-z_0)^{(n-k)-1}dw\\
+        &=\frac{1}{2πi}(a_00+a_10+...+a_k2πi+a_{k+1}0+...)\\
+        &=a_k
+
+    So
+
+    .. math::
+        a_k=\frac{1}{2πi}\int_γ\frac{f(w)}{(w-z_0)^{k+1}}dw
+
+Finding Laurent Series
+======================
+
+We don't usually compute
+
+.. math::
+    \frac{1}{2πi}\int_γ\frac{f(w)}{(w-z_0)^{k+1}}dw
+
+explicitly. That's a bit inefficient. We tend to manipulate known series.
+
+.. admonition:: Example
+
+    .. math::
+        &e^{\frac{1}{z}}\\
+        &r=0\\
+        &R=\infty
+
+    Take
+
+    .. math::
+        e^w=\sum_{n=0}^\infty\frac{w^n}{n!}
+
+    Then:
+
+    .. math::
+        e^{\frac{1}{z}}=\sum_{n=0}^\infty\frac{1}{n!z^n}
+
+.. admonition:: Example
+
+    .. math::
+        e^z+e^{\frac{1}{z}}&=\sum_{n=0}^\infty \frac{1}{n!z^n}+\sum_{n=0}^\infty \frac{z^n}{n!}\\
+        &=1+\sum_{n=-\infty}^\infty \frac{z^n}{|n|!}
+
+.. admonition:: Example
+
+    .. math::
+        e^{z+\frac{1}{z}}
+
+    One way: Let :math:`w=z+\frac{1}{z}`, and expand the series expansion for :math:`e^w`. See Assignment 10
+
+    Another way:
+
+    .. math::
+        e^{z+\frac{1}{z}}&=e^ze^{\frac{1}{z}}\\
+        &=(\sum_{n=0}^\infty\frac{z^n}{n!})(\sum_{n=0}^\infty\frac{1}{n!z^n})
+
+    So
+
+    .. math::
+        e^{z+\frac{1}{z}}=\sum_{n=0}^\infty\sum_{m=0}^\infty\frac{z^{n-m}}{n!m!}
+
+    on :math:`|z|>0`.
+
+    So suppose we want the constant term. Then :math:`n=m` so
+
+    .. math::
+        a_n&=\sum_{m=0}^\infty\frac{1}{m!m!}
+        &=\sum_{m=0}^\infty(\frac{1}{m!})^2
+
+    All other :math:`a_n` are a little more complicated, depend on whether :math:`n>0` or :math:`n<0`.
+
+    Geometric series is also often useful for computations:
+
+    Laurent series at :math:`z=0` on :math:`r=|α|`, :math:`R=\infty`
+
+    .. math::
+        \frac{1}{z-α}&=\frac{1}{z}\frac{1}{1-\frac{α}{z}}\\
+        &=\frac{1}{z}\sum_{n=0}^\infty(\frac{α}{z})^n\\
+        &=\sum_{n=0}^\infty\frac{α^n}{z^{n+1}}\\
+        &=\frac{1}{z}+\frac{α}{z^2}+\frac{α^2}{z^3}+...
+
+    Whice is a Laurent series
+
+    For :math:`r=0`, :math:`R=|α|`,
+
+    .. math::
+        \frac{1}{z-α}&=-\frac{1}{α}\frac{1}{1-\frac{z}{α}}\\
+                     &=-\frac{1}{α}\sum_{n=0}^\infty (\frac{z}{α})^n\\
+                     &=\sum_{n=0}^\infty -\frac{z^n}{α^{n+1}}
+
+    Which is a Taylor series.

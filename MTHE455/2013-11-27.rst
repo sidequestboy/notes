@@ -1,0 +1,143 @@
+Recall the global balance equations 
+
+.. math::
+    ΠG=0
+
+.. math::
+    v_jΠ_j=\sum_{i\in S}Π_iq_{ij}
+
+"flow out"="flow in"
+
+*Local balance* would say that flow from :math:`i` to :math:`j` equals flow from :math:`j` to :math:`i`, for any pair of states :math:`i\neq j`, i.e.
+
+.. math::
+    Π_iq_{ij}=Π_jq_{ji}
+
+There are :math:`{|S| choose 2}` equations (if :math:`|S|` is finite).
+
+.. note::
+    These equations will not be satisfied if :math:`q_{ij}>0` and :math:`q_{ji}=0` (or :math:`q_{ij}=0` and :math:`q_{ji}>0`) for some :math:`i` and :math:`j`
+
+If :math:`Π` satisfies the local balance equations, then
+
+.. math::
+    \sum_{i\in S}Π_iq_{ij}&=\sum_{i\in S}Π_jq_{ji}\\
+        &=Π_j\sum_{i\in S}q_{ji}\\
+        &=Π_jv_j
+
+which is the global balance equation for state :math:`j`.
+
+.. admonition:: Example (Birth-Death Processes)
+
+    Suppose :math:`S=\{0,1,2,...\}`
+
+    .. math::
+        q_{i,i+1}=λ_i>0
+
+    for :math:`i\geq 0`.
+
+    .. math::
+        q_{i,i-1}=μ_i>0
+
+    for :math:`i\geq 1`.
+
+    The :math:`λ_i` are called the birth rates, the :math:`μ_i` are called the death rates.
+
+    The local balance equations are
+
+    .. math::
+        Π_iq_{i,i+1}=Π_{i+1}q_{i+1,i}
+
+    :math:`i\geq 0`. Or
+
+    .. math::
+        Π_iλ_i=Π_{i+1}μ_{i+1}
+
+    So 
+
+    .. math::
+        Π_{i+1}&=\frac{λ_i}{μ_{i+1}}Π_i\\
+            &=\frac{λ_i}{μ_{i+1}}\frac{λ_{i-1}}{μ_i}Π_{i-1}\\
+            &=\frac{λ_i...λ_0}{μ_{i+1}...μ_1}Π_0
+
+    For a stationary distribution to exist, we must have
+
+    .. math::
+        Π_0(1+\frac{λ_0}{μ_1}+...+\frac{λ_0...λ_{i-1}}{μ_1...μ_i}+...)}<\infty
+
+    i.e.
+
+    .. math::
+        1+\sum_{i=1}^\infty \frac{λ_0...λ_{i-1}}{μ_1...μ_i}+...}
+
+    in which case
+
+    .. math::
+        Π_i=\frac{λ_0...λ_{i-1}}{μ_1...μ_i}(1+\sum_{i=1}^\infty \frac{λ_0...λ_{i-1}}{μ_1...μ_i})^{-1}
+
+    .. admonition:: Special Case: M/M/1 Queue
+
+        - A single server first-in-first-out queue with arrivals coming as a Poisson process with rate :math:`λ` and service times independent :math:`Exponential(μ)`
+          
+        Let :math:`X(t)` be the # of customers in the system at time :math:`t`.
+
+        Then :math:`\{X(t):t\geq 0\}` is a birth-death process with :math:`λ_i=λ` for all :math:`i` and :math:`μ_i=μ` for all :math:`i`. A stationary distribution exists if
+
+        .. math::
+            1+\frac{λ}{μ}+(\frac{λ}{μ})^2+...<\infty
+
+        which is true **iff** :math:`λ<μ`. In this case,
+
+        .. math::
+            Π_i=(\frac{λ}{μ})^i(1-\frac{λ}{μ})
+
+        for :math:`i=0,1,2,3,..`
+
+        i.e. :math:`Π` is :math:`Geometric(\frac{λ}{μ})`.
+
+.. admonition:: Example
+
+    Consider a system with :math:`r` servers.
+
+    Service times at server :math:`i` are :math:`Exponential(μ_i)`.
+
+    A total of :math:`N` customers move among these servers. When a customer finishes service at a server, it chooses a different server at random and moves to that server.
+
+    Let :math:`X(t)=(n_1(t),...,n_r(t)` where :math:`n_r(t)` is the # of customers at server :math:`i` at time :math:`t`.
+
+    Find the stationary distribution.
+
+    First, the state space is
+
+    .. math::
+        S=\{(n_1,...,n_r):n_i\text{ is a non-negaative integer, }\sum_{i=1}^r n_i=N\}
+
+    From state :math:`n=(n_1,...,n_r)`, the process can only move to the state of the form
+
+    .. math::
+        n-e_i+e_j
+
+    where :math:`e_i` is vector of all zeros except with a 1 in position :math:`i`.
+
+    Then what is :math:`q_{n,n-e_i+e_j}`?
+
+    This is
+
+    .. math::
+        \sum_{k=1}^r μ_kI_{\{n_k>0\}}\left(\frac{μ_iI_{\{n_i>0\}}}{\sum_{k=1}^r μ_kI_{\{n_k>0\}}}\right)\frac{1}{r-1}\\
+        =\frac{μ_i}{r-1}
+
+    (assuming :math:`n_i>0`).
+
+    Similarly, :math:`q_{n-e_i+e_j,n}=\frac{μ_i}{r-1}`
+
+    Thus the local balance equations:
+
+    .. math::
+        Π_n\frac{μ_i}{r-1}=Π_{n-e_i+e_j}\frac{μ_j}{r-1}
+
+    These are shrewdly solved by letting
+
+    .. math::
+        Π_n=C\frac{1}{μ_1^{n_1}...μ_r^{n_r}}
+

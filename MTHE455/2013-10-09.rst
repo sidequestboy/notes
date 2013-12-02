@@ -1,0 +1,146 @@
+*********************************
+Existence and Uniqueness (cont'd)
+*********************************
+Previously we saw how to construct a vector :math:`ρ(k)` that satisfies the equations :math:`ρ(k)=ρ(k)P`, when :math:`P` is the transition matrix of an irreducible, recurrent Markov chain. Note that we didn't need the chain to be positive recurrent, just recurrent. As an example, consider the simple random walk with :math:`p=\frac{1}{2}`. We have seen that this Markov chain is irreducible and null recurrent. The transition matrix is:
+
+.. math::
+    P=\left[\matrix{... && ... && ... \\
+                  && \frac{1}{2} && 0 && \frac{1}{2} \\
+                  &&     && \frac{1}{2} && 0 && \frac{1}{2} \\
+                  &&     &&      && \frac{1}{2} && 0 && \frac{1}{2} \\
+                  &&     &&      &&     && ... && ... && ...}\right]
+
+and one can easily verify that the vector :math:`Π=(...,1,1,1,...)` satisfies :math:`Π=ΠP` (any constant multiple of :math:`Π` will also work). However, :math:`Π` cannot be a stationary distribution because its components sum to infinity. Today we will show that if a stationary distribution exists for an irreducible Markov chain, then it must be a positive recurrent Markov chain. Moreover, the stationary distribution is unique.
+
+Last time we gave a (hopefully) intuitive argument as to why, if a stationary distribution did exist, we might expect that :math:`Π_iμ_i=1`, where :math:`μ_i` is the mean time to return to state :math:`i`, given that we start in state :math:`i`. We'll prove this rigorously now. So assume that a stationary distribution :math:`Π` exists, and let the initial distribution of :math:`X_0` be :math:`Π`, so that we make our process stationary. Let :math:`T_i` be the first time we enter state :math:`i`, starting from time 1 (this is the same definition of :math:`T_i` as in last lecture). So we have that
+
+.. math::
+    μ_i=E[T_i|X_0=i]
+
+and also
+
+.. math::
+    μ_iΠ_i=E[T_i|X_0=i]P(X_0=i)
+
+We wish to show that this equals one, and the first thing we do is write out the expectation, but in a somewhat nonstandard form. The random variable :math:`T_i` is defined on the nonnegative integers, and there is a useful way to represent the mean of such a random variable, as follows:
+
+.. math::
+    E[T_i|X_0=i]&=\sum_{k=1}^\infty kP(T_i=k|X_0=i)\\
+                &=\sum_{k=1}^\infty(\sum_{n=1}^k(1))P(T_i=k|X_0=i)\\
+                &=\sum_{n=1}^\infty\sum{k=n}^\infty P(T_i=k|X_0=i)\\
+                &=\sum_{n=1}^\infty P(T_i\geq n|X_0=i)
+
+by interchanging the order of summation in the second equality.
+
+So we have that
+
+.. math::
+    μ_iΠ_i&=\sum_{n=1}^\infty P(T_i\geq n| X_0=i)P(X_0=i)\\
+          &=\sum_{n=1}^\infty P(T_i\geq n, X_0=i)
+
+Now for :math:`n=1`, we have :math:`P(T_i\geq 1,X_0=i)=P(X_0=i)`, while for :math:`n\geq 2`, we write
+
+.. math::
+    P(T_i\geq n,X_0=i)=P(X_{n-1}\neq i, X_{n-1}\neq i,...,X_1\neq i,X_0=i)
+
+Now for any events :math:`A` and :math:`B`, we have that
+
+.. math::
+    P(A\cap B)=P(A)-P(A\cap B^c)
+
+which follows directly from :math:`P(A)=P(A\cap B)+P(A\cap B^c)`. With :math:`A=\{X_{n-1}\neq i,...,X_1\neq i\}` and :math:`B=\{X_0=i\}`, we get
+
+.. math::
+    μ_iΠ_i&=P(X_0=i)+\sum_{n=2}^\infty\left(P(X_{n-1}\neq i,...,X_1\neq i) - P(X_{n-1}\neq i,...,X_1\neq i,X_0\neq i)\right)\\
+          &=P(X_0=i)+\sum_{n=2}^\infty\left(P(X_{n-2}\neq i,...,X_0\neq i)-P(X_{n-1}\neq i,...,X_1\neq i,X_0\neq i)\right)
+
+where we did a shift in index to get the last expression. This shift is allowed because we are assuming the process is stationary.
+
+We are almost done now. To make notation a bit less clunky, let's define
+
+.. math::
+    a_n:=P(X_n\neq i,...,X_0\neq i)
+
+Our expression for :math:`μ_iΠ_i` can now be written as
+
+.. math::
+    μ_iΠ_i&=P(X_0=i)+\sum_{n=2}^\infty(a_{n-2}-a_{n-1})\\
+          &=P(X_0=i)+a_0-a_1+a_1-a_2+a_2-a_3+...
+
+The above sum is what is called a *telescoping* sum because of the was the partial sums collapse. Indeed, the nth partial sum is
+
+.. math::
+    P(X_0=i)+a_0-a_n
+
+so that the infinite sum (by definition the limit of the partial sums) is
+
+.. math::
+    μ_iΠ_i=P(Χ_0=i)+a_0-\lim_{n\to\infty}a_n
+
+Two facts give our desired result that :math:`μ_iΠ_i=1`. The first is the simple fact that :math:`a_0=P(X_0\neq i)` so that
+
+.. math::
+    P(X_0=i)+a_0=P(X_0=i)+P(X_o\neq i)=1
+
+The second fact is that
+
+.. math::
+    \lim_{n\to\infty} a_n=0
+
+This fact is not completely obvious. To see this, note that this limit is the probability that the chain *never* visits state :math:`i`. Suppose the chain starts in some arbitrary state :math:`j`. Because :math:`j` is recurrent by the markov property it will be revisited infinitely often with probability 1. Since the chain is irreducible, there is some :math:`n` such that :math:`p_{ji}(n)>0`. Thus on each visit to :math:`j` there is some positive probability that :math:`i` will be visited after a finite number of steps. So the situation is like flipping a coin with a positive probability of heads. It is not hard to see that a heads will eventually be flipped with probability one.
+
+Thus, we're done. We've shown that :math:`μ_iΠ_i=1` for any state :math:`i`. Note that the only thing we've assumed is that the chain is irreducible and that a stationary distribution exists. The fact that :math:`μ_iΠ_i=1` has several important implications. One, obviously, is that
+
+.. math::
+    μ_i=\frac{1}{Π_i}
+
+That is, the mean time to return to state :math:`i` can be computed by determining the stationary probability :math:`Π_i`, if possible. Another implication is that if a stationary distribution :math:`Π` exists, then it must be unique, because the mean recurrence times :math:`μ_i` are obviously unique. The third important implication is that
+
+.. math::
+    Π_i=\frac{1}{μ_i}
+
+This immediately implies that if state :math:`i` is positive recurrent (which means by definition that :math:`μ_i<\infty`), then :math:`Π_i>0`. In fact, we're now in a position to prove that positive recurrence is a class property (recall that when we stated this "fact", we delayed the proof of it till later. That later is now). We are still assuming that a stationary distribution exists. As we have seen before, this implies that
+
+.. math::
+    Π_j=\sum_{i\in S}Π_ip_{ij}(n)
+
+for every :math:`n\geq 1` and every :math:`j\in S`. Suppose that :math:`Π_j=0` for some state :math:`j`. Then, that implies that
+
+.. math::
+    0=\sum_{i\in S}Π_ip_{ij}(n)
+
+for that particular :math:`j`, and for every :math:`n\geq 1`.
+
+But since the state space is irreducible (all states communicate with one another), for every :math:`i` there is some :math:`n` such that :math:`p_{ij}(n)>0`. This implies that :math:`Π_i` must be 0 for every :math:`i\in S`. But this is impossible because the :math:`Π_i` must sum to one. So we have shown that *if a stationary distribution exists, then* :math:`Π_i` *must be strictly positive for every i*. This implies that all states must be positive recurrent. So, putting this together with our previous result that we can construct a stationary distribution if at least one state is positive recurrent, we see that if one state is positive recurrent, then we can construct a stationary distribution, and then this implies that all states must be positive recurrent. In other words, positive recurrence is a class property. Of course, this then implies that null recurrence is also a class property.
+
+Let's summarize the main results that we've proved over the last two lectures in a theorem:
+
+.. admonition:: Theorem
+
+    For an irrudible Markov chain, a stationary distribution :math:`Π` exists if and only if all states are positive recurrent. In this case, the stationary distribution is unique and :math:`Π_i=\frac{1}{μ_i}`, where :math:`μ_i` is the mean recurrence time to state :math:`i`.
+
+So we can't make a transient or a null recurrent Markov chain stationary. Also, if the Markov chain has two or more equivalence classes (we say the Markov chain is *reducible*), then in general there will be many stationary distributions. One of the STAT855 problems is to give an example of this. In these cases, there are different questions to ask about the prcess, as we shall see. Also note that there are no conditions on the period of the Markov chain for the existence and uniqueness of the stationary distribution. This is not true when we consider limiting probabilities, as we shall also see.
+
+.. admonition:: Example (Ross, p.229 #26, extended)
+
+    Three out of every four trucks on the road are followed by a car, while only one out of every five cars is followed by a truck. If I see a truck pass me by on the road, on average how many vehicles pass before I see another truck?
+
+    Solution:
+
+    Recall that we set this up as a Markov chain in which we imagine sitting on the side of the road watching vehicles go by. If a truck goes by, the next vehicle will be a car with probability :math:`\frac{3}{4}` and will be a truck with probability :math:`\frac{1}{4}`. If a car goes by, the next vehicle will be a car with probability :math:`\frac{4}{5}` and will be a truck with probability :math:`\frac{1}{5}`. If we let :math:`X_n` denote the type of the nth vehicle that passes by (0 for truck and 1 for car), then :math:`\{X_n:n\geq 1\}` is a Markov chain with two states (0 and 1) and transition probability matrix
+
+    .. math::
+        P=\begin{array}{l|cc}
+          & 0 & 1 \\
+        \hline
+        0 & \frac{1}{4} & \frac{3}{4} \\
+        1 & \frac{1}{5} & \frac{4}{5}
+        \end{array}
+
+    The equations :math:`Π=ΠP` are
+
+    .. math::
+        Π_0=\frac{1}{4}Π_0+\frac{1}{5}Π_1\\
+        Π_1=\frac{3}{4}Π_0+\frac{4}{5}Π_1
+
+    which, together with the constraint :math:`Π_0+Π_1=1`, we had solved previously to yield :math:`Π_0=\frac{4}{19}` and :math:`Π_1=\frac{15}{19}`. If I see a truck pass by then the average number of vehicles that pass by before I see another truck corresponds to the mean recurrence time to state 0, given that I am currently in state 0. By our theorem, the mean recurrence time to state 0 is :math:`μ_0=\frac{1}{μ_0}=\frac{19}{4}`, which is roughly 5 vehicles.

@@ -2,7 +2,7 @@
 
 	Why do you speak to me of the stones? It is only the arch that matters to me.
 
-	--K. K.
+	--Kubla Khan
 
 ********************************
 k-clique :math:`\in` NP-Complete

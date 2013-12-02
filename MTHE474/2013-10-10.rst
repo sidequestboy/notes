@@ -1,0 +1,154 @@
+*********************************************************
+Kraft Inequality & Lossless Variable-Length Source-Coding
+*********************************************************
+
+.. admonition:: Definition
+
+    A set of positive integers :math:`\{l_1,l_2,...l_n\}` is said to satisfy the *Kraft* (or Kraft-McMillan) inequality if:
+
+    .. math::
+        \sum_{i=1}^M D^{-l_i}\leq 1
+
+    Where :math:`D` is a given integer, :math:`D\geq 2`
+
+.. admonition:: Theorem
+
+    Kraft Inequality for Uniquely Decodable Codes:
+
+    A *UD* Variable length code (VLC) :math:`\mathcal C` with D-ary code alphabet and :math:`M` codewords having lengths :math:`l_1,l_2,...,l_M` (:math:`M=|\mathcal X|^n`) (where :math:`f:\mathcal X^n\to\{0,1,...D-1\}`)
+
+    must satisfy the Kraft inequality:
+
+    .. math::
+        \sum_{i=1}^M D^{-l_i}\leq 1
+
+    Proof
+    -----
+    Suppose that we use the code :math:`\mathcal C` to encode :math:`\mathcal N` n-tuples, that is:
+
+    .. math::
+        x_i^n\in\mathcal X^n,i=1,...,N
+
+    arriving in sequence.
+
+    This yields a concatenated codeword sequence:
+
+    .. math::
+        f(x_1^n)f(x_2^n)\cdot\cdot\cdot f(x_N^n)=c_1c_2\cdot\cdot\cdot c_N
+
+    Let the lengths of these codewords respectively be given by:
+
+    .. math::
+        l(c_1),l(c_2),...,l(c_N)
+
+    Consider the following expression:
+
+    .. math::
+        \sum_{c_1\in\mathcal C}\sum_{c_2\in\mathcal C}...\sum_{c_N\in\mathcal C}D^{(l(c_1)+l(c_n)+...+l(c_N))} (*)
+
+    It is clear the the above expression can be written as:
+
+    .. math::
+        \left[\sum_{c\in \mathcal C}D^{-l(c)}\right]^N
+
+        =\left[\sum_{m=1}^M D^{-lm}\right]^N (**)
+
+    where :math:`|\mathcal C|=M`
+
+    Now, :math:`l(c_1)+l(c_2)+...+l(c_n)` is the total length of the codeword sequence :math:`c_1,c_2,...,c_N`:
+
+    It can take values anywhere between :math:`NL_1` and :math:`NL_2` where
+
+    .. math::
+        L_1:=min_{c\in\mathcal C}\{l_1,...,l_M\}
+
+        L_2:=max_{c\in\mathcal C}\{l_1,...,l_M\}
+
+    Define :math:`A_j` as the *number* of N-codeword sequences of total length :math:`j`. Then, by collecting the terms in (*), we have the following for the right-hand side term in (**):
+
+    .. math::
+        \left[\sum_{m=1}^M D^{-lm}\right]^N=\sum_{j=NL_1}^{NL_2} A_j D^{-j}
+
+    Since the code :math:`\mathcal C` is UD (by assumption), we have that sequences of codewords of total length :math:`j` must be distinct (unambiguously decodable). But the maximum possible number of distinct such sequences of length :math:`j` id :math:`D^j`.
+
+    Therefore, we must have that :math:`A_j\leq D^j`
+
+    Proceeding, we have:
+
+    .. math::
+        \sum_{j=NL_1}^{NL_2} A_j D^{-j}\leq \sum_{j=NL_1}^{NL_2} D^j D^{-j}=N(L_2-L_1)+1
+
+        \leq NL_2
+
+    (since :math:`L_1\geq 1`)
+
+    Therefore,
+
+    .. math::
+        \sum_{n=1}^M D^{-ln}\leq (NL_2)^{\frac{1}{N}}=e^{\frac{1}{N}ln(NL_2)}
+
+    Note the above inequality hols :math:`\forall N\geq 1`; it also holds in the limit on :math:`N\to\infty`. But as :math:`N\to\infty`,:math:`e^{\frac{1}{N}ln(NL_2)}\to 1`
+
+    Therefore,
+
+    .. math::
+        \sum_{m=1}^M D^{-lm}\leq 1
+
+.. admonition:: Theorem
+
+    Kraft Inequality for prefix codes:
+    ==================================
+    * Every D-ary prefix variable length code with :math:`M` codeword lengths :math:`l_1,_2,...l_M` satisfies the Kraft inequality.
+    * Conversely, given a set of lengths :math:`l_1,_2,...l_M` that satisfy the Kraft inequality, there *exists* a D-ary prefix code with these lengths as its codeword lengths
+
+    Proof
+    -----
+    see online notes (Theorem 3.20)
+
+Big Picture
+===========
+
+.. image:: .static/10-10-1.jpg
+    :width: 50%
+
+Conclusion of previous two theorems:
+------------------------------------
+A UD VLC can always be replaced with a *prefix code* of *identical codeword lengths* (and thus identical rates).
+
+.. admonition:: Theorem
+
+    Lossless Variable-Length Source Coding Theorem for DMS:
+    =======================================================
+    Consider a DMS :math:`\{X_i\}_{i=1}^\infty` with finite alphabet :math:`\mathcal X` and entropy in base :math:`D`, :math:`H_D(X)=-\sum_{x\in\mathcal X}p_X(x)log_D p_X(x)`
+
+    Forward Part
+    ------------
+    For any :math:`\epsilon>0`, there exists a prefix (hence UD) code for the source:
+
+    .. math::
+        f:\mathcal X^n\to\{0,1,...,D-1\}^*
+
+    satisfying
+
+    .. math::
+        \bar R<H_D(X)+\epsilon
+
+    for :math:`n` sufficiently large.
+
+    Converse Part
+    -------------
+    Conversely, *every* UD VLC for the source
+
+    .. math::
+        f:\mathcal X^n\to\{0,1,...,D-1\}^*
+
+    has average code rate:
+
+    .. math::
+        \bar R\geq H_D(X)
+
+
+
+
+
+

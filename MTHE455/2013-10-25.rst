@@ -1,0 +1,119 @@
+***********************************************
+An Example of solving a Stationary Distribution
+***********************************************
+
+.. admonition:: Example
+
+    We have :math:`n` processors. Processor :math:`i` will successfully complete a job with probability :math:`p_i`, and fail with probability :math:`1-p_i`, :math:`i=1,...,n`.
+
+    The processors are placed in some order. When a job arrives to the system, it tries the processors in order until it is successfully completed, or until all processors fail.
+
+    If the :math:`k^{th}` processor is the first to be successful, it exchanges its place with the processor ahead of it. The ordering does not change if the first processor is successful or if all processors are unsuccessful.
+
+    Let :math:`X_n=` ordering of the processors after the :math:`n^{th}` job. :math:`\{X_n, n\geq 0\}` is a Markov chain with state space being the set of all orderings (permutations) of :math:`\{1,...,n\}`. Let us compute the transition probabilities.
+
+    Let :math:`i=(i_1,i_2,...,i_n)` be an arbitrary ordering in the state space.
+
+    Let :math:`j_k` denote state :math:`i` but with components :math:`k` and :math:`k+1` interchanged, :math:`k=1,...,n-1`
+
+    Then
+
+    .. math::
+        p_{i,j_k}=(1-p_{i_1})(1-p_{i_2})...(1-p_{i_k})p_{k+1}
+
+    for :math:`k=1,...,n-1`
+
+    .. math::
+        p_{i,i}=p_{i_1}+(1-p_{i_1})...(1-p_{i_n})
+
+    Local Balance Equations:
+    ------------------------
+    We need :math:`p_{j_k,i}`:
+
+    .. math::
+        p_{j_k,i}=\begin{cases}
+            (1-p_{i_k})...(1-p_{i_{k-1}})(1-p_{i_{k+1}})p_{i_k} & k=2,...,n-1\\
+            (1-p_{i_2}p_{i_1}) & k=1
+            \end{cases}
+
+    The local balance equations are:
+
+    .. math::
+        Π_ip_{i,j_1}=Π_{j_1}p_{j_1,i}
+
+    is
+
+    .. math::
+        Π_i(1-p_{i_1})p_{i_2}=Π_{j_1}(1-p_{i_2})p_{i_1}
+
+    and
+
+    .. math::
+        Π_ip_{i,j_k}=Π_{j_k}p_{j_k,i}
+
+    is
+
+    .. math::
+        Π_i(1-p_{i_1})...(1-p_{i_k})p_{i_{k+1}}=Π_{j_k}(1-p_{i_1})...(1-p_{i_{k-1}})(1-p_{i_{k+1}})p_{i_k}
+
+    or
+
+    .. math::
+        Π_i(1-p_{i_k})p_{i_{k+1}}=Π_{j_k}(1-p_{i_{k+1}})p_{i_k}
+
+    which holds for :math:`k=1` as well.
+
+    These are all the local balance equations that :math:`Π` needs to sastisfy.
+
+    If we assume that :math:`Π_i` is of product form, meaning:
+
+    .. math::
+        Π_i=f_1(p_{i_1})f_2(p_{i_2})...f_n(p_{i_n})
+
+    where :math:`f_j` is a function for each position in the vector :math:`i=(i_1,...,i_n)`
+
+    For the state :math:`j_k` then the value of :math:`Π_{j_k}` would be:
+
+    .. math::
+        f_1(p_{i_1})...f_{k-1}(p_{i_{k-1}})f_{k}(p_{i_{k+1}})f_{k+1}(p_{i_k})f_{k+2}(p_{i_{k+2}})...f_n(p_{i_n})
+
+    Assuming this, we get:
+
+    .. math::
+        :label: 1
+
+        f_k(p_{i_k})f_{k+1}(p_{i_{k+1}})(1-p_{i_k})p_{i_{k+1}}=f_k(p_{i_{k+1}})f_{k+1}(p_{i_k})(1-p_{i_{k+1}})p_{i_k}
+
+    Or try:
+
+    .. math::
+        :label: 2
+
+        f_k(p_{i_k})f_{k+1}(p_{i_{k+1}})(1-p_{i_k})=f_k(p_{i_{k+1}})f_{k+1}(p_{i_k})(1-p_{i_{k+1}})
+
+    After some trial and error, letting :math:`f_k(p_{i_k})=(1-p_{i_k})^k`, equation :eq:`2` is solved. Now, putting back :math:`p_{i_k}` and :math:`p_{i_{k+1}}` and remove :math:`(1-p_{i_k})` and :math:`(1-p_{i_{k+1}})` to get:
+
+    .. math::
+        :label: 3
+
+        f_k(p_{i_k})f_{k+1}(p_{i_{k+1}})p_{i_{k+1}}=f_k(p_{i_{k+1}})f_{k+1}(p_{i_k})p_{i_k}
+
+    And see that :math:`f_k=(\frac{1}{p_{i_k}})^k` works for :eq:`3`, and finally that we can put these two solutions together, giving:
+
+    .. math::
+        f_k(p_{i_k})=(\frac{1-p_{i_k}}{p_{i_k}})^k
+
+    Which satisfies :eq:`1`
+
+    Thus,
+
+    .. math::
+        Π_i=C\prod_{j=1}^n(\frac{1-p_{i_j}}{p_j})^j
+
+    where :math:`C=(\sum_{i\in S}\prod_{j=1}^n(\frac{1-p_{i_j}}{p_j})^j)^{-1}`
+
+
+Next Topic:
+-----------
+Markov Chain Monte-Carlo
+

@@ -1,0 +1,156 @@
+****************************
+Cauchy's Theorem (version 2)
+****************************
+
+
+Last time:
+----------
+
+Cauchy's Theorem (Version 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Suppose :math:`D` is a domain and
+
+.. math::
+    f: D\to \mathbb C
+
+is holomorphic on :math:`D`. If :math:`\gamma\subset D` is a simple closed curve and its whole interior is in :math:`D`, then:
+
+.. math::
+    \int_\gamma f(z)dz=0
+
+.. admonition:: Non-Example
+
+    .. math::
+        γ: |z|=1\\
+        f(z)=\frac{1}{z}\\
+        \int_γ f(z)dz \neq 0
+
+    since the domain of analyticity does not contain :math:`z=0` which is an interior point of the curve :math:`γ`.
+
+.. admonition:: Corollary 1
+
+    If :math:`f` is holomorphic on the disk :math:`D_p(z_0)`, :math:`z_0\in\mathbb C`, :math:`ρ>0`, then :math:`f` has an anti-derivative on :math:`D_ρ(z_0)`.
+
+    Proof
+    -----
+    In the proof of the equivalence theorm, we defined:
+
+    .. math::
+        F(z+h)-F(z)=\int_{γ_h} F(w)dw
+
+    :math:`F` was anti-derivative
+
+    Let :math:`γ_z` be a *straight* path from :math:`z_0` to :math:`z` and let
+
+    .. math::
+        F(z)=\int_{γ_z}f(w)dw
+
+    where :math:`γ_z` is a fixed path.
+
+    For :math:`h\in \mathbb C` s.t. :math:`|h|` is "small",
+
+    Let :math:`\tilde γ_h` be the straight path from :math:`z` to :math:`z+h`
+
+    .. math::
+        γ_z+\tilde γ_h-γ_{z+h}
+
+    .. image::
+
+    So,
+
+    .. math::
+        \int_{γ_z+\tilde γ_h-γ_{z+h}} f(w)dw=0
+
+    by Cauchy's Theorem.
+
+    So,
+
+    .. math::
+        \int_{γ_z} f(w)dw+\int_{\tilde γ_h} f(w)dw-\int_{-γ_{z+h}} f(w)dw=0\\
+        \int_{\tilde γ_h}&=\int_{-γ_{z+h}} f(w)dw-\int_{γ_z} f(w)dw\\
+        &=F(z+h)-F(z)
+
+
+    From here, repeat Proof of Equivalence Theorem.
+
+.. admonition:: Corollary 2
+
+    If :math:`f` is an analytic function on :math:`D_ρ(z_0)`, :math:`z_0\in\mathbb C`, :math:`ρ>0`, and :math:`γ:[a,b]\to D_ρ(z_0)`, :math:`γ(a)=γ(b)` (not necessarily simple), then:
+
+    .. math::
+        \int_γ f(w)dw=0
+
+    Proof
+    -----
+    There exists an antiderivative of :math:`f` on the disk, by previous Corollary, and:
+
+    .. math::
+        \int_γ f(w)dw=F(γ(b))-F(γ(a))=0
+
+    by FTCC
+
+Cauchy's Theorem (version 2)
+============================
+Suppose :math:`γ_1, γ_2` are simple closed curves in the domain :math:`D` and :math:`γ_1` can be continuously deformed - this term to be later defined - to :math:`γ_2` (see shitty picture)
+
+.. image::
+    :width: 50%
+
+*and* :math:`γ_1,γ_2` are oriented the same way, then:
+
+.. math::
+    \int_{γ_1}f(w)dw=\int_{γ_2}f(w)dw
+
+.. admonition:: Example
+
+    Let :math:`f(z)=\frac{1}{z}+\frac{1}{z-1}`
+
+    Find :math:`\int_γ f(w)dw` where:
+
+    .. image::
+
+    Firstly,
+
+    .. math::
+        \int_γ f(w)dw=\int_γ \frac{1}{w}dw+\int_γ \frac{1}{w-1}dw
+
+    .. math::
+        \int_γ \frac{1}{w}dw=0
+
+    by Cauchy's Theorem (version 1)
+
+    .. math::
+        \int_γ \frac{1}{w-1}dw=\int_{\tilde γ} \frac{1}{w-1}dw=2πi
+
+    where :math:`\tilde γ` is a circle around :math:`z=1` oriented counter-clockwise
+
+.. admonition:: Aside
+
+    Partial Fractions
+
+    How to integrate something like:
+
+    .. math::
+        \int_γ \frac{1}{z^2+5z+6}dz
+
+    by the fundamental theorem of Algebra, any polynomial of the form:
+
+    .. math::
+        a_nz^n+...+a_1z+a_0
+
+    factors in :math:`\mathbb C`
+
+    .. math::
+        =a_n(z-α_1)^{m_1}\cdot ...\cdot (z-α_k)^{m_k}
+
+    Using partial fractions is just the technique of letting
+
+    .. math::
+        \frac{1}{a_n(z-α_1)^{m_1} ...  (z-α_k)^{m_k}}=\sum_{l=1}^{k}\sum_{m=0}^{m_1} \frac{A_{1,m}}{(z-α_l)^m}
+
+    .. admonition:: Example
+
+        .. math::
+            \frac{1}{z^2+36}&=\frac{1}{(z+6i)(z-6i)}\\
+            &=\frac{A}{(z+6i)}+\frac{B}{(z-6i)}
+

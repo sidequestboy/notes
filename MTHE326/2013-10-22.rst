@@ -1,0 +1,65 @@
+*****************************************************
+Proof of Cauchy's Theorem (version 2, 3) and Homotopy
+*****************************************************
+
+.. admonition:: Recall
+
+    If :math:`f: D\to\mathbb C` is holomorphic and :math:`γ_0,γ_1` are simple, closed curves oriented the same way
+
+    .. math::
+        γ_0,γ_1\subset D && γ_1\subset Int(γ_0)\cap D\\
+        Int(γ_1)-Int(γ_0)\subset D
+
+    (see shitty image from last time)
+
+    then:
+
+    .. math::
+        \int_{γ_0}f(z)dz=\int_{γ_1}f(z)dz
+
+Proof of Cauchy's Theorem (version 2)
+=====================================
+Consider the simple curve, :math:`\tilde γ`, containing :math:`γ_0` and :math:`γ_1`
+
+.. image::
+
+Claim:
+------
+.. math::
+    \int_{γ_0}+\int_{\tilde γ}+\int_{-γ_1}+\int_{-\tilde γ}
+
+We use green's theorem (as in Cauchy's Theorem version 1) to relate the integral around the boundary of :math:`R` to an integral on :math:`R`
+
+.. admonition:: Definition
+    We say the loops :math:`γ_0` and :math:`γ_1` are homotopic within a domain :math:`D` if there exists a continuous, differentiable mapping:
+
+    .. math::
+        H:[0,1]\times[0,1]\to D
+
+    such that:
+
+    .. math::
+    H(0,t)=γ_0(t) && H(1,t)=γ_1(t)\\
+    H(s,0)=H(s,1)
+
+    .. image::
+
+    .. note:: The in-between curves defined by :math:`H` mustn't leave :math:`D` at any point.
+
+.. admonition:: Example
+
+    Let :math:`γ_0=5\cos 2πt+i\sin 2πt && t\in[0,1]`
+
+    And :math:`γ_1=3\cos 2πt+i\sin 2πt && t\in[0,1]`
+
+    .. math::
+        H(s,t)=(5-2s)e^{2πit}
+
+Cauchy's Theorem (version 3)
+============================
+If :math:`f:D\to \mathbb C` is holomorphic and :math:`γ_0` and :math:`γ_1` are closed loops in :math:`D` which are homotopic in :math:`D`, then:
+
+.. math::
+    \int_{γ_0}f(z)dz=\int_{γ_1}f(z)dz
+
+In version 1, :math:`γ` was a simple closed curve and :math:`Int(γ)\subset D`

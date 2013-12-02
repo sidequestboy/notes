@@ -1,7 +1,7 @@
 ************************************
 Entropy Rate for Sources with Memory
 ************************************
-A general discrete source :math:`\{X_i\}_{i=1}^\infty` with memory, and of alphabet :math:`\mathcal X`, is described by the sequence of :math:`n` - fold joint pmgs:
+A general discrete source :math:`\{X_i\}_{i=1}^\infty` with memory, and of alphabet :math:`\mathcal X`, is described by the sequence of :math:`n` - fold joint pmfs:
 
 .. math::
     p_{X^m}(x_1,x_2,...,x_n)=P[X_1=x_1,X_2=x_2,...,X_n=x_n]
@@ -16,10 +16,12 @@ A general discrete source :math:`\{X_i\}_{i=1}^\infty` with memory, and of alpha
 
 .. admonition:: Definition
 
-    A stochastic process (or source) :math:`\{X_i\}{i=1}^\infty` is called **stationary** (or **strictly stationary**) if:
+    A stochastic process (or source) :math:`\{X_i\}_{i=1}^\infty` is called **stationary** (or **strictly stationary**) if:
 
     .. math::
-        P[X_1=x_1,X_2=x_2,...,X_n=x_n]=P[X_{1+\tau}=x_1,X_{2+\tau}=x_2,...,X_{n+\tau}=x_n] (*)
+        :label: *
+
+        P[X_1=x_1,...,X_n=x_n]=P[X_{1+\tau}=x_1,...,X_{n+\tau}=x_n]
 
 The idea: joint :math:`n` - fold dist. of the source is **invariant** under time shifts:
 
@@ -35,7 +37,7 @@ In practice, many sources are modeled via stationary processes.
 
           \forall \tau, \forall a \in \mathcal X
 
-      This follows by using (*) with :math:`n=1`.
+      This follows by using :eq:`*` with :math:`n=1`.
     (b) A DMS (which consists of **iid** RVs) is stationary.
 
       .. math::
@@ -69,9 +71,9 @@ Overview of Markov chains (Markov sources)
     In this case:
 
     .. math::
-    p_{X^n}(x^n)=p_{X^n}(x^n)=p_{X_1}(x_1)\prod_{i=2}^n p_{X_i|X_{i-1}}(x_i|x_{i-1})
+        p_{X^n}(x^n)=p_{X_1}(x_1)\prod_{i=2}^n p_{X_i|X_{i-1}}(x_i|x_{i-1})
 
-Also, :math:`\{X_i\}` is called a *Markov source of order :math:`M`* (or *memory* :math:`M`), where :math:`M>0` an integer - if:
+Also, :math:`\{X_i\}` is called a *Markov source of order* :math:`M` (or *memory* :math:`M`), where :math:`M>0` an integer - if:
 
 .. math::
     P[X_n=x_n|X_{n-1}=x_{n-1},...X_1=x_1]=P[X_n=x_n|X_{n-1}=x_{n-1},...,X_{n-m}=x_{n-m}]
@@ -83,14 +85,16 @@ for all :math:`n>M` and :math:`x^n \in \mathcal X^n`
     A MC :math:`\{X_i\}` is *homogeneous* or *time-invariant* if :math:`p_{X_n|X_{n-1}}` does not depend on :math:`n` for all :math:`n` - i.e.
 
     .. math::
-        p_{X_n|X_{n-1}}(a|b):=P[X_n=1|X_n-1=b]=P[X_2=a|X_1=b]=p_{X_2|X_1}(a|b)
+        :label: **
+        
+        p_{X_n|X_{n-1}}(a|b):=P[X_n=a|X_{n-1}=b]=P[X_2=a|X_1=b]=p_{X_2|X_1}(a|b)
 
 .. admonition:: Definition
 
     For a MC :math:`\{X_i\}`, :math:`X_i` is called the "state" of the MC at time :math:`i`.
 
 .. note::
-    Using (1) and (2), we remark that a homogeneous MC is fully described by its initial state distribution
+    Using :eq:`*` and :eq:`**`, we remark that a homogeneous MC is fully described by its initial state distribution
 
     .. math::
         p_{X_1}(x)=P[X_1=x], x \in \mathcal X
